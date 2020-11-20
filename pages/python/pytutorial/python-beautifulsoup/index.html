@@ -1,0 +1,2435 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="BeautifulSoup 教程是 BeautifulSoup Python 库的入门教程。 这些示例查找标签，遍历文档树，修改文档和刮取网页。  BeautifulSoup  BeautifulSoup 是用于解析 HTML 和 XML 文档的 Python 库。 它通常用于网页抓取。 BeautifulSoup 将复杂的 HTML 文档转换为复杂的 Python 对象树，例如标记，可导航字符串">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/python/pytutorial/python-beautifulsoup/">
+
+
+<link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+
+    
+      
+        <title>BeautifulSoup 教程 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#BeautifulSoup-教程" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              BeautifulSoup 教程
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../" class="md-tabs__link md-tabs__link--active">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../nlp/nlp/" class="md-tabs__link">
+          人工智能
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        BeautifulSoup 教程
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      BeautifulSoup 教程
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup" class="md-nav__link">
+    BeautifulSoup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#安装-BeautifulSoup" class="md-nav__link">
+    安装 BeautifulSoup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#HTML-文件" class="md-nav__link">
+    HTML 文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-简单示例" class="md-nav__link">
+    BeautifulSoup 简单示例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-标签名称文本" class="md-nav__link">
+    BeautifulSoup 标签，名称，文本
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-遍历标签" class="md-nav__link">
+    BeautifulSoup 遍历标签
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-子元素" class="md-nav__link">
+    BeautifulSoup 子元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-后继元素" class="md-nav__link">
+    BeautifulSoup 后继元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-网页抓取" class="md-nav__link">
+    BeautifulSoup 网页抓取
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-美化代码" class="md-nav__link">
+    BeautifulSoup 美化代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-通过-ID-查找元素" class="md-nav__link">
+    BeautifulSoup 通过 ID 查找元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-查找所有标签" class="md-nav__link">
+    BeautifulSoup 查找所有标签
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-CSS-选择器" class="md-nav__link">
+    BeautifulSoup CSS 选择器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-追加元素" class="md-nav__link">
+    BeautifulSoup 追加元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-插入元素" class="md-nav__link">
+    BeautifulSoup 插入元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-替换文字" class="md-nav__link">
+    BeautifulSoup 替换文字
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-删除元素" class="md-nav__link">
+    BeautifulSoup 删除元素
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      人工智能
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="人工智能" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        人工智能
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup" class="md-nav__link">
+    BeautifulSoup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#安装-BeautifulSoup" class="md-nav__link">
+    安装 BeautifulSoup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#HTML-文件" class="md-nav__link">
+    HTML 文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-简单示例" class="md-nav__link">
+    BeautifulSoup 简单示例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-标签名称文本" class="md-nav__link">
+    BeautifulSoup 标签，名称，文本
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-遍历标签" class="md-nav__link">
+    BeautifulSoup 遍历标签
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-子元素" class="md-nav__link">
+    BeautifulSoup 子元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-后继元素" class="md-nav__link">
+    BeautifulSoup 后继元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-网页抓取" class="md-nav__link">
+    BeautifulSoup 网页抓取
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-美化代码" class="md-nav__link">
+    BeautifulSoup 美化代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-通过-ID-查找元素" class="md-nav__link">
+    BeautifulSoup 通过 ID 查找元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-查找所有标签" class="md-nav__link">
+    BeautifulSoup 查找所有标签
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-CSS-选择器" class="md-nav__link">
+    BeautifulSoup CSS 选择器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-追加元素" class="md-nav__link">
+    BeautifulSoup 追加元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-插入元素" class="md-nav__link">
+    BeautifulSoup 插入元素
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-替换文字" class="md-nav__link">
+    BeautifulSoup 替换文字
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#BeautifulSoup-删除元素" class="md-nav__link">
+    BeautifulSoup 删除元素
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="BeautifulSoup-教程">BeautifulSoup 教程<a class="headerlink" href="#BeautifulSoup-教程" title="Permanent link">&para;</a></h1>
+<p><strong>BeautifulSoup 教程</strong> 是 BeautifulSoup Python 库的入门教程。 这些示例查找标签，遍历文档树，修改文档和刮取网页。</p>
+<h2 id="BeautifulSoup">BeautifulSoup<a class="headerlink" href="#BeautifulSoup" title="Permanent link">&para;</a></h2>
+<p>BeautifulSoup 是用于解析 HTML 和 XML 文档的 Python 库。 它通常用于网页抓取。 BeautifulSoup 将复杂的 HTML 文档转换为复杂的 Python 对象树，例如标记，可导航字符串或注释。</p>
+<h2 id="安装-BeautifulSoup">安装 BeautifulSoup<a class="headerlink" href="#安装-BeautifulSoup" title="Permanent link">&para;</a></h2>
+<p>我们使用<code>pip3</code>命令安装必要的模块。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ sudo pip3 install lxml
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们需要安装 BeautifulSoup 使用的<code>lxml</code>模块。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ sudo pip3 install bs4
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>上面的命令将安装 BeautifulSoup。</p>
+<h2 id="HTML-文件">HTML 文件<a class="headerlink" href="#HTML-文件" title="Permanent link">&para;</a></h2>
+<p>在示例中，我们将使用以下 HTML 文件：</p>
+<details class="abstract" open="open"><summary>index.html</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Header&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;                   
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h2&gt;Operating systems&lt;/h2&gt;
+
+        &lt;ul id=&quot;mylist&quot; style=&quot;width:150px&quot;&gt;
+            &lt;li&gt;Solaris&lt;/li&gt;
+            &lt;li&gt;FreeBSD&lt;/li&gt;
+            &lt;li&gt;Debian&lt;/li&gt;                      
+            &lt;li&gt;NetBSD&lt;/li&gt;           
+            &lt;li&gt;Windows&lt;/li&gt;         
+        &lt;/ul&gt;
+
+        &lt;p&gt;
+          FreeBSD is an advanced computer operating system used to 
+          power modern servers, desktops, and embedded platforms.
+        &lt;/p&gt;
+
+        &lt;p&gt;
+          Debian is a Unix-like computer operating system that is 
+          composed entirely of free software.
+        &lt;/p&gt;        
+
+    &lt;/body&gt;    
+&lt;/html&gt;
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="BeautifulSoup-简单示例">BeautifulSoup 简单示例<a class="headerlink" href="#BeautifulSoup-简单示例" title="Permanent link">&para;</a></h2>
+<p>在第一个示例中，我们使用 BeautifulSoup 模块获取三个标签。</p>
+<details class="abstract" open="open"><summary>simple.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    print(soup.h2)
+    print(soup.head)
+    print(soup.li)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该代码示例将打印三个标签的 HTML 代码。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>from bs4 import BeautifulSoup
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们从<code>bs4</code>模块导入<code>BeautifulSoup</code>类。 <code>BeautifulSoup</code>是从事工作的主要班级。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们打开<code>index.html</code>文件并使用<code>read()</code>方法读取其内容。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>soup = BeautifulSoup(contents, &#39;lxml&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>创建了<code>BeautifulSoup</code>对象； HTML 数据将传递给构造函数。 第二个选项指定解析器。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(soup.h2)
+print(soup.head)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在这里，我们打印两个标签的 HTML 代码：<code>h2</code>和<code>head</code>。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(soup.li)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>有多个<code>li</code>元素； 该行打印第一个。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./simple.py 
+&lt;h2&gt;Operating systems&lt;/h2&gt;
+&lt;head&gt;
+&lt;title&gt;Header&lt;/title&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;/head&gt;
+&lt;li&gt;Solaris&lt;/li&gt;
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="BeautifulSoup-标签名称文本">BeautifulSoup 标签，名称，文本<a class="headerlink" href="#BeautifulSoup-标签名称文本" title="Permanent link">&para;</a></h2>
+<p>标记的<code>name</code>属性给出其名称，<code>text</code>属性给出其文本内容。</p>
+<details class="abstract" open="open"><summary>tags_names.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    print(&quot;HTML: {0}, name: {1}, text: {2}&quot;.format(soup.h2, 
+        soup.h2.name, soup.h2.text))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该代码示例打印<code>h2</code>标签的 HTML 代码，名称和文本。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./tags_names.py 
+HTML: &lt;h2&gt;Operating systems&lt;/h2&gt;, name: h2, text: Operating systems
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="BeautifulSoup-遍历标签">BeautifulSoup 遍历标签<a class="headerlink" href="#BeautifulSoup-遍历标签" title="Permanent link">&para;</a></h2>
+<p>使用<code>recursiveChildGenerator()</code>方法，我们遍历 HTML 文档。</p>
+<details class="abstract" open="open"><summary>traverse_tree.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    for child in soup.recursiveChildGenerator():
+
+        if child.name:
+
+            print(child.name)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例遍历文档树并打印所有 HTML 标记的名称。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./traverse_tree.py 
+html
+head
+title
+meta
+body
+h2
+ul
+li
+li
+li
+li
+li
+p
+p
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在 HTML 文档中，我们有这些标签。</p>
+<h2 id="BeautifulSoup-子元素">BeautifulSoup 子元素<a class="headerlink" href="#BeautifulSoup-子元素" title="Permanent link">&para;</a></h2>
+<p>使用<code>children</code>属性，我们可以获取标签的子级。</p>
+<details class="abstract" open="open"><summary>get_children.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    root = soup.html
+
+    root_childs = [e.name for e in root.children if e.name is not None]
+    print(root_childs)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例检索<code>html</code>标记的子代，将它们放置在 Python 列表中，然后将其打印到控制台。 由于<code>children</code>属性还返回标签之间的空格，因此我们添加了一个条件，使其仅包含标签名称。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./get_children.py 
+[&#39;head&#39;, &#39;body&#39;]
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>html</code>标签有两个子元素：<code>head</code>和<code>body</code>。</p>
+<h2 id="BeautifulSoup-后继元素">BeautifulSoup 后继元素<a class="headerlink" href="#BeautifulSoup-后继元素" title="Permanent link">&para;</a></h2>
+<p>使用<code>descendants</code>属性，我们可以获得标签的所有后代（所有级别的子级）。</p>
+<details class="abstract" open="open"><summary>get_descendants.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    root = soup.body
+
+    root_childs = [e.name for e in root.descendants if e.name is not None]
+    print(root_childs)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例检索<code>body</code>标记的所有后代。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./get_descendants.py 
+[&#39;h2&#39;, &#39;ul&#39;, &#39;li&#39;, &#39;li&#39;, &#39;li&#39;, &#39;li&#39;, &#39;li&#39;, &#39;p&#39;, &#39;p&#39;]
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这些都是<code>body</code>标签的后代。</p>
+<h2 id="BeautifulSoup-网页抓取">BeautifulSoup 网页抓取<a class="headerlink" href="#BeautifulSoup-网页抓取" title="Permanent link">&para;</a></h2>
+<p>请求是一个简单的 Python HTTP 库。 它提供了通过 HTTP 访问 Web 资源的方法。</p>
+<details class="abstract" open="open"><summary>scraping.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+import requests as req
+
+resp = req.get(&quot;http://www.something.com&quot;)
+
+soup = BeautifulSoup(resp.text, &#39;lxml&#39;)
+
+print(soup.title)
+print(soup.title.text)
+print(soup.title.parent)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例检索一个简单网页的标题。 它还打印其父级。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>resp = req.get(&quot;http://www.something.com&quot;)
+
+soup = BeautifulSoup(resp.text, &#39;lxml&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们获取页面的 HTML 数据。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(soup.title)
+print(soup.title.text)
+print(soup.title.parent)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们检索标题的 HTML 代码，其文本以及其父级的 HTML 代码。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./scraping.py 
+&lt;title&gt;Something.&lt;/title&gt;
+Something.
+&lt;head&gt;&lt;title&gt;Something.&lt;/title&gt;&lt;/head&gt;
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="BeautifulSoup-美化代码">BeautifulSoup 美化代码<a class="headerlink" href="#BeautifulSoup-美化代码" title="Permanent link">&para;</a></h2>
+<p>使用<code>prettify()</code>方法，我们可以使 HTML 代码看起来更好。</p>
+<details class="abstract" open="open"><summary>prettify.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+import requests as req
+
+resp = req.get(&quot;http://www.something.com&quot;)
+
+soup = BeautifulSoup(resp.text, &#39;lxml&#39;)
+
+print(soup.prettify()) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们美化了一个简单网页的 HTML 代码。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./prettify.py 
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;
+   Something.
+  &lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  Something.
+ &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="BeautifulSoup-通过-ID-查找元素">BeautifulSoup 通过 ID 查找元素<a class="headerlink" href="#BeautifulSoup-通过-ID-查找元素" title="Permanent link">&para;</a></h2>
+<p>使用<code>find()</code>方法，我们可以通过各种方式（包括元素 ID）查找元素。</p>
+<details class="abstract" open="open"><summary>find_by_id.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    #print(soup.find(&quot;ul&quot;, attrs={ &quot;id&quot; : &quot;mylist&quot;}))
+    print(soup.find(&quot;ul&quot;, id=&quot;mylist&quot;)) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该代码示例查找具有<code>mylist</code> ID 的<code>ul</code>标签。 带注释的行是执行相同任务的另一种方法。</p>
+<h2 id="BeautifulSoup-查找所有标签">BeautifulSoup 查找所有标签<a class="headerlink" href="#BeautifulSoup-查找所有标签" title="Permanent link">&para;</a></h2>
+<p>使用<code>find_all()</code>方法，我们可以找到满足某些条件的所有元素。</p>
+<details class="abstract" open="open"><summary>find_all.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    for tag in soup.find_all(&quot;li&quot;):
+        print(&quot;{0}: {1}&quot;.format(tag.name, tag.text))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该代码示例查找并打印所有<code>li</code>标签。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./find_all.py 
+li: Solaris
+li: FreeBSD
+li: Debian
+li: NetBSD
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<p><code>find_all()</code>方法可以获取要搜索的元素列表。</p>
+<details class="abstract" open="open"><summary>find_all2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    tags = soup.find_all([&#39;h2&#39;, &#39;p&#39;])
+
+    for tag in tags:
+        print(&quot; &quot;.join(tag.text.split())) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例查找所有<code>h2</code>和<code>p</code>元素并打印其文本。</p>
+<p><code>find_all()</code>方法还可以使用一个函数，该函数确定应返回哪些元素。</p>
+<details class="abstract" open="open"><summary>find_by_fun.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+def myfun(tag):
+
+    return tag.is_empty_element
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    tags = soup.find_all(myfun)
+    print(tags) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例打印空元素。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./find_by_fun.py 
+[&lt;meta charset=&quot;utf-8&quot;/&gt;]
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>文档中唯一的空元素是<code>meta</code>。</p>
+<p>也可以使用正则表达式查找元素。</p>
+<details class="abstract" open="open"><summary>regex.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+import re
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    strings = soup.find_all(string=re.compile(&#39;BSD&#39;))
+
+    for txt in strings:
+
+        print(&quot; &quot;.join(txt.split())) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例打印包含“ BSD”字符串的元素的内容。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./regex.py 
+FreeBSD
+NetBSD
+FreeBSD is an advanced computer operating system used to power modern servers, desktops, and embedded platforms.
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="BeautifulSoup-CSS-选择器">BeautifulSoup CSS 选择器<a class="headerlink" href="#BeautifulSoup-CSS-选择器" title="Permanent link">&para;</a></h2>
+<p>通过<code>select()</code>和<code>select_one()</code>方法，我们可以使用一些 CSS 选择器来查找元素。</p>
+<details class="abstract" open="open"><summary>select_nth_tag.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    print(soup.select(&quot;li:nth-of-type(3)&quot;))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>本示例使用 CSS 选择器来打印第三个<code>li</code>元素的 HTML 代码。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./select_nth_tag.py 
+&lt;li&gt;Debian&lt;/li&gt;
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是第三个<code>li</code>元素。</p>
+<p>CSS 中使用# 字符通过 ID 属性选择标签。</p>
+<details class="abstract" open="open"><summary>select_by_id.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    print(soup.select_one(&quot;#mylist&quot;)) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例打印具有<code>mylist</code> ID 的元素。</p>
+<h2 id="BeautifulSoup-追加元素">BeautifulSoup 追加元素<a class="headerlink" href="#BeautifulSoup-追加元素" title="Permanent link">&para;</a></h2>
+<p><code>append()</code>方法将新标签附加到 HTML 文档。</p>
+<details class="abstract" open="open"><summary>append_tag.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    newtag = soup.new_tag(&#39;li&#39;)
+    newtag.string=&#39;OpenBSD&#39;
+
+    ultag = soup.ul
+
+    ultag.append(newtag)
+
+    print(ultag.prettify()) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例附加了一个新的<code>li</code>标签。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>newtag = soup.new_tag(&#39;li&#39;)
+newtag.string=&#39;OpenBSD&#39;
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>首先，我们使用<code>new_tag()</code>方法创建一个新标签。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>ultag = soup.ul
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们获得对<code>ul</code>标签的引用。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>ultag.append(newtag)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们将新创建的标签附加到<code>ul</code>标签。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(ultag.prettify()) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们以整齐的格式打印<code>ul</code>标签。</p>
+<h2 id="BeautifulSoup-插入元素">BeautifulSoup 插入元素<a class="headerlink" href="#BeautifulSoup-插入元素" title="Permanent link">&para;</a></h2>
+<p><code>insert()</code>方法在指定位置插入标签。</p>
+<details class="abstract" open="open"><summary>insert_tag.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    newtag = soup.new_tag(&#39;li&#39;)
+    newtag.string=&#39;OpenBSD&#39;
+
+    ultag = soup.ul
+
+    ultag.insert(2, newtag)
+
+    print(ultag.prettify()) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例将第三个位置的<code>li</code>标签插入<code>ul</code>标签。</p>
+<h2 id="BeautifulSoup-替换文字">BeautifulSoup 替换文字<a class="headerlink" href="#BeautifulSoup-替换文字" title="Permanent link">&para;</a></h2>
+<p><code>replace_with()</code>替换元素的文本。</p>
+<details class="abstract" open="open"><summary>replace_text.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    tag = soup.find(text=&quot;Windows&quot;)
+    tag.replace_with(&quot;OpenBSD&quot;)
+
+    print(soup.ul.prettify()) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例使用<code>find()</code>方法查找特定元素，并使用<code>replace_with()</code>方法替换其内容。</p>
+<h2 id="BeautifulSoup-删除元素">BeautifulSoup 删除元素<a class="headerlink" href="#BeautifulSoup-删除元素" title="Permanent link">&para;</a></h2>
+<p><code>decompose()</code>方法从树中删除标签并销毁它。</p>
+<details class="abstract" open="open"><summary>decompose_tag.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+from bs4 import BeautifulSoup
+
+with open(&quot;index.html&quot;, &quot;r&quot;) as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, &#39;lxml&#39;)
+
+    ptag2 = soup.select_one(&quot;p:nth-of-type(2)&quot;)
+
+    ptag2.decompose()
+
+    print(soup.body.prettify())
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例删除了第二个<code>p</code>元素。</p>
+<p>在本教程中，我们使用了 Python BeautifulSoup 库。</p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../python-pytest/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                Python Pytest 单元测试教程
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../python-pyquery/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                Python pyquery 教程
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

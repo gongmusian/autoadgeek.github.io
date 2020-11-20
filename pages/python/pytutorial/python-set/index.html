@@ -1,0 +1,2063 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="Python set 教程介绍了 Python set 集合。 我们展示了如何创建集合并对其执行操作。  Python 集合  Python 集是无序数据集合，没有重复的元素。 集合支持数学中已知的诸如并集，相交或求差的运算。  Python 集合字面值  从 Python 2.6 开始，可以使用字面值符号创建集合。 我们使用大括号在 Python 中定义一个集合，并且元素之间用逗号分隔。  py">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/python/pytutorial/python-set/">
+
+
+<link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+
+    
+      
+        <title>Python 集合 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#Python-集合" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Python 集合
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../" class="md-tabs__link md-tabs__link--active">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../nlp/nlp/" class="md-tabs__link">
+          人工智能
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Python 集合
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Python 集合
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合_1" class="md-nav__link">
+    Python 集合
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合字面值" class="md-nav__link">
+    Python 集合字面值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合函数" class="md-nav__link">
+    Python 集合函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合成员性测试" class="md-nav__link">
+    Python 集合成员性测试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合内置函数" class="md-nav__link">
+    Python 集合内置函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合迭代" class="md-nav__link">
+    Python 集合迭代
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合添加" class="md-nav__link">
+    Python 集合添加
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合更新" class="md-nav__link">
+    Python 集合更新
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合删除" class="md-nav__link">
+    Python 集合删除
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合弹出清除" class="md-nav__link">
+    Python 集合弹出&amp;清除
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合运算" class="md-nav__link">
+    Python 集合运算
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#子集和超集" class="md-nav__link">
+    子集和超集
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-不可变集" class="md-nav__link">
+    Python 不可变集
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      人工智能
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="人工智能" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        人工智能
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合_1" class="md-nav__link">
+    Python 集合
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合字面值" class="md-nav__link">
+    Python 集合字面值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合函数" class="md-nav__link">
+    Python 集合函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合成员性测试" class="md-nav__link">
+    Python 集合成员性测试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合内置函数" class="md-nav__link">
+    Python 集合内置函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合迭代" class="md-nav__link">
+    Python 集合迭代
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合添加" class="md-nav__link">
+    Python 集合添加
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合更新" class="md-nav__link">
+    Python 集合更新
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合删除" class="md-nav__link">
+    Python 集合删除
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合弹出清除" class="md-nav__link">
+    Python 集合弹出&amp;清除
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-集合运算" class="md-nav__link">
+    Python 集合运算
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#子集和超集" class="md-nav__link">
+    子集和超集
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-不可变集" class="md-nav__link">
+    Python 不可变集
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="Python-集合">Python 集合<a class="headerlink" href="#Python-集合" title="Permanent link">&para;</a></h1>
+<p><strong>Python set 教程</strong> 介绍了 Python set 集合。 我们展示了如何创建集合并对其执行操作。</p>
+<h2 id="Python-集合_1">Python 集合<a class="headerlink" href="#Python-集合_1" title="Permanent link">&para;</a></h2>
+<p>Python 集是无序数据集合，没有重复的元素。 集合支持数学中已知的诸如并集，相交或求差的运算。</p>
+<h2 id="Python-集合字面值">Python 集合字面值<a class="headerlink" href="#Python-集合字面值" title="Permanent link">&para;</a></h2>
+<p>从 Python 2.6 开始，可以使用字面值符号创建集合。 我们使用大括号在 Python 中定义一个集合，并且元素之间用逗号分隔。</p>
+<details class="abstract" open="open"><summary>python_set_literal.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+nums = { 1, 2, 2, 2, 3, 4 }
+
+print(type(nums))
+print(nums)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例创建带有字面值符号的 Python 集。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>nums = { 1, 2, 2, 2, 3, 4 }
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>集合是唯一元素的集合； 即使我们提供了 3 次值 2，该集合也只包含一个 2。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_literal.py 
+&lt;class &#39;set&#39;&gt;
+{1, 2, 3, 4}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-集合函数">Python 集合函数<a class="headerlink" href="#Python-集合函数" title="Permanent link">&para;</a></h2>
+<p>Python <code>set()</code>函数创建一个新集合，其元素来自可迭代对象。 可迭代对象是我们可以迭代的对象； 例如字符串或列表。</p>
+<details class="abstract" open="open"><summary>python_set_fun.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+seasons = [&quot;spring&quot;, &quot;summer&quot;, &quot;autumn&quot;, &quot;winter&quot;]
+
+myset = set(seasons)
+
+print(myset)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们使用<code>set()</code>内置函数从列表创建了一个集合。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_fun.py 
+{&#39;summer&#39;, &#39;autumn&#39;, &#39;winter&#39;, &#39;spring&#39;}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-集合成员性测试">Python 集合成员性测试<a class="headerlink" href="#Python-集合成员性测试" title="Permanent link">&para;</a></h2>
+<p><code>in</code>和<code>not in</code>运算符测试集合中元素的存在。</p>
+<details class="abstract" open="open"><summary>python_set_membership.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+words = { &quot;spring&quot;, &quot;table&quot;, &quot;cup&quot;, &quot;bottle&quot;, &quot;coin&quot; }
+
+word = &#39;cup&#39;
+
+if (word in words):
+    print(&quot;{0} is present in the set&quot;.format(word))
+else:
+    print(&quot;{0} is not present in the set&quot;.format(word))    
+
+word = &#39;tree&#39;
+
+if (word not in words):
+    print(&quot;{0} is not present in the set&quot;.format(word))
+else:
+    print(&quot;{0} is present in the set&quot;.format(word)) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们使用成员运算符检查集合中是否存在两个单词。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_membership.py 
+cup is present in the set
+tree is not present in the set
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-集合内置函数">Python 集合内置函数<a class="headerlink" href="#Python-集合内置函数" title="Permanent link">&para;</a></h2>
+<p>有几个内置 Python 函数，例如<code>len()</code>或<code>min()</code>，可以在 Python 集上使用。</p>
+<details class="abstract" open="open"><summary>python_set_builtins.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+nums = { 21, 11, 42, 29, 22, 71, 18 }
+
+print(nums)
+
+print(&quot;Number of elements: {0}&quot;.format(len(nums)))
+print(&quot;Minimum: {0}&quot;.format(min(nums)))
+print(&quot;Maximum: {0}&quot;.format(max(nums)))
+print(&quot;Sum: {0}&quot;.format(sum(nums)))
+
+print(&quot;Sorted elements:&quot;)
+
+print(sorted(nums))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们对一组整数值应用了五个内置函数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;Number of elements: {0}&quot;.format(len(nums)))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>len()</code>方法返回集合中的元素数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;Minimum: {0}&quot;.format(min(nums)))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>min()</code>方法返回集合中的最小值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;Maximum: {0}&quot;.format(max(nums)))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>max()</code>方法返回集合中的最大值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;Sum: {0}&quot;.format(sum(nums)))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>sum()</code>方法返回集合中值的总和。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(sorted(nums))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>最后，使用<code>sorted()</code>方法，我们可以从集合中创建无序列表。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_builtins.py 
+{71, 42, 11, 18, 21, 22, 29}
+Number of elements: 7
+Minimum: 11
+Maximum: 71
+Sum: 214
+Sorted elements:
+[11, 18, 21, 22, 29, 42, 71]
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-集合迭代">Python 集合迭代<a class="headerlink" href="#Python-集合迭代" title="Permanent link">&para;</a></h2>
+<p>可以使用 for 循环来迭代 Python 集。</p>
+<details class="abstract" open="open"><summary>python_set_iteration.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+words = { &quot;spring&quot;, &quot;table&quot;, &quot;cup&quot;, &quot;bottle&quot;, &quot;coin&quot; }
+
+for word in words:
+
+    print(word)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们遍历该集合并逐个打印其元素。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_iteration.py 
+table
+cup
+coin
+spring
+bottle
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-集合添加">Python 集合添加<a class="headerlink" href="#Python-集合添加" title="Permanent link">&para;</a></h2>
+<p>Python set <code>add()</code>方法将新元素添加到集合中。</p>
+<details class="abstract" open="open"><summary>python_set_add.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+words = { &quot;spring&quot;, &quot;table&quot;, &quot;cup&quot;, &quot;bottle&quot;, &quot;coin&quot; }
+
+words.add(&quot;coffee&quot;)
+
+print(words)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们有一套话。 我们使用<code>add()</code>方法添加一个新单词。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_add.py 
+{&#39;table&#39;, &#39;coffee&#39;, &#39;coin&#39;, &#39;spring&#39;, &#39;bottle&#39;, &#39;cup&#39;}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-集合更新">Python 集合更新<a class="headerlink" href="#Python-集合更新" title="Permanent link">&para;</a></h2>
+<p>Python set <code>update()</code>方法将一个或多个可迭代对象添加到集合中。</p>
+<details class="abstract" open="open"><summary>python_set_update.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+words = { &quot;spring&quot;, &quot;table&quot;, &quot;cup&quot;, &quot;bottle&quot;, &quot;coin&quot; }
+
+words.add(&quot;coffee&quot;)
+
+print(words)
+
+words2 = { &quot;car&quot;, &quot;purse&quot;, &quot;wind&quot; }
+words3 = { &quot;nice&quot;, &quot;prime&quot;, &quot;puppy&quot; }
+
+words.update(words2, words3)
+
+print(words)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们有三组单词。 我们使用<code>update()</code>方法将第二组和第三组添加到第一组。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_update.py 
+{&#39;spring&#39;, &#39;bottle&#39;, &#39;cup&#39;, &#39;coin&#39;, &#39;purse&#39;, &#39;wind&#39;, &#39;nice&#39;, &#39;car&#39;, 
+ &#39;table&#39;, &#39;prime&#39;, &#39;puppy&#39;}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-集合删除">Python 集合删除<a class="headerlink" href="#Python-集合删除" title="Permanent link">&para;</a></h2>
+<p>Python 有两种删除元素的基本方法：<code>remove()</code>和<code>discard()</code>。 <code>remove()</code>方法从集合中删除指定的元素，如果元素不在集合中，则提高<code>KeyError</code>。 <code>discard()</code>方法从集合中删除元素，如果要删除的元素不在集合中，则不执行任何操作。</p>
+<details class="abstract" open="open"><summary>python_set_remove.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+words = { &quot;spring&quot;, &quot;table&quot;, &quot;cup&quot;, &quot;bottle&quot;, &quot;coin&quot; }
+
+words.discard(&quot;coin&quot;)
+words.discard(&quot;pen&quot;)
+
+print(words)
+
+words.remove(&quot;cup&quot;)
+
+try:
+    words.remove(&quot;cloud&quot;)
+except KeyError as e:
+    pass    
+
+print(words)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们使用<code>remove()</code>和<code>discard()</code>删除集合元素。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>try:
+    words.remove(&quot;cloud&quot;)
+except KeyError as e:
+    pass  
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>如果我们没有抓住<code>KeyError</code>，脚本将终止而不执行最后一条语句。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_remove.py 
+{&#39;table&#39;, &#39;cup&#39;, &#39;bottle&#39;, &#39;spring&#39;}
+{&#39;table&#39;, &#39;bottle&#39;, &#39;spring&#39;}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-集合弹出清除">Python 集合弹出&amp;清除<a class="headerlink" href="#Python-集合弹出清除" title="Permanent link">&para;</a></h2>
+<p><code>pop()</code>方法从集合中移除并返回任意元素。 <code>clear()</code>方法从集合中删除所有元素。</p>
+<details class="abstract" open="open"><summary>python_set_remove2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+words = { &quot;spring&quot;, &quot;table&quot;, &quot;cup&quot;, &quot;bottle&quot;, &quot;coin&quot;, &quot;pen&quot;, &quot;water&quot; }
+
+print(words.pop())
+print(words.pop())
+
+print(words)
+
+words.clear()
+
+print(words)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们删除并打印两个随机元素，并显示其余元素。 然后，使用<code>clear()</code>从集合中删除所有元素。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_remove2.py 
+water
+pen
+{&#39;cup&#39;, &#39;spring&#39;, &#39;table&#39;, &#39;bottle&#39;, &#39;coin&#39;}
+set()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-集合运算">Python 集合运算<a class="headerlink" href="#Python-集合运算" title="Permanent link">&para;</a></h2>
+<p>使用 Python 集，我们可以执行特定的运算：并集，交集，差和对称差。</p>
+<details class="abstract" open="open"><summary>python_set_operations.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+set1 = { &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;c&#39;, &#39;d&#39; }
+set2 = { &#39;a&#39;, &#39;b&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39; }
+
+print(&quot;Set 1:&quot;, set1)
+print(&quot;Set 2:&quot;, set2)
+print(&quot;intersection:&quot;, set1.intersection(set2))
+print(&quot;union:&quot;, set1.union(set2))
+print(&quot;difference:&quot;, set1.difference(set2))
+print(&quot;symmetric difference:&quot;, set1.symmetric_difference(set2))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例显示了四个设置操作。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;intersection:&quot;, set1.intersection(set2))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>intersection()</code>方法执行相交操作，该操作返回<code>set1</code>和<code>set2</code>中的元素。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;union:&quot;, set1.union(set2))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>union()</code>方法执行联合操作，该操作返回两个集合中的所有元素。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;difference:&quot;, set1.difference(set2))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>difference()</code>方法执行差分操作，该操作返回<code>set1</code>中而不是<code>set2</code>中的元素。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;symmetric difference:&quot;, set1.symmetric_difference(set2))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>symmetric_difference()</code>方法执行对称差分操作，该操作返回<code>set1</code>或<code>set2</code>中的元素，但不返回两者中的元素。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_set_operations.py 
+Set 1: {&#39;c&#39;, &#39;b&#39;, &#39;a&#39;, &#39;d&#39;}
+Set 2: {&#39;y&#39;, &#39;b&#39;, &#39;a&#39;, &#39;x&#39;, &#39;z&#39;}
+intersection: {&#39;b&#39;, &#39;a&#39;}
+union: {&#39;b&#39;, &#39;a&#39;, &#39;z&#39;, &#39;c&#39;, &#39;x&#39;, &#39;y&#39;, &#39;d&#39;}
+difference: {&#39;c&#39;, &#39;d&#39;}
+symmetric difference: {&#39;z&#39;, &#39;c&#39;, &#39;x&#39;, &#39;y&#39;, &#39;d&#39;}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是一个示例输出。</p>
+<p>可以使用&amp;，|，-和^运算符执行这些操作。</p>
+<details class="abstract" open="open"><summary>python_set_operations2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+set1 = { &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;c&#39;, &#39;d&#39; }
+set2 = { &#39;a&#39;, &#39;b&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39; }
+
+print(&quot;Set 1:&quot;, set1)
+print(&quot;Set 2:&quot;, set2)
+print(&quot;intersection:&quot;, set1 &amp; set2)
+print(&quot;union:&quot;, set1 | set2)
+print(&quot;difference:&quot;, set1 - set2)
+print(&quot;symmetric difference:&quot;, set1 ^ set2)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例显示了使用运算符的四个 set 操作。</p>
+<h2 id="子集和超集">子集和超集<a class="headerlink" href="#子集和超集" title="Permanent link">&para;</a></h2>
+<p>如果集合 A 的所有元素都包含在集合 B 中，则将 A 称为 B 的子集，将 B 称为 A 的超集。</p>
+<details class="abstract" open="open"><summary>python_subset_superset.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python3
+
+set1 = { &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39; }
+set2 = { &#39;a&#39;, &#39;b&#39;, &#39;c&#39; }
+set3 = {&#39;x&#39;, &#39;y&#39;, &#39;z&#39; }
+
+if (set2.issubset(set1)):
+    print(&quot;set2 is a subset of set1&quot;)
+
+if (set1.issuperset(set2)):
+    print(&quot;set1 is a superset of set2&quot;)    
+
+if (set2.isdisjoint(set3)):
+    print(&quot;set2 and set3 have no common elements&quot;)     
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们使用<code>issubset()</code>，<code>issuperset()</code>和<code>isdisjoint()</code>方法。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>if (set2.issubset(set1)):
+    print(&quot;set1 is a subset of set2&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>使用<code>issubset()</code>方法，我们检查<code>set2</code>是否是<code>s1</code>的子集。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>if (set1.issuperset(set2)):
+    print(&quot;set1 is a superset of set2&quot;)   
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>使用<code>issuperset()</code>方法，我们检查<code>set1</code>是否是<code>s2</code>的超集。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>if (set2.isdisjoint(set3)):
+    print(&quot;set2 and set3 have no common elements&quot;)      
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>使用<code>isdisjoint()</code>方法，我们检查<code>set2</code>和<code>set3</code>是否没有共同的元素。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./python_subset_superset.py 
+set1 is a subset of set2
+set1 is a superset of set2
+set2 and set3 have no common elements
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Python-不可变集">Python 不可变集<a class="headerlink" href="#Python-不可变集" title="Permanent link">&para;</a></h2>
+<p>不可变的集（无法修改的集）是使用<code>frozenset()</code>功能创建的。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&gt;&gt;&gt; s1 = frozenset((&#39;blue&#39;, &#39;green&#39;, &#39;red&#39;))
+&gt;&gt;&gt; s1
+frozenset({&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;})
+&gt;&gt;&gt; s1.add(&#39;brown&#39;)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &#39;frozenset&#39; object has no attribute &#39;add&#39;
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>当我们尝试向冻结集中添加新元素时出现错误。</p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../python-dictionaries/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                Python 字典
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../python-map/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                Python 映射
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

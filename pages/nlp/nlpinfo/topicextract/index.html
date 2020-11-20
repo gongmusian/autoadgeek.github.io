@@ -1,0 +1,1858 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="如何用Python从海量文本抽取主题？. 你在工作、学习中是否曾因信息过载叫苦不迭？有一种方法能够替你读海量文章，并将不同的主题和对应的关键词抽取出来，让你谈笑间观其大略。本文使用Python对超过1000条文本做主题抽取，一步步带你体会非监督机器学习LDA方法的魅力。想不想试试呢？.">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/nlp/nlpinfo/topicextract/">
+
+
+<link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+
+    
+      
+        <title>如何用Python从海量文本抽取主题？ - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#淹没" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              如何用Python从海量文本抽取主题？
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../nlp/" class="md-tabs__link md-tabs__link--active">
+          人工智能
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      人工智能
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="人工智能" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        人工智能
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        用Python从海量文本抽取主题
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      用Python从海量文本抽取主题
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#淹没" class="md-nav__link">
+    淹没
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#主题" class="md-nav__link">
+    主题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#准备" class="md-nav__link">
+    准备
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#代码" class="md-nav__link">
+    代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#说明" class="md-nav__link">
+    说明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#原理" class="md-nav__link">
+    原理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#延伸阅读" class="md-nav__link">
+    延伸阅读
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#淹没" class="md-nav__link">
+    淹没
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#主题" class="md-nav__link">
+    主题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#准备" class="md-nav__link">
+    准备
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#代码" class="md-nav__link">
+    代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#说明" class="md-nav__link">
+    说明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#原理" class="md-nav__link">
+    原理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#延伸阅读" class="md-nav__link">
+    延伸阅读
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>用Python从海量文本抽取主题</h1>
+                
+                <p>你在工作、学习中是否曾因信息过载叫苦不迭？有一种方法能够替你读海量文章，并将不同的主题和对应的关键词抽取出来，让你谈笑间观其大略。本文使用Python对超过1000条文本做主题抽取，一步步带你体会非监督机器学习LDA方法的魅力。想不想试试呢？</p>
+<p><img src='https://miro.medium.com/proxy/1*ylUGga_VmqIQA_2iSarlwg.jpeg' alt='Image for post' /></p>
+<h2 id="淹没">淹没<a class="headerlink" href="#淹没" title="Permanent link">&para;</a></h2>
+<p>每个现代人，几乎都体会过信息过载的痛苦。文章读不过来，音乐听不过来，视频看不过来。可是现实的压力，使你又不能轻易放弃掉。</p>
+<p>假如你是个研究生，教科书和论文就是你不得不读的内容。现在有了各种其他的阅读渠道，微信、微博、得到App、多看阅读、豆瓣阅读、Kindle，还有你在RSS上订阅的一大堆博客……情况就变得更严重了。</p>
+<p>因为对数据科学很感兴趣，你订阅了大量的数据科学类微信公众号。虽然你很勤奋，但你知道自己依然遗漏了很多文章。</p>
+<p>学习了 <a href="http://www.jianshu.com/c/3e3636c40c41">Python爬虫课</a> 以后，你决定尝试一下自己的屠龙之术。依仗着爬虫的威力，你打算采集到所有数据科学公众号文章。</p>
+<p>你仔细分析了微信公众号文章的检索方式，制定了关键词列表。巧妙利用搜狗搜索引擎的特性，你编写了自己的爬虫，并且成功地于午夜放到了云端运行。</p>
+<p>开心啊，激动啊……</p>
+<p>第二天一早，天光刚亮，睡眠不足的你就兴冲冲地爬起来去看爬取结果。居然已经有了1000多条！你欣喜若狂，导出成为csv格式，存储到了本地机器，并且打开浏览。</p>
+<p><img src='https://miro.medium.com/proxy/1*PEBM09b9mLhG2N4wvFTfYA.jpeg' alt='Image for post' /></p>
+<p>兴奋了10几分钟之后，你冷却了下来，给自己提出了2个重要的问题。</p>
+<ul>
+<li>这些文章都值得读吗？</li>
+<li>这些文章我读得过来吗？</li>
+</ul>
+<p>一篇数据科学类公众号，你平均需要5分钟阅读。这1000多篇……你拿出计算器认真算了一下。</p>
+<p><img src='https://miro.medium.com/proxy/1*EIB_xS6usSodRSHNjMCgRQ.jpeg' alt='Image for post' /></p>
+<p>读完这一宿采集到的文章，你不眠不休的话，也需要85个小时。</p>
+<p>在你阅读的这85个小时里面，许许多多的数据科学类公众号新文章还会源源不断涌现出来。</p>
+<p>你感觉自己快被文本内容淹没了，根本透不过气……</p>
+<p>学了这么长时间Python，你应该想到 — — 我能否用自动化工具来分析它？</p>
+<p>好消息，答案是可以的。</p>
+<p>但是用什么样的工具呢？</p>
+<p>翻了翻你自己的武器库，你发现了<a href="http://www.jianshu.com/p/e4b24a734ccc">词云</a>、<a href="http://www.jianshu.com/p/d50a14541d01">情感分析</a>和<a href="http://www.jianshu.com/p/67a71e366516">决策树</a>。</p>
+<p>然而，在帮你应对信息过载这件事儿上，上述武器好像都不大合适。</p>
+<p>词云你打算做几个？全部文章只做一个的话，就会把所有文章的内容混杂起来，没有意义 — — 因为你知道这些文章谈的就是数据科学啊！如果每一篇文章都分别做词云，1000多张图浏览起来，好像也没有什么益处。</p>
+<p>你阅读数据科学类公众号文章是为了获得知识和技能，分析文字中蕴含的情感似乎于事无补。</p>
+<p>决策树是可以用来做分类的，没错。可是它要求的输入信息是 <strong>结构化</strong> 的 <strong>有</strong> 标记数据，你手里握着的这一大堆文本，却刚好是 <strong>非结构化</strong> 的 <strong>无</strong> 标记数据。</p>
+<p>全部武器都哑火了。</p>
+<p>没关系。本文帮助你在数据科学武器库中放上一件新式兵器。它能够处理的，就是大批量的非结构无标记数据。在机器学习的分类里，它属于非监督学习(unsupervised machine learning)范畴。具体而言，我们需要用到的方法叫主题建模(topic model)或者主题抽取(topic extraction)。</p>
+<h2 id="主题">主题<a class="headerlink" href="#主题" title="Permanent link">&para;</a></h2>
+<p>既然要建模，我们就需要弄明白建立什么样的模型。</p>
+<p>根据维基百科的定义，主题模型是指：</p>
+<blockquote>
+<p>在机器学习和自然语言处理等领域是用来在一系列文档中发现抽象主题的一种统计模型。</p>
+</blockquote>
+<p>这个定义本身好像就有点儿抽象，咱们举个例子吧。</p>
+<p>还是维基百科上，对一条可爱的小狗有这样一段叙述。</p>
+<blockquote>
+<p>阿博（Bo；2008年10月9日－） 是美国第44任总统巴拉克·奥巴马的宠物狗，也是奥巴马家族的成员之一。阿博是一只已阉割的雄性黑色长毛葡萄牙水犬。奥巴马一家本来没有养狗，因为他的大女儿玛丽亚对狗过敏。但为了延续白宫主人历年均有养狗的传统，第一家庭在入主白宫后，花了多个月去观察各种犬种，并特地选择了葡萄牙水犬这一种掉毛少的低敏狗。</p>
+</blockquote>
+<p>我们来看看这条可爱的小狗照片：</p>
+<p><img src='https://miro.medium.com/proxy/1*V5lf8vYk14xWmhWtZDhRmw.jpeg' alt='Image for post' /></p>
+<p>问题来了，这篇文章的主题(topic)是什么？</p>
+<p>你可能脱口而出，“狗啊！”</p>
+<p>且慢，换个问法。假设一个用户读了这篇文章，很感兴趣。你想推荐更多他可能感兴趣的文章给他，以下2段文字，哪个选项更合适呢？</p>
+<p>选项1：</p>
+<blockquote>
+<p>阿富汗猎狗（Afghan Hound）是一种猎犬，也是最古老的狗品种。阿富汗猎狗外表厚实，细腻，柔滑，它的尾巴在最后一环卷曲。阿富汗猎狗生存于伊朗，阿富汗东部的寒冷山上，阿富汗猎狗最初是用来狩猎野兔和瞪羚。阿富汗猎狗其他名称包含巴尔赫塔子库奇猎犬，猎犬，俾路支猎犬，喀布尔猎犬，或非洲猎犬。</p>
+</blockquote>
+<p>选项2：</p>
+<blockquote>
+<p>1989年夏天，奥巴马在西德利·奥斯汀律师事务所担任暑期工读生期间，结识当时已是律师的米歇尔·鲁滨逊。两人于1992年结婚，现有两个女儿 — — 大女儿玛丽亚在1999年于芝加哥芝加哥大学医疗中心出生，而小女儿萨沙在2001年于芝加哥大学医疗中心出生。</p>
+</blockquote>
+<p>给你30秒，思考一下。</p>
+<p>你的答案是什么？</p>
+<p>我的答案是 — — 不确定。</p>
+<p>人类天生喜欢把复杂问题简单化。我们恨不得把所有东西划分成具体的、互不干扰的分类，就如同药铺的一个个抽屉一样。然后需要的时候，从对应的抽屉里面取东西就可以了。</p>
+<p><img src='https://miro.medium.com/proxy/1*HmKYvXrXrneg2S7js4P_xw.png' alt='Image for post' /></p>
+<p>这就像是职业。从前我们说“三百六十行”。随便拿出某个人来，我们就把他归入其中某一行。</p>
+<p>现在不行了，反例就是所谓的“<a href="https://www.zhihu.com/question/40803649">斜杠青年</a>”。</p>
+<p>主题这个事情，也同样不那么泾渭分明。介绍小狗Bo的文章虽然不长，但是任何单一主题都无法完全涵盖它。</p>
+<p>如果用户是因为对小狗的喜爱，阅读了这篇文章，那么显然你给他推荐选项1会更理想；但是如果用户关注的是奥巴马的家庭，那么比起选项2来，选项1就显得不是那么合适了。</p>
+<p>我们必须放弃用一个词来描述主题的尝试，转而用一系列关键词来刻画某个主题（例如“奥巴马”+“宠物“+”狗“+”第一家庭“）。</p>
+<p>在这种模式下，以下的选项3可能会脱颖而出：</p>
+<blockquote>
+<p>据英国《每日邮报》报道，美国一名男子近日试图绑架总统奥巴马夫妇的宠物狗博（Bo），不惜由二千多公里远的北达科他州驱车往华盛顿，但因为走漏风声，被特勤局人员逮捕。奥巴马夫妇目前养有博和阳光（Sunny）两只葡萄牙水犬。</p>
+</blockquote>
+<p>讲到这里，你大概弄明白了主题抽取的目标了。可是面对浩如烟海的文章，我们怎么能够把相似的文章聚合起来，并且提取描述聚合后主题的重要关键词呢？</p>
+<p>主题抽取有若干方法。目前最为流行的叫做隐含狄利克雷分布(Latent Dirichlet allocation)，简称LDA。</p>
+<p>LDA相关原理部分，置于本文最后。下面我们先用Python来尝试实践一次主题抽取。如果你对原理感兴趣，不妨再做延伸阅读。</p>
+<h2 id="准备">准备<a class="headerlink" href="#准备" title="Permanent link">&para;</a></h2>
+<p>准备工作的第一步，还是先安装Anaconda套装。详细的流程步骤请参考《 <a href="http://www.jianshu.com/p/e4b24a734ccc">如何用Python做词云</a> 》一文。</p>
+<p>从微信公众平台爬来的datascience.csv文件，请从 <a href="https://s3-us-west-2.amazonaws.com/notion-static/8426b8d7145a4c898566145621b4b906/datascience.csv">这里</a> 下载。你可以用Excel打开，看看下载是否完整和正确。</p>
+<p><img src='https://miro.medium.com/proxy/1*PEBM09b9mLhG2N4wvFTfYA.jpeg' alt='Image for post' /></p>
+<p>如果一切正常，请将该csv文件移动到咱们的工作目录demo下。</p>
+<p>到你的系统“终端”(macOS, Linux)或者“命令提示符”(Windows)下，进入我们的工作目录demo，执行以下命令。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>pip install jieba  
+pip install pyldavis
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>运行环境配置完毕。</p>
+<p>在终端或者命令提示符下键入：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>jupyter notebook
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><img src='https://miro.medium.com/proxy/1*HEhlYXmjINNRm27K9Qaytw.jpeg' alt='Image for post' /></p>
+<p>Jupyter Notebook已经正确运行。下面我们就可以正式编写代码了。</p>
+<h2 id="代码">代码<a class="headerlink" href="#代码" title="Permanent link">&para;</a></h2>
+<p>我们在Jupyter Notebook中新建一个Python 2笔记本，起名为topic-model。</p>
+<p><img src='https://miro.medium.com/proxy/1*JYnPmBfIGyKMEg3mJ8k2lQ.jpeg' alt='Image for post' /></p>
+<p>为了处理表格数据，我们依然使用数据框工具Pandas。先调用它。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import pandas as pd
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>然后读入我们的数据文件datascience.csv，注意它的编码是中文GB18030，不是Pandas默认设置的编码，所以此处需要显式指定编码类型，以免出现乱码错误。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>df = pd.read_csv(&quot;datascience.csv&quot;, encoding=&#39;gb18030&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们来看看数据框的头几行，以确认读取是否正确。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>df.head()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>显示结果如下：</p>
+<p><img src='https://miro.medium.com/proxy/1*Xofpv2SLcG8-Xq_yaKikpA.jpeg' alt='Image for post' /></p>
+<p>没问题，头几行内容所有列都正确读入，文字显式正常。我们看看数据框的长度，以确认数据是否读取完整。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>df.shape
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>执行的结果为：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>(1024, 3)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>行列数都与我们爬取到的数量一致，通过。</p>
+<p>下面我们需要做一件重要工作 — — 分词。这是因为我们需要提取每篇文章的关键词。而中文本身并不使用空格在单词间划分。此处我们采用“结巴分词”工具。这一工具的具体介绍和其他用途请参见《<a href="http://www.jianshu.com/p/721190534061">如何用Python做中文分词？</a>》一文。</p>
+<p>我们首先调用jieba分词包。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import jieba
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们此次需要处理的，不是单一文本数据，而是1000多条文本数据，因此我们需要把这项工作并行化。这就需要首先编写一个函数，处理单一文本的分词。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>def chinese_word_cut(mytext):  
+    return &quot; &quot;.join(jieba.cut(mytext))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>有了这个函数之后，我们就可以不断调用它来批量处理数据框里面的全部文本（正文）信息了。你当然可以自己写个循环来做这项工作。但这里我们使用更为高效的apply函数。如果你对这个函数有兴趣，可以点击<a href="https://www.youtube.com/watch?v=P_q0tkYqvSk">这段教学视频</a>查看具体的介绍。</p>
+<p>下面这一段代码执行起来，可能需要一小段时间。请耐心等候。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>df[&quot;content_cutted&quot;] = df.content.apply(chinese_word_cut)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>执行过程中可能会出现如下提示。没关系，忽略就好。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Building prefix dict from the default dictionary ...  
+Loading model from cache /var/folders/8s/k8yr4zy52q1dh107gjx280mw0000gn/T/jieba.cache  
+Loading model cost 0.406 seconds.  
+Prefix dict has been built succesfully.
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>执行完毕之后，我们需要查看一下，文本是否已经被正确分词。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>df.content_cutted.head()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>结果如下：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>0    大 数据 产业 发展 受到 国家 重视 ， 而 大 数据 已经 上升 为 国家 战略 ， 未...  
+1    点击 上方 “ 硅谷 周边 ” 关注 我 ， 收到 最新 的 文章 哦 ！ 昨天 ， Goo...  
+2    国务院 总理 李克强 当地 时间 20 日 上午 在 纽约 下榻 饭店 同 美国 经济 、 ...  
+3    2016 年 ， 全峰 集团 持续 挖掘 大 数据 、 云 计算 、 “ 互联网 + ” 等...  
+4    贵州 理工学院 召开 大 数据分析 与 应用 专题 分享 会   借 “ 创响 中国 ” 贵...  
+Name: content_cutted, dtype: object
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>单词之间都已经被空格区分开了。下面我们需要做一项重要工作，叫做文本的向量化。</p>
+<p>不要被这个名称吓跑。它的意思其实很简单。因为计算机不但不认识中文，甚至连英文也不认识，它只认得数字。我们需要做的，是把文章中的关键词转换为一个个特征（列），然后对每一篇文章数关键词出现个数。</p>
+<p>假如这里有两句话：</p>
+<p>I love the game.</p>
+<p>I hate the game.</p>
+<p>那么我们就可以抽取出以下特征：</p>
+<ul>
+<li>I</li>
+<li>love</li>
+<li>hate</li>
+<li>the</li>
+<li>game</li>
+</ul>
+<p>然后上面两句话就转换为以下表格：</p>
+<p><img src='https://miro.medium.com/proxy/1*UKTg-Mc-MjRrihXFvGx9Vw.jpeg' alt='Image for post' /></p>
+<p>第一句表示为[1, 1, 0, 1, 1]，第二句是[1, 0, 1, 1, 1]。这就叫向量化了。机器就能看懂它们了。</p>
+<p>原理弄清楚了，让我们引入相关软件包吧。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>处理的文本都是微信公众号文章，里面可能会有大量的词汇。我们不希望处理所有词汇。因为一来处理时间太长，二来那些很不常用的词汇对我们的主题抽取意义不大。所以这里做了个限定，只从文本中提取1000个最重要的特征关键词，然后停止。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>n_features = 1000
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>下面我们开始关键词提取和向量转换过程：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>tf_vectorizer = CountVectorizer(strip_accents = &#39;unicode&#39;,  
+                                max_features=n_features,  
+                                stop_words=&#39;english&#39;,  
+                                max_df = 0.5,  
+                                min_df = 10)  
+tf = tf_vectorizer.fit_transform(df.content_cutted)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>到这里，似乎什么都没有发生。因为我们没有要求程序做任何输出。下面我们就要放出LDA这个大招了。</p>
+<p>先引入软件包：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>from sklearn.decomposition import LatentDirichletAllocation
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>然后我们需要人为设定主题的数量。这个要求让很多人大跌眼镜 — — 我怎么知道这一堆文章里面多少主题？！</p>
+<p>别着急。应用LDA方法，指定（或者叫瞎猜）主题个数是必须的。如果你只需要把文章粗略划分成几个大类，就可以把数字设定小一些；相反，如果你希望能够识别出非常细分的主题，就增大主题个数。</p>
+<p>对划分的结果，如果你觉得不够满意，可以通过继续迭代，调整主题数量来优化。</p>
+<p>这里我们先设定为5个分类试试。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>n_topics = 5  
+lda = LatentDirichletAllocation(n_topics=n_topics, max_iter=50,  
+                                learning_method=&#39;online&#39;,  
+                                learning_offset=50.,  
+                                random_state=0)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>把我们的1000多篇向量化后的文章扔给LDA，让它欢快地找主题吧。</p>
+<p>这一部分工作量较大，程序会执行一段时间，Jupyter Notebook在执行中可能暂时没有响应。等待一会儿就好，不要着急。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>lda.fit(tf)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>程序终于跑完了的时候，你会看到如下的提示信息：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>LatentDirichletAllocation(batch_size=128, doc_topic_prior=None,  
+             evaluate_every=-1, learning_decay=0.7,  
+             learning_method=&#39;online&#39;, learning_offset=50.0,  
+             max_doc_update_iter=100, max_iter=50, mean_change_tol=0.001,  
+             n_jobs=1, n_topics=5, perp_tol=0.1, random_state=0,  
+             topic_word_prior=None, total_samples=1000000.0, verbose=0)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>可是，这还是什么输出都没有啊。它究竟找了什么样的主题？</p>
+<p>主题没有一个确定的名称，而是用一系列关键词刻画的。我们定义以下的函数，把每个主题里面的前若干个关键词显示出来：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>def print_top_words(model, feature_names, n_top_words):  
+    for topic_idx, topic in enumerate(model.components_):  
+        print(&quot;Topic #%d:&quot; % topic_idx)  
+        print(&quot; &quot;.join([feature_names[i]  
+                        for i in topic.argsort()[:-n_top_words - 1:-1]]))  
+    print()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>定义好函数之后，我们暂定每个主题输出前20个关键词。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>n_top_words = 20
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>以下命令会帮助我们依次输出每个主题的关键词表：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>tf_feature_names = tf_vectorizer.get_feature_names()  
+print_top_words(lda, tf_feature_names, n_top_words)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>执行效果如下：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Topic #0:  
+学习 模型 使用 算法 方法 机器 可视化 神经网络 特征 处理 计算 系统 不同 数据库 训练 分类 基于 工具 一种 深度  
+Topic #1:  
+这个 就是 可能 如果 他们 没有 自己 很多 什么 不是 但是 这样 因为 一些 时候 现在 用户 所以 非常 已经  
+Topic #2:  
+企业 平台 服务 管理 互联网 公司 行业 数据分析 业务 用户 产品 金融 创新 客户 实现 系统 能力 产业 工作 价值  
+Topic #3:  
+中国 2016 电子 增长 10 市场 城市 2015 关注 人口 检索 30 或者 其中 阅读 应当 美国 全国 同比 20  
+Topic #4:  
+人工智能 学习 领域 智能 机器人 机器 人类 公司 深度 研究 未来 识别 已经 医疗 系统 计算机 目前 语音 百度 方面  
+()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在这5个主题里，可以看出主题0主要关注的是数据科学中的算法和技术，而主题4显然更注重数据科学的应用场景。</p>
+<p>剩下的几个主题可以如何归纳？作为思考题，留给你花时间想一想吧。</p>
+<p>到这里，LDA已经成功帮我们完成了主题抽取。但是我知道你不是很满意，因为结果不够直观。</p>
+<p>那咱们就让它直观一些好了。</p>
+<p>执行以下命令，会有有趣的事情发生。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import pyLDAvis  
+import pyLDAvis.sklearn  
+pyLDAvis.enable_notebook()  
+pyLDAvis.sklearn.prepare(lda, tf, tf_vectorizer)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>对，你会看到如下的一张图，而且还是可交互的动态图哦。</p>
+<p><img src='https://miro.medium.com/proxy/1*4XT8WcPV81sbJXnLRton8Q.jpeg' alt='Image for post' /></p>
+<p>需要说明的是，由于pyLDAvis这个包兼容性有些问题。因此在某些操作系统和软件环境下，你执行了刚刚的语句后，没有报错，却也没有图形显示出来。</p>
+<p>没关系。这时候请你写下以下语句并执行：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>data = pyLDAvis.sklearn.prepare(lda, tf, tf_vectorizer)  
+pyLDAvis.show(data)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>Jupyter会给你提示一些警告。不用管它。因为此时你的浏览器会弹出一个新的标签页，结果图形会在这个标签页里正确显示出来。</p>
+<p>如果你看完了图后，需要继续程序，就回到原先的标签页，点击Kernel菜单下的第一项Interrupt停止绘图，然后往下运行新的语句。</p>
+<p>图的左侧，用圆圈代表不同的主题，圆圈的大小代表了每个主题分别包含文章的数量。</p>
+<p>图的右侧，列出了最重要（频率最高）的30个关键词列表。注意当你没有把鼠标悬停在任何主题之上的时候，这30个关键词代表全部文本中提取到的30个最重要关键词。</p>
+<p>如果你把鼠标悬停在1号上面：</p>
+<p><img src='https://miro.medium.com/proxy/1*pmz5bJxUhO5wkY9nKPUphQ.jpeg' alt='Image for post' /></p>
+<p>右侧的关键词列表会立即发生变化，红色展示了每个关键词在当前主题下的频率。</p>
+<p>以上是认为设定主题数为5的情况。可如果我们把主题数量设定为10呢？</p>
+<p>你不需要重新运行所有代码，只需要执行下面这几行就可以了。</p>
+<p>这段程序还是需要运行一段时间，请耐心等待。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>n_topics = 10  
+lda = LatentDirichletAllocation(n_topics=n_topics, max_iter=50,  
+                                learning_method=&#39;online&#39;,  
+                                learning_offset=50.,  
+                                random_state=0)  
+lda.fit(tf)  
+print_top_words(lda, tf_feature_names, n_top_words)  
+pyLDAvis.sklearn.prepare(lda, tf, tf_vectorizer)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>程序输出给我们10个主题下最重要的20个关键词。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Topic #0:  
+这个 就是 如果 可能 用户 一些 什么 很多 没有 这样 时候 但是 因为 不是 所以 不同 如何 使用 或者 非常  
+Topic #1:  
+中国 孩子 增长 市场 2016 学生 10 2015 城市 自己 人口 大众 关注 其中 教育 同比 没有 美国 投资 这个  
+Topic #2:  
+data 变量 距离 http 样本 com www 检验 方法 分布 计算 聚类 如下 分类 之间 两个 一种 差异 表示 序列  
+Topic #3:  
+电子 采集 应当 或者 案件 保护 规定 信用卡 收集 是否 提取 设备 法律 申请 法院 系统 记录 相关 要求 无法  
+Topic #4:  
+系统 检索 交通 平台 专利 智能 监控 采集 海量 管理 搜索 智慧 出行 视频 车辆 计算 实现 基于 数据库 存储  
+Topic #5:  
+可视化 使用 工具 数据库 存储 hadoop 处理 图表 数据仓库 支持 查询 开发 设计 sql 开源 用于 创建 用户 基于 软件  
+Topic #6:  
+学习 算法 模型 机器 深度 神经网络 方法 训练 特征 分类 网络 使用 基于 介绍 研究 预测 回归 函数 参数 图片  
+Topic #7:  
+企业 管理 服务 互联网 金融 客户 行业 平台 实现 建立 社会 政府 研究 资源 安全 时代 利用 传统 价值 医疗  
+Topic #8:  
+人工智能 领域 机器人 智能 公司 人类 机器 学习 未来 已经 研究 他们 识别 可能 计算机 目前 语音 工作 现在 能够  
+Topic #9:  
+用户 公司 企业 互联网 平台 中国 数据分析 行业 产业 产品 创新 项目 2016 服务 工作 科技 相关 业务 移动 市场  
+()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>附带的是可视化的输出结果：</p>
+<p><img src='https://miro.medium.com/proxy/1*uJF9jz9hysm5N_o-90pPSA.jpeg' alt='Image for post' /></p>
+<p>如果不能直接输出图形，还是按照前面的做法，执行：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>data = pyLDAvis.sklearn.prepare(lda, tf, tf_vectorizer)  
+pyLDAvis.show(data)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>你马上会发现当主题设定为10的时候，一些有趣的现象发生了 — — 大部分的文章抱团出现在右上方，而2个小部落（8和10）似乎离群索居。我们查看一下这里的8号主题，看看它的关键词构成。</p>
+<p><img src='https://miro.medium.com/proxy/1*DnN3u2Xy7pJieH_k-EIZQQ.jpeg' alt='Image for post' /></p>
+<p>通过高频关键词的描述，我们可以猜测到这一主题主要探讨的是政策和法律法规问题，难怪它和那些技术、算法与应用的主题显得如此格格不入。</p>
+<h2 id="说明">说明<a class="headerlink" href="#说明" title="Permanent link">&para;</a></h2>
+<p>前文帮助你一步步利用LDA做了主题抽取。成就感爆棚吧？然而这里有两点小问题值得说明。</p>
+<p>首先，信息检索的业内专家一看到刚才的关键词列表，就会哈哈大笑 — — 太粗糙了吧！居然没有做中文停用词(stop words)去除！没错，为了演示的流畅，我们这里忽略了许多细节。很多内容使用的是预置默认参数，而且完全忽略了中文停用词设置环节，因此“这个”、“如果”、“可能”、“就是”这样的停用词才会大摇大摆地出现在结果中。不过没有关系，完成比完美重要得多。知道了问题所在，后面改进起来很容易。有机会我会写文章介绍如何加入中文停用词的去除环节。</p>
+<p>另外，不论是5个还是10个主题，可能都不是最优的数量选择。你可以根据程序反馈的结果不断尝试。实际上，可以调节的参数远不止这一个。如果你想把全部参数都搞懂，可以继续阅读下面的“原理”部分，按图索骥寻找相关的说明和指引。</p>
+<h2 id="原理">原理<a class="headerlink" href="#原理" title="Permanent link">&para;</a></h2>
+<p>前文我们没有介绍原理，而是把LDA当成了一个黑箱。不是我不想介绍原理，而是过于复杂。</p>
+<p>只给你展示其中的一个公式，你就能管窥其复杂程度了。</p>
+<p><img src='https://miro.medium.com/proxy/1*_-aPjLEoFbQrwy_Yn9GnAQ.jpeg' alt='Image for post' /></p>
+<p>透露给你一个秘密：在计算机科学和数据科学的学术讲座中，讲者在介绍到LDA时，都往往会把原理这部分直接跳过去。</p>
+<p>好在你不需要把原理完全搞清楚，再去用LDA抽取主题。</p>
+<p>这就像是学开车，你只要懂得如何加速、刹车、换挡、打方向，就能让车在路上行驶了。即便你通过所有考试并取得了驾驶证，你真的了解发动机或电机（如果你开的是纯电车）的构造和工作原理吗？</p>
+<p>但是如果你就是希望了解LDA的原理，那么我给你推荐2个学起来不那么痛苦的资源吧。</p>
+<p>首先是教程幻灯。slideshare是个寻找教程的好去处。 <a href="https://www.slideshare.net/clauwa/topic-models-lda-and-correlated-topic-models?next_slideshow=1">这份教程</a> 浏览量超过20000，内容深入浅出，讲得非常清晰。</p>
+<p><img src='https://miro.medium.com/proxy/1*fVoyuTbv78xqALgKqQRDPg.jpeg' alt='Image for post' /></p>
+<p>但如果你跟我一样，是个视觉学习者的话，我更推荐你看 <a href="https://www.youtube.com/watch?time_continue=2007&amp;v=BuMu-bdoVrU">这段</a> Youtube视频。</p>
+<p><img src='https://miro.medium.com/proxy/1*lvFv1oAidWdGLVPe020_XA.jpeg' alt='Image for post' /></p>
+<p>讲者是Christine Doig，来自Continuum Analytics。咱们一直用的Python套装Anaconda就是该公司的产品。</p>
+<p>Christine使用的LDA原理解释模型，不是这个LDA经典论文中的模型图（大部分人觉得这张图不易懂）：</p>
+<p><img src='https://miro.medium.com/proxy/1*0JLpzXZIJ6eoNCaZ82nYaA.jpeg' alt='Image for post' /></p>
+<p>她深入阅读了各种文献后，总结了自己的模型图出来：</p>
+<p><img src='https://miro.medium.com/proxy/1*8F5eTfkZQWwdpGZesSJq2w.jpeg' alt='Image for post' /></p>
+<p>用这个模型来解释LDA，你会立即有豁然开朗的感觉。</p>
+<p>祝探索旅程愉快！</p>
+<h2 id="延伸阅读">延伸阅读<a class="headerlink" href="#延伸阅读" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.jianshu.com/p/85f4624485b9">如何用《玉树芝兰》入门数据科学？</a></p>
+<p><a href="http://www.jianshu.com/p/30b4fa6793f6">数据科学相关文章合集（玉树芝兰）</a></p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../keywords_extract/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                文本关键词提取
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../../affiliate/seo_competitor_analyze/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                围绕SEO开展竞争对手分析
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

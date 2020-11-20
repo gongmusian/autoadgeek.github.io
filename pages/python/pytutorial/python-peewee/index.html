@@ -1,0 +1,3003 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="Python Peewee 教程展示了如何使用 Python Peewee ORM。  对象关系映射（ORM）是一种从面向对象的语言访问关系数据库的技术，它是 Python 数据库 API 的抽象。  Python Peewee  Peewee 是一个简单而小型的 Python ORM 工具。 它支持 SQLite，MySQL 和 PostgreSQL。  $ pipenv install pee">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/python/pytutorial/python-peewee/">
+
+
+<link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+
+    
+      
+        <title>Python Peewee 教程 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#Python-Peewee-教程" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Python Peewee 教程
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../" class="md-tabs__link md-tabs__link--active">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../nlp/nlp/" class="md-tabs__link">
+          人工智能
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Python Peewee 教程
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Python Peewee 教程
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Python-Peewee" class="md-nav__link">
+    Python Peewee
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-映射" class="md-nav__link">
+    Peewee 映射
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-字段类型" class="md-nav__link">
+    Peewee 字段类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-模型定义" class="md-nav__link">
+    Peewee 模型定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-删除表" class="md-nav__link">
+    Peewee 删除表
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-insert_many" class="md-nav__link">
+    Peewee insert_many
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-选择所有实例" class="md-nav__link">
+    Peewee 选择所有实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-where过滤器" class="md-nav__link">
+    Peewee where过滤器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-多个where表达式" class="md-nav__link">
+    Peewee 多个where表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-检索单个实例" class="md-nav__link">
+    Peewee 检索单个实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-选择特定的列" class="md-nav__link">
+    Peewee 选择特定的列
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-计数实例" class="md-nav__link">
+    Peewee 计数实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-显示-SQL-语句" class="md-nav__link">
+    Peewee 显示 SQL 语句
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-offset和limit" class="md-nav__link">
+    Peewee offset和limit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-排序" class="md-nav__link">
+    Peewee 排序
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-删除实例" class="md-nav__link">
+    Peewee 删除实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-删除多个实例" class="md-nav__link">
+    Peewee 删除多个实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-更新实例" class="md-nav__link">
+    Peewee 更新实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-一对多关系" class="md-nav__link">
+    Peewee 一对多关系
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      人工智能
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="人工智能" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        人工智能
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Python-Peewee" class="md-nav__link">
+    Python Peewee
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-映射" class="md-nav__link">
+    Peewee 映射
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-字段类型" class="md-nav__link">
+    Peewee 字段类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-模型定义" class="md-nav__link">
+    Peewee 模型定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-删除表" class="md-nav__link">
+    Peewee 删除表
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-insert_many" class="md-nav__link">
+    Peewee insert_many
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-选择所有实例" class="md-nav__link">
+    Peewee 选择所有实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-where过滤器" class="md-nav__link">
+    Peewee where过滤器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-多个where表达式" class="md-nav__link">
+    Peewee 多个where表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-检索单个实例" class="md-nav__link">
+    Peewee 检索单个实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-选择特定的列" class="md-nav__link">
+    Peewee 选择特定的列
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-计数实例" class="md-nav__link">
+    Peewee 计数实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-显示-SQL-语句" class="md-nav__link">
+    Peewee 显示 SQL 语句
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-offset和limit" class="md-nav__link">
+    Peewee offset和limit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-排序" class="md-nav__link">
+    Peewee 排序
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-删除实例" class="md-nav__link">
+    Peewee 删除实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-删除多个实例" class="md-nav__link">
+    Peewee 删除多个实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-更新实例" class="md-nav__link">
+    Peewee 更新实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Peewee-一对多关系" class="md-nav__link">
+    Peewee 一对多关系
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="Python-Peewee-教程">Python Peewee 教程<a class="headerlink" href="#Python-Peewee-教程" title="Permanent link">&para;</a></h1>
+<p><strong>Python Peewee 教程</strong> 展示了如何使用 Python Peewee ORM。</p>
+<p>对象关系映射（ORM）是一种从面向对象的语言访问关系数据库的技术，它是 Python 数据库 API 的抽象。</p>
+<h2 id="Python-Peewee">Python Peewee<a class="headerlink" href="#Python-Peewee" title="Permanent link">&para;</a></h2>
+<p>Peewee 是一个简单而小型的 Python ORM 工具。 它支持 SQLite，MySQL 和 PostgreSQL。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ pip install peewee
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们安装<code>peewee</code>模块。</p>
+<h2 id="Peewee-映射">Peewee 映射<a class="headerlink" href="#Peewee-映射" title="Permanent link">&para;</a></h2>
+<p><code>Model</code>映射到数据库表，<code>Field</code>映射到表列，<code>instance</code>映射到表行。</p>
+<p>Peewee 对于 MySQL 使用<code>MySQLDatabase</code>，对于 PostgreSQL 使用<code>PostgresqlDatabase</code>，对于 SQLite 使用<code>SqliteDatabase</code>。 在本教程中，我们将使用 SQLite 数据库。</p>
+<h2 id="Peewee-字段类型">Peewee 字段类型<a class="headerlink" href="#Peewee-字段类型" title="Permanent link">&para;</a></h2>
+<p>Peewee 模型中的字段类型定义模型的存储类型。 它们被转换为相应的数据库列类型。  </p>
+<table>  
+<tr> 
+<td>字段类型</td>
+<td> SQLite</td>
+<td> PostgreSQL</td>
+<td> MySQL</td> 
+</tr>  
+<tr>  
+<td>
+
+`CharField`
+</td>  
+<td>
+
+`varchar`
+</td>  
+<td>
+
+`varchar`
+</td>  
+<td>
+
+`varchar`
+</td> </tr>  
+<tr>  
+<td>
+
+`TextField`
+</td>  
+<td>
+
+`text`
+</td>  
+<td>
+
+`text`
+</td>  
+<td>
+
+`longtext`
+</td> </tr>  
+<tr>  
+<td>
+
+`DateTimeField`
+</td>  
+<td>
+
+`datetime`
+</td>  
+<td>
+
+`timestamp`
+</td>  
+<td>
+
+`longtext`
+</td> </tr>  
+<tr>  
+<td>
+
+`IntegerField`
+</td>  
+<td>
+
+`integer`
+</td>  
+<td>
+
+`integer`
+</td>  
+<td>
+
+`integer`
+</td> </tr>  
+<tr>  
+<td>
+
+`BooleanField`
+</td>  
+<td>
+
+`smallint`
+</td>  
+<td>
+
+`bool`
+</td>  
+<td>
+
+`bool`
+</td> </tr>  
+<tr>  
+<td>
+
+`FloatField`
+</td>  
+<td>
+
+`real`
+</td>  
+<td>
+
+`real`
+</td>  
+<td>
+
+`real`
+</td> </tr>  
+<tr>  
+<td>
+
+`DoubleField`
+</td>  
+<td>
+
+`real`
+</td>  
+<td>
+
+`double`
+</td>  
+<td>
+
+`double`
+</td> </tr>  
+<tr>  
+<td>
+
+`BigIntegerField`
+</td>  
+<td>
+
+`integer`
+</td>  
+<td>
+
+`bigint`
+</td>  
+<td>
+
+`bigint`
+</td> </tr>  
+<tr>  
+<td>
+
+`DecimalField`
+</td>  
+<td>
+
+`decimal`
+</td>  
+<td>
+
+`numeric`
+</td>  
+<td>
+
+`numeric`
+</td> </tr>  
+<tr>  
+<td>
+
+`PrimaryKeyField`
+</td>  
+<td>
+
+`integer`
+</td>  
+<td>
+
+`serial`
+</td>  
+<td>
+
+`integer`
+</td> </tr>  
+<tr>  
+<td>
+
+`ForeignKeyField`
+</td>  
+<td>
+
+`integer`
+</td>  
+<td>
+
+`integer`
+</td>  
+<td>
+
+`integer`
+</td> </tr>  
+<tr>  
+<td>
+
+`DateField`
+</td>  
+<td>
+
+`date`
+</td>  
+<td>
+
+`date`
+</td>  
+<td>
+
+`date`
+</td> </tr>  
+<tr>  
+<td>
+
+`TimeField`
+</td>  
+<td>
+
+`time`
+</td>  
+<td>
+
+`time`
+</td>  
+<td>
+
+`time`
+</td> </tr> </table>
+
+<p>下表列出了 Peewee 字段类型以及相应的 SQLite，PostgreSQL 和 MySQL 列类型。</p>
+<h2 id="Peewee-模型定义">Peewee 模型定义<a class="headerlink" href="#Peewee-模型定义" title="Permanent link">&para;</a></h2>
+<p>在第一个示例中，我们创建一个简单的数据库表。</p>
+<details class="abstract" open="open"><summary>model_definition.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+Note.create_table()
+
+note1 = Note.create(text=&#39;Went to the cinema&#39;)
+note1.save()
+
+note2 = Note.create(text=&#39;Exercised in the morning&#39;,
+        created=datetime.date(2018, 10, 20))
+note2.save()
+
+note3 = Note.create(text=&#39;Worked in the garden&#39;,
+        created=datetime.date(2018, 10, 22))
+note3.save()
+
+note4 = Note.create(text=&#39;Listened to music&#39;)
+note4.save()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例在 SQLite 中创建<code>notes</code>数据库表。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>db = peewee.SqliteDatabase(&#39;test.db&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们启动<code>test.db</code> SQLite 数据库。 这将在文件系统上创建一个<code>test.db</code>文件。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>class Note(peewee.Model):
+...
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们定义了一个名为<code>Note</code>的数据库模型。 Peewee 模型继承自<code>peewee.Model</code>。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>text = peewee.CharField()
+created = peewee.DateField(default=datetime.date.today)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们指定模型字段。 我们有一个<code>CharField</code>和一个<code>DateField</code>。 <code>CharField</code>是用于存储字符串的字段类。 <code>DateField</code>是用于存储日期的字段类。 如果未指定，则采用默认值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>class Meta:
+    database = db
+    db_table = &#39;notes&#39;
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在<code>Meta</code>类中，我们定义对数据库的引用和数据库表名称。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Note.create_table()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该表是使用<code>create_table()</code>从模型创建的。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>note1 = Note.create(text=&#39;Went to the cinema&#39;)
+note1.save()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们创建并保存一个新实例。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sqlite&gt; select * from notes;
+1|Went to the cinema|2018-11-01
+2|Exercised in the morning|2018-10-20
+3|Worked in the garden|2018-10-22
+4|Listened to music|2018-11-01
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们验证数据。</p>
+<h2 id="Peewee-删除表">Peewee 删除表<a class="headerlink" href="#Peewee-删除表" title="Permanent link">&para;</a></h2>
+<p>使用<code>drop_table()</code>模型方法删除该表。</p>
+<details class="abstract" open="open"><summary>drop_table.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+        database = db
+        db_table = &#39;notes&#39;
+
+Note.drop_table()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例删除<code>notes</code>表。</p>
+<h2 id="Peewee-insert_many">Peewee <code>insert_many</code><a class="headerlink" href="#Peewee-insert_many" title="Permanent link">&para;</a></h2>
+<p><code>insert_many()</code>方法允许进行批量创建。</p>
+<details class="abstract" open="open"><summary>insert_many.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+Note.create_table()
+
+data = [
+    { &#39;text&#39;: &#39;Tai chi in the morning&#39;, &#39;created&#39;: datetime.date(2018, 10, 20) },
+    { &#39;text&#39;: &#39;Visited friend&#39;, &#39;created&#39;: datetime.date(2018, 10, 12) },
+    { &#39;text&#39;: &#39;Went to cinema&#39;, &#39;created&#39;: datetime.date(2018, 10, 5) },
+    { &#39;text&#39;: &#39;Listened to music&#39;, &#39;created&#39;: datetime.date(2018, 10, 28) },
+    { &#39;text&#39;: &#39;Watched TV all day&#39;, &#39;created&#39;: datetime.date(2018, 10, 14) },
+    { &#39;text&#39;: &#39;Worked in the garden&#39;, &#39;created&#39;: datetime.date(2018, 10, 22) },
+    { &#39;text&#39;: &#39;Walked for a hour&#39;, &#39;created&#39;: datetime.date(2018, 10, 28) }
+]
+
+with db.atomic():
+
+    query = Note.insert_many(data)
+    query.execute()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该代码示例通过一次批量创建操作来重新创建<code>notes</code>表。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>data = [
+    { &#39;text&#39;: &#39;Tai chi in the morning&#39;, &#39;created&#39;: datetime.date(2018, 10, 20) },
+    { &#39;text&#39;: &#39;Visited friend&#39;, &#39;created&#39;: datetime.date(2018, 10, 12) },
+    { &#39;text&#39;: &#39;Went to cinema&#39;, &#39;created&#39;: datetime.date(2018, 10, 5) },
+    { &#39;text&#39;: &#39;Listened to music&#39;, &#39;created&#39;: datetime.date(2018, 10, 28) },
+    { &#39;text&#39;: &#39;Watched TV all day&#39;, &#39;created&#39;: datetime.date(2018, 10, 14) },
+    { &#39;text&#39;: &#39;Worked in the garden&#39;, &#39;created&#39;: datetime.date(2018, 10, 22) },
+    { &#39;text&#39;: &#39;Walked for a hour&#39;, &#39;created&#39;: datetime.date(2018, 10, 28) }
+]
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们在词典列表中定义数据。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>with db.atomic():
+
+    query = Note.insert_many(data)
+    query.execute()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们执行批量操作。 <code>atomic()</code>方法将批量操作置于事务中。</p>
+<h2 id="Peewee-选择所有实例">Peewee 选择所有实例<a class="headerlink" href="#Peewee-选择所有实例" title="Permanent link">&para;</a></h2>
+<p><code>select()</code>方法用于检索定义的模型的实例。</p>
+<details class="abstract" open="open"><summary>fetch_all.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+notes = Note.select()
+
+for note in notes:
+    print(&#39;{} on {}&#39;.format(note.text, note.created))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例获取并显示所有<code>Note</code>实例。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>notes = Note.select()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>select()</code>方法创建一个 SELECT 查询。 如果未明确提供任何字段，则查询将默认选择模型上定义的所有字段。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./fetch_all.py
+Tai chi in the morning on 2018-10-20
+Visited friend on 2018-10-12
+Went to cinema on 2018-10-05
+Listened to music on 2018-10-28
+Watched TV all day on 2018-10-14
+Worked in the garden on 2018-10-22
+Walked for a hour on 2018-10-28
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Peewee-where过滤器">Peewee <code>where</code>过滤器<a class="headerlink" href="#Peewee-where过滤器" title="Permanent link">&para;</a></h2>
+<p><code>where()</code>方法可以根据给定条件过滤数据。</p>
+<details class="abstract" open="open"><summary>where_clause.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+notes = Note.select().where(Note.id &gt; 3)
+
+for note in notes:
+    print(&#39;{} {} on {}&#39;.format(note.id, note.text, note.created))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例检索 ID 大于三的所有行。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>notes = Note.select().where(Note.id &gt; 3)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>where()</code>方法对查询应用过滤条件。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./where_clause.py
+4 Listened to music on 2018-10-28
+5 Watched TV all day on 2018-10-14
+6 Worked in the garden on 2018-10-22
+7 Walked for a hour on 2018-10-28
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Peewee-多个where表达式">Peewee 多个<code>where</code>表达式<a class="headerlink" href="#Peewee-多个where表达式" title="Permanent link">&para;</a></h2>
+<p>我们可以组合多个 where 表达式。</p>
+<details class="abstract" open="open"><summary>multiple_where_expr.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+notes = Note.select().where((Note.id &gt; 2) &amp; (Note.id &lt; 6))
+
+for note in notes:
+    print(&#39;{} {} on {}&#39;.format(note.id, note.text, note.created))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例检索 id 大于 2 且小于 6 的所有行。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>notes = Note.select().where((Note.id &gt; 2) &amp; (Note.id &lt; 6))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们将两个 where 表达式与&amp;运算符结合使用。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./multiple_where_expr.py
+3 Went to cinema on 2018-10-05
+4 Listened to music on 2018-10-28
+5 Watched TV all day on 2018-10-14
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Peewee-检索单个实例">Peewee 检索单个实例<a class="headerlink" href="#Peewee-检索单个实例" title="Permanent link">&para;</a></h2>
+<p>选择单个实例有两种方法： 它们每个都使用<code>get()</code>方法。</p>
+<details class="abstract" open="open"><summary>single_instance.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+note1 = Note.select().where(Note.text == &#39;Went to cinema&#39;).get()
+
+print(note1.id)
+print(note1.text)
+print(note1.created)
+
+note2 = Note.get(Note.text == &#39;Listened to music&#39;)
+
+print(note2.id)
+print(note2.text)
+print(note2.created)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例显示了如何以两种方式检索单个实例。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>note1 = Note.select().where(Note.text == &#39;Went to cinema&#39;).get()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们可以使用<code>Note.select().where().get()</code>方法链。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>note2 = Note.get(Note.text == &#39;Listened to music&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>还有一个<code>Note.get()</code>快捷方式，其功能相同。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./single_instance.py
+3
+Went to cinema
+2018-10-05
+4
+Listened to music
+2018-10-28
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Peewee-选择特定的列">Peewee 选择特定的列<a class="headerlink" href="#Peewee-选择特定的列" title="Permanent link">&para;</a></h2>
+<p>在<code>select()</code>方法内部，我们可以指定要包含在查询中的列的名称。</p>
+<details class="abstract" open="open"><summary>columns.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+notes = Note.select(Note.text, Note.created).limit(2)
+
+output = [e for e in notes.tuples()]
+print(output)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例包括两列：text 和 created。 该 ID 被跳过。 我们将查询限制为两个实例。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./columns.py
+[(&#39;Tai chi in the morning&#39;, datetime.date(2018, 10, 20)),
+    (&#39;Visited friend&#39;, datetime.date(2018, 10, 12))]
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Peewee-计数实例">Peewee 计数实例<a class="headerlink" href="#Peewee-计数实例" title="Permanent link">&para;</a></h2>
+<p>要计算表中的模型实例数，我们可以使用<code>count()</code>方法。</p>
+<details class="abstract" open="open"><summary>count_instances.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+n = Note.select().count()
+print(n)
+
+n2 = Note.select().where(Note.created &gt;= datetime.date(2018, 10, 20)).count()
+print(n2)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例计算所有实例的数量以及日期等于或晚于 2018/10/20 的实例的数量。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./count_instances.py
+7
+4
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Peewee-显示-SQL-语句">Peewee 显示 SQL 语句<a class="headerlink" href="#Peewee-显示-SQL-语句" title="Permanent link">&para;</a></h2>
+<p>可以使用<code>sql()</code>方法显示生成的 SQL 语句。</p>
+<details class="abstract" open="open"><summary>show_sql.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+note3 = Note.select().where(Note.id == 3)
+print(note3.sql())
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例显示将 ORM 查询转换为的 SQL。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./show_sql.py
+(&#39;SELECT &quot;t1&quot;.&quot;id&quot;, &quot;t1&quot;.&quot;text&quot;, &quot;t1&quot;.&quot;created&quot; FROM &quot;notes&quot; AS &quot;t1&quot;
+    WHERE (&quot;t1&quot;.&quot;id&quot; = ?)&#39;, [3])
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Peewee-offset和limit">Peewee <code>offset</code>和<code>limit</code><a class="headerlink" href="#Peewee-offset和limit" title="Permanent link">&para;</a></h2>
+<p>通过<code>offset</code>和<code>limit</code>属性，我们可以定义实例的初始跳过和要包含在<code>select()</code>中的实例数。</p>
+<details class="abstract" open="open"><summary>offset_limit.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;notes&#39;
+
+notes = Note.select().offset(2).limit(3)
+
+for note in notes:
+    print(note.id, note.text, note.created)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例从第二个实例开始返回三个实例。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./offset_limit.py
+3 Went to cinema 2018-10-05
+4 Listened to music 2018-10-28
+5 Watched TV all day 2018-10-14
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<h2 id="Peewee-排序">Peewee 排序<a class="headerlink" href="#Peewee-排序" title="Permanent link">&para;</a></h2>
+<p>可以使用<code>order_by()</code>对检索到的实例进行排序。</p>
+<details class="abstract" open="open"><summary>order_by.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db 
+        db_table = &#39;notes&#39;
+
+print(&#39;Ascending order&#39;)
+print(&#39;*****************************&#39;)
+
+notes = Note.select(Note.text, Note.created).order_by(Note.created)
+
+for note in notes:
+    print(note.text, note.created)
+
+print()
+print(&#39;Descending order&#39;)
+print(&#39;*****************************&#39;)
+
+notes = Note.select(Note.text, Note.created).order_by(Note.created.desc())
+
+for note in notes:
+    print(note.text, note.created)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该代码示例按创建日期对实例进行排序。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>notes = Note.select(Note.text, Note.created).order_by(Note.created)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该行返回按创建日期升序排列的注释实例。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>notes = Note.select(Note.text, Note.created).order_by(Note.created.desc())
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>要按升序检索笔记，我们在字段上附加<code>desc()</code>方法。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Ascending order
+*****************************
+Went to cinema 2018-10-05
+Visited friend 2018-10-12
+Watched TV all day 2018-10-14
+Tai chi in the morning 2018-10-20
+Worked in the garden 2018-10-22
+Listened to music 2018-10-28
+Walked for a hour 2018-10-28
+
+Descending order
+*****************************
+Listened to music 2018-10-28
+Walked for a hour 2018-10-28
+Worked in the garden 2018-10-22
+Tai chi in the morning 2018-10-20
+Watched TV all day 2018-10-14
+Visited friend 2018-10-12
+Went to cinema 2018-10-05
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是音符实例的有序列表。</p>
+<h2 id="Peewee-删除实例">Peewee 删除实例<a class="headerlink" href="#Peewee-删除实例" title="Permanent link">&para;</a></h2>
+<p><code>delete_by_id()</code>方法删除由其 ID 标识的实例。 它返回已删除实例的数量。</p>
+<details class="abstract" open="open"><summary>delete_by_id.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+        database = db
+        db_table = &#39;notes&#39;
+
+n2 = Note.delete_by_id(1)
+print(n2)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例删除一个 ID 为 1 的<code>Note</code>实例。</p>
+<h2 id="Peewee-删除多个实例">Peewee 删除多个实例<a class="headerlink" href="#Peewee-删除多个实例" title="Permanent link">&para;</a></h2>
+<p>要删除更多实例，我们调用<code>delete()</code>方法。 它返回成功删除的实例数。</p>
+<details class="abstract" open="open"><summary>delete_instances.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+        database = db
+        db_table = &#39;notes&#39;
+
+query = Note.delete().where(Note.id &gt; 3)
+n = query.execute()
+
+print(&#39;{} instances deleted&#39;.format(n))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在此示例中，我们删除了 ID 大于 3 的所有实例。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./delete_instances.py
+4 instances deleted
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在我们的例子中，我们删除了四个<code>Note</code>实例。</p>
+<h2 id="Peewee-更新实例">Peewee 更新实例<a class="headerlink" href="#Peewee-更新实例" title="Permanent link">&para;</a></h2>
+<p><code>update()</code>方法更新一个实例。 它返回成功更新的实例数。</p>
+<details class="abstract" open="open"><summary>update_instance.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Note(peewee.Model):
+
+    text = peewee.CharField()
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+        database = db
+        db_table = &#39;notes&#39;
+
+query = Note.update(created=datetime.date(2018, 10, 27)).where(Note.id == 1)
+n = query.execute()
+
+print(&#39;# of rows updated: {}&#39;.format(n))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例使用 ID 1 修改注释的创建日期。</p>
+<h2 id="Peewee-一对多关系">Peewee 一对多关系<a class="headerlink" href="#Peewee-一对多关系" title="Permanent link">&para;</a></h2>
+<p>在以下示例中，我们将模型映射到现有表。 使用<code>ForeignKeyField</code>创建模型之间的关系。</p>
+<details class="abstract" open="open"><summary>customers_reservations.sql</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>BEGIN TRANSACTION;
+DROP TABLE IF EXISTS reservations;
+DROP TABLE IF EXISTS customers;
+
+CREATE TABLE IF NOT EXISTS customers(id INTEGER PRIMARY KEY, name TEXT);
+INSERT INTO customers(Name) VALUES(&#39;Paul Novak&#39;);
+INSERT INTO customers(Name) VALUES(&#39;Terry Neils&#39;);
+INSERT INTO customers(Name) VALUES(&#39;Jack Fonda&#39;);
+INSERT INTO customers(Name) VALUES(&#39;Tom Willis&#39;);
+
+CREATE TABLE IF NOT EXISTS reservations(id INTEGER PRIMARY KEY, 
+    customer_id INTEGER, created DATE, 
+    FOREIGN KEY(customer_id) REFERENCES customers(id));
+INSERT INTO reservations(customer_id, created) VALUES(1, &#39;2018-22-11&#39;);
+INSERT INTO reservations(customer_id, created) VALUES(2, &#39;2018-28-11&#39;);
+INSERT INTO reservations(customer_id, created) VALUES(2, &#39;2018-29-11&#39;);
+INSERT INTO reservations(customer_id, created) VALUES(1, &#39;2018-29-11&#39;);
+INSERT INTO reservations(customer_id, created) VALUES(3, &#39;2018-02-12&#39;);
+COMMIT;
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该 SQL 创建两个表：<code>customers</code>和<code>reservations</code>。 两个表之间存在一对多的关系：一个客户可以进行很多预订。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sqlite&gt; .read customers_reservations.sql 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们将 SQL 文件读入数据库。</p>
+<details class="abstract" open="open"><summary>one2many.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+
+import peewee
+import datetime
+
+db = peewee.SqliteDatabase(&#39;test.db&#39;)
+
+class Customer(peewee.Model):
+
+    name = peewee.TextField()
+
+    class Meta:
+
+        database = db
+        db_table = &#39;customers&#39;
+
+class Reservation(peewee.Model):
+
+    customer = peewee.ForeignKeyField(Customer, backref=&#39;reservations&#39;)
+    created = peewee.DateField(default=datetime.date.today)
+
+    class Meta:
+
+        database = db
+        db_table = &#39;reservations&#39;
+
+customer = Customer.select().where(Customer.name == &#39;Paul Novak&#39;).get()
+
+for reservation in customer.reservations:
+
+    print(reservation.id)
+    print(reservation.created)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们定义了两个映射到表的模型。 然后，我们选择一个客户并显示其预订。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>customer = peewee.ForeignKeyField(Customer, backref=&#39;reservations&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>Customer</code>和<code>Reservation</code>模型之间的关系是通过<code>ForeignKeyField</code>创建的。 <code>backref</code>属性设置了我们如何参考客户的预订。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for reservation in customer.reservations:
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>客户实例具有<code>reservations</code>属性，其中包含相应的预留。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./one2many.py
+1
+2018-22-11
+4
+2018-29-11
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是输出。</p>
+<p>在本教程中，我们介绍了 Python Peewee ORM。</p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../python-pymysql/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                Python PyMySQL 教程
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../python-pydal/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                Python pyDAL 教程
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

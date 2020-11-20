@@ -1,0 +1,2282 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="Python 字典是键-值对的容器。 它是可变的，可以包含混合类型，字典是无序集合。 Python 词典在其他语言中称为关联数组或哈希表。 字典中的键必须是不可变的对象，例如字符串或数字，它们在字典中也必须是唯一的。  Python 字典创建  首先，我们展示如何创建 Python 字典。  create_dict.py">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/python/pytutorial/python-dictionaries/">
+
+
+<link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+
+    
+      
+        <title>Python 字典 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#Python-字典" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Python 字典
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../" class="md-tabs__link md-tabs__link--active">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../nlp/nlp/" class="md-tabs__link">
+          人工智能
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Python 字典
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Python 字典
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典创建" class="md-nav__link">
+    Python 字典创建
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典推导式" class="md-nav__link">
+    Python 字典推导式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典的基本操作" class="md-nav__link">
+    Python 字典的基本操作
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典fromkeys和setdefault" class="md-nav__link">
+    Python 字典fromkeys和setdefault
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典更新方法" class="md-nav__link">
+    Python 字典更新方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-从字典中删除项目" class="md-nav__link">
+    Python 从字典中删除项目
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典键和值" class="md-nav__link">
+    Python 字典键和值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典循环" class="md-nav__link">
+    Python 字典循环
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典成员性测试" class="md-nav__link">
+    Python 字典成员性测试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典排序" class="md-nav__link">
+    Python 字典排序
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      人工智能
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="人工智能" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        人工智能
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典创建" class="md-nav__link">
+    Python 字典创建
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典推导式" class="md-nav__link">
+    Python 字典推导式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典的基本操作" class="md-nav__link">
+    Python 字典的基本操作
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典fromkeys和setdefault" class="md-nav__link">
+    Python 字典fromkeys和setdefault
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典更新方法" class="md-nav__link">
+    Python 字典更新方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-从字典中删除项目" class="md-nav__link">
+    Python 从字典中删除项目
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典键和值" class="md-nav__link">
+    Python 字典键和值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典循环" class="md-nav__link">
+    Python 字典循环
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典成员性测试" class="md-nav__link">
+    Python 字典成员性测试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-字典排序" class="md-nav__link">
+    Python 字典排序
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="Python-字典">Python 字典<a class="headerlink" href="#Python-字典" title="Permanent link">&para;</a></h1>
+<p>Python 字典是键-值对的容器。 它是可变的，可以包含混合类型，字典是无序集合。 Python 词典在其他语言中称为关联数组或哈希表。 字典中的键必须是不可变的对象，例如字符串或数字，它们在字典中也必须是唯一的。</p>
+<h2 id="Python-字典创建">Python 字典创建<a class="headerlink" href="#Python-字典创建" title="Permanent link">&para;</a></h2>
+<p>首先，我们展示如何创建 Python 字典。</p>
+<details class="abstract" open="open"><summary>create_dict.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# create_dict.py
+
+weekend = { &quot;Sun&quot;: &quot;Sunday&quot;, &quot;Mon&quot;: &quot;Monday&quot; }
+vals = dict(one=1, two=2)
+
+capitals = {}
+capitals[&quot;svk&quot;] = &quot;Bratislava&quot;
+capitals[&quot;deu&quot;] = &quot;Berlin&quot;
+capitals[&quot;dnk&quot;] = &quot;Copenhagen&quot;
+
+d = { i: object() for i in range(4) }
+
+print(weekend)
+print(vals)
+print(capitals)
+print(d)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们以四种不同方式创建四个字典。 稍后，我们将这些词典的内容打印到控制台。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>weekend = { &quot;Sun&quot;: &quot;Sunday&quot;, &quot;Mon&quot;: &quot;Monday&quot; }
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们使用字典文字表示法创建周末字典。 键值对用大括号括起来。 两对之间用逗号分隔。 一对的第一个值是键，后跟一个冒号和一个值。 <code>"Sun"</code>字符串是键，<code>"Sunday"</code>字符串是值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>vals = dict(one=1, two=2)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>可以使用<code>dict()</code>功能创建字典。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>capitals = {}
+capitals[&quot;svk&quot;] = &quot;Bratislava&quot;
+capitals[&quot;deu&quot;] = &quot;Berlin&quot;
+capitals[&quot;dnk&quot;] = &quot;Copenhagen&quot;
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>第三种方法是创建一个空的大写字典。 三对将添加到词典中。 键位于方括号内，值位于分配的右侧。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>d = { i: object() for i in range(4) }
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>使用字典推导式来创建字典。 理解分为两个部分。 第一部分是<code>i: object()</code>表达式，该表达式在循环的每个循环中执行。 第二部分是<code>for i in range(4)</code>循环。 字典推导式将创建具有四对的字典，其中键为数字 0、1、2 和 3，值为简单对象。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./create_dict.py
+{&#39;Sun&#39;: &#39;Sunday&#39;, &#39;Mon&#39;: &#39;Monday&#39;}
+{&#39;two&#39;: 2, &#39;one&#39;: 1}
+{&#39;svk&#39;: &#39;Bratislava&#39;, &#39;dnk&#39;: &#39;Copenhagen&#39;, &#39;deu&#39;: &#39;Berlin&#39;}
+{0: &lt;object object at 0xb76cb4a8&gt;, 1: &lt;object object at 0xb76cb4b0&gt;,
+2: &lt;object object at 0xb76cb4b8&gt;, 3: &lt;object object at 0xb76cb4c0&gt;}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是示例输出。</p>
+<h2 id="Python-字典推导式">Python 字典推导式<a class="headerlink" href="#Python-字典推导式" title="Permanent link">&para;</a></h2>
+<p>词典理解是一种基于现有词典创建词典的语法结构。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>D = { expression for variable in sequence [if condition] }
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>字典推导式放在两个大括号之间； 它包含三个部分：for 循环，条件和表达式。</p>
+<p>在 for 循环中，我们浏览了字典。 可选的 if 条件指定必须满足的条件。 最后，对表达式进行求值。 该表达式从满足条件的输入序列成员中产生输出字典的元素。</p>
+<details class="abstract" open="open"><summary>comprehension.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# comprehension.py
+
+capitals = { &quot;Bratislava&quot;: 424207, &quot;Vilnius&quot;: 556723, &quot;Lisbon&quot;: 564657,
+             &quot;Riga&quot;: 713016, &quot;Jerusalem&quot;: 780200, &quot;Warsaw&quot;: 1711324,
+             &quot;Budapest&quot;: 1729040, &quot;Prague&quot;: 1241664, &quot;Helsinki&quot;: 596661,
+             &quot;Yokyo&quot;: 13189000, &quot;Madrid&quot;: 3233527 }
+
+capitals2 = { key:val for key, val in capitals.items() if val &lt; 1000000 }
+
+print(capitals2)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们从现有字典创建一个新字典。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>capitals = { &quot;Bratislava&quot;: 424207, &quot;Vilnius&quot;: 556723, &quot;Lisbon&quot;: 564657,
+             &quot;Riga&quot;: 713016, &quot;Jerusalem&quot;: 780200, &quot;Warsaw&quot;: 1711324,
+             &quot;Budapest&quot;: 1729040, &quot;Prague&quot;: 1241664, &quot;Helsinki&quot;: 596661,
+             &quot;Yokyo&quot;: 13189000, &quot;Madrid&quot;: 3233527 }
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们有一个大写的字典。 关键在于资本，而人口就是价值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>capitals = { key:val for key, val in capitals.items() if val &lt; 1000000 }
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>使用字典推导式来创建新字典。 它包含人口少于一百万的首都。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./comprehension.py
+{&#39;Bratislava&#39;: 424207, &#39;Vilnius&#39;: 556723, &#39;Jerusalem&#39;: 780200, &#39;Riga&#39;: 713016,
+    &#39;Lisbon&#39;: 564657, &#39;Helsinki&#39;: 596661}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这些首都的人口少于一百万。</p>
+<h2 id="Python-字典的基本操作">Python 字典的基本操作<a class="headerlink" href="#Python-字典的基本操作" title="Permanent link">&para;</a></h2>
+<p>以下示例显示了使用 Python 词典的一些基本操作。</p>
+<details class="abstract" open="open"><summary>basics.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# basics.py
+
+basket = { &#39;oranges&#39;: 12, &#39;pears&#39;: 5, &#39;apples&#39;: 4 }
+
+basket[&#39;bananas&#39;] = 5
+
+print(basket)
+print(&quot;There are {0} various items in the basket&quot;.format(len(basket)))
+
+print(basket[&#39;apples&#39;])
+basket[&#39;apples&#39;] = 8
+print(basket[&#39;apples&#39;])
+
+print(basket.get(&#39;oranges&#39;, &#39;undefined&#39;))
+print(basket.get(&#39;cherries&#39;, &#39;undefined&#39;))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们有一个装着不同水果的篮子。 我们对购物篮字典执行一些操作。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>basket = { &#39;oranges&#39;: 12, &#39;pears&#39;: 5, &#39;apples&#39;: 4 }
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>将创建篮子字典。 它最初具有三个键值对。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>basket[&#39;bananas&#39;] = 5
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>将创建一个新的配对。 <code>'bananas'</code>字符串是键，<code>5</code>整数是值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;There are {0} various items in the basket&quot;.format(len(basket)))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>len()</code>函数给出字典中的对数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(basket[&#39;apples&#39;])
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>“苹果”键的值会打印到终端上。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>basket[&#39;apples&#39;] = 8
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>“苹果”键的值被修改。 设置为数字 8。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(basket.get(&#39;oranges&#39;, &#39;undefined&#39;))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>get()</code>方法检索指定键的值。 如果没有这样的键，则返回该方法的第二个参数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(basket.get(&#39;cherries&#39;, &#39;undefined&#39;))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该行返回“未定义”。 篮子里没有樱桃。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./basics.py
+{&#39;bananas&#39;: 5, &#39;pears&#39;: 5, &#39;oranges&#39;: 12, &#39;apples&#39;: 4}
+There are 4 various items in the basket
+4
+8
+12
+undefined
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是示例输出。</p>
+<h2 id="Python-字典fromkeys和setdefault">Python 字典<code>fromkeys</code>和<code>setdefault</code><a class="headerlink" href="#Python-字典fromkeys和setdefault" title="Permanent link">&para;</a></h2>
+<p>下一个示例介绍了两种字典方法：<code>fromkeys()</code>和<code>setdefault()</code>。</p>
+<details class="abstract" open="open"><summary>fruits.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# fruits.py
+
+basket = (&#39;oranges&#39;, &#39;pears&#39;, &#39;apples&#39;, &#39;bananas&#39;)
+
+fruits = {}.fromkeys(basket, 0)
+print(fruits)
+
+fruits[&#39;oranges&#39;] = 12
+fruits[&#39;pears&#39;] = 8
+fruits[&#39;apples&#39;] = 4
+
+print(fruits.setdefault(&#39;oranges&#39;, 11))
+print(fruits.setdefault(&#39;kiwis&#39;, 11))
+
+print(fruits)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>fromkeys()</code>方法从列表创建一个新字典。 如果存在键，则<code>setdefault()</code>方法将返回一个值。 否则，它将插入具有指定默认值的键并返回该值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>basket = (&#39;oranges&#39;, &#39;pears&#39;, &#39;apples&#39;, &#39;bananas&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们有一个字符串列表。 从该列表中将构建新的字典。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fruits = {}.fromkeys(basket, 0)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>fromkeys()</code>方法创建一个新的词典，列表项将作为关键字。 每个键都将初始化为 0。请注意<code>fromkeys()</code>方法是一个类方法，需要调用该类名，在本例中为{}。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fruits[&#39;oranges&#39;] = 12
+fruits[&#39;pears&#39;] = 8
+fruits[&#39;apples&#39;] = 4
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在这里，我们向<code>fruits</code>字典添加一些值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(fruits.setdefault(&#39;oranges&#39;, 11))
+print(fruits.setdefault(&#39;kiwis&#39;, 11))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>第一行将<code>12</code>打印到终端。 <code>'oranges'</code>键存在于词典中。 在这种情况下，该方法将返回其值。 在第二种情况下，键尚不存在。 一对新的<code>'kiwis': 11</code>被插入字典。 值<code>11</code>被打印到控制台。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./fruits.py
+{&#39;bananas&#39;: 0, &#39;pears&#39;: 0, &#39;oranges&#39;: 0, &#39;apples&#39;: 0}
+12
+11
+{&#39;kiwis&#39;: 11, &#39;bananas&#39;: 0, &#39;pears&#39;: 8, &#39;oranges&#39;: 12, &#39;apples&#39;: 4}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>当启动<code>fruits.py</code>脚本时，我们会收到此输出。</p>
+<h2 id="Python-字典更新方法">Python 字典更新方法<a class="headerlink" href="#Python-字典更新方法" title="Permanent link">&para;</a></h2>
+<p>下一个代码示例演示如何使用<code>update()</code>方法添加两个 Python 字典。</p>
+<details class="abstract" open="open"><summary>domains.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# domains.py
+
+domains = { &quot;de&quot;: &quot;Germany&quot;, &quot;sk&quot;: &quot;Slovakia&quot;, &quot;hu&quot;: &quot;Hungary&quot;}
+domains2 = { &quot;us&quot;: &quot;United States&quot;, &quot;no&quot;: &quot;Norway&quot; }
+
+domains.update(domains2)
+
+print(domains)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>两个字典通过<code>update()</code>方法结合在一起。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>domains.update(domains2)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>使用<code>update()</code>方法将<code>domains2</code>字典添加到域字典中。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./domains.py
+{&#39;sk&#39;: &#39;Slovakia&#39;, &#39;de&#39;: &#39;Germany&#39;, &#39;no&#39;: &#39;Norway&#39;,
+&#39;us&#39;: &#39;United States&#39;, &#39;hu&#39;: &#39;Hungary&#39;}
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>结果显示所有值。</p>
+<h2 id="Python-从字典中删除项目">Python 从字典中删除项目<a class="headerlink" href="#Python-从字典中删除项目" title="Permanent link">&para;</a></h2>
+<p>现在我们展示如何从字典中删除一对。</p>
+<details class="abstract" open="open"><summary>removing.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# removing.py
+
+items = { &quot;coins&quot;: 7, &quot;pens&quot;: 3, &quot;cups&quot;: 2,
+    &quot;bags&quot;: 1, &quot;bottles&quot;: 4, &quot;books&quot;: 5 }
+
+print(items)
+
+item = items.pop(&quot;coins&quot;)
+print(&quot;Item having value {0} was removed&quot;.format(item))
+
+print(items)
+
+del items[&quot;bottles&quot;]
+print(items)
+
+items.clear()
+print(items)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>项目字典有六个键值对，我们将从该词典中删除配对。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>item = items.pop(&quot;coins&quot;)
+print(&quot;Item having value {0} was removed&quot;.format(item))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>pop()</code>方法删除具有指定键的一对； 它返回已删除键的值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>del items[&quot;bottles&quot;]
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>del</code>关键字从项目字典中删除<code>"bottles": 4</code>对。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>items.clear()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>clear()</code>方法清除字典中的所有项目。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./removing.py
+{&#39;bags&#39;: 1, &#39;pens&#39;: 3, &#39;coins&#39;: 7, &#39;books&#39;: 5, &#39;bottles&#39;: 4, &#39;cups&#39;: 2}
+Item having value 7 was removed
+{&#39;bags&#39;: 1, &#39;pens&#39;: 3, &#39;books&#39;: 5, &#39;bottles&#39;: 4, &#39;cups&#39;: 2}
+{&#39;bags&#39;: 1, &#39;pens&#39;: 3, &#39;books&#39;: 5, &#39;cups&#39;: 2}
+{}
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="Python-字典键和值">Python 字典键和值<a class="headerlink" href="#Python-字典键和值" title="Permanent link">&para;</a></h2>
+<p>Python 字典由键值对组成。 <code>keys()</code>方法从字典中返回键列表。 <code>values()</code>方法创建一个值列表。 并且<code>items()</code>方法返回键值元组的列表。</p>
+<details class="abstract" open="open"><summary>keys_values.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# keys_values.py
+
+domains = { &quot;de&quot;: &quot;Germany&quot;, &quot;sk&quot;: &quot;Slovakia&quot;, &quot;hu&quot;: &quot;Hungary&quot;,
+    &quot;us&quot;: &quot;United States&quot;, &quot;no&quot;: &quot;Norway&quot;  }
+
+print(domains.keys())
+print(domains.values())
+print(domains.items())
+
+print(&quot;de&quot; in domains)
+print(&quot;cz&quot; in domains)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们演示了上述方法。 我们还检查<code>in</code>关键字是否存在键。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(domains.keys())
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们使用<code>keys()</code>方法打印<code>domains</code>词典的键列表。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(domains.values())
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们使用<code>values()</code>方法打印<code>domains</code>词典的值列表。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(domains.items())
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>最后，我们使用<code>items()</code>方法打印域字典的键值元组列表。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;de&quot; in domains)
+print(&quot;cz&quot; in domains)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>使用<code>in</code>关键字，我们检查<code>domains</code>字典中是否存在<code>"de"</code>和<code>"cz"</code>键。 返回值为<code>True</code>或<code>False</code>。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./keys_values.py
+[&#39;sk&#39;, &#39;de&#39;, &#39;no&#39;, &#39;us&#39;, &#39;hu&#39;]
+[&#39;Slovakia&#39;, &#39;Germany&#39;, &#39;Norway&#39;, &#39;United States&#39;, &#39;Hungary&#39;]
+[(&#39;sk&#39;, &#39;Slovakia&#39;), (&#39;de&#39;, &#39;Germany&#39;), (&#39;no&#39;, &#39;Norway&#39;),
+(&#39;us&#39;, &#39;United States&#39;), (&#39;hu&#39;, &#39;Hungary&#39;)]
+True
+False
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="Python-字典循环">Python 字典循环<a class="headerlink" href="#Python-字典循环" title="Permanent link">&para;</a></h2>
+<p>遍历字典是常见的编程工作。 这可以通过 for 关键字完成。</p>
+<details class="abstract" open="open"><summary>looping.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# looping.py
+
+domains = { &quot;de&quot;: &quot;Germany&quot;, &quot;sk&quot;: &quot;Slovakia&quot;, &quot;hu&quot;: &quot;Hungary&quot;,
+    &quot;us&quot;: &quot;United States&quot;, &quot;no&quot;: &quot;Norway&quot; }
+
+for key in domains:
+    print(key)
+
+for val in domains.values():
+    print(val)
+
+for k, v in domains.items():
+    print(&quot;: &quot;.join((k, v)))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在该示例中，我们遍历<code>domains</code>字典以打印键，值以及字典的键和值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for key in domains:
+    print(key)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>此循环将打印字典的所有键。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for val in domains.values():
+    print(val)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>第二个循环打印字典的所有值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for k, v in domains.items():
+    print(&quot;: &quot;.join((k, v)))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在第三个循环中，将打印所有键和值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./looping.py
+sk
+de
+no
+us
+hu
+Slovakia
+Germany
+Norway
+United States
+Hungary
+sk: Slovakia
+de: Germany
+no: Norway
+us: United States
+hu: Hungary
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="Python-字典成员性测试">Python 字典成员性测试<a class="headerlink" href="#Python-字典成员性测试" title="Permanent link">&para;</a></h2>
+<p>使用<code>in</code>和<code>not in</code>运算符，我们可以检查字典中是否存在键。</p>
+<details class="abstract" open="open"><summary>membership.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# membership.py
+
+domains = { &quot;de&quot;: &quot;Germany&quot;, &quot;sk&quot;: &quot;Slovakia&quot;, &quot;hu&quot;: &quot;Hungary&quot;,
+    &quot;us&quot;: &quot;United States&quot;, &quot;no&quot;: &quot;Norway&quot;  }
+
+key = &quot;sk&quot;
+
+if key in domains:
+    print(&quot;{0} is in the dictionary&quot;.format(domains[key]))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们使用<code>in</code>运算符检查国家/地区是否在字典中。</p>
+<h2 id="Python-字典排序">Python 字典排序<a class="headerlink" href="#Python-字典排序" title="Permanent link">&para;</a></h2>
+<p>Python 字典是无序的，这也意味着它们不能像 Python 列表那样排序，程序员可以创建 Python 字典的排序表示形式。 在本节中，我们展示了几种创建排序输出的方法。</p>
+<p>程序员可能希望以正常或相反的顺序对数据进行排序。 他们可以按键或按值对数据进行排序。</p>
+<details class="abstract" open="open"><summary>simple_sort.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# simple_sort.py
+
+items = { &quot;coins&quot;: 7, &quot;pens&quot;: 3, &quot;cups&quot;: 2,
+    &quot;bags&quot;: 1, &quot;bottles&quot;: 4, &quot;books&quot;: 5 }
+
+kitems = list(items.keys())
+kitems.sort()
+
+for k in kitems:
+    print(&quot;: &quot;.join((k, str(items[k]))))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>第一个示例提供了最简单的解决方案，以按键对数据进行排序。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>kitems = items.keys()
+kitems.sort()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>从字典中获得键列表。 该列表使用<code>sort()</code>方法排序。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for k in kitems:
+    print(&quot;: &quot;.join((k, str(items[k]))))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在循环中，我们从字典中打印排序的键以及它们的值。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./simple_sort.py
+bags: 1
+books: 5
+bottles: 4
+coins: 7
+cups: 2
+pens: 3
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>项目字典按其键排序。</p>
+<p>内置的<code>sorted()</code>功能可以完成更有效的分类。</p>
+<details class="abstract" open="open"><summary>sorting.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# sorting.py
+
+items = { &quot;coins&quot;: 7, &quot;pens&quot;: 3, &quot;cups&quot;: 2,
+    &quot;bags&quot;: 1, &quot;bottles&quot;: 4, &quot;books&quot;: 5 }
+
+for key in sorted(items.keys()):
+    print(&quot;%{0}: {1}&quot;.format(key, items[key]))
+
+print(&quot;###############&quot;)
+
+for key in sorted(items.keys(), reverse=True):
+    print(&quot;{0}: {1}&quot;.format(key, items[key]))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，我们使用<code>sorted()</code>功能按其键升序和降序打印排序的数据。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for key in sorted(items.keys()):
+    print(&quot;%{0}: {1}&quot;.format(key, items[key]))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在此 for 循环中，我们打印按升序排序的对。 <code>iteritems()</code>函数在字典的（键，值）对上返回一个迭代器。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for key in sorted(items.keys(), reverse=True):
+    print(&quot;{0}: {1}&quot;.format(key, items[key]))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在第二个 for 循环中，数据按降序排序。 订单类型由<code>reverse</code>参数控制。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./sorting.py
+bags: 1
+books: 5
+bottles: 4
+coins: 7
+cups: 2
+pens: 3
+###############
+pens: 3
+cups: 2
+coins: 7
+bottles: 4
+books: 5
+bags: 1
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>sorting.py</code>脚本的输出。</p>
+<p>在下一个示例中，我们将按项目的值对项目进行排序。</p>
+<details class="abstract" open="open"><summary>sorting2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+# sorting2.py
+
+items = { &quot;coins&quot;: 7, &quot;pens&quot;: 3, &quot;cups&quot;: 2,
+    &quot;bags&quot;: 1, &quot;bottles&quot;: 4, &quot;books&quot;: 5 }
+
+for key, value in sorted(items.items(), key=lambda pair: pair[1]):
+
+    print(&quot;{0}: {1}&quot;.format(key, value))
+
+print(&quot;###############&quot;)
+
+for key, value in sorted(items.items(), key=lambda pair: pair[1], reverse=True):
+
+    print(&quot;{0}: {1}&quot;.format(key, value))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例按值的升序和降序打印数据。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for key, value in sorted(items.iteritems(),
+    key=lambda (k,v): (v,k)):
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>字典对按其值排序并打印到控制台。 key 参数具有一个函数，该函数指示如何对数据进行排序。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./sorting2.py
+bags: 1
+cups: 2
+pens: 3
+bottles: 4
+books: 5
+coins: 7
+###############
+coins: 7
+books: 5
+bottles: 4
+pens: 3
+cups: 2
+bags: 1
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>从输出中我们可以看到，这次按它们的值排序。</p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../python-lists/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                Python 列表
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../python-set/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                Python 集合
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2190 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="Python argparse 教程展示了如何使用 argparse 模块解析 Python 中的命令行参数。  Python 的 argparse  通过argparse模块，可以轻松编写用户友好的命令行界面。 它解析sys.argv中定义的参数。  argparse模块还会自动生成帮助和使用消息，并在用户为程序提供无效参数时发出错误。  argparse是标准模块； 我们不需要安装它。  使用">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/python/pytutorial/python-argparse/">
+
+
+<link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+
+    
+      
+        <title>Python argparse 教程 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#Python-argparse-教程" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Python argparse 教程
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../" class="md-tabs__link md-tabs__link--active">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../nlp/nlp/" class="md-tabs__link">
+          人工智能
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Python argparse 教程
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Python argparse 教程
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Python-的-argparse" class="md-nav__link">
+    Python 的 argparse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-可选参数" class="md-nav__link">
+    Python argparse 可选参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-必需参数" class="md-nav__link">
+    Python argparse 必需参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-位置参数" class="md-nav__link">
+    Python argparse 位置参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-目标" class="md-nav__link">
+    Python argparse 目标
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-类型" class="md-nav__link">
+    Python argparse 类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-默认" class="md-nav__link">
+    Python argparse 默认
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-metavar" class="md-nav__link">
+    Python argparse metavar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-追加操作" class="md-nav__link">
+    Python argparse 追加操作
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-的-argparse-nargs" class="md-nav__link">
+    Python 的 argparse nargs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-选择" class="md-nav__link">
+    Python argparse 选择
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#头例子" class="md-nav__link">
+    头例子
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      人工智能
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="人工智能" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        人工智能
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Python-的-argparse" class="md-nav__link">
+    Python 的 argparse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-可选参数" class="md-nav__link">
+    Python argparse 可选参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-必需参数" class="md-nav__link">
+    Python argparse 必需参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-位置参数" class="md-nav__link">
+    Python argparse 位置参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-目标" class="md-nav__link">
+    Python argparse 目标
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-类型" class="md-nav__link">
+    Python argparse 类型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-默认" class="md-nav__link">
+    Python argparse 默认
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-metavar" class="md-nav__link">
+    Python argparse metavar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-追加操作" class="md-nav__link">
+    Python argparse 追加操作
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-的-argparse-nargs" class="md-nav__link">
+    Python 的 argparse nargs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Python-argparse-选择" class="md-nav__link">
+    Python argparse 选择
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#头例子" class="md-nav__link">
+    头例子
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="Python-argparse-教程">Python argparse 教程<a class="headerlink" href="#Python-argparse-教程" title="Permanent link">&para;</a></h1>
+<p><strong>Python argparse 教程</strong> 展示了如何使用 argparse 模块解析 Python 中的命令行参数。</p>
+<h2 id="Python-的-argparse">Python 的 argparse<a class="headerlink" href="#Python-的-argparse" title="Permanent link">&para;</a></h2>
+<p>通过<code>argparse</code>模块，可以轻松编写用户友好的命令行界面。 它解析<code>sys.argv</code>中定义的参数。</p>
+<p><code>argparse</code>模块还会自动生成帮助和使用消息，并在用户为程序提供无效参数时发出错误。</p>
+<p><code>argparse</code>是标准模块； 我们不需要安装它。</p>
+<p>使用<code>ArgumentParser</code>创建一个解析器，并使用<code>add_argument()</code>添加一个新参数。 参数可以是可选的，必需的或定位的。</p>
+<h2 id="Python-argparse-可选参数">Python argparse 可选参数<a class="headerlink" href="#Python-argparse-可选参数" title="Permanent link">&para;</a></h2>
+<p>下面的示例创建一个简单的参数解析器。</p>
+<details class="abstract" open="open"><summary>optional_arg.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+
+# help flag provides flag help
+# store_true actions stores argument as True
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;-o&#39;, &#39;--output&#39;, action=&#39;store_true&#39;, 
+    help=&quot;shows output&quot;)
+
+args = parser.parse_args()
+
+if args.output:
+    print(&quot;This is some output&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例添加了一个具有两个选项的参数：short <code>-o</code>和 long <code>--ouput</code>。 这些是可选参数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import argparse
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该模块已导入。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>parser.add_argument(&#39;-o&#39;, &#39;--output&#39;, action=&#39;store_true&#39;, 
+    help=&quot;shows output&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>参数添加了<code>add_argument()</code>。 如果设置为<code>store_true</code>，则<code>action</code>会将参数存储为<code>True</code>。 help 选项提供参数帮助。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>args = parser.parse_args()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>参数由<code>parse_args()</code>解析。 解析的参数作为对象属性存在。 在我们的例子中，将有<code>args.output</code>属性。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>if args.output:
+    print(&quot;This is some output&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>如果存在该参数，我们将显示一些输出。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ optional_arg.py -o
+This is some output
+$ optional_arg.py --output
+This is some output
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们使用<code>-o</code>和<code>--output</code>运行程序。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ optional_arg.py --help
+usage: optional_arg.py [-h] [-o]
+
+optional arguments:
+    -h, --help    show this help message and exit
+    -o, --output  shows output
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们可以向程序显示帮助。</p>
+<h2 id="Python-argparse-必需参数">Python argparse 必需参数<a class="headerlink" href="#Python-argparse-必需参数" title="Permanent link">&para;</a></h2>
+<p>使用<code>required</code>选项需要一个参数。</p>
+<details class="abstract" open="open"><summary>required_arg.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+
+# required arg
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;--name&#39;, required=True)
+
+args = parser.parse_args()
+
+print(f&#39;Hello {args.name}&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例必须指定<code>name</code>选项； 否则失败。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ required_arg.py --name Peter
+Hello Peter
+
+$ required_arg.py
+usage: required_arg.py [-h] --name NAME
+required_arg.py: error: the following arguments are required: --name
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="Python-argparse-位置参数">Python argparse 位置参数<a class="headerlink" href="#Python-argparse-位置参数" title="Permanent link">&para;</a></h2>
+<p>以下示例适用于位置参数。 它们是使用<code>add_argument()</code>创建的。</p>
+<details class="abstract" open="open"><summary>positional_arg.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+
+# positional args
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;name&#39;)
+parser.add_argument(&#39;age&#39;)
+
+args = parser.parse_args()
+
+print(f&#39;{args.name} is {args.age} years old&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例需要两个位置参数：name 和 age。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>parser.add_argument(&#39;name&#39;)
+parser.add_argument(&#39;age&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>创建位置参数时不带破折号前缀字符。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ positional_arg.py Peter 23
+Peter is 23 years old
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是示例输出。</p>
+<h2 id="Python-argparse-目标">Python argparse 目标<a class="headerlink" href="#Python-argparse-目标" title="Permanent link">&para;</a></h2>
+<p><code>add_argument()</code>的<code>dest</code>选项为参数指定名称。 如果未给出，则从选项中推断出来。</p>
+<details class="abstract" open="open"><summary>dest.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+import datetime
+
+# dest gives a different name to a flag
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;-n&#39;, dest=&#39;now&#39;, action=&#39;store_true&#39;, help=&quot;shows now&quot;)
+
+args = parser.parse_args()
+
+# we can refer to the flag
+# by a new name
+if args.now:
+
+    now = datetime.datetime.now()
+    print(f&quot;Now: {now}&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>程序将<code>now</code>名称赋予<code>-n</code>参数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ dest.py -n
+Now: 2019-03-22 17:37:40.406571
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="Python-argparse-类型">Python argparse 类型<a class="headerlink" href="#Python-argparse-类型" title="Permanent link">&para;</a></h2>
+<p><code>type</code>参数确定参数类型。</p>
+<details class="abstract" open="open"><summary>rand_int.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+import random
+
+# type determines the type of the argument
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;-n&#39;, type=int, required=True, 
+    help=&quot;define the number of random integers&quot;)
+args = parser.parse_args()
+
+n = args.n
+
+for i in range(n):
+    print(random.randint(-100, 100))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>程序显示从-100 到 100 的 n 个随机整数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>parser.add_argument(&#39;-n&#39;, type=int, required=True, 
+    help=&quot;define the number of random integers&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><code>-n</code>选项需要整数值，这是必需的。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ rand_int.py -n 3
+92
+-61
+-61
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="Python-argparse-默认">Python argparse 默认<a class="headerlink" href="#Python-argparse-默认" title="Permanent link">&para;</a></h2>
+<p>如果未指定<code>default</code>选项，则指定默认值。</p>
+<details class="abstract" open="open"><summary>power.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+
+# required defines a mandatory argument 
+# default defines a default value if not specified
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;-b&#39;, type=int, required=True, help=&quot;defines the base value&quot;)
+parser.add_argument(&#39;-e&#39;, type=int, default=2, help=&quot;defines the exponent value&quot;)
+args = parser.parse_args()
+
+val = 1
+
+base = args.b
+exp = args.e
+
+for i in range(exp):
+    val *= base
+
+print(val)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例计算指数。 不需要指数值； 如果未给出，则默认值为 2。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ power.py -b 3
+9
+$ power.py -b 3 -e 3
+27
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="Python-argparse-metavar">Python argparse metavar<a class="headerlink" href="#Python-argparse-metavar" title="Permanent link">&para;</a></h2>
+<p><code>metavar</code>选项为错误的期望值命名，并提供帮助输出。</p>
+<details class="abstract" open="open"><summary>metavar.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+
+# metavar gives name to the expected value 
+# in error and help outputs
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;-v&#39;, type=int, required=True, metavar=&#39;value&#39;, 
+    help=&quot;computes cube for the given value&quot;)
+args = parser.parse_args()
+
+print(args)
+
+val = args.v
+
+print(val * val * val)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例将期望值命名为<code>value</code>。 默认名称为<code>V</code>。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ metavar.py -h
+usage: metavar.py [-h] -v value
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -v value    computes cube for the given value
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>给定的名称显示在帮助输出中。</p>
+<h2 id="Python-argparse-追加操作">Python argparse 追加操作<a class="headerlink" href="#Python-argparse-追加操作" title="Permanent link">&para;</a></h2>
+<p><code>append</code>操作允许对重复选项进行分组。</p>
+<details class="abstract" open="open"><summary>appending.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+
+# append action allows to group repeating
+# options
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;-n&#39;, &#39;--name&#39;, dest=&#39;names&#39;, action=&#39;append&#39;, 
+    help=&quot;provides names to greet&quot;)
+
+args = parser.parse_args()
+
+names = args.names
+
+for name in names:
+    print(f&#39;Hello {name}!&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例生成问候语，并使用<code>n</code>或<code>name</code>选项指定所有名称。 它们可以重复多次重复。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ appending.py -n Peter -n Lucy --name Jane
+Hello Peter!
+Hello Lucy!
+Hello Jane!
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="Python-的-argparse-nargs">Python 的 argparse nargs<a class="headerlink" href="#Python-的-argparse-nargs" title="Permanent link">&para;</a></h2>
+<p><code>nargs</code>指定应使用的命令行参数的数量。</p>
+<details class="abstract" open="open"><summary>charseq.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+import sys
+
+# nargs sets the required number of argument values
+# metavar gives name to argument values in error and help output
+
+parser = argparse.ArgumentParser()
+parser.add_argument(&#39;chars&#39;, type=str, nargs=2, metavar=&#39;c&#39;,
+                    help=&#39;starting and ending character&#39;)
+
+args = parser.parse_args()
+
+try:
+    v1 = ord(args.chars[0])
+    v2 = ord(args.chars[1])
+
+except TypeError as e:
+
+    print(&#39;Error: arguments must be characters&#39;)
+    parser.print_help()
+    sys.exit(1)
+
+if v1 &gt; v2:
+    print(&#39;first letter must precede the second in alphabet&#39;)
+    parser.print_help()
+    sys.exit(1)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例显示了从字符一到字符二的字符序列。 它需要两个参数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>parser.add_argument(&#39;chars&#39;, type=str, nargs=2, metavar=&#39;c&#39;,
+    help=&#39;starting and ending character&#39;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>使用<code>nargs=2</code>，我们指定期望两个参数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ charseq.py e k
+e f g h i j k
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>程序显示从 e 到 k 的字符序列。</p>
+<p>可以使用<code>*</code>字符设置可变数量的参数。</p>
+<details class="abstract" open="open"><summary>var_args.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+
+# * nargs expects 0 or more arguments
+
+parser = argparse.ArgumentParser()
+parser.add_argument(&#39;num&#39;, type=int, nargs=&#39;*&#39;)
+args = parser.parse_args()
+
+print(f&quot;The sum of values is {sum(args.num)}&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例计算值的总和。 我们可以为程序指定可变数量的参数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ var_args.py 1 2 3 4 5
+The sum of values is 15
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="Python-argparse-选择">Python argparse 选择<a class="headerlink" href="#Python-argparse-选择" title="Permanent link">&para;</a></h2>
+<p><code>choices</code>选项将参数限制为给定列表。</p>
+<details class="abstract" open="open"><summary>mytime.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+import datetime
+import time
+
+# choices limits argument values to the 
+# given list
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;--now&#39;, dest=&#39;format&#39;, choices=[&#39;std&#39;, &#39;iso&#39;, &#39;unix&#39;, &#39;tz&#39;],
+                    help=&quot;shows datetime in given format&quot;)
+
+args = parser.parse_args()
+fmt = args.format
+
+if fmt == &#39;std&#39;:
+    print(datetime.date.today())
+elif fmt == &#39;iso&#39;:
+    print(datetime.datetime.now().isoformat())
+elif fmt == &#39;unix&#39;:
+    print(time.time())
+elif fmt == &#39;tz&#39;:
+    print(datetime.datetime.now(datetime.timezone.utc))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在示例中，<code>now</code>选项可以接受以下值：<code>std</code>，<code>iso</code>，<code>unix</code>或<code>tz</code>。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ mytime.py --now iso
+2019-03-27T11:34:54.106643
+
+$ mytime.py --now unix
+1553682898.422863
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="头例子">头例子<a class="headerlink" href="#头例子" title="Permanent link">&para;</a></h2>
+<p>以下示例模仿 Linux head 命令。 它显示了文件开头的 n 行文本。</p>
+<details class="abstract" open="open"><summary>words.txt</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sky
+top
+forest
+wood
+lake
+wood
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>对于示例，我们有这个小的测试文件。</p>
+<details class="abstract" open="open"><summary>head.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+
+import argparse
+from pathlib import Path
+
+# head command
+# working with positional arguments
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(&#39;f&#39;, type=str, help=&#39;file name&#39;)
+parser.add_argument(&#39;n&#39;, type=int, help=&#39;show n lines from the top&#39;)
+
+args = parser.parse_args()
+
+filename = args.f
+
+lines = Path(filename).read_text().splitlines()
+
+for line in lines[:args.n]:
+    print(line) 
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>该示例有两个选项：<code>f</code>表示文件名，<code>-n</code>表示要显示的行数。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ head.py words.txt 3
+sky
+top
+forest
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这是 Python argparse 教程。</p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../python-configparser/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                Python ConfigParser 教程
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../python-sqlite/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                Python SQLite 教程
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
