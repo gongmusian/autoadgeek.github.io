@@ -1408,16 +1408,17 @@
 </li>
 <li>
 <p><strong>NLP Operations using Pattern</strong><br />
-  We will go through some of the most used and most important functionalities which are provided by Pattern. Starting with parsing a sentence.</p>
+  We will go through some of the most used and most important functionalities which are provided by Pattern. 
+  Starting with parsing a sentence.</p>
 </li>
 <li>
 <p><strong>Parsing</strong>  </p>
-<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pattern.en</span> <span class="kn">import</span> <span class="n">parse</span>
 <span class="n">parse</span><span class="p">(</span><span class="s1">&#39;Hello Everyone and Welcome to Analytics India Magazine&#39;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-Here we can see the output of the parse function differentiate the words in the sentence as a noun, verb, subject, or subject. We can also use the ‘pprint’ function defined in the pattern <a href="https://analyticsindiamag.com/lets-learn-textblob-quickstart-a-python-library-for-processing-textual-data/">library </a>to display the parsed sentence in a clear manner. Also, we can set different parameters for parses such as lemmata, tokenize, encoding, etc. All these parameters can be used in parsing only so that we do not have to use a separate function for different properties.</p>
+<p>Here we can see the output of the parse function differentiate the words in the sentence as a noun, verb, subject, or subject. We can also use the ‘pprint’ function defined in the pattern <a href="https://analyticsindiamag.com/lets-learn-textblob-quickstart-a-python-library-for-processing-textual-data/">library </a>to display the parsed sentence in a clear manner. Also, we can set different parameters for parses such as lemmata, tokenize, encoding, etc. All these parameters can be used in parsing only so that we do not have to use a separate function for different properties.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pattern.en</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;Hello Everyone and Welcome to Analytics India Magazine&#39;</span><span class="p">,</span> <span class="n">relations</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span><span class="n">tokenize</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">lemmata</span><span class="o">=</span> <span class="kc">True</span><span class="p">))</span>
@@ -1459,9 +1460,9 @@ Here we can see the output of the parse function differentiate the words in the 
 </td></tr></table>
 <p>The modality comes out to be zero which means that the sentence is neutral.</p>
 <ol>
-<li><strong>Suggest</strong><br />
-  Suggest function is used for spelling corrections but it is more than that. It not only checks the spelling it also gives you suggestions of what might be the correct word with their probabilities. This function also distinguishes pattern from other libraries. </li>
+<li><strong>Suggest</strong>  </li>
 </ol>
+<p>Suggest function is used for spelling corrections but it is more than that. It not only checks the spelling it also gives you suggestions of what might be the correct word with their probabilities. This function also distinguishes pattern from other libraries. </p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pattern.en</span> <span class="kn">import</span> <span class="n">suggest</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">suggest</span><span class="p">(</span><span class="s2">&quot;Heroi&quot;</span><span class="p">))</span>
