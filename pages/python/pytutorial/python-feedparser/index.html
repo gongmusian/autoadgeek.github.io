@@ -8,17 +8,17 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <meta name="description" content="Python 哈希教程解释了 Python 中的哈希概念，介绍了哈希表和 Python 可哈希对象。  哈希表  哈希表用于以许多常见的编程语言（例如 C++ ，Java 和 Python）实现映射和设置数据结构。 Python 将哈希表用于字典和集合。 哈希表是键值对的无序集合，其中每个键都是唯一的。 哈希表提供了有效的查找，插入和删除操作的组合。 这些是数组和链接列表的最佳属性。  散列  哈">
+  <meta name="description" content="Python feedparser parse方法示例，feedparser.parse用法">
 
 
-  <link rel="canonical" href="https://geek.digiasset.org/pages/python/pytutorial/python-hashing/">
+  <link rel="canonical" href="https://geek.digiasset.org/pages/python/pytutorial/python-feedparser/">
 
 
 <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
 
     
       
-        <title>Python 哈希教程 - 广告流程自动化</title>
+        <title>Python feedparser.parse方法代碼示例 - 广告流程自动化</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#Python-哈希教程" class="md-skip">
+        <a href="#Python-feedparser--教程" class="md-skip">
           跳转至
         </a>
       
@@ -108,7 +108,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Python 哈希教程
+              Python feedparser.parse方法代碼示例
             
           </span>
         </div>
@@ -616,11 +616,63 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../python-feedparser/" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Python feedparser 教程
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Python feedparser 教程
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#用-feedparserparse-输出页面信息" class="md-nav__link">
+    用 feedparser.parse 输出页面信息
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#用-feedparserparse-获取-Google-Trend-Hottrend-RSS-feed-列表" class="md-nav__link">
+    用 feedparser.parse 获取 Google Trend Hottrend RSS feed 列表
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#下文中一共展示了feedparserparse方法的代码片段" class="md-nav__link">
+    下文中一共展示了feedparser.parse方法的代码片段
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -676,105 +728,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Python 哈希教程
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../python-hashing/" class="md-nav__link">
       Python 哈希教程
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#哈希表" class="md-nav__link">
-    哈希表
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#散列" class="md-nav__link">
-    散列
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-可哈希对象" class="md-nav__link">
-    Python 可哈希对象
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-hash函数" class="md-nav__link">
-    Python hash()函数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-不可变内置函数可哈希化" class="md-nav__link">
-    Python 不可变内置函数可哈希化
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-自定义可哈希对象示例-I" class="md-nav__link">
-    Python 自定义可哈希对象示例 I
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-自定义可哈希对象示例-II" class="md-nav__link">
-    Python 自定义可哈希对象示例 II
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-自定义可哈希对象示例-III" class="md-nav__link">
-    Python 自定义可哈希对象示例 III
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-dataclass装饰器" class="md-nav__link">
-    Python @dataclass装饰器
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1475,64 +1433,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#哈希表" class="md-nav__link">
-    哈希表
+  <a href="#用-feedparserparse-输出页面信息" class="md-nav__link">
+    用 feedparser.parse 输出页面信息
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#散列" class="md-nav__link">
-    散列
+  <a href="#用-feedparserparse-获取-Google-Trend-Hottrend-RSS-feed-列表" class="md-nav__link">
+    用 feedparser.parse 获取 Google Trend Hottrend RSS feed 列表
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#Python-可哈希对象" class="md-nav__link">
-    Python 可哈希对象
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-hash函数" class="md-nav__link">
-    Python hash()函数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-不可变内置函数可哈希化" class="md-nav__link">
-    Python 不可变内置函数可哈希化
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-自定义可哈希对象示例-I" class="md-nav__link">
-    Python 自定义可哈希对象示例 I
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-自定义可哈希对象示例-II" class="md-nav__link">
-    Python 自定义可哈希对象示例 II
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-自定义可哈希对象示例-III" class="md-nav__link">
-    Python 自定义可哈希对象示例 III
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-dataclass装饰器" class="md-nav__link">
-    Python @dataclass装饰器
+  <a href="#下文中一共展示了feedparserparse方法的代码片段" class="md-nav__link">
+    下文中一共展示了feedparser.parse方法的代码片段
   </a>
   
 </li>
@@ -1550,119 +1466,13 @@
               
                 
                 
-                <h1 id="Python-哈希教程">Python 哈希教程<a class="headerlink" href="#Python-哈希教程" title="Permanent link">&para;</a></h1>
-<p><strong>Python 哈希教程</strong> 解释了 Python 中的哈希概念，介绍了哈希表和 Python 可哈希对象。</p>
-<h2 id="哈希表">哈希表<a class="headerlink" href="#哈希表" title="Permanent link">&para;</a></h2>
-<p>哈希表用于以许多常见的编程语言（例如 C++ ，Java 和 Python）实现映射和设置数据结构。 Python 将哈希表用于字典和集合。 哈希表是键值对的无序集合，其中每个键都是唯一的。 哈希表提供了有效的查找，插入和删除操作的组合。 这些是数组和链接列表的最佳属性。</p>
-<h2 id="散列">散列<a class="headerlink" href="#散列" title="Permanent link">&para;</a></h2>
-<p>哈希是使用算法将任意大小的数据映射到固定长度的过程。 这称为哈希值。 散列用于创建高性能，直接访问的数据结构，在该结构中要快速存储和访问大量数据。 哈希值使用哈希函数计算。</p>
-<h2 id="Python-可哈希对象">Python 可哈希对象<a class="headerlink" href="#Python-可哈希对象" title="Permanent link">&para;</a></h2>
-<p>如果对象的哈希值在其生命周期内从未发生变化，则该对象是可哈希的。 （在多次调用 Python 程序期间，它可以具有不同的值。）可哈希对象需要<code>__hash__()</code>方法。 为了执行比较，散列需要一种<code>__eq__()</code>方法。</p>
-<p><strong>Note:</strong> Hashable objects which compare equal must have the same hash value.</p>
-<p>散列性使对象可用作字典键和 set 成员，因为这些数据结构在内部使用散列值。 Python 不可变的内置对象是可哈希的； 可变容器（例如列表或字典）不是。 默认情况下，作为用户定义类实例的对象是可哈希的。 它们都比较不相等（除了它们本身），并且它们的哈希值是从<code>id()</code>派生的。</p>
-<p><strong>Note:</strong> If a class does not define an <code>__eq__()</code> method it should not define a <code>__hash__()</code> operation either; if it defines <code>__eq__()</code> but not <code>__hash__()</code>, its instances will not be usable as items in hashable collections.</p>
-<h2 id="Python-hash函数">Python <code>hash()</code>函数<a class="headerlink" href="#Python-hash函数" title="Permanent link">&para;</a></h2>
-<p><code>hash()</code>函数返回对象的哈希值（如果有的话）。 哈希值是整数。 它们用于在字典查找期间快速比较字典关键字。 对象可以实现<code>__hash__()</code>方法。</p>
-<h2 id="Python-不可变内置函数可哈希化">Python 不可变内置函数可哈希化<a class="headerlink" href="#Python-不可变内置函数可哈希化" title="Permanent link">&para;</a></h2>
-<p>Python 不变的内置函数（例如整数，字符串或元组）是可哈希的。</p>
-<details class="abstract" open="open"><summary>builtin_hashables.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
-
-val = 100
-
-print(val.__hash__())
-print(&quot;falcon&quot;.__hash__())
-print((1,).__hash__())
-</code></pre></div>
-</td></tr></table>
-</details>
-<p>该示例显示三个哈希值的值：整数，字符串和元组。</p>
-<h2 id="Python-自定义可哈希对象示例-I">Python 自定义可哈希对象示例 I<a class="headerlink" href="#Python-自定义可哈希对象示例-I" title="Permanent link">&para;</a></h2>
-<p>Python 自定义对象默认情况下是可哈希的。 他们的哈希值是从其 ID 派生的。</p>
-<details class="abstract" open="open"><summary>custom_object.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
-
-class User:
-
-    def __init__(self, name, occupation):
-
-        self.name = name
-        self.occupation = occupation
-
-u1 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-u2 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-
-print(&#39;hash of user 1&#39;)
-print(hash(u1))
-
-print(&#39;hash of user 2&#39;)
-print(hash(u2))
-
-if (u1 == u2):
-    print(&#39;same user&#39;)
-else:
-    print(&#39;different users&#39;)
-</code></pre></div>
-</td></tr></table>
-</details>
-<p>在示例中，我们有<code>User</code>的两个实例。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>u1 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-u2 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-</code></pre></div>
-</td></tr></table>
-</details>
-<p>我们有两个具有相同数据的实例。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;hash of user 1&#39;)
-print(hash(u1))
-</code></pre></div>
-</td></tr></table>
-</details>
-<p><code>hash()</code>函数返回对象的哈希值。 默认实现是从对象的 ID 派生的。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ python custom_object.py
-hash of user 1
--9223371894419573195
-hash of user 2
-142435202673
-different users
-</code></pre></div>
-</td></tr></table>
-</details>
-<p>即使用户详细信息相同，但比较仍会产生不同的对象。 为了更改它，我们需要实现<code>__eq__()</code>方法。</p>
-<h2 id="Python-自定义可哈希对象示例-II">Python 自定义可哈希对象示例 II<a class="headerlink" href="#Python-自定义可哈希对象示例-II" title="Permanent link">&para;</a></h2>
-<p>在第二个示例中，我们实现了自定义<code>__eq__()</code>方法。</p>
-<details class="abstract" open="open"><summary>custom_object2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+                <h1 id="Python-feedparser--教程">Python feedparser  教程<a class="headerlink" href="#Python-feedparser--教程" title="Permanent link">&para;</a></h1>
+<p>feedparser 号称是一个 universal feed parser，使用它我们可轻松地实现从任何 RSS 或 Atom 订阅源得到标题、链接和文章的条目了。
+使用：<code>pip install feedparser</code> 来安装模块</p>
+<p>RSS是RDF Site Summary 的缩写（RDF是Resource Description Framework的缩写 ），是指将网站摘要用xml语言描述。
+使用feedparser模块来进行解析过滤页面，返回需要的信息：</p>
+<h2 id="用-feedparserparse-输出页面信息">用 feedparser.parse 输出页面信息<a class="headerlink" href="#用-feedparserparse-输出页面信息" title="Permanent link">&para;</a></h2>
+<details class="abstract" open="open"><summary>test_feedparser.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1689,41 +1499,45 @@ different users
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">#encoding:utf-8</span>
+<span class="kn">import</span> <span class="nn">feedparser</span>
 
-class User:
-
-    def __init__(self, name, occupation):
-
-        self.name = name
-        self.occupation = occupation
-
-    def __eq__(self, other):
-
-        return self.name == other.name \
-            and self.occupation == other.occupation
-
-    def __str__(self):
-        return f&#39;{self.name} {self.occupation}&#39;
-
-u1 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-u2 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-
-if (u1 == u2):
-    print(&#39;same user&#39;)
-    print(f&#39;{u1} == {u2}&#39;)
-else:
-    print(&#39;different users&#39;)
-
-# users = {u1, u2}
-# print(len(users))
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://blog.csdn.net/together_cz/article&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;学习使用feedparser</span>
+<span class="sd">    输入：url</span>
+<span class="sd">    输出：页面信息</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">one_page_dict</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>  <span class="c1">#解析得到的是一个字典</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">one_page_dict</span><span class="p">)</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    输出字典中的键值有哪些，一共有10中如下：</span>
+<span class="sd">    [&#39;feed&#39;, &#39;status&#39;, &#39;version&#39;, &#39;encoding&#39;, &#39;bozo&#39;, &#39;headers&#39;, &#39;href&#39;, &#39;namespaces&#39;, &#39;entries&#39;, &#39;bozo_exception&#39;]</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">one_page_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;访问页面链接href为：</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">one_page_dict</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;页面返回headers信息为：</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ne_page_dict</span><span class="p">[</span><span class="s1">&#39;headers&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;页面version信息为：</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">one_page_dict</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;页面状态码为：</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">one_page_dict</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;页面语言类型为：</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">one_page_dict</span><span class="p">[</span><span class="s1">&#39;feed&#39;</span><span class="p">][</span><span class="s1">&#39;html&#39;</span><span class="p">][</span><span class="s1">&#39;lang&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;页面meta信息为：meta-content=</span><span class="si">%s</span><span class="s1"> meta-name=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">one_page_dict</span><span class="p">[</span><span class="s1">&#39;feed&#39;</span><span class="p">][</span><span class="s1">&#39;meta&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">],</span><span class="n">one_page_dict</span><span class="p">[</span><span class="s1">&#39;feed&#39;</span><span class="p">][</span><span class="s1">&#39;meta&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]))</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">url_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;http://www.baidu.com&#39;</span><span class="p">,</span><span class="s1">&#39;http://www.vmall.com&#39;</span><span class="p">,</span><span class="s1">&#39;http://www.taobao.com&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">one_url</span> <span class="ow">in</span> <span class="n">url_list</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;当前url为---&gt;&#39;</span><span class="p">,</span> <span class="n">one_url</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">test</span><span class="p">(</span><span class="n">one_url</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 </details>
-<p>现在比较返回给我们的预期输出； 但是，我们不能将对象插入 Python 集中； 这将导致<code>TypeError: unhashable type: 'User'</code>。 为了更改此设置，我们实现了<code>__hash__()</code>方法。</p>
-<h2 id="Python-自定义可哈希对象示例-III">Python 自定义可哈希对象示例 III<a class="headerlink" href="#Python-自定义可哈希对象示例-III" title="Permanent link">&para;</a></h2>
-<p>在第三个示例中，我们实现了<code>__eq__()</code>和<code>__hash__()</code>方法。</p>
-<details class="abstract" open="open"><summary>custom_object3.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+<h2 id="用-feedparserparse-获取-Google-Trend-Hottrend-RSS-feed-列表">用 feedparser.parse 获取 Google Trend Hottrend RSS feed 列表<a class="headerlink" href="#用-feedparserparse-获取-Google-Trend-Hottrend-RSS-feed-列表" title="Permanent link">&para;</a></h2>
+<details class="abstract" open="open"><summary> GTrend.py </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1756,95 +1570,45 @@ else:
 31
 32
 33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">feedparser</span>
+<span class="kn">import</span> <span class="nn">ssl</span>
 
-class User:
+<span class="c1">#National Variables</span>
+<span class="n">dict_nations</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;UNITED_STATES&#39;</span> <span class="p">:</span> <span class="s1">&#39;p1&#39;</span><span class="p">,</span><span class="s1">&#39;ARGENTINA&#39;</span><span class="p">:</span> <span class="s1">&#39;p30&#39;</span><span class="p">,</span> <span class="s1">&#39;AUSTRALIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p8&#39;</span><span class="p">,</span> <span class="s1">&#39;AUSTRIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p44&#39;</span><span class="p">,</span> <span class="s1">&#39;BELGIUM&#39;</span><span class="p">:</span> <span class="s1">&#39;p41&#39;</span><span class="p">,</span> <span class="s1">&#39;BRAZIL&#39;</span><span class="p">:</span> <span class="s1">&#39;p18&#39;</span><span class="p">,</span> <span class="s1">&#39;CANADA&#39;</span><span class="p">:</span> <span class="s1">&#39;p13&#39;</span><span class="p">,</span> <span class="s1">&#39;CHILE&#39;</span><span class="p">:</span> <span class="s1">&#39;p38&#39;</span><span class="p">,</span> <span class="s1">&#39;COLOMBIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p32&#39;</span><span class="p">,</span> <span class="s1">&#39;CZECHIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p43&#39;</span><span class="p">,</span> <span class="s1">&#39;DENMARK&#39;</span><span class="p">:</span> <span class="s1">&#39;p49&#39;</span><span class="p">,</span> <span class="s1">&#39;EGYPT&#39;</span><span class="p">:</span> <span class="s1">&#39;p29&#39;</span><span class="p">,</span> <span class="s1">&#39;FINLAND&#39;</span><span class="p">:</span> <span class="s1">&#39;p50&#39;</span><span class="p">,</span> <span class="s1">&#39;FRANCE&#39;</span><span class="p">:</span> <span class="s1">&#39;p16&#39;</span><span class="p">,</span> <span class="s1">&#39;GERMANY&#39;</span><span class="p">:</span> <span class="s1">&#39;p15&#39;</span><span class="p">,</span> <span class="s1">&#39;GREECE&#39;</span><span class="p">:</span> <span class="s1">&#39;p48&#39;</span><span class="p">,</span> <span class="s1">&#39;HONG_KONG&#39;</span><span class="p">:</span> <span class="s1">&#39;p10&#39;</span><span class="p">,</span> <span class="s1">&#39;HUNGARY&#39;</span><span class="p">:</span> <span class="s1">&#39;p45&#39;</span><span class="p">,</span> <span class="s1">&#39;INDIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p3&#39;</span><span class="p">,</span> <span class="s1">&#39;INDONESIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p19&#39;</span><span class="p">,</span> <span class="s1">&#39;IRELAND&#39;</span><span class="p">:</span> <span class="s1">&#39;p54&#39;</span><span class="p">,</span> <span class="s1">&#39;ISRAEL&#39;</span><span class="p">:</span> <span class="s1">&#39;p6&#39;</span><span class="p">,</span> <span class="s1">&#39;ITALY&#39;</span><span class="p">:</span> <span class="s1">&#39;p27&#39;</span><span class="p">,</span> <span class="s1">&#39;JAPAN&#39;</span><span class="p">:</span> <span class="s1">&#39;p4&#39;</span><span class="p">,</span> <span class="s1">&#39;KENYA&#39;</span><span class="p">:</span> <span class="s1">&#39;p37&#39;</span><span class="p">,</span> <span class="s1">&#39;MALAYSIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p34&#39;</span><span class="p">,</span> <span class="s1">&#39;MEXICO&#39;</span><span class="p">:</span> <span class="s1">&#39;p21&#39;</span><span class="p">,</span> <span class="s1">&#39;NETHERLANDS&#39;</span><span class="p">:</span> <span class="s1">&#39;p17&#39;</span><span class="p">,</span> <span class="s1">&#39;NEW_ZEALAND&#39;</span><span class="p">:</span> <span class="s1">&#39;p53&#39;</span><span class="p">,</span> <span class="s1">&#39;NIGERIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p52&#39;</span><span class="p">,</span> <span class="s1">&#39;NORWAY&#39;</span><span class="p">:</span> <span class="s1">&#39;p51&#39;</span><span class="p">,</span> <span class="s1">&#39;PHILIPPINES&#39;</span><span class="p">:</span> <span class="s1">&#39;p25&#39;</span><span class="p">,</span> <span class="s1">&#39;POLAND&#39;</span><span class="p">:</span> <span class="s1">&#39;p31&#39;</span><span class="p">,</span> <span class="s1">&#39;PORTUGAL&#39;</span><span class="p">:</span> <span class="s1">&#39;p47&#39;</span><span class="p">,</span> <span class="s1">&#39;ROMANIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p39&#39;</span><span class="p">,</span> <span class="s1">&#39;RUSSIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p14&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUDI_ARABIA&#39;</span><span class="p">:</span> <span class="s1">&#39;p36&#39;</span><span class="p">,</span> <span class="s1">&#39;SINGAPORE&#39;</span><span class="p">:</span> <span class="s1">&#39;p5&#39;</span><span class="p">,</span> <span class="s1">&#39;SOUTH_AFRICA&#39;</span><span class="p">:</span> <span class="s1">&#39;p40&#39;</span><span class="p">,</span> <span class="s1">&#39;SOUTH_KOREA&#39;</span><span class="p">:</span> <span class="s1">&#39;p23&#39;</span><span class="p">,</span> <span class="s1">&#39;SPAIN&#39;</span><span class="p">:</span> <span class="s1">&#39;p26&#39;</span><span class="p">,</span> <span class="s1">&#39;SWEDEN&#39;</span><span class="p">:</span> <span class="s1">&#39;p42&#39;</span><span class="p">,</span> <span class="s1">&#39;SWITZERLAND&#39;</span><span class="p">:</span> <span class="s1">&#39;p46&#39;</span><span class="p">,</span> <span class="s1">&#39;TAIWAN&#39;</span><span class="p">:</span> <span class="s1">&#39;p12&#39;</span><span class="p">,</span> <span class="s1">&#39;THAILAND&#39;</span><span class="p">:</span> <span class="s1">&#39;p33&#39;</span><span class="p">,</span> <span class="s1">&#39;TURKEY&#39;</span><span class="p">:</span> <span class="s1">&#39;p24&#39;</span><span class="p">,</span> <span class="s1">&#39;UKRAINE&#39;</span><span class="p">:</span> <span class="s1">&#39;p35&#39;</span><span class="p">,</span> <span class="s1">&#39;UNITED_KINGDOM&#39;</span><span class="p">:</span> <span class="s1">&#39;p9&#39;</span><span class="p">,</span> <span class="s1">&#39;VIETNAM&#39;</span><span class="p">:</span> <span class="s1">&#39;p28&#39;</span><span class="p">,</span>
+<span class="p">}</span>
 
-    def __init__(self, name, occupation):
+<span class="c1"># EXAMPLE SEARCH SYNTAX</span>
+<span class="c1"># United States:</span>
+<span class="c1"># https://trends.google.com/trends/hottrends#pn=p1</span>
+<span class="c1"># United States RSS:</span>
+<span class="c1"># https://trends.google.com/trends/hottrends/atom/feed?pn=p1</span>
+<span class="c1"># United Kingdom:</span>
+<span class="c1"># https://trends.google.com/trends/hottrends#pn=p9</span>
+<span class="c1"># United Kingdom RSS:</span>
+<span class="c1"># https://trends.google.com/trends/hottrends/atom/feed?pn=p9</span>
 
-        self.name = name
-        self.occupation = occupation
+<span class="n">TRENDING_URL</span> <span class="o">=</span> <span class="s1">&#39;http://www.google.com/trends/hottrends/atom/feed?pn=</span><span class="si">{}</span><span class="s1">&#39;</span>
 
-    def __eq__(self, other):
+<span class="k">def</span> <span class="nf">hot</span><span class="p">(</span><span class="n">feed_url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of hit terms via google trends</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">listing</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">feed_url</span><span class="p">)[</span><span class="s1">&#39;entries&#39;</span><span class="p">]</span>
+        <span class="n">trends</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">listing</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">trends</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ERR hot terms failed!&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="k">return</span> <span class="kc">None</span>
 
-        return self.name == other.name \
-            and self.occupation == other.occupation
-
-    def __hash__(self):
-        return hash((self.name, self.occupation))
-
-    def __str__(self):
-        return f&#39;{self.name} {self.occupation}&#39;
-
-u1 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-u2 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-
-users = {u1, u2}
-
-print(len(users))
-
-if (u1 == u2):
-    print(&#39;same user&#39;)
-    print(f&#39;{u1} == {u2}&#39;)
-else:
-    print(&#39;different users&#39;)
-
-print(&#39;------------------------------------&#39;)
-
-u1.occupation = &#39;programmer&#39;
-
-users = {u1, u2}
-
-print(len(users))
-
-if (u1 == u2):
-    print(&#39;same user&#39;)
-    print(f&#39;{u1} == {u2}&#39;)
-else:
-    print(&#39;different users&#39;)
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ssl</span><span class="p">,</span> <span class="s1">&#39;_create_unverified_context&#39;</span><span class="p">):</span>
+        <span class="n">ssl</span><span class="o">.</span><span class="n">_create_default_https_context</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_unverified_context</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">hot</span><span class="p">(</span><span class="n">TRENDING_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dict_nations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;UNITED_STATES&quot;</span><span class="p">))))</span>
 </code></pre></div>
 </td></tr></table>
 </details>
-<p>该示例比较了具有<code>__eq__()</code>和<code>__hash__()</code>方法的自定义实现的两个对象。 可以将这些对象插入 Python 集中，当以后更改属性时，我们将获得预期的输出。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>def __hash__(self):
-    return hash((self.name, self.occupation))
-</code></pre></div>
-</td></tr></table>
-</details>
-<p><code>__hash__()</code>函数的实现从属性元组返回使用<code>hash()</code>函数计算的哈希值。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ python custom_object3.py
-1
-same user
-John Doe gardener == John Doe gardener
-------------------------------------
-2
-different users
-</code></pre></div>
-</td></tr></table>
-</details>
-<h2 id="Python-dataclass装饰器">Python <code>@dataclass</code>装饰器<a class="headerlink" href="#Python-dataclass装饰器" title="Permanent link">&para;</a></h2>
-<p>从 Python 3.7 开始，我们有了<code>dataclass</code>装饰器，它会自动生成一些样板代码。</p>
-<p>数据类装饰器的冻结参数（默认为<code>False</code>）。 如果指定，则字段将被冻结（即只读）。 如果<code>eq</code>设置为<code>True</code>（默认情况下），则将实现<code>__hash__()</code>方法，并且对象实例将是可哈希的。</p>
-<details class="abstract" open="open"><summary>decorator.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+<h2 id="下文中一共展示了feedparserparse方法的代码片段">下文中一共展示了feedparser.parse方法的代码片段<a class="headerlink" href="#下文中一共展示了feedparserparse方法的代码片段" title="Permanent link">&para;</a></h2>
+<details class="abstract" open="open"><summary>twitterbot.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1862,44 +1626,28 @@ different users
 16
 17
 18
-19
-20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python3
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># 需要導入模塊: import feedparser [as 別名]</span>
+<span class="c1"># 或者: from feedparser import parse [as 別名]</span>
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">feed</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">feeds</span><span class="p">:</span>
+            <span class="n">parsed_feed</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">parsed_feed</span><span class="o">.</span><span class="n">entries</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">entryMatches</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">n_seen</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="c1"># If no ID provided, use the link as ID</span>
+                    <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">:</span>
+                        <span class="n">entry</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">link</span>
+                    <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">posted</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">sendTweet</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+                        <span class="c1"># Bail out if we have reached max number of tweets</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">throttle</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_tweeted</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">throttle</span><span class="p">:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max number of papers met (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">throttle</span><span class="si">}</span><span class="s2">), stopping now&quot;</span><span class="p">)</span>
+                            <span class="k">return</span>
 
-from dataclasses import dataclass
-
-@dataclass(frozen=True)
-class User:
-
-    name: str
-    occupation: str
-
-u1 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-u2 = User(&#39;John Doe&#39;, &#39;gardener&#39;)
-
-if (u1 == u2):
-    print(&#39;same user&#39;)
-    print(f&#39;{u1} == {u2}&#39;)
-else:
-    print(&#39;different users&#39;)
-
-users = {u1, u2}
-print(len(users))
+    <span class="c1"># Print statistics of a given run </span>
 </code></pre></div>
 </td></tr></table>
 </details>
-<p>该示例使用<code>@dataclass</code>装饰器。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ python decorator.py
-same user
-User(name=&#39;John Doe&#39;, occupation=&#39;gardener&#39;) == User(name=&#39;John Doe&#39;, occupation=&#39;gardener&#39;)
-1
-</code></pre></div>
-</td></tr></table>
-</details>
-<p>在本教程中，我们介绍了 Python 中的哈希。</p>
                 
                   
                 
@@ -1941,7 +1689,7 @@ User(name=&#39;John Doe&#39;, occupation=&#39;gardener&#39;) == User(name=&#39;J
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../python-yaml/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../python-faker/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1950,19 +1698,19 @@ User(name=&#39;John Doe&#39;, occupation=&#39;gardener&#39;) == User(name=&#39;J
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                Python YAML 教程
+                Python Faker 教程
               </div>
             </div>
           </a>
         
         
-          <a href="../python-configparser/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../python-bcrypt/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                Python ConfigParser 教程
+                Python bcrypt 教程
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
