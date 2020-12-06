@@ -1,0 +1,2545 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="概览像Google这样的搜索引擎如何理解我们">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/nlp/nlpinfo/information-extract-basedon-rule-search-engin/">
+
+
+<link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+
+    
+      
+        <title>搜索引擎如何检索结果：Python和spaCy信息提取简介 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#搜索引擎如何检索结果Python和spaCy信息提取简介" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              搜索引擎如何检索结果：Python和spaCy信息提取简介
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../nlp/" class="md-tabs__link md-tabs__link--active">
+          人工智能
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+          网站SEO优化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-feedparser/" class="md-nav__link">
+      Python feedparser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      人工智能
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="人工智能" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        人工智能
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nlp-new-entry/" class="md-nav__link">
+      NLP 新手上路
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nlp-hanlp-dictionary/" class="md-nav__link">
+      NLP HanNLP 词典分词
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ml-precision-recall/" class="md-nav__link">
+      评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nlp-tookits/" class="md-nav__link">
+      nlp常用工具集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hands-on-guide-to-pattern/" class="md-nav__link">
+      NLP pattern库 hands on
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../text-summarization-pretrained-ncoders/" class="md-nav__link">
+      基于预训练模型的文本摘要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../server-less-textsummary-keywords-extract/" class="md-nav__link">
+      Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../opensource-projects-2020list/" class="md-nav__link">
+      开源项目，涵盖 11 类 AI 学习框架、平台
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nltk-basic/" class="md-nav__link">
+      自然语言处理工具包之NLTK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#概览" class="md-nav__link">
+    概览
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#信息抽取" class="md-nav__link">
+    信息抽取
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#语义关系从非结构化文本中获取结构化知识" class="md-nav__link">
+    语义关系：从非结构化文本中获取结构化知识
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#信息提取的不同方法" class="md-nav__link">
+    信息提取的不同方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#使用Python和spaCy提取信息" class="md-nav__link">
+    使用Python和spaCy提取信息
+  </a>
+  
+    <nav class="md-nav" aria-label="使用Python和spaCy提取信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spaCy基于规则的匹配" class="md-nav__link">
+    spaCy基于规则的匹配
+  </a>
+  
+    <nav class="md-nav" aria-label="spaCy基于规则的匹配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#模式-X-such-as-Y" class="md-nav__link">
+    模式: X such as Y
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#模式-X-andor-Y" class="md-nav__link">
+    模式: X and/or Y
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#模式-X-including-Y" class="md-nav__link">
+    模式: X, including Y
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#模式-X-especially-Y" class="md-nav__link">
+    模式: X, especially Y
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2子树匹配以进行关系提取" class="md-nav__link">
+    2.子树匹配以进行关系提取
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#结语" class="md-nav__link">
+    结语
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/semantic-search/" class="md-nav__link">
+      什么是语义搜索？它是如何影响SEO的
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+      如何把网站提交给搜索引擎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/meta-description/" class="md-nav__link">
+      如何编写完美的元描述
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      网站SEO优化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        网站SEO优化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+      长尾词优化入网页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/keyword-difficulty/" class="md-nav__link">
+      关键词难度：如何确认你在 Google 获得排名的机会
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+      如何让网站排名进入谷歌首页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+      如何搭建一个成功的亚马逊联盟网站
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#概览" class="md-nav__link">
+    概览
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#信息抽取" class="md-nav__link">
+    信息抽取
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#语义关系从非结构化文本中获取结构化知识" class="md-nav__link">
+    语义关系：从非结构化文本中获取结构化知识
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#信息提取的不同方法" class="md-nav__link">
+    信息提取的不同方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#使用Python和spaCy提取信息" class="md-nav__link">
+    使用Python和spaCy提取信息
+  </a>
+  
+    <nav class="md-nav" aria-label="使用Python和spaCy提取信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spaCy基于规则的匹配" class="md-nav__link">
+    spaCy基于规则的匹配
+  </a>
+  
+    <nav class="md-nav" aria-label="spaCy基于规则的匹配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#模式-X-such-as-Y" class="md-nav__link">
+    模式: X such as Y
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#模式-X-andor-Y" class="md-nav__link">
+    模式: X and/or Y
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#模式-X-including-Y" class="md-nav__link">
+    模式: X, including Y
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#模式-X-especially-Y" class="md-nav__link">
+    模式: X, especially Y
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2子树匹配以进行关系提取" class="md-nav__link">
+    2.子树匹配以进行关系提取
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#结语" class="md-nav__link">
+    结语
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="搜索引擎如何检索结果Python和spaCy信息提取简介">搜索引擎如何检索结果：Python和spaCy信息提取简介<a class="headerlink" href="#搜索引擎如何检索结果Python和spaCy信息提取简介" title="Permanent link">&para;</a></h1>
+<h3 id="概览">概览<a class="headerlink" href="#概览" title="Permanent link">&para;</a></h3>
+<ul>
+<li>像Google这样的搜索引擎如何理解我们的查询并提供相关结果？</li>
+<li>了解信息提取的概念</li>
+<li>我们将使用流行的spaCy库在Python中进行信息提取</li>
+</ul>
+<h3 id="介绍">介绍<a class="headerlink" href="#介绍" title="Permanent link">&para;</a></h3>
+<p>作为一个数据科学家，在日常工作中，我严重依赖搜索引擎(尤其是Google)。我的搜索结果涉及各种查询:Python代码问题，机器学习算法，自然语言处理(NLP)框架的比较等。我一直很好奇这些搜索引擎如何理解我的查询并提取相关结果，就像他们知道我在想什么一样。我想了解NLP方面在这里是如何工作的:该算法如何理解非结构化文本数据并将其转换为结构化数据并显示相关结果？让我们举个例子。我在Google上输入了两个不同的查询：</p>
+<p><img src='images/information-extract-basedon-ru_1.png' title="information-extract-basedon-ru_1.png" alt="information-extract-basedon-ru_1.png" /></p>
+<p>首先，Google迅速确定了实体(world cup)和动作(won)。在第二个查询中，在得到结果之前，我甚至还没有完成句子！你认为Google如何理解这些查询背后的上下文？这是一个令人着迷的想法，我们将在本文中对其 讲解。我们将了解根据搜索查询如何生成这些有意义且相关的结果的核心思想。是的，我们甚至将深入研究Python代码并动手实践。让我们开始吧！</p>
+<p>注意：我建议你阅读这篇有关数据科学中的计算语言学和依赖树简介的文章 ，以更好地了解我们将在此处学习的内容。</p>
+<h3 id="信息抽取">信息抽取<a class="headerlink" href="#信息抽取" title="Permanent link">&para;</a></h3>
+<p>信息提取(IE)在自然语言处理(NLP)和语言学领域是至关重要的。它广泛用于诸如问答系统，机器翻译，实体提取，事件提取，命名实体链接，指代消解，关系提取等任务。在信息提取中，有一个重要的三元组概念。</p>
+<blockquote>
+<p>三元组代表实体以及它们之间的关系。例如，(奥巴马，出生于，夏威夷)是一个三元组，其中"奥巴马"和"夏威夷"是相关实体，它们之间的关系是"出生于"。</p>
+</blockquote>
+<p>在本文中，我们将重点介绍从给定文本中提取这些类型的三元组。</p>
+<p>在继续之前，让我们看一下信息提取的不同方法。我们可以将信息提取大致分为两个分支，如下所示：</p>
+<p><img src='images/information-extract-basedon-ru_2.png' title="information-extract-basedon-ru_2.png" alt="information-extract-basedon-ru_2.png" /></p>
+<p>在传统信息提取中，要提取的关系是预先定义的。在本文中，我们将仅介绍基于规则的方法。</p>
+<p>在开放信息提取中，关系不是预先定义的。该系统可以自由提取在处理文本数据时遇到的任何关系。</p>
+<h3 id="语义关系从非结构化文本中获取结构化知识">语义关系：从非结构化文本中获取结构化知识<a class="headerlink" href="#语义关系从非结构化文本中获取结构化知识" title="Permanent link">&para;</a></h3>
+<p>看看下面的文字片段：</p>
+<p><img src='images/information-extract-basedon-ru_3.png' title="information-extract-basedon-ru_3.png" alt="information-extract-basedon-ru_3.png" /></p>
+<p>你能想到从该文本中提取有意义的信息的任何方法吗？让我们尝试逐句解决此问题：</p>
+<p><img src='images/information-extract-basedon-ru_4.png' title="information-extract-basedon-ru_4.png" alt="information-extract-basedon-ru_4.png" /></p>
+<p>在第一句话中，我们有两个实体 (“Food Tutorials” 和 “Wes Anderson”)，这些实体通过术语 "Directed"相关起来的，因此， (Wes Anderson, directed, Food Tutorials) 是一个三元组。同样，我们也可以从其他句子中提取关系：</p>
+<p><img src='images/information-extract-basedon-ru_5.png' title="information-extract-basedon-ru_5.png" alt="information-extract-basedon-ru_5.png" /></p>
+<p>事实证明，我们可以根据文本的句法结构和语法来获得结构化信息，如上例所示。</p>
+<h3 id="信息提取的不同方法">信息提取的不同方法<a class="headerlink" href="#信息提取的不同方法" title="Permanent link">&para;</a></h3>
+<p>在上一节中，我们设法从几个句子中轻松提取出三元组。但是，在现实世界中，数据量巨大，并且人工提取结构化信息是不可行的。因此，自动化此信息提取变得很重要。</p>
+<p>有多种方法可以自动执行信息提取。让我们一一理解它们：</p>
+<ul>
+<li><strong>基于规则的方法</strong> ：我们为自然语言的语法和其他语法属性定义了一组规则，然后使用这些规则从文本中提取信息</li>
+<li><strong>监督学习的方法</strong> ：假设我们有一个句子S。它有两个实体E1和E2。现在，监督机器学习模型必须检测E1和E2之间是否存在任何关系®。因此，在一种有监督的方法中，关系提取的任务变成了关系检测的任务。这种方法的唯一缺点是，它需要大量标记数据来训练模型</li>
+<li><strong>半监督学习的方法</strong> ：当没有足够的标签数据时，我们可以使用一组示例(三元组)来制定高精度模式，该模式可用于从文本中提取更多关系</li>
+</ul>
+<h3 id="使用Python和spaCy提取信息">使用Python和spaCy提取信息<a class="headerlink" href="#使用Python和spaCy提取信息" title="Permanent link">&para;</a></h3>
+<p>我们在这里对理论有所了解，因此让我们进入Python代码层面。我敢肯定，你很想了解本节内容！</p>
+<p>我们将做一个小项目，从非结构化数据(在本例中为文本数据)中提取结构化信息。我们已经看到，文本中的信息以不同实体之间的关系形式存在。</p>
+<p>因此，在本节中，我们将尝试发现和提取与某种关系或另一种关联的不同实体对。</p>
+<h4 id="spaCy基于规则的匹配">spaCy基于规则的匹配<a class="headerlink" href="#spaCy基于规则的匹配" title="Permanent link">&para;</a></h4>
+<p>在开始之前，让我们谈谈Marti Hearst。她是计算语言学研究员，也是加州大学伯克利信息学院的教授。</p>
+<blockquote>
+<p>Marti教授实际上已经对信息提取主题进行了广泛的研究。她最有趣的研究之一是致力于建立一组文本模式，这些模式可用于从文本中提取有意义的信息。这些模式俗称“ <strong>Hearst Patterns</strong> ”。</p>
+</blockquote>
+<p>让我们看下面的例子：<br />
+<img src='images/information-extract-basedon-ru_7.png' title="information-extract-basedon-ru_7.png" alt="information-extract-basedon-ru_7.png" /></p>
+<p>仅通过查看句子的结构，我们就可以推断出"Gelidium"是"red algae"的一种。</p>
+<p>我们可以将此模式形式化为"X such as Y"，其中X是上位词，Y是下位词。这是"Hearst Patterns"中的许多模式之一。下图可让你直观了解该想法：</p>
+<p><img src='images/information-extract-basedon-ru_8.png' title="information-extract-basedon-ru_8.png" alt="information-extract-basedon-ru_8.png" /></p>
+<p>现在，我们尝试使用这些模式/规则来提取上位词-下为词对。我们将使用spaCy的基于规则的匹配器来执行此任务。</p>
+<p>首先，我们将导入所需的库：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import re 
+import string 
+import nltk 
+import spacy 
+import pandas as pd 
+import numpy as np 
+import math 
+from tqdm import tqdm 
+
+from spacy.matcher import Matcher 
+from spacy.tokens import Span 
+from spacy import displacy 
+
+pd.set_option(&#39;display.max_colwidth&#39;, 200)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>接下来，加载一个spaCy模型：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>nlp = spacy.load(&quot;en_core_web_sm&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们将根据这些Hearst Patterns从文本中挖掘信息。</p>
+<h5 id="模式-X-such-as-Y">模式: X such as Y<a class="headerlink" href="#模式-X-such-as-Y" title="Permanent link">&para;</a></h5>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># 示例文本 
+text = &quot;GDP in developing countries such as Vietnam will continue growing at a high rate.&quot; 
+
+# 创建spaCy对象 
+doc = nlp(text)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>为了能够从上面的句子中提取所需的信息，理解其句法结构(例如主语，宾语，修饰语和词性(POS))非常重要。</p>
+<p>通过使用spaCy，我们可以轻松地探索句子中的这些语法细节：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># 打印标记，依赖和词性标记
+for tok in doc: 
+print(tok.text, &quot;--&gt;&quot;,tok.dep_,&quot;--&gt;&quot;, tok.pos_)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary> output </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>GDP --&gt; nsubj --&gt; NOUN
+in --&gt; prep --&gt; ADP
+developing --&gt; amod --&gt; VERB
+countries --&gt; pobj --&gt; NOUN
+such --&gt; amod --&gt; ADJ
+as --&gt; prep --&gt; ADP
+Vietnam --&gt; pobj --&gt; PROPN
+will --&gt; aux --&gt; VERB
+continue --&gt; ROOT --&gt; VERB
+growing --&gt; xcomp --&gt; VERB
+at --&gt; prep --&gt; ADP
+a --&gt; det --&gt; DET
+high --&gt; amod --&gt; ADJ
+rate --&gt; pobj --&gt; NOUN
+. --&gt; punct --&gt; PUNCT
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>看看术语"such"和"as"。它们跟在一个名词(“countries”)后。在它们之后，我们有一个专有名词(“Vietnam”)充当下位词。因此，让我们使用依赖项标签和词性标签创建所需的模式：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># 定义模式
+pattern = [{&#39;POS&#39;:&#39;NOUN&#39;}, 
+        {&#39;LOWER&#39;: &#39;such&#39;}, 
+        {&#39;LOWER&#39;: &#39;as&#39;}, 
+        {&#39;POS&#39;: &#39;PROPN&#39;} # 专有名词]
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>让我们从文本中提取模式：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># Matcher类对象 
+matcher = Matcher(nlp.vocab) 
+matcher.add(&quot;matching_1&quot;, None, pattern) 
+
+matches = matcher(doc) 
+span = doc[matches[0][1]:matches[0][2]] 
+
+print(span.text)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code> ‘countries such as Vietnam’
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>好像不错。但是，如果我们可以得到 “developing countries"而不只是"countries”，那么输出将更有意义。</p>
+<p>因此，我们现在还将通过使用以下代码来捕获"such as"之前的名词的修饰语：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># Matcher类对象
+matcher = Matcher(nlp.vocab)
+
+# 定义模式
+pattern = [{&#39;DEP&#39;:&#39;amod&#39;, &#39;OP&#39;:&quot;?&quot;}, # 形容词修饰
+        {&#39;POS&#39;:&#39;NOUN&#39;},
+        {&#39;LOWER&#39;: &#39;such&#39;},
+        {&#39;LOWER&#39;: &#39;as&#39;},
+        {&#39;POS&#39;: &#39;PROPN&#39;}]
+
+matcher.add(&quot;matching_1&quot;, None, pattern)
+matches = matcher(doc)
+
+span = doc[matches[0][1]:matches[0][2]]
+print(span.text)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>ouutput:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>‘developing countries such as Vietnam’
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在这里，"developing countries"是上位词，"Vietnam’"是下位词。两者在语义上都是相关的。</p>
+<p>注意：以上模式中的键" OP"："？"表示修饰符(“amod”)可以出现一次，也可以不出现。</p>
+<p>以类似的方式，我们可以从其他文本中获得：</p>
+<ul>
+<li>Fruits such as apples</li>
+<li>Cars such as Ferrari</li>
+<li>Flowers such as rose</li>
+</ul>
+<p>现在，让我们使用其他一些Hearst Patterns来提取更多的上位词和下位词。</p>
+<h5 id="模式-X-andor-Y">模式: X and/or Y<a class="headerlink" href="#模式-X-andor-Y" title="Permanent link">&para;</a></h5>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>doc = nlp(&quot;Here is how you can keep your car and other vehicles clean.&quot;) 
+
+# 打印依赖项标签和词性标签
+for tok in doc: 
+print(tok.text, &quot;--&gt;&quot;,tok.dep_, &quot;--&gt;&quot;,tok.pos_)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Here --&gt; advmod --&gt; ADV
+is --&gt; ROOT --&gt; VERB
+how --&gt; advmod --&gt; ADV
+you --&gt; nsubj --&gt; PRON
+can --&gt; aux --&gt; VERB
+keep --&gt; ccomp --&gt; VERB
+your --&gt; poss --&gt; DET
+car --&gt; dobj --&gt; NOUN
+and --&gt; cc --&gt; CCONJ
+other --&gt; amod --&gt; ADJ
+vehicles --&gt; conj --&gt; NOUN
+clean --&gt; oprd --&gt; ADJ
+. --&gt; punct --&gt; PUNCT
+</code></pre></div>
+</td></tr></table>
+</details>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># Matcher类对象
+matcher = Matcher(nlp.vocab) 
+
+# 定义模式
+pattern = [{&#39;DEP&#39;:&#39;amod&#39;, &#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;POS&#39;:&#39;NOUN&#39;}, 
+        {&#39;LOWER&#39;: &#39;and&#39;, &#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;LOWER&#39;: &#39;or&#39;, &#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;LOWER&#39;: &#39;other&#39;}, 
+        {&#39;POS&#39;: &#39;NOUN&#39;}] 
+
+matcher.add(&quot;matching_1&quot;, None, pattern) 
+
+matches = matcher(doc) 
+span = doc[matches[0][1]:matches[0][2]] 
+print(span.text)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code> ‘car and other vehicles’
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>让我们尝试相同的代码来捕获"X or Y"模式：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># 将&#39;and&#39;替换为&#39;or&#39;
+doc = nlp(&quot;Here is how you can keep your car or other vehicles clean.&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>其余代码将保持不变：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># Matcher类对象
+matcher = Matcher(nlp.vocab) 
+
+#定义模式
+pattern = [{&#39;DEP&#39;:&#39;amod&#39;, &#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;POS&#39;:&#39;NOUN&#39;}, 
+        {&#39;LOWER&#39;: &#39;and&#39;, &#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;LOWER&#39;: &#39;or&#39;, &#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;LOWER&#39;: &#39;other&#39;}, 
+        {&#39;POS&#39;: &#39;NOUN&#39;}] 
+
+matcher.add(&quot;matching_1&quot;, None, pattern) 
+
+matches = matcher(doc) 
+span = doc[matches[0][1]:matches[0][2]] 
+print(span.text)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code> ‘car or other vehicles’
+</code></pre></div>
+</td></tr></table>
+</details>
+<h5 id="模式-X-including-Y">模式: X, including Y<a class="headerlink" href="#模式-X-including-Y" title="Permanent link">&para;</a></h5>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>doc = nlp(&quot;Eight people, including two children, were injured in the explosion&quot;) 
+
+for tok in doc: 
+print(tok.text, &quot;--&gt;&quot;,tok.dep_, &quot;--&gt;&quot;,tok.pos_)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output：</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Eight --&gt; nummod --&gt; NUM
+people --&gt; nsubjpass --&gt; NOUN
+, --&gt; punct --&gt; PUNCT
+including --&gt; prep --&gt; VERB
+two --&gt; nummod --&gt; NUM
+children --&gt; pobj --&gt; NOUN
+, --&gt; punct --&gt; PUNCT
+were --&gt; auxpass --&gt; VERB
+injured --&gt; ROOT --&gt; VERB
+in --&gt; prep --&gt; ADP
+the --&gt; det --&gt; DET
+explosion --&gt; pobj --&gt; NOUN
+</code></pre></div>
+</td></tr></table>
+</details>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># Matcher类对象
+matcher = Matcher(nlp.vocab) 
+
+#定义模式 
+pattern = [{&#39;DEP&#39;:&#39;nummod&#39;,&#39;OP&#39;:&quot;?&quot;}, # 数值修饰
+        {&#39;DEP&#39;:&#39;amod&#39;,&#39;OP&#39;:&quot;?&quot;}, # 形容词修饰
+        {&#39;POS&#39;:&#39;NOUN&#39;}, 
+        {&#39;IS_PUNCT&#39;: True}, 
+        {&#39;LOWER&#39;: &#39;including&#39;}, 
+        {&#39;DEP&#39;:&#39;nummod&#39;,&#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;DEP&#39;:&#39;amod&#39;,&#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;POS&#39;:&#39;NOUN&#39;}] 
+
+matcher.add(&quot;matching_1&quot;, None, pattern) 
+
+matches = matcher(doc) 
+span = doc[matches[0][1]:matches[0][2]] 
+print(span.text)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>‘Eight people, including two children’
+</code></pre></div>
+</td></tr></table>
+</details>
+<h5 id="模式-X-especially-Y">模式: X, especially Y<a class="headerlink" href="#模式-X-especially-Y" title="Permanent link">&para;</a></h5>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>doc = nlp(&quot;A healthy eating pattern includes fruits, especially whole fruits.&quot;) 
+
+for tok in doc: 
+print(tok.text, tok.dep_, tok.pos_)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>A --&gt; det --&gt; DET
+healthy --&gt; amod --&gt; ADJ
+eating --&gt; compound --&gt; NOUN
+pattern --&gt; nsubj --&gt; NOUN
+includes --&gt; ROOT --&gt; VERB
+fruits --&gt; dobj --&gt; NOUN
+, --&gt; punct --&gt; PUNCT
+especially --&gt; advmod --&gt; ADV
+whole --&gt; amod --&gt; ADJ
+fruits --&gt; appos --&gt; NOUN
+. --&gt; punct --&gt; PUNCT
+</code></pre></div>
+</td></tr></table>
+</details>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># Matcher类对象
+matcher = Matcher(nlp.vocab)
+
+# 定义模式
+pattern = [{&#39;DEP&#39;:&#39;nummod&#39;,&#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;DEP&#39;:&#39;amod&#39;,&#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;POS&#39;:&#39;NOUN&#39;}, 
+        {&#39;IS_PUNCT&#39;:True}, 
+        {&#39;LOWER&#39;: &#39;especially&#39;}, 
+        {&#39;DEP&#39;:&#39;nummod&#39;,&#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;DEP&#39;:&#39;amod&#39;,&#39;OP&#39;:&quot;?&quot;}, 
+        {&#39;POS&#39;:&#39;NOUN&#39;}] 
+
+matcher.add(&quot;matching_1&quot;, None, pattern) 
+
+matches = matcher(doc) 
+span = doc[matches[0][1]:matches[0][2]] 
+print(span.text)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output</strong> :</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>‘fruits, especially whole fruits’
+</code></pre></div>
+</td></tr></table>
+</details>
+<h4 id="2子树匹配以进行关系提取">2.子树匹配以进行关系提取<a class="headerlink" href="#2子树匹配以进行关系提取" title="Permanent link">&para;</a></h4>
+<p>简单的基于规则的方法非常适合信息提取任务。但是，它们有一些缺点和不足。</p>
+<p>我们必须极富创造力，以提出新的规则来捕获不同的模式。很难建立能在不同句子之间很好地概括的模式。</p>
+<p>为了增强基于规则的关系/信息提取方法，我们应该尝试了解现有句子的依存关系结构。让我们以示例文本为例，构建其依赖关系图表树：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>text = &quot;Tableau was recently acquired by Salesforce.&quot; 
+
+# 绘制依赖图 
+doc = nlp(text) 
+displacy.render(doc, style=&#39;dep&#39;,jupyter=True)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong><br />
+<img src='images/information-extract-basedon-ru_9.png' title="information-extract-basedon-ru_9.png" alt="information-extract-basedon-ru_9.png" /></p>
+<p>你能在这句话中找到任何有趣的关系吗？如果你查看句子中的实体:Tableau和Salesforce,它们与术语"acquired"相关。因此，我可以从这句话中提取的模式是" Salesforce acquired Tableau"或" X acquired Y"。</p>
+<p>现在考虑以下说法：Careem, a ride-hailing major in the middle east, was acquired by Uber."</p>
+<p>其依赖图将如下所示：</p>
+<p><img src='images/information-extract-basedon-ru_10.png' title="information-extract-basedon-ru_10.png" alt="information-extract-basedon-ru_10.png" /></p>
+<p>很吓人吧？<br />
+不过不用担心我们需要检查的是，多个句子之间有哪些共同依赖路径。此方法称为子树匹配。</p>
+<p>例如，如果我们将此语句与上一个语句进行比较：</p>
+<p><img src='images/information-extract-basedon-ru_11.png' title="information-extract-basedon-ru_11.png" alt="information-extract-basedon-ru_11.png" /></p>
+<p><img src='images/information-extract-basedon-ru_12.png' title="information-extract-basedon-ru_12.png" alt="information-extract-basedon-ru_12.png" /></p>
+<p>我们将仅考虑公共依赖路径，并提取实体以及它们之间的关系(acquired)。因此，从这些句子中提取的关系为：</p>
+<p>Salesforce acquired Tableau<br />
+Uber acquired Careem</p>
+<p>让我们尝试在Python中实现此技术。我们将再次使用spaCy，因为它很容易遍历依赖树。</p>
+<p>我们将首先查看句子中单词的依赖项标签和POS：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>text = &quot;Tableau was recently acquired by Salesforce.&quot; 
+doc = nlp(text) 
+
+for tok in doc: 
+print(tok.text,&quot;--&gt;&quot;,tok.dep_,&quot;--&gt;&quot;,tok.pos_)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Tableau --&gt; nsubjpass --&gt; PROPN
+was --&gt; auxpass --&gt; VERB
+recently --&gt; advmod --&gt; ADV
+acquired --&gt; ROOT --&gt; VERB
+by --&gt; agent --&gt; ADP
+Salesforce --&gt; pobj --&gt; PROPN
+. --&gt; punct --&gt; PUNCT
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在这里，" Tableau"的依赖项标签是nsubjpass，它表示被动主语(因为它是被动句子)。另一个实体"Salesforce"是该句子中的宾语，术语"acquired"是句子的根，这意味着它以某种方式将宾语和主语联系起来。</p>
+<p>让我们定义一个函数来执行子树匹配：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>def subtree_matcher(doc): 
+x = &#39;&#39; 
+y = &#39;&#39; 
+
+# 遍历输入句子中的所有标记 
+for i,tok in enumerate(doc): 
+    # 抽取主语 
+    if tok.dep_.find(&quot;subjpass&quot;) == True: 
+    y = tok.text 
+
+    # 抽取宾语 
+    if tok.dep_.endswith(&quot;obj&quot;) == True: 
+    x = tok.text 
+
+return x,y
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>在这种情况下，我们只需要查找所有符合以下条件的句子：</p>
+<ul>
+<li>有两个实体，并且"acquired"一词是句子中唯一的根</li>
+</ul>
+<p>然后，我们可以从句子中捕获主语和宾语。让我们调用上面的函数：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">subtree_matcher</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>(‘Salesforce’, ‘Tableau’)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这里，主语是收购者，宾语是被收购的实体。让我们使用相同的函数subtree_matcher()来提取通过相同关系（“acquired”）关联的实体：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>text_2 = &quot;Careem, a ride hailing major in middle east, was acquired by Uber.&quot; 
+
+doc_2 = nlp(text_2) 
+subtree_matcher(doc_2)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code> (‘Uber’, ‘Careem’)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>你看到这里发生了什么吗？这句话有更多的单词和标点符号，但我们的逻辑仍然有效并成功地提取了相关实体。</p>
+<p>但是，等等-如果我将句子从被动语态更改为主动语态怎么办？我们的逻辑仍然有效吗？</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>text_3 = &quot;Salesforce recently acquired Tableau.&quot; 
+doc_3 = nlp(text_3) 
+subtree_matcher(doc_3)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>output:</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>(‘Tableau’, ‘ ‘)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>那不是我们所期望的。该功能未能捕获" Salesforce"，并错误地将" Tableau"返回为收购方。</p>
+<p>那么是什么问题了？让我们了解一下这句话的依赖关系树：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for tok in doc_3:    
+print(tok.text, &quot;--&gt;&quot;,tok.dep_, &quot;--&gt;&quot;,tok.pos_)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Salesforce --&gt; nsubj --&gt; PROPN
+recently --&gt; advmod --&gt; ADV
+acquired --&gt; ROOT --&gt; VERB
+Tableau --&gt; dobj --&gt; PROPN
+. --&gt; punct --&gt; PUNCT
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>事实证明，" Salesforce"和" Tableau"这两个术语的语法功能(主语和宾语)已经在主动语态中互换了。但是，现在该主语的依赖项标签已从" nsubjpass"更改为" nsubj"。他的标签表明句子是主动语态。</p>
+<p>我们可以使用此属性来修改子树匹配功能。下面给出的是子树匹配的新功能：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>def subtree_matcher(doc):
+subjpass = 0
+
+for i,tok in enumerate(doc):
+    # 发现包含&quot;subjpass&quot; 文本的依赖项标签
+    if tok.dep_.find(&quot;subjpass&quot;) == True:
+    subjpass = 1
+
+x = &#39;&#39;
+y = &#39;&#39;
+
+# 如果subjpass == 1 那么句子是主动语态
+if subjpass == 1:
+    for i,tok in enumerate(doc):
+    if tok.dep_.find(&quot;subjpass&quot;) == True:
+        y = tok.text
+
+    if tok.dep_.endswith(&quot;obj&quot;) == True:
+        x = tok.text
+
+# 如果subjpass == 0 那么句子是被动语态
+else:
+    for i,tok in enumerate(doc):
+    if tok.dep_.endswith(&quot;subj&quot;) == True:
+        x = tok.text
+
+    if tok.dep_.endswith(&quot;obj&quot;) == True:
+        y = tok.text
+
+return x,y
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>让我们在主动语句子上尝试这个新函数:</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>new_subtree_matcher(doc_3)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>(‘Salesforce’, ‘Tableau’)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>输出正确。让我们将之前的被动语句传递给此函数：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>new_subtree_matcher(nlp(&quot;Tableau was recently acquired by Salesforce.&quot;))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>output:</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>(‘Salesforce’, ‘Tableau’)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>这正是我们想要的。我们使函数稍微更通用。我希望你深入研究不同类型句子的语法结构，并尝试使此功能更加灵活。</p>
+<h3 id="结语">结语<a class="headerlink" href="#结语" title="Permanent link">&para;</a></h3>
+<p>在本文中，我们了解了信息提取，关系和三元组的概念以及关系提取的不同方法。就我个人而言，我真的很乐于对此主题进行研究，并计划撰写更多有关更高级信息提取方法的文章。</p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../nltk-basic/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                自然语言处理工具包之NLTK
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../../affiliate/seo_competitor_analyze/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                围绕SEO开展竞争对手分析
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
