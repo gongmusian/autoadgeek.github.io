@@ -8,17 +8,17 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <meta name="description" content="达观数据结合实践应用，为你详细介绍如何做好文本关键词提取。">
+  <meta name="description" content="目录 NLTK简介 NLTK的安装 NLTK的使用 切分（分词） 词性标注 命名实体识别 句法分析 WordNet的使用 词干提取（stemming）与词形还原（lemmatization） 对文本进行简单的分析 对文档用词进行分布统计 NLTK自带的语料库 相关文章 NLTK简介 NLTK(Natural Language Toolkit)是由宾夕法尼亚大学计算机和信息">
 
 
-  <link rel="canonical" href="https://geek.digiasset.org/pages/nlp/nlpinfo/keywords_extract/">
+  <link rel="canonical" href="https://geek.digiasset.org/pages/nlp/nlpinfo/nltk-basic/">
 
 
 <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
 
     
       
-        <title>如何做好文本关键词提取？从三种算法说起 - 广告流程自动化</title>
+        <title>自然语言处理工具包之NLTK – 标点符 - 广告流程自动化</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#如何做好文本关键词提取从三种算法说起" class="md-skip">
+        <a href="#自然语言处理工具包之NLTK" class="md-skip">
           跳转至
         </a>
       
@@ -108,7 +108,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              如何做好文本关键词提取？从三种算法说起
+              自然语言处理工具包之NLTK – 标点符
             
           </span>
         </div>
@@ -1100,230 +1100,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        文本关键词提取
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../keywords_extract/" class="md-nav__link">
       文本关键词提取
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#2-半监督的关键词提取算法" class="md-nav__link">
-    2 半监督的关键词提取算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-无监督的方法" class="md-nav__link">
-    3 无监督的方法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#NO1-基于统计特征的关键词提取算法" class="md-nav__link">
-    NO.1 基于统计特征的关键词提取算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#词性" class="md-nav__link">
-    词性
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#词频" class="md-nav__link">
-    词频
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#位置信息" class="md-nav__link">
-    位置信息
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#互信息" class="md-nav__link">
-    互信息
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#词跨度" class="md-nav__link">
-    词跨度
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#TF-IDF值" class="md-nav__link">
-    TF-IDF值
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#NO2-基于词图模型的关键词抽取算法" class="md-nav__link">
-    NO.2 基于词图模型的关键词抽取算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-综合特征法" class="md-nav__link">
-    1 综合特征法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#度" class="md-nav__link">
-    度
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#接近性" class="md-nav__link">
-    接近性
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#特征向量" class="md-nav__link">
-    特征向量
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#集聚系数" class="md-nav__link">
-    集聚系数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#平均最短路径" class="md-nav__link">
-    平均最短路径
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-系统科学法" class="md-nav__link">
-    2 系统科学法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-随机游走法" class="md-nav__link">
-    3 随机游走法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#NO3-基于主题模型的关键词抽取" class="md-nav__link">
-    NO.3 基于主题模型的关键词抽取
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-获取候选关键词" class="md-nav__link">
-    1 获取候选关键词
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-语料学习" class="md-nav__link">
-    2 语料学习
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-计算文章主题分部" class="md-nav__link">
-    3 计算文章主题分部
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-排序" class="md-nav__link">
-    4 排序
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#NO4-应用" class="md-nav__link">
-    NO.4 应用
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#NO5-总结" class="md-nav__link">
-    NO.5 总结
-  </a>
-  
-    <nav class="md-nav" aria-label="NO.5 总结">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#参考文献" class="md-nav__link">
-    参考文献
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1403,11 +1184,139 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../nltk-basic/" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        自然语言处理工具包之NLTK
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       自然语言处理工具包之NLTK
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#NLTK简介" class="md-nav__link">
+    NLTK简介
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#NLTK的安装" class="md-nav__link">
+    NLTK的安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#NLTK的使用" class="md-nav__link">
+    NLTK的使用
+  </a>
+  
+    <nav class="md-nav" aria-label="NLTK的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#切分分词" class="md-nav__link">
+    切分（分词）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#词性标注" class="md-nav__link">
+    词性标注
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#命名实体识别" class="md-nav__link">
+    命名实体识别
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#句法分析" class="md-nav__link">
+    句法分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#WordNet的使用" class="md-nav__link">
+    WordNet的使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#词干提取stemming与词形还原lemmatization" class="md-nav__link">
+    词干提取（stemming）与词形还原（lemmatization）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对文本进行简单的分析" class="md-nav__link">
+    对文本进行简单的分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对文档用词进行分布统计" class="md-nav__link">
+    对文档用词进行分布统计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#NLTK自带的语料库" class="md-nav__link">
+    NLTK自带的语料库
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#相关文章" class="md-nav__link">
+    相关文章:
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1612,190 +1521,99 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#2-半监督的关键词提取算法" class="md-nav__link">
-    2 半监督的关键词提取算法
+  <a href="#NLTK简介" class="md-nav__link">
+    NLTK简介
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-无监督的方法" class="md-nav__link">
-    3 无监督的方法
+  <a href="#NLTK的安装" class="md-nav__link">
+    NLTK的安装
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#NO1-基于统计特征的关键词提取算法" class="md-nav__link">
-    NO.1 基于统计特征的关键词提取算法
+  <a href="#NLTK的使用" class="md-nav__link">
+    NLTK的使用
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#词性" class="md-nav__link">
-    词性
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#词频" class="md-nav__link">
-    词频
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#位置信息" class="md-nav__link">
-    位置信息
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#互信息" class="md-nav__link">
-    互信息
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#词跨度" class="md-nav__link">
-    词跨度
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#TF-IDF值" class="md-nav__link">
-    TF-IDF值
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#NO2-基于词图模型的关键词抽取算法" class="md-nav__link">
-    NO.2 基于词图模型的关键词抽取算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-综合特征法" class="md-nav__link">
-    1 综合特征法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#度" class="md-nav__link">
-    度
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#接近性" class="md-nav__link">
-    接近性
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#特征向量" class="md-nav__link">
-    特征向量
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#集聚系数" class="md-nav__link">
-    集聚系数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#平均最短路径" class="md-nav__link">
-    平均最短路径
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-系统科学法" class="md-nav__link">
-    2 系统科学法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-随机游走法" class="md-nav__link">
-    3 随机游走法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#NO3-基于主题模型的关键词抽取" class="md-nav__link">
-    NO.3 基于主题模型的关键词抽取
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-获取候选关键词" class="md-nav__link">
-    1 获取候选关键词
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-语料学习" class="md-nav__link">
-    2 语料学习
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-计算文章主题分部" class="md-nav__link">
-    3 计算文章主题分部
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-排序" class="md-nav__link">
-    4 排序
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#NO4-应用" class="md-nav__link">
-    NO.4 应用
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#NO5-总结" class="md-nav__link">
-    NO.5 总结
-  </a>
-  
-    <nav class="md-nav" aria-label="NO.5 总结">
+    <nav class="md-nav" aria-label="NLTK的使用">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#参考文献" class="md-nav__link">
-    参考文献
+  <a href="#切分分词" class="md-nav__link">
+    切分（分词）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#词性标注" class="md-nav__link">
+    词性标注
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#命名实体识别" class="md-nav__link">
+    命名实体识别
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#句法分析" class="md-nav__link">
+    句法分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#WordNet的使用" class="md-nav__link">
+    WordNet的使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#词干提取stemming与词形还原lemmatization" class="md-nav__link">
+    词干提取（stemming）与词形还原（lemmatization）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对文本进行简单的分析" class="md-nav__link">
+    对文本进行简单的分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对文档用词进行分布统计" class="md-nav__link">
+    对文档用词进行分布统计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#NLTK自带的语料库" class="md-nav__link">
+    NLTK自带的语料库
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#相关文章" class="md-nav__link">
+    相关文章:
+  </a>
   
 </li>
       
@@ -1812,128 +1630,538 @@
               
                 
                 
-                <h1 id="如何做好文本关键词提取从三种算法说起">如何做好文本关键词提取？从三种算法说起<a class="headerlink" href="#如何做好文本关键词提取从三种算法说起" title="Permanent link">&para;</a></h1>
-<p><strong>在自然语言处理领域，处理海量的文本文件最关键的是要把用户最关心的问题提取出来。</strong> 而无论是对于长文本还是短文本，往往可以通过几个关键词窥探整个文本的主题思想。与此同时，不管是基于文本的推荐还是基于文本的搜索，对于文本关键词的依赖也很大，关键词提取的准确程度直接关系到推荐系统或者搜索系统的最终效果。因此，关键词提取在文本挖掘领域是一个很重要的部分。</p>
-<p>关于文本的关键词提取方法分为有监督、半监督和无监督三种：</p>
-<p><strong>1 有监督的关键词抽取算法</strong></p>
-<blockquote>
-<p>它是建关键词抽取算法看作是二分类问题，判断文档中的词或者短语是或者不是关键词。既然是分类问题，就需要提供已经标注好的训练语料，利用训练语料训练关键词提取模型，根据模型对需要抽取关键词的文档进行关键词抽取</p>
-</blockquote>
-<h4 id="2-半监督的关键词提取算法">2 半监督的关键词提取算法<a class="headerlink" href="#2-半监督的关键词提取算法" title="Permanent link">&para;</a></h4>
-<blockquote>
-<p>只需要少量的训练数据，利用这些训练数据构建关键词抽取模型，然后使用模型对新的文本进行关键词提取，对于这些关键词进行人工过滤，将过滤得到的关键词加入训练集，重新训练模型。</p>
-</blockquote>
-<h4 id="3-无监督的方法">3 无监督的方法<a class="headerlink" href="#3-无监督的方法" title="Permanent link">&para;</a></h4>
-<blockquote>
-<p>不需要人工标注的语料，利用某些方法发现文本中比较重要的词作为关键词，进行关键词抽取。</p>
-</blockquote>
-<p><strong>有监督的文本关键词提取算法需要高昂的人工成本，因此现有的文本关键词提取主要采用适用性较强的无监督关键词抽取。</strong> 其文本关键词抽取流程如下：</p>
-<p><img src='images/keywords_extract_2.jpeg' title="keywords_extract_2.jpeg" alt="keywords_extract_2.jpeg" />图 1 无监督文本关键词抽取流程图</p>
-<p>无监督关键词抽取算法可以分为三大类，基于统计特征的关键词抽取、基于词图模型的关键词抽取和基于主题模型的关键词抽取。</p>
-<h3 id="NO1-基于统计特征的关键词提取算法"><strong>NO.1 基于统计特征的关键词提取算法</strong><a class="headerlink" href="#NO1-基于统计特征的关键词提取算法" title="Permanent link">&para;</a></h3>
-<p>基于于统计特征的关键词抽取算法的思想是 <strong>利用文档中词语的统计信息抽取文档的关键词。</strong> 通常将文本经过预处理得到候选词语的集合，然后采用特征值量化的方式从候选集合中得到关键词。基于统计特征的关键词抽取方法的关键是采用什么样的特征值量化指标的方式，目前常用的有三类：</p>
-<p><strong>1 基于词权重的特征量化</strong></p>
-<p>基于词权重的特征量化主要包括词性、词频、逆向文档频率、相对词频、词长等。</p>
-<p><strong>2 基于词的文档位置的特征量化</strong></p>
-<p>这种特征量化方式是根据文章不同位置的句子对文档的重要性不同的假设来进行的。通常，文章的前N个词、后N个词、段首、段尾、标题、引言等位置的词具有代表性，这些词作为关键词可以表达整个的主题。</p>
-<p><strong>3 基于词的关联信息的特征量化</strong></p>
-<p>词的关联信息是指词与词、词与文档的关联程度信息，包括互信息、hits值、贡献度、依存度、TF-IDF值等。</p>
-<p>下面介绍几种常用的特征值量化指标。</p>
-<h3 id="词性"><strong>词性</strong><a class="headerlink" href="#词性" title="Permanent link">&para;</a></h3>
-<p>词性时通过分词、语法分析后得到的结果。现有的关键词中，绝大多数关键词为名词或者动名词。一般情况下，名词与其他词性相比更能表达一篇文章的主要思想。但是，词性作为特征量化的指标，一般与其他指标结合使用。</p>
-<h3 id="词频"><strong>词频</strong><a class="headerlink" href="#词频" title="Permanent link">&para;</a></h3>
-<p>词频表示一个词在文本中出现的频率。一般我们认为，如果一个词在文本中出现的越是频繁，那么这个词就越有可能作为文章的核心词。词频简单地统计了词在文本中出现的次数，但是，只依靠词频所得到的关键词有很大的不确定性，对于长度比较长的文本，这个方法会有很大的噪音。</p>
-<h3 id="位置信息"><strong>位置信息</strong><a class="headerlink" href="#位置信息" title="Permanent link">&para;</a></h3>
-<p>一般情况下，词出现的位置对于词来说有着很大的价值。例如，标题、摘要本身就是作者概括出的文章的中心思想，因此出现在这些地方的词具有一定的代表性，更可能成为关键词。但是，因为每个作者的习惯不同，写作方式不同，关键句子的位置也会有所不同，所以这也是一种很宽泛的得到关键词的方法，一般情况下不会单独使用。</p>
-<h3 id="互信息"><strong>互信息</strong><a class="headerlink" href="#互信息" title="Permanent link">&para;</a></h3>
-<p>互信息是信息论中概念，是变量之间相互依赖的度量。互信息并不局限于实值随机变量，它更加一般且决定着联合分布 p(X,Y) 和分解的边缘分布的乘积 p(X)p(Y) 的相似程度。互信息的计算公式如下：</p>
-<p><img src='images/keywords_extract_3.jpeg' title="keywords_extract_3.jpeg" alt="keywords_extract_3.jpeg" width='459' /></p>
-<p>其中，p(x,y)是X和Y的联合概率分布函数，p(x)和p(y)分别为X和Y的边缘概率分布函数。</p>
-<p>当使用互信息作为关键词提取的特征量化时，应用文本的正文和标题构造PAT树，然后计算字符串左右的互信息。</p>
-<h3 id="词跨度"><strong>词跨度</strong><a class="headerlink" href="#词跨度" title="Permanent link">&para;</a></h3>
-<p>词跨度是指一个词或者短语字文中首次出现和末次出现之间的距离，词跨度越大说明这个词对文本越重要，可以反映文本的主题。一个词的跨度计算公式如下：</p>
-<p><img src='images/keywords_extract_4.jpeg' title="keywords_extract_4.jpeg" alt="keywords_extract_4.jpeg" width='319' /></p>
-<p>其中，<img src='images/keywords_extract_1.png' title="keywords_extract_1.png" alt="keywords_extract_1.png" width='95' />表示词i在文本中最后出现的位置， <img src='images/keywords_extract_2.png' title="keywords_extract_2.png" alt="keywords_extract_2.png" width='99' />表示词 i 在文本中第一次出现的位置，sum表示文本中词的总数。</p>
-<p>词跨度被作为提取关键词的方法是因为在现实中，文本中总是有很多噪声（指不是关键词的那些词），使用词跨度可以减少这些噪声。</p>
-<h3 id="TF-IDF值"><strong>TF-IDF值</strong><a class="headerlink" href="#TF-IDF值" title="Permanent link">&para;</a></h3>
-<p>一个词的TF是指这个词在文档中出现的频率，假设一个词w在文本中出现了m次，而文本中词的总数为n，那么<img src='images/keywords_extract_3.png' title="keywords_extract_3.png" alt="keywords_extract_3.png" width='175' />。一个词的IDF是根据语料库得出的，表示这个词在整个语料库中出现的频率。假设整个语料库中，包含词w的文本一共有M篇，语料库中的文本一共有N篇，则<img src='images/keywords_extract_5.jpeg' title="keywords_extract_5.jpeg" alt="keywords_extract_5.jpeg" width='224' /></p>
-<p>由此可得词w的TF-IDF值为：<img src='images/keywords_extract_6.jpeg' title="keywords_extract_6.jpeg" alt="keywords_extract_6.jpeg" width='281' /></p>
-<p><strong>TF-IDF的优点是实现简单，相对容易理解。</strong> 但是，TFIDF算法提取关键词的缺点也很明显，严重依赖语料库，需要选取质量较高且和所处理文本相符的语料库进行训练。另外，对于IDF来说，它本身是一种试图抑制噪声的加权，本身倾向于文本中频率小的词，这使得TF-IDF算法的精度不高。TF-IDF算法还有一个缺点就是不能反应词的位置信息， <strong>在对关键词进行提取的时候，词的位置信息，例如文本的标题、文本的首句和尾句等含有较重要的信息，应该赋予较高的权重。</strong></p>
-<p>基于统计特征的关键词提取算法通过上面的一些特征量化指标将关键词进行排序，获取TopK个词作为关键词。</p>
-<p>基于统计特征的关键词的重点在于特征量化指标的计算，不同的量化指标得到的结果也不尽相同。同时，不同的量化指标作为也有其各自的优缺点，在实际应用中，通常是采用不同的量化指标相结合的方式得到Topk个词作为关键词。</p>
-<h3 id="NO2-基于词图模型的关键词抽取算法"><strong>NO.2 基于词图模型的关键词抽取算法</strong><a class="headerlink" href="#NO2-基于词图模型的关键词抽取算法" title="Permanent link">&para;</a></h3>
-<p>基于词图模型的关键词抽取首先要构建文档的语言网络图，然后对语言进行网络图分析，在这个图上寻找具有重要作用的词或者短语，这些短语就是文档的关键词。语言网络图中节点基本上都是词，根据词的链接方式不同，语言网络的主要形式分为四种： <strong>共现网络图、语法网络图、语义网络图和其他网络图。</strong></p>
-<p>在语言网络图的构建过程中，都是以预处理过后的词作为节点，词与词之间的关系作为边。语言网络图中，边与边之间的权重一般用词之间的关联度来表示。在使用语言网络图获得关键词的时候，需要评估各个节点的重要性，然后根据重要性将节点进行排序，选取TopK个节点所代表的词作为关键词。节点的重要性计算方法有以下几种方法。</p>
-<h3 id="1-综合特征法"><strong>1 综合特征法</strong><a class="headerlink" href="#1-综合特征法" title="Permanent link">&para;</a></h3>
-<p>综合特征法也叫社会网络中心性分析方法，这种方法的核心思想是节点中重要性等于节点的显著性，以不破坏网络的整体性为基础。此方法就是从网络的局部属性和全局属性角度去定量分析网络结构的拓扑性质，常用的定量计算方法如下。</p>
-<h3 id="度"><strong>度</strong><a class="headerlink" href="#度" title="Permanent link">&para;</a></h3>
-<p>节点的度是指与该节点直接向量的节点数目，表示的是节点的局部影响力，对于非加权网络，节点的度为：<img src='images/keywords_extract_4.png' title="keywords_extract_4.png" alt="keywords_extract_4.png" width='137' />对于加权网络，节点的度又称为节点的强度，计算公式为：</p>
-<p><img src='images/keywords_extract_7.jpeg' title="keywords_extract_7.jpeg" alt="keywords_extract_7.jpeg" width='171' /></p>
-<h3 id="接近性"><strong>接近性</strong><a class="headerlink" href="#接近性" title="Permanent link">&para;</a></h3>
-<p>节点的接近性是指节点到其他节点的最短路径之和的倒数，表示的是信息传播的紧密程度，其计算公式为：</p>
-<p><img src='images/keywords_extract_8.jpeg' title="keywords_extract_8.jpeg" alt="keywords_extract_8.jpeg" width='163' /></p>
-<h3 id="特征向量"><strong>特征向量</strong><a class="headerlink" href="#特征向量" title="Permanent link">&para;</a></h3>
-<p>特征向量的思想是节点的中心化测试值由周围所有连接的节点决定，即一个节点的中心化指标应该等于其相邻节点的中心化指标之线性叠加，表示的是通过与具有高度值的相邻节点所获得的间接影响力。特征向量的计算公式如下：</p>
-<p><img src='images/keywords_extract_9.jpeg' title="keywords_extract_9.jpeg" alt="keywords_extract_9.jpeg" width='221' /></p>
-<h3 id="集聚系数"><strong>集聚系数</strong><a class="headerlink" href="#集聚系数" title="Permanent link">&para;</a></h3>
-<p>节点的集聚系数是它的相邻的节点之间的连接数与他们所有可能存在来链接的数量的比值，用来描述图的顶点之间阶级成团的程度的系数，计算公式如下：</p>
-<p><img src='images/keywords_extract_10.jpeg' title="keywords_extract_10.jpeg" alt="keywords_extract_10.jpeg" width='187' /></p>
-<h3 id="平均最短路径"><strong>平均最短路径</strong><a class="headerlink" href="#平均最短路径" title="Permanent link">&para;</a></h3>
-<p>节点的平局最短路径也叫紧密中心性，是节点的所有最短路径之和的平均值，表示的是一个节点传播信息时对其他节点的依赖程度。如果一个节点离其他节点越近，那么他传播信息的时候也就越不需要依赖其他人。一个节点到网络中各点的距离都很短，那么这个点就不会受制于其他节点。计算公式如下：</p>
-<p><img src='images/keywords_extract_11.jpeg' title="keywords_extract_11.jpeg" alt="keywords_extract_11.jpeg" width='168' /></p>
-<p>因为每个算法的侧重方向的不同，在实际的问题中所选取的定量分析方法也会不一样。同时，对于关键词提取来说，也可以和上一节所提出的统计法得到的词的权重，例如词性等相结合构建词搭配网络，然后利用上述方法得到关键词。</p>
-<h3 id="2-系统科学法"><strong>2 系统科学法</strong><a class="headerlink" href="#2-系统科学法" title="Permanent link">&para;</a></h3>
-<p>系统科学法进行中心性分析的思想是节点重要性等于这个节点被删除后对于整个语言网络图的破坏程度。重要的节点被删除后会对网络的呃连通性等产生变化。如果我们在网络图中删除某一个节点，图的某些指定特性产生了改变，可以根据特性改变的大小获得节点的重要性，从而对节点进行筛选。</p>
-<h3 id="3-随机游走法"><strong>3 随机游走法</strong><a class="headerlink" href="#3-随机游走法" title="Permanent link">&para;</a></h3>
-<p>随机游走算法时网络图中一个非常著名的算法，它从给定图和出发点，随机地选择邻居节点移动到邻居节点上，然后再把现在的节点作为出发点，迭代上述过程。</p>
-<p><strong>随机游走算法一个很出名的应用是大名鼎鼎的PageRank算法，PageRank算法是整个google搜索的核心算法，是一种通过网页之间的超链接来计算网页重要性的技术，其关键的思想是重要性传递。</strong> 在关键词提取领域， Mihalcea 等人所提出的TextRank算法就是在文本关键词提取领域借鉴了这种思想。</p>
-<p>PageRank算法将整个互联网看作一张有向图，网页是图中的节点，而网页之间的链接就是图中的边。根据重要性传递的思想，如果一个大型网站A含有一个超链接指向了网页B，那么网页B的重要性排名会根据A的重要性来提升。网页重要性的传递思想如下图所示：<img src='images/keywords_extract_12.jpeg' title="keywords_extract_12.jpeg" alt="keywords_extract_12.jpeg" />图 2 PageRank简单描述（来自PageRank论文）</p>
-<p>在PageRank算法中，最主要的是对于初始网页重要性（PR值）的计算，因为对于上图中的网页A的重要性我们是无法预知的。但是，在原始论文中给出了一种迭代方法求出这个重要性，论文中指出，幂法求矩阵特征值与矩阵的初始值无关。那么，就可以为每个网页随机给一个初始值，然后迭代得到收敛值，并且收敛值与初始值无关。</p>
-<p>PageRank求网页i的PR值计算如下：<img src='images/keywords_extract_13.jpeg' title="keywords_extract_13.jpeg" alt="keywords_extract_13.jpeg" width='491' /></p>
-<p>其中，d为阻尼系数，通常为0.85。<img src='images/keywords_extract_5.png' title="keywords_extract_5.png" alt="keywords_extract_5.png" />是指向网页 i 的网页集合。<img src='images/keywords_extract_6.png' title="keywords_extract_6.png" alt="keywords_extract_6.png" />是指网页j中的链接指向的集合，<img src='images/keywords_extract_7.png' title="keywords_extract_7.png" alt="keywords_extract_7.png" />是指集合中元素的个数。</p>
-<p>TextRank在构建图的时候将节点由网页改成了句子，并为节点之间的边引入了权值，其中权值表示两个句子的相似程度。其计算公式如下：</p>
-<p><img src='images/keywords_extract_8.png' title="keywords_extract_8.png" alt="keywords_extract_8.png" /></p>
-<p>公式中的<img src='images/keywords_extract_9.png' title="keywords_extract_9.png" alt="keywords_extract_9.png" />为图中节点<img src='images/keywords_extract_10.png' title="keywords_extract_10.png" alt="keywords_extract_10.png" />和的边<img src='images/keywords_extract_11.png' title="keywords_extract_11.png" alt="keywords_extract_11.png" />的权重。其他符号与PageRank公式相同。</p>
-<p>TextRank算法除了做文本关键词提取，还可以做文本摘要提取，效果不错。但是TextRank的计算复杂度很高，应用不广。</p>
-<h3 id="NO3-基于主题模型的关键词抽取"><strong>NO.3 基于主题模型的关键词抽取</strong><a class="headerlink" href="#NO3-基于主题模型的关键词抽取" title="Permanent link">&para;</a></h3>
-<p><strong>基于主题关键词提取算法主要利用的是主题模型中关于主题的分布的性质进行关键词提取。算法步骤如下：</strong></p>
-<h3 id="1-获取候选关键词"><strong>1 获取候选关键词</strong><a class="headerlink" href="#1-获取候选关键词" title="Permanent link">&para;</a></h3>
-<p>从文章中获取候选关键词。即将文本分词，也可以再根据词性选取候选关键词。</p>
-<h3 id="2-语料学习"><strong>2 语料学习</strong><a class="headerlink" href="#2-语料学习" title="Permanent link">&para;</a></h3>
-<p>根据大规模预料学习得到主题模型。</p>
-<h3 id="3-计算文章主题分部"><strong>3 计算文章主题分部</strong><a class="headerlink" href="#3-计算文章主题分部" title="Permanent link">&para;</a></h3>
-<p>根据得到的隐含主题模型，计算文章的主题分布和候选关键词分布。</p>
-<h3 id="4-排序"><strong>4 排序</strong><a class="headerlink" href="#4-排序" title="Permanent link">&para;</a></h3>
-<p>计算文档和候选关键词的主题相似度并排序，选取前n个词作为关键词。</p>
-<p><strong>算法的关键在于主题模型的构建。</strong> 主题模型是一种文档生成模型，对于一篇文章，我们的构思思路是先确定几个主题，然后根据主题想好描述主题的词汇，将词汇按照语法规则组成句子，段落，最后生成一篇文章。</p>
-<p>主题模型也是基于这个思想，它认为文档是一些主题的混合分布，主题又是词语的概率分布，pLSA模型就是第一个根据这个想法构建的模型。同样地，我们反过来想，我们找到了文档的主题，然后主题中有代表性的词就能表示这篇文档的核心意思，就是文档的关键词。</p>
-<p>pLSA模型认为，一篇文档中的每一个词都是通过一定概率选取某个主题，然后再按照一定的概率从主题中选取得到这个词语，这个词语的计算公式为：</p>
-<p><img src='images/keywords_extract_14.jpeg' title="keywords_extract_14.jpeg" alt="keywords_extract_14.jpeg" /></p>
-<p>一些贝叶斯学派的研究者对于pLSA模型进行了改进，他们认为，文章对应主题的概率以及主题对应词语的概率不是一定的，也服从一定的概率，于是就有了现阶段常用的主题模型--LDA主题模型。</p>
-<p>LDA是D.M.Blei在2003年提出的。LDA采用了词袋模型的方法简化了问题的复杂性。在LDA模型中，每一篇文档是一些主题的构成的概率分布，而每一个主题又是很多单词构成的一个概率分布。同时，无论是主题构成的概率分布还是单词构成的概率分布也不是一定的，这些分布也服从Dirichlet 先验分布。</p>
-<p>文档的生成模型可以用如下图模型表示：</p>
-<p>其中<img src='images/keywords_extract_12.png' title="keywords_extract_12.png" alt="keywords_extract_12.png" />和<img src='images/keywords_extract_13.png' title="keywords_extract_13.png" alt="keywords_extract_13.png" />为先验分布的超参数，<img src='images/keywords_extract_14.png' title="keywords_extract_14.png" alt="keywords_extract_14.png" />为第k个主题下的所有单词的分布，<img src='images/keywords_extract_15.png' title="keywords_extract_15.png" alt="keywords_extract_15.png" />为文档的主题分布，w为文档的词，z为w所对应的主题。</p>
-<p><img src='images/keywords_extract_15.jpeg' title="keywords_extract_15.jpeg" alt="keywords_extract_15.jpeg" />图 3 Blei在论文中的图模型</p>
-<p>DA挖掘了文本的深层语义即文本的主题，用文本的主题来表示文本的也从一定程度上降低了文本向量的维度，很多人用这种方式对文本做分类，取得了不错的效果。</p>
-<p>LDA关键词提取算法利用文档的隐含语义信息来提取关键词，但是主题模型提取的关键词比较宽泛，不能很好的反应文档主题。另外，对于LDA模型的时间复杂度较高，需要大量的实践训练。</p>
-<h3 id="NO4-应用"><strong>NO.4 应用</strong><a class="headerlink" href="#NO4-应用" title="Permanent link">&para;</a></h3>
-<p>现阶段，文本的关键词提取在基于文本的搜索、推荐以及数据挖掘领域有着很广泛的应用。同时在实际应用中，因为应用环境的复杂性，对于不同类型的文本，例如长文本和短文本，用同一种文本关键词提取方法得到的效果并相同。因此，在实际应用中针对不同的条件环境所采用的算法会有所不同，没有某一类算法在所有的环境下都有很好的效果。</p>
-<p>相对于上文中所提到的算法，一些组合算法在工程上被大量应用以弥补单算法的不足，例如将TF-IDF算法与TextRank算法相结合，或者综合TF-IDF与词性得到关键词等。同时，工程上对于文本的预处理以及文本分词的准确性也有很大的依赖。对于文本的错别字，变形词等信息，需要在预处理阶段予以解决，分词算法的选择，未登录词以及歧义词的识别在一定程度上对于关键词突提取会又很大的影响。</p>
-<p><strong>关键词提取是一个看似简单，在实际应用中却十分棘手的任务，从现有的算法的基础上进行工程优化，达观数据在这方面做了很大的努力并且取得了不错的效果。</strong></p>
-<h3 id="NO5-总结"><strong>NO.5 总结</strong><a class="headerlink" href="#NO5-总结" title="Permanent link">&para;</a></h3>
-<p>本文介绍了三种常用的无监督的关键词提取算法，并介绍了其优缺点。关键词提取在文本挖掘领域具有很广阔的应用，现有的方法也存在一定的问题，我们依然会在关键词提取的问题上继续努力研究，也欢迎大家积极交流。</p>
-<h4 id="参考文献">参考文献<a class="headerlink" href="#参考文献" title="Permanent link">&para;</a></h4>
-<p>[1] TextRank算法提取关键词和摘要http://xiaosheng.me/2017/04/08/article49/</p>
-<p>[2] Page L, Brin S, Motwani R,et al. The PageRank citation ranking: Bringing order to the web[R]. StanfordInfoLab, 1999.</p>
-<p>[3] 刘知远. 基于文档主题结构的关键词抽取方法研究[D]. 北京: 清华大学, 2011.</p>
-<p>[4] tf-idf，<a href="https://zh.wikipedia.org/zh-hans/Tf-idf">https://zh.wikipedia.org/zh-hans/Tf-idf</a></p>
-<p>[5] 一文详解机器领域的LDA主题模型 <a href="https://zhuanlan.zhihu.com/p/31470216">https://zhuanlan.zhihu.com/p/31470216</a></p>
-<p>[6] Blei D M, Ng A Y, Jordan MI. Latent dirichlet allocation[J]. Journal of machine Learning research, 2003,3(Jan): 993-1022.</p>
-<p>[7] 赵京胜, 朱巧明, 周国栋, 等. 自动关键词抽取研究综述[J]. 软件学报, 2017,28(9): 2431-2449.</p>
-<blockquote>
-<p>作者简介</p>
-<p>韩伟：达观数据数据挖掘工程师，负责达观数据文本方面的挖掘与应用。主要参与达观数据标签提取与文本分类系统的构建与实现，对深度学习，NLP数据挖掘领域有浓厚兴趣。</p>
-</blockquote>
+                <h1 id="自然语言处理工具包之NLTK">自然语言处理工具包之NLTK<a class="headerlink" href="#自然语言处理工具包之NLTK" title="Permanent link">&para;</a></h1>
+<p><strong>目录</strong></p>
+<p>__</p>
+<ul>
+<li>NLTK简介</li>
+<li>NLTK的安装</li>
+<li>NLTK的使用<ul>
+<li>切分（分词）</li>
+<li>词性标注</li>
+<li>命名实体识别</li>
+<li>句法分析</li>
+<li>WordNet的使用</li>
+<li>词干提取（stemming）与词形还原（lemmatization）</li>
+<li>对文本进行简单的分析</li>
+<li>对文档用词进行分布统计</li>
+<li>NLTK自带的语料库</li>
+</ul>
+</li>
+<li>相关文章:</li>
+</ul>
+<h2 id="NLTK简介">NLTK简介<a class="headerlink" href="#NLTK简介" title="Permanent link">&para;</a></h2>
+<p>NLTK(Natural Language Toolkit)是由宾夕法尼亚大学计算机和信息科学使用python语言实现的一种自然语言工具包，其收集的大量公开数据集、模型上提供了全面、易用的接口，涵盖了分词、词性标注(Part-Of-Speech tag, POS-tag)、命名实体识别(Named Entity Recognition, NER)、句法分析(Syntactic Parse)等各项 NLP 领域的功能。</p>
+<p><img src='images/nltk-basic_1.png' title="nltk-basic_1.png" alt="nltk-basic_1.png" width='839' height='390' /></p>
+<h2 id="NLTK的安装">NLTK的安装<a class="headerlink" href="#NLTK的安装" title="Permanent link">&para;</a></h2>
+<p>NLTK的安装相对比较简单。仅需执行pip install nltk 即可。但是安装后还需要进一步安装所需要的一些数据（语料与模型）。</p>
+<p><strong>方案一：使用自带的dowmload工具进行安装</strong></p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+nltk.download()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><img src='images/nltk-basic_2.png' title="nltk-basic_2.png" alt="nltk-basic_2.png" width='831' height='661' /></p>
+<p>也可以单独指定某个资源进行下载：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+nltk.download(&quot;comparative_sentences&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>目前包含的资源可以从：<a href="http://www.nltk.org/nltk_data/">http://www.nltk.org/nltk_data/</a> 查询到。下载过程中也可以设置代理来提升下载速度：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+nltk.set_proxy(&#39;http://proxy&#39;, (&#39;USERNAME&#39;, &#39;PASSWORD&#39;))
+nltk.download(&quot;comparative_sentences&quot;)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><strong>方案二：离线下载好后放在指定目录</strong></p>
+<p>直接从 <a href="https://github.com/nltk/nltk_data">https://github.com/nltk/nltk_data</a> 下载数据，其中packages文件下的内容即为我们想要的数据，将数据放入如下任何一个文件夹下即可。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+for path in nltk.data.path:
+    print(path)
+</code></pre></div>
+</td></tr></table>
+</details>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>C:\Users\qw.TCENT/nltk_data
+D:\CodeHub\NLP\venv\nltk_data
+D:\CodeHub\NLP\venv\share\nltk_data
+D:\CodeHub\NLP\venv\lib\nltk_data
+C:\Users\qw.TCENT\AppData\Roaming\nltk_data
+C:\nltk_data
+D:\nltk_data
+E:\nltk_data
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>注意，将数据放入文件夹时，需要将各个目录下的.zip文件解压，否则不能正常的读取到数据。</p>
+<h2 id="NLTK的使用">NLTK的使用<a class="headerlink" href="#NLTK的使用" title="Permanent link">&para;</a></h2>
+<h3 id="切分分词">切分（分词）<a class="headerlink" href="#切分分词" title="Permanent link">&para;</a></h3>
+<p>切分可以分为句子切分和词切分，nltk默认用PunktSentenceTokenizer分句，用基于宾州树库分词规范的TreebankWordTokenizer分词。具体用以下命令做到：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+
+EXAMPLE_TEXT = &quot;Hello World! Isn&#39;t it good to see you? Thanks for buying this book.&quot;
+sentences = nltk.sent_tokenize(EXAMPLE_TEXT)
+print(sentences)  # 分句
+tokens = nltk.word_tokenize(EXAMPLE_TEXT)
+print(tokens)  # 分词
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>默认的分词在遇到Isn’t这样的缩写(contraction)时会分成Is和n’t，如果不喜欢，可以用dir(nltk.tokenize)查看别的分词器并使用。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>for tokenize in dir(nltk.tokenize):
+    if &quot;Tokenizer&quot; in tokenize:
+        print(tokenize)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>目前支持的分词器：</p>
+<ul>
+<li>BlanklineTokenizer：是RegexpTokenizer的子类，内部预设了使用正则表达式r’\s<em>\n\s</em>\n\s*’进行分割。</li>
+<li>LineTokenizer：将文本切分为行来执行切分</li>
+<li>MWETokenizer：该方法可对已经先保留的一些短语，或者组合，进行重组</li>
+<li>PunktSentenceTokenizer：Kiss&amp;Strunk（2006）提出的无监督算法</li>
+<li>RegexpTokenizer：实例化RegexpTokenizer 会按照正则表达式进行findall()</li>
+<li>ReppTokenizer：</li>
+<li>SExprTokenizer：可以将字符串同时按照空格和括号切分</li>
+<li>SpaceTokenizer：按空格分词</li>
+<li>SyllableTokenizer</li>
+<li>TabTokenizer：根据tab进行切分</li>
+<li>TextTilingTokenizer</li>
+<li>ToktokTokenizer：</li>
+<li>TreebankWordTokenizer：通过分离缩略词来实现切分</li>
+<li>TweetTokenizer：按空格进行分词，同时针对推文一些特性，去除@用户名，保留表情等一些特殊符号。</li>
+<li>WhitespaceTokenizer：是RegexpTokenizer的子类 通过空格、间隔、换行等来完成，内部预设了使用正则表达式r’\s+’进行分割</li>
+<li>WordPunctTokenizer：通过将标点转化为一个全新的标识符来实现切分</li>
+</ul>
+<p>备注：上面提到的方法不支持中文。</p>
+<p><strong>停用词</strong></p>
+<p>英文中的停用词如 “the”，“is”，“are” 等等。在自然语言处理（NLP）中没有通用的停用词列表，然而这里，在 NLTK 模块有其自带的停用词列表。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+from nltk.corpus import stopwords
+
+EXAMPLE_TEXT = &quot;Hello World! Isn&#39;t it good to see you? Thanks for buying this book.&quot;
+
+stop_words = set(stopwords.words(&#39;english&#39;))
+words = nltk.word_tokenize(EXAMPLE_TEXT)
+words_filtered = []
+
+for w in words:
+    if w not in stop_words:
+        words_filtered.append(w)
+
+print(words_filtered)
+</code></pre></div>
+</td></tr></table>
+</details>
+<h3 id="词性标注">词性标注<a class="headerlink" href="#词性标注" title="Permanent link">&para;</a></h3>
+<p>对句子进行词性标注需要先进行切分。默认使用的标记格式是宾州树库使用的，具体见此：<a href="https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html">Alphabetical list of part-of-speech tags used in the Penn Treebank Project</a></p>
+<p><img src='images/nltk-basic_3.png' title="nltk-basic_3.png" alt="nltk-basic_3.png" width='734' height='703' /></p>
+<p>也可直接使用“nltk.help.upenn_tagset()”查看官方英文说明。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+
+EXAMPLE_TEXT = &quot;Hello World! Isn&#39;t it good to see you? Thanks for buying this book.&quot;
+
+tokens = nltk.word_tokenize(EXAMPLE_TEXT)
+tagged = nltk.pos_tag(tokens)
+print(tagged[0:10])  # 词性标注
+</code></pre></div>
+</td></tr></table>
+</details>
+<h3 id="命名实体识别">命名实体识别<a class="headerlink" href="#命名实体识别" title="Permanent link">&para;</a></h3>
+<p>命名实体识别类似于一种chunking，可以把是命名实体的部分括起来，需要在标记的文本基础上进行。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+
+EXAMPLE_TEXT = &quot;I am very excited about the next generation of Apple products.&quot;
+
+tokens = nltk.word_tokenize(EXAMPLE_TEXT)
+tagged = nltk.pos_tag(tokens)
+entities = nltk.chunk.ne_chunk(tagged)
+print(entities)
+</code></pre></div>
+</td></tr></table>
+</details>
+<h3 id="句法分析">句法分析<a class="headerlink" href="#句法分析" title="Permanent link">&para;</a></h3>
+<p>NLTK有自带宾州树库等树库，但是自身没有对生文本进行句法分析的能力，需要调用stanford parser等外部工具。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>from nltk.corpus import treebank
+
+t = treebank.parsed_sents(&#39;wsj_0001.mrg&#39;)[0]
+t.draw()
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><img src='images/nltk-basic_4.png' title="nltk-basic_4.png" alt="nltk-basic_4.png" width='949' height='255' /></p>
+<p>tree类有很多方法可以调用，比如可以用fromstring从文本生成tree类。如何遍历tree可以见<a href="http://www.nltk.org/book/ch07.html#code-traverse">nltk的官方教程</a>。</p>
+<h3 id="WordNet的使用">WordNet的使用<a class="headerlink" href="#WordNet的使用" title="Permanent link">&para;</a></h3>
+<p>WordNet可以被看作是一个同义词词典。里面的词都是以同义词集合（synset）作为基本建构单位进行组织。我们可以用以下方法查看某个词的近义词，并可以用来判断这个词存不存在：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>from nltk.corpus import wordnet
+
+# 给定词的定义和例句
+syn = wordnet.synsets(&quot;pain&quot;)
+print(syn[0].definition())
+print(syn[0].examples())
+
+# 同义词
+synonyms = []
+for syn in wordnet.synsets(&#39;Computer&#39;):
+    for lemma in syn.lemmas():
+        synonyms.append(lemma.name())
+print(synonyms)
+
+# 反义词
+antonyms = []
+for syn in wordnet.synsets(&quot;small&quot;):
+    for l in syn.lemmas():
+        if l.antonyms():
+            antonyms.append(l.antonyms()[0].name())
+print(antonyms)
+</code></pre></div>
+</td></tr></table>
+</details>
+<h3 id="词干提取stemming与词形还原lemmatization">词干提取（stemming）与词形还原（lemmatization）<a class="headerlink" href="#词干提取stemming与词形还原lemmatization" title="Permanent link">&para;</a></h3>
+<p>语言形态学和信息检索里，词干提取是去除词缀得到词根的过程，例如working的词干为work。搜索引擎在索引页面时就会使用这种技术，所以很多人为相同的单词写出不同的版本。词干提取的算法有很多，但最常用的算法是 Porter 提取算法。NLTK 有一个 PorterStemmer 类，使用的就是 Porter 提取算法。</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>from nltk.stem import PorterStemmer
+
+stemmer = PorterStemmer()
+print(stemmer.stem(&#39;working&#39;))
+print(stemmer.stem(&#39;worked&#39;))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>还有其他一些提取算法，如 Lancaster 提取算法。这个算法的输出同 Porter 算法的结果在几个单词上不同。你可以尝试他们两个算法来查看有哪些不同结果。</p>
+<p>词形还原（lemmatization）则会把词转换为最基本的词，方法如下：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>from nltk.stem import WordNetLemmatizer
+
+lemmatizer = WordNetLemmatizer()
+print(lemmatizer.lemmatize(&#39;cooking&#39;))
+print(lemmatizer.lemmatize(&#39;cooking&#39;, pos=&#39;v&#39;))
+print(lemmatizer.lemmatize(&#39;cookbooks&#39;))
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>我们可以发现，lemma需要根据词性来进行还原，比如cooking作为名词，它本身就是一个lemma，而做动词使用时lemma是cook。所以像斯坦福CoreNLP进行词形还原时都需要先进行词性标注。</p>
+<p>词干提取和词形还原的主要差别还可以从以下例子中看出：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>from nltk.stem import PorterStemmer, WordNetLemmatizer
+
+stemmer = PorterStemmer()
+lemmatizer = WordNetLemmatizer()
+
+print(stemmer.stem(&#39;believes&#39;))  # believ
+print(lemmatizer.lemmatize(&#39;believes&#39;))  # belief
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>词干提取的方法可以在不知道语境的情况下对词汇使用，这就是为什么它相较词形还原方法速度更快但准确率更低。在我看来，词形还原比提取词干的方法更好。词形还原，如果实在无法返回这个词的变形，也会返回另一个真正的单词;这个单词可能是一个同义词，但不管怎样这是一个真正的单词。当有时候，你不关心准确度，需要的只是速度。在这种情况下，词干提取的方法更好。</p>
+<h3 id="对文本进行简单的分析">对文本进行简单的分析<a class="headerlink" href="#对文本进行简单的分析" title="Permanent link">&para;</a></h3>
+<p><strong>nltk.text.Text()</strong></p>
+<p>nltk.text.Text()类用于对文本进行初级的统计与分析，它接受一个词的列表作为参数。Text类提供了下列方法。</p>
+<ul>
+<li>Text(words) 对象构造</li>
+<li>concordance(word, width=79, lines=25)：显示word出现的上下文</li>
+<li>common_contexts(words)：显示words出现的相同模式</li>
+<li>similar(word)：显示word的相似词</li>
+<li>collocations(num=20, window_size=2)：显示最常见的二词搭配</li>
+<li>count(word)：word出现的词数</li>
+<li>dispersion_plot(words)：绘制words中文档中出现的位置图</li>
+<li>vocab()：返回文章去重的词典</li>
+</ul>
+<p>示例1：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+import jieba
+
+novel_data = open(&#39;data/三体(刘慈欣).txt&#39;, encoding=&#39;utf-8&#39;).read()
+text = nltk.text.Text(jieba.lcut(novel_data))
+print(text.concordance(word=&#39;三体&#39;, width=20, lines=10))  # 打印宽度20字符，共10行的上下文
+print(text.similar(word=&#39;地球&#39;, num=10))
+print(text.common_contexts([&#39;世界&#39;, &#39;宇宙&#39;]))  # 多个词的上下文
+print(text.count(word=&#39;三体&#39;))  # 统计词语频数
+text.generate(text_seed=[&#39;地球&#39;, &#39;三体&#39;], length=30)  # 造句
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>示例2：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+import jieba
+from pylab import mpl
+
+mpl.rcParams[&#39;font.sans-serif&#39;] = [&#39;FangSong&#39;]  # 指定默认字体
+mpl.rcParams[&#39;axes.unicode_minus&#39;] = False  # 解决保存图像是负号&#39;-&#39;显示为方块的问题
+words = [&#39;汪淼&#39;, &#39;叶文洁&#39;, &#39;章北海&#39;, &#39;申玉菲&#39;, &#39;罗辑&#39;, &#39;史强&#39;, &#39;庄颜&#39;, &#39;维德&#39;, &#39;程心&#39;, &#39;艾AA&#39;, &#39;云天明&#39;]
+for w in words:
+    jieba.add_word(w)  # 添加自定义词典
+
+novel_data = open(&#39;data/三体(刘慈欣).txt&#39;, encoding=&#39;utf-8&#39;).read()
+text = nltk.text.Text(jieba.lcut(novel_data))
+text.dispersion_plot(words)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><img src='images/nltk-basic_5.png' title="nltk-basic_5.png" alt="nltk-basic_5.png" width='640' height='480' /></p>
+<p>画出三体人物出现位置，横坐标为每个词出现在text中的索引位置从图中基本上可以看出每个人物的出现在小说中的顺序。</p>
+<ul>
+<li>汪淼和叶文洁出现在《三体》开头</li>
+<li>罗辑几乎贯穿《三体》</li>
+<li>维德、程心、云天明出现在《三体》末尾</li>
+</ul>
+<p><strong>nltk.text.TextCollection</strong></p>
+<p>nltk.text.TextCollection类是Text的集合，提供下列方法</p>
+<ul>
+<li>text.TextCollection([text1,text2,])：对象构造</li>
+<li>idf(term)：计算词term在语料库中的逆文档频率，即log总文章数文中出现term的文章数log总文章数文中出现term的文章数</li>
+<li>tf(term,text)：统计term在text中的词频</li>
+<li>tf_idf(term,text)：计算term在句子中的tf_idf,即tf*idf</li>
+</ul>
+<p>示例3：计算某个词与其他所有词的相似度</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+import jieba
+
+novel_data = open(&#39;data/三体(刘慈欣).txt&#39;, encoding=&#39;utf-8&#39;).read()
+content_index = nltk.text.ContextIndex(jieba.lcut(novel_data))
+similarity_scores = content_index.word_similarity_dict(word=&#39;三体&#39;)
+for key, value in similarity_scores.items():
+    if value &gt; 0.05:
+        print(key, value)
+</code></pre></div>
+</td></tr></table>
+</details>
+<p>示例4：计算TF-IDF</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+import jieba
+
+novel_data = open(&#39;data/三体(刘慈欣).txt&#39;, encoding=&#39;utf-8&#39;).read()
+word_list = jieba.lcut(novel_data)
+text = &quot;&quot;.join(word_list)
+my_text = nltk.text.TextCollection(word_list)
+
+print(my_text.idf(&quot;三体&quot;))
+print(my_text.tf(&quot;三体&quot;, text))
+print(my_text.tf_idf(&quot;三体&quot;, text))
+</code></pre></div>
+</td></tr></table>
+</details>
+<h3 id="对文档用词进行分布统计">对文档用词进行分布统计<a class="headerlink" href="#对文档用词进行分布统计" title="Permanent link">&para;</a></h3>
+<p><strong>FreqDist类</strong></p>
+<p>这个类主要记录了每个词出现的次数，根据统计数据生成表格，或绘图。其结构很简单，用一个有序词典进行实现。所以dict类型的方法在此类也是适用的。如keys()等。</p>
+<ul>
+<li>B()：返回词典的长度</li>
+<li>plot(title,cumulative=False)：绘制频率分布图，若cumu为True，则是累积频率分布图</li>
+<li>tabulate()：生成频率分布的表格形式</li>
+<li>most_common()：返回出现次数最频繁的词与频度</li>
+<li>hapaxes()：返回只出现过一次的词</li>
+</ul>
+<p>示例：</p>
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import nltk
+import jieba
+from pylab import mpl
+
+mpl.rcParams[&#39;font.sans-serif&#39;] = [&#39;FangSong&#39;]  # 指定默认字体
+mpl.rcParams[&#39;axes.unicode_minus&#39;] = False  # 解决保存图像是负号&#39;-&#39;显示为方块的问题
+
+novel_data = open(&#39;data/三体(刘慈欣).txt&#39;, encoding=&#39;utf-8&#39;).read()
+stopwords = open(&#39;data/CNENstopwords.txt&#39;, encoding=&#39;utf-8&#39;).read().splitlines()
+
+word_list = jieba.lcut(novel_data)
+new_list = []
+for w in word_list:
+    if w not in stopwords:
+        new_list.append(w)
+
+fdist = nltk.FreqDist(new_list)
+print(fdist.keys())  # 打印词语列表
+print(fdist.items())  # 打印词语与频数对
+print(fdist.most_common(20))  # 打印频数最高的词
+print(fdist.N())  # 词语总数
+print(fdist.max())  # 打印出现次数最多的词语
+print(fdist[&#39;三体&#39;])  # 输出某个词的出现次数
+print(fdist.freq(&#39;三体&#39;))  # 计算词频
+fdist.plot(20, cumulative=False)  # 绘制前20个词频数累计图
+</code></pre></div>
+</td></tr></table>
+</details>
+<p><img src='images/nltk-basic_6.png' title="nltk-basic_6.png" alt="nltk-basic_6.png" width='640' height='480' /></p>
+<h3 id="NLTK自带的语料库">NLTK自带的语料库<a class="headerlink" href="#NLTK自带的语料库" title="Permanent link">&para;</a></h3>
+<p>在nltk.corpus包下，提供了几类标注好的语料库：</p>
+<ul>
+<li>gutenberg：一个有若干万部的小说语料库，多是古典作品</li>
+<li>webtext：收集的网络广告等内容</li>
+<li>nps_chat：有上万条聊天消息语料库，即时聊天消息为主</li>
+<li>brown：一个百万词级的英语语料库，按文体进行分类</li>
+<li>reuters：路透社语料库，上万篇新闻方档，约有1百万字，分90个主题，并分为训练集和测试集两组</li>
+<li>inaugural：演讲语料库，几十个文本，都是总统演说</li>
+</ul>
+<p>语料库处理：</p>
+<ul>
+<li>fileids()：返回语料库中文件名列表</li>
+<li>fileids[categories]：返回指定类别的文件名列表</li>
+<li>raw(fid=[c1,c2])：返回指定文件名的文本字符串</li>
+<li>raw(catergories=[])：返回指定分类的原始文本</li>
+<li>sents(fid=[c1,c2])：返回指定文件名的语句列表</li>
+<li>sents(catergories=[c1,c2])：按分类返回语句列表</li>
+<li>words(filename)：返回指定文件名的单词列表</li>
+<li>words(catogories=[])：返回指定分类的单词列表</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://github.com/nltk/nltk/wiki">https://github.com/nltk/nltk/wiki</a></li>
+<li><a href="https://www.osgeo.cn/nltk/">https://www.osgeo.cn/nltk/</a></li>
+<li><a href="https://www.jianshu.com/p/0e1d51a7549d">Python 数据科学入门教程：NLTK</a></li>
+</ul>
+<h2 id="相关文章">相关文章:<a class="headerlink" href="#相关文章" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://www.biaodianfu.com/word2vec-wikipedia.html" title="Word2vec实战：中文维基百科语料训练">Word2vec实战：中文维基百科语料训练 </a></li>
+<li><a href="https://www.biaodianfu.com/ime-dict-decoder.html" title="Python解析拼音输入法词库">Python解析拼音输入法词库 </a></li>
+<li><a href="https://www.biaodianfu.com/fasttext.html" title="Facebook词向量工具FastText">Facebook词向量工具FastText </a></li>
+<li><a href="https://www.biaodianfu.com/tencent-word-embedding.html" title="腾讯AI Lab中文词向量数据使用">腾讯AI Lab中文词向量数据使用 </a></li>
+<li><a href="https://www.biaodianfu.com/automatic-text-summarizer.html" title="自然语言处理之自动摘要">自然语言处理之自动摘要 </a></li>
+</ol>
                 
                   
                 
@@ -1975,7 +2203,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../ml-precision-recall/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../opensource-projects-2020list/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1984,19 +2212,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+                开源项目，涵盖 11 类 AI 学习框架、平台
               </div>
             </div>
           </a>
         
         
-          <a href="../topicextract/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../../affiliate/seo_competitor_analyze/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                用Python从海量文本抽取主题
+                围绕SEO开展竞争对手分析
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
