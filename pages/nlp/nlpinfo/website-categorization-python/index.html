@@ -1642,7 +1642,7 @@
 <p>对于非英语网站，为了成功地对这些网站进行分类，我们遵循的逻辑是：</p>
 <ol>
 <li>使用名为<a href="https://pypi.org/project/cloudscraper/">Cloud Scraper</a>的Python模块来抓取其某些内容标签。我们使用Cloud Scraper模块来尝试避免被Cloud Flare技术禁止。</li>
-<li>由于<a href="https://pypi.org/project/googletrans/">Google Translate</a>仅能处理英文内容，因此请翻译使用<a href="https://pypi.org/project/googletrans/">Google Translate</a>  Python模块抓取的内容。注意：如果您需要翻译许多网站并确保您的工作流程稳定，则最好使用官方的Google Cloud Translation模块。</li>
+<li>由于Google NLP API 仅能处理英文内容，因此请翻译使用<a href="https://pypi.org/project/googletrans/">Google Translate</a>  Python模块抓取的内容。注意：如果您需要翻译许多网站并确保您的工作流程稳定，则最好使用官方的<a href="https://cloud.google.com/translate/docs/reference/libraries/v3/python">Google Cloud Translation</a>模块。</li>
 <li>我们将每个网站的字符数减少到最多1.000个字符，这足以让Google NLP API确定该网站类别。</li>
 <li>我们使用<a href="https://cloud.google.com/natural-language/docs/reference/rpc/google.cloud.language.v1#classificationcategory">Website Categorization Google NLP API </a>模块查找分配的类别及其置信度得分。置信度分数越接近100％，网站分类就越准确。</li>
 <li>最后，我们需要阅读Google网站分类Google NLP API返回的输出。</li>
