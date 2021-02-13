@@ -1823,15 +1823,20 @@
 <p><img src='images/eigenvalue-singular-value-deco_6.png' title="eigenvalue-singular-value-deco_6.png" alt="eigenvalue-singular-value-deco_6.png" />   </p>
 <p>λ为特征向量 v 对应的特征值。特征值分解是将一个矩阵分解为如下形式：</p>
 <p><img src='images/eigenvalue-singular-value-deco_7.png' title="eigenvalue-singular-value-deco_7.png" alt="eigenvalue-singular-value-deco_7.png" /></p>
+<p>若(x<sub>1</sub>,x<sub>2</sub>,...,x<sub>n</sub>)可逆，则左右两边都求逆，则方阵A可直接通过特征值和特征向量进行唯一的表示，令</p>
+<p>Q=(x<sub>1</sub>,x<sub>2</sub>,...,x<sub>n</sub>)</p>
+<p>Σ = diag(λ<sub>1</sub>, λ<sub>2</sub>, ..., λ<sub>n</sub>)</p>
+<p>则  ，该表达式称为方阵的特征值分解。</p>
 <p>其中，Q是这个矩阵A的特征向量组成的矩阵，Σ是一个对角矩阵，每一个对角线元素就是一个特征值，里面的特征值是由大到小排列的，这些特征值所对应的特征向量就是描述这个矩阵变化方向（从主要的变化到次要的变化排列）。也就是说矩阵A的信息可以由其特征值和特征向量表示。</p>
+<p>一个变换方阵的所有特征向量组成了这个变换矩阵的一组基。所谓基，可以理解为坐标系的轴。我们平常用到的大多是直角坐标系，在线性代数中可以把这个坐标系扭曲、拉伸、旋转，称为基变换。我们可以按需求去设定基，但是基的轴之间必须是线性无关的，也就是保证坐标系的不同轴不要指向同一个方向或可以被别的轴组合而成，否则的话原来的空间就“撑”不起来了。从线性空间的角度看，在一个定义了内积的线性空间里，<strong>对一个N阶对称方阵进行特征分解，就是产生了该空间的N个标准正交基，然后把矩阵投影到这N个基上。N个特征向量就是N个标准正交基，而特征值的模则代表矩阵在每个基上的投影长度。特征值越大，说明矩阵在对应的特征向量上的方差越大，功率越大，信息量越多</strong>。</p>
 <p>对于矩阵为高维的情况下，那么这个矩阵就是高维空间下的一个线性变换。可以想象，这个变换也同样有很多的变换方向，我们通过特征值分解得到的前N个特征向量，那么就对应了这个矩阵最主要的N个变化方向。我们利用这前N个变化方向，就可以近似这个矩阵（变换）。</p>
+<p>在机器学习特征提取中，意思就是最大特征值对应的特征向量方向上包含最多的信息量，如果某几个特征值很小，说明这几个方向信息量很小，可以用来降维，也就是删除小特征值对应方向的数据，只保留大特征值方向对应的数据，这样做以后数据量减小，但有用信息量变化不大，PCA降维就是基于这种思路。</p>
 <p>总结一下，特征值分解可以得到特征值与特征向量，特征值表示的是这个特征到底有多重要，而特征向量表示这个特征是什么。不过，特征值分解也有很多的局限，比如说变换的矩阵必须是方阵。</p>
 <p>二、奇异值分解</p>
 <p>1. 奇异值</p>
 <p>特征值分解是一个提取矩阵特征很不错的方法，但是它只是对方阵而言的，在现实的世界中，我们看到的大部分矩阵都不是方阵，比如说有N个学生，每个学生有M科成绩，这样形成的一个N * M的矩阵就不可能是方阵，我们怎样才能描述这样普通的矩阵呢的重要特征呢？奇异值分解可以用来干这个事情，奇异值分解是一个能适用于任意的矩阵的一种分解的方法： </p>
-<p>特征值分解是一个提取矩阵特征很不错的方法，但是它只是对方阵而言的，在现实的世界中，我们看到的大部分矩阵都不是方阵，比如说有N个学生，每个学生有M科成绩，这样形成的一个N * M的矩阵就不可能是方阵，我们怎样才能描述这样普通的矩阵呢的重要特征呢？奇异值分解可以用来干这个事情，奇异值分解是一个能适用于任意的矩阵的一种分解的方法：</p>
 <p>分解形式：<img src='images/eigenvalue-singular-value-deco_8.png' title="eigenvalue-singular-value-deco_8.png" alt="eigenvalue-singular-value-deco_8.png" />  </p>
-<p>假设A是一个M * N的矩阵，那么得到的U是一个M * M的方阵（称为左奇异向量），Σ是一个M * N的矩阵（除了对角线的元素都是0，对角线上的元素称为奇异值），VT(V的转置)是一个N * N的矩阵（称为右奇异向量）。</p>
+<p>假设A是一个M * N的矩阵，那么得到的U是一个M * M的方阵（称为左奇异向量），Σ是一个M * N的对角矩阵（除了对角线的元素都是0，对角线上的元素称为奇异值），VT(V的转置)是一个N * N的矩阵（称为右奇异向量）。</p>
 <p>2. 奇异值与特征值</p>
 <p>那么奇异值和特征值是怎么对应起来的呢？我们将一个矩阵A的转置乘以 A，并对(AA T)求特征值，则有下面的形式： </p>
 <p><img src='images/eigenvalue-singular-value-deco_9.png' title="eigenvalue-singular-value-deco_9.png" alt="eigenvalue-singular-value-deco_9.png" />  </p>
@@ -1841,6 +1846,102 @@
 <p>奇异值σ跟特征值类似，在矩阵Σ中也是从大到小排列，而且σ的减少特别的快，在很多情况下，前10%甚至1%的奇异值的和就占了全部的奇异值之和的99%以上了。也就是说，我们也可以用前r（ r远小于m、n ）个的奇异值来近似描述矩阵，即部分奇异值分解：  </p>
 <p><img src='images/eigenvalue-singular-value-deco_11.png' title="eigenvalue-singular-value-deco_11.png" alt="eigenvalue-singular-value-deco_11.png" /></p>
 <p>右边的三个矩阵相乘的结果将会是一个接近于A的矩阵，在这儿，r越接近于n，则相乘的结果越接近于A。</p>
+<p>SVD分解相对于特征值分解的优势就是：</p>
+<ul>
+<li>分解的矩阵可以是任意矩阵</li>
+<li>在恢复信号的时候左右奇异值可以选择不同的维度</li>
+</ul>
+<p>另外值得注意的一点：不论是奇异值分解还是特征值分解，分解出来的特征向量都是正交的。</p>
+<p>3. SVD分解的数学推演</p>
+<p>A = UΣV<sup>T</sup> 可以推导出</p>
+<p>AA<sup>T</sup> = (UΣV<sup>T</sup>)(VΣU<sup>T</sup>) = U(ΣΣ<sup>T</sup>)U<sup>T</sup></p>
+<p>U<sup>T</sup>AA<sup>T</sup>U = ΣΣ<sup>T</sup></p>
+<p>ΣΣ<sup>T</sup> 依然是对角矩阵，U,V是正交矩阵</p>
+<p>所以 ΣΣ<sup>T</sup> 是AA<sup>T</sup>的相似对角矩阵，Σ对角元是AA<sup>T</sup>的特征值的平方根，称为矩阵A的奇异值</p>
+<p>类似 V 由 A<sup>T</sup>A的特征向量构成，称为A的右奇异向量</p>
+<p>4. 示范SVD分解用于图片数据压缩</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># 下面的范例示范SVD分解用于图片数据压缩。</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span> 
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;svg&#39;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="k">def</span> <span class="nf">compressBySVD</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">r</span><span class="p">):</span>
+    <span class="n">u</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">ur</span> <span class="o">=</span> <span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">r</span><span class="p">]</span>
+    <span class="n">sr</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">r</span><span class="p">]</span>
+    <span class="n">vtr</span> <span class="o">=</span> <span class="n">vt</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">r</span><span class="p">,:]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ur</span><span class="p">,</span><span class="n">sr</span><span class="p">,</span><span class="n">vtr</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rebuildFromSVD</span><span class="p">(</span><span class="n">ur</span><span class="p">,</span><span class="n">sr</span><span class="p">,</span><span class="n">vtr</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">ur</span><span class="nd">@np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span><span class="nd">@vtr</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">()</span><span class="o">/</span><span class="mf">255.0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span><span class="n">start</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">ur</span><span class="p">,</span><span class="n">sr</span><span class="p">,</span><span class="n">vtr</span> <span class="o">=</span> <span class="n">compressBySVD</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">compress_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">ur</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="o">+</span> 
+                      <span class="n">np</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">vtr</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">img_rebuild</span> <span class="o">=</span> <span class="n">rebuildFromSVD</span><span class="p">(</span><span class="n">ur</span><span class="p">,</span><span class="n">sr</span><span class="p">,</span><span class="n">vtr</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_rebuild</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;r=</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">r</span><span class="o">+</span><span class="s2">&quot;, compress_ratio=</span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">compress_ratio</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span> 
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;r = 512, original image&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span> 
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+<p><img src='images/eigenvalue-singular-value-deco_29.png' title="eigenvalue-singular-value-deco_29.png" alt="eigenvalue-singular-value-deco_29.png" /></p>
 <p>三、PCA主成份分析</p>
 <p>主成分分析(PrincipalComponents Analysis。即PCA，也称为K-L变换)，是图像压缩中的一种最优正交变换。PCA用于统计特征提取构成了子空间法模式识别的基础。它从图像整体代数特征出发，基于图像的总体信息进行分类识别。PCA的核心思想是利用较少数量的特征对样本进行描述以达到降低特征空间维数的目的。</p>
 <p>1. PCA理论</p>

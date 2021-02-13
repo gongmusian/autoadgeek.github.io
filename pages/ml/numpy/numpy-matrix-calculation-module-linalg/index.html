@@ -2049,22 +2049,51 @@
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">c1</span><span class="p">,</span><span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>  <span class="c1">#传入两个变量</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
-<span class="c1">#[2. 1. ]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
-<span class="c1">#[[0.89442719 0.70710678]</span>
-<span class="c1">#[0.4472136 0.70710678]]</span>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="c1">#使用 dot 函数验证求得的解是否正确‘</span>
+<span class="c1"># 求特征变量和特征值</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="s1">&#39;3 -2;1 0&#39;</span><span class="p">)</span>
+
+<span class="c1">#调用eigvals函数求解特征值</span>
+<span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;特征值&#39;</span><span class="p">,</span><span class="n">c0</span><span class="p">)</span>
+
+<span class="n">c1</span><span class="p">,</span><span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>  <span class="c1">#传入两个变量, 返回第一列是特征值，第2列是特征向量</span>
+<span class="c1"># 特征值 [2. 1.]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;特征值&#39;</span><span class="p">,</span><span class="n">c1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;特征向量:按列</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">c2</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c1</span><span class="p">)):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;left:&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">c2</span><span class="p">[:,</span><span class="n">i</span><span class="p">]))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;right:&#39;</span><span class="p">,</span><span class="n">c1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">c2</span><span class="p">[:</span><span class="n">i</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A*x&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">c2</span><span class="p">[:,</span><span class="n">i</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;= lamda*x&#39;</span><span class="p">,</span><span class="n">c1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">c2</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+
+<span class="c1"># 验算</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C:&quot;</span><span class="p">,</span> <span class="n">c2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">c2</span><span class="p">))</span>
 </code></pre></div>
 </td></tr></table>
 <h3 id="奇异值分解">奇异值分解<a class="headerlink" href="#奇异值分解" title="Permanent link">&para;</a></h3>
 <p>SVD（Singular Value Decomposition，奇异值分解）是一种因子分解运算，将一个矩阵分解为3个矩阵的乘积</p>
 <p>numpy.linalg模块中的svd函数可以对矩阵进行奇异值分解。该函数返回3个矩阵——U、Singma和V，其中U和V是正交矩阵，Sigma包含输入矩阵的奇异值</p>
+<p>函数：np.linalg.svd(a,full_matrices=1,compute_uv=1)。</p>
+<p>参数：</p>
+<ul>
+<li>a是一个形如(M,N)矩阵</li>
+<li>full_matrices的取值是为0或者1，默认值为1，这时u的大小为(M,M)，v的大小为(N,N) 。否则u的大小为(M,K)，v的大小为(K,N) ，K=min(M,N)。</li>
+<li>compute_uv的取值是为0或者1，默认值为1，表示计算u,s,v。为0的时候只计算s。</li>
+</ul>
+<p>返回值：</p>
+<p>总共有三个返回值u,s,v u大小为(M,M)，s大小为(M,N)，v大小为(N,N)。</p>
+<p>A = u * s * v</p>
+<p>其中s是对矩阵a的奇异值分解。s除了对角元素不为0，其他元素都为0，并且对角元素从大到小排列。s中有n个奇异值，一般排在后面的比较接近0，所以仅保留比较大的r个奇异值。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -2092,7 +2121,7 @@
 <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="s1">&#39;4 11 14;8 7 -2&#39;</span><span class="p">)</span>
 
 <span class="c1">#使用svd函数分解矩阵</span>
-<span class="n">U</span><span class="p">,</span><span class="n">Sigma</span><span class="p">,</span><span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span><span class="n">Sigma</span><span class="p">,</span><span class="n">VT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;U:&quot;</span><span class="p">,</span><span class="n">U</span><span class="p">)</span>
 <span class="c1">#U:[[-0.9486833 -0.31622777]</span>
 <span class="c1">#[-0.31622777 0.9486833 ]]</span>
@@ -2100,12 +2129,12 @@
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sigma:&quot;</span><span class="p">,</span><span class="n">Sigma</span><span class="p">)</span>
 <span class="c1">#Sigma: [ 18.97366596 9.48683298]</span>
 
-<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;V&quot;</span><span class="p">,</span><span class="n">V</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;VT&quot;</span><span class="p">,</span><span class="n">VT</span><span class="p">)</span>
 <span class="c1">#V [[-0.33333333 -0.66666667 -0.66666667]</span>
 <span class="c1"># [ 0.66666667 0.33333333 -0.66666667]]</span>
 
 <span class="c1">#使用diag函数生成完整的奇异值矩阵。将分解出的3个矩阵相乘</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">U</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span> <span class="o">*</span> <span class="n">V</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">U</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span> <span class="o">*</span> <span class="n">VT</span><span class="p">)</span>
 <span class="c1">#[[ 4. 11. 14.]</span>
 <span class="c1"># [ 8. 7. -2.]]</span>
 </code></pre></div>
