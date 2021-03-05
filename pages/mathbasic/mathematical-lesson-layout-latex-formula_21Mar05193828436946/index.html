@@ -1,0 +1,2120 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="本期的主要内容是数学公式的排版，包含以下内容： 行内公式与行间公式数学结构的输入数学符号的输入多行公式排版数学公式的排版是 LaTeX …">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/">
+
+
+<link rel="shortcut icon" href="../../../assets/images/favicon.png">
+
+    
+      
+        <title>LaTeX 数学公式排版 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#LaTeX-数学公式排版" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              LaTeX 数学公式排版
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../python/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ml/matrix/" class="md-tabs__link">
+          机器学习
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link md-tabs__link--active">
+          数学基础
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../nlp/nlp/" class="md-tabs__link">
+          自然语言处理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+          网站SEO优化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-feedparser/" class="md-nav__link">
+      Python feedparser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+      python Uipath Orchestrator Cloud API 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      Python 使用 Google NLP API进行网站分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+      用python算微积分及牛顿迭代求解高阶方程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/py-setuptools/" class="md-nav__link">
+      Python打包分发工具setuptools
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      机器学习
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="机器学习" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        机器学习
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/matrix/" class="md-nav__link">
+      机器学习与矩阵,numpy,sklearn等工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+      Python – 如何使用 t-SNE 進行降維
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+      特征值分解、奇异值分解、PCA概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+      Numpy中矩阵计算模块linalg的常用函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+      深度学习的激活函数
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      数学基础
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="数学基础" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        数学基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+      指数分布公式的含义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      LaTeX 数学公式排版
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+      常见概率统计分布及Python实现
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      自然语言处理
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="自然语言处理" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        自然语言处理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+      NLP 新手上路
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+      NLP HanNLP 词典分词
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+      评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+      nlp常用工具集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+      NLP pattern库 hands on
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+      基于预训练模型的文本摘要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+      Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+      开源项目，涵盖 11 类 AI 学习框架、平台
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+      自然语言处理工具包之NLTK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+      基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+      bert-extractive-summarizer 中文文章的抽取式摘要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+      理解NLP中的CNN卷积神经网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+      依存分析与依存树 dependency parse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+      关键词与文章相关性, 关键词自动标注与提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      Python 使用 Google NLP API进行网站分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+      使用 AI 自动执行 Web 爬网
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+      通过机器学习对网站进行分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+      TextRank算法简述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+      NLTK TextRank实现英文关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+      使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+      使用余弦相似度算法计算文本相似度
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/semantic-search/" class="md-nav__link">
+      什么是语义搜索？它是如何影响SEO的
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+      如何把网站提交给搜索引擎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/meta-description/" class="md-nav__link">
+      如何编写完美的元描述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+      使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+      动态网站使用 Python 向 Google 自动提交站点地图
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      使用 Python 进行 Facebook 抓取和情绪分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      Instagram 爬虫
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+      使用 Python 查找关键字类别的搜索量上限
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      网站SEO优化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        网站SEO优化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+      长尾词优化入网页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
+      关键词难度：如何确认你在 Google 获得排名的机会
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+      如何让网站排名进入谷歌首页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+      如何搭建一个成功的亚马逊联盟网站
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+      SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+      抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
+      SEO每日流量如何从0到10000
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+      Python与SEO 词库完整指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+      Python百度下拉框关键词采集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/adsense/" class="md-nav__link">
+      hexo个人next主题博客接入谷歌广告
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="LaTeX-数学公式排版">LaTeX 数学公式排版<a class="headerlink" href="#LaTeX-数学公式排版" title="Permanent link">&para;</a></h1>
+<p>本期的主要内容是数学公式的排版，包含以下内容：</p>
+<ul>
+<li>行内公式与行间公式</li>
+<li>数学结构的输入</li>
+<li>数学符号的输入</li>
+<li>多行公式排版</li>
+</ul>
+<p>数学公式的排版是 LaTeX 的看家本领，下面我们就来看看吧！</p>
+<p><strong>行内公式与行间公式</strong></p>
+<p>大家在阅读数学书籍的时候都会看到，有些公式是和正文嵌套在一起的，有的则单独成段。比如下面这个样子：  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193828564127_1.jpeg' width='1366' />两行正文中都嵌套有公式，同时还有一个大型的积分计算和概率密度函数。前者就是 <strong>行内公式(inline equation)</strong> ，后者则是 <strong>行间公式(displayed equation)</strong> 。因为有的数学符号非常大，比如求和、积分等，或者需要表现的内容比较复杂，如上图中的概率密度函数，所以我们经常需要用单独的公式环境来处理大型的数学公式。在数学模式下，符号会使用单独的字体，符号之间的间距也和一般的文字排版不同。因此只要是排版公式，就一定要用数学模式来排版。下面的例子表现了数学模式的不同：  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193828956688_1.jpeg' width='1092' /></p>
+<p>对于行文中出现的行内公式，我们用两个“$”来把公式的内容包起来，这样就会以公式的形式呈现。比如上图中的例子，只需要用 $a+b=b+a$ 就可以得到第二行中数学模式的效果。</p>
+<p>在数学模式中，所有的字母都会被认为是分离的变量，一般会用意大利体来表示，字母间的间距也会相对更大一些。因此如果你想在公式环境中加入文字，要把文字用 \text{公式中的文字} 来表示（需要调用 amsmath 宏包），这样就会正常地排版文字。</p>
+<p>对于最基本的行间公式，可以用 “\[” 和 “\]” 包围起来实现。比如下面这个例子：</p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193829365018_1.png' width='988' />这其实是一个行间公式环境，会生成一个不编号的公式。LaTeX 也提供了 equation 环境来排版带编号的公式，例子如下：  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193829878077_1.png' width='1054' />这样的公式可以加上标签来进行交叉引用，打标签的方法和引用章节相同，引用的时候则需要用 \eqref 命令，例子如下：  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193830300395_1.jpeg' width='1030' />---</p>
+<p><strong>数学结构的输入</strong></p>
+<p>我们知道，数学公式不是简单地把符号水平拼接在一起，而是要经过特别方式进行组合，称之为数学结构。在数学模式下，空格都是不起实际作用的，但它可以让公式代码更好看一些。下面我们介绍一些基本的数学结构。</p>
+<p><strong>上标与下标。</strong> 这是数学模式中最常见的结构。在数学模式下，用“_”表示下标，用“^”表示上标。如果上标或下标的内容多于一个字符，需要用大括号括起来，否则上下标效果将只对第一个字符起作用。例子如下：</p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193830799202_1.png' width='1038' />对于求和符号等大型运算符，它们的上下标通常在符号的正上方和正下方。如果对积分这样的运算符（一般上下标都在右上角和右下角）需要手动把上下标移动到正下方或正上方的话，需要用 \limits 命令。例子如下：  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193831310475_1.png' width='832' /> <strong>分式。</strong> 排版分式使用的命令是 \frac{分子}{分母}。如果分子或者分母只有一个字符，也可以省略大括号。例子如下：  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193831670922_1.png' width='796' /> <strong>根式。</strong> 排版根式的基本命令是 \sqrt 。将被开方的式子作为它的参数就可以了。另外这个命令还可以有一个选项，表示开几次方。我们用下面这个例子来说明其用法。  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193832130391_1.png' width='832' /> <strong>矩阵。</strong> 排版矩阵需要使用矩阵环境。 amsmath 宏包为我们提供了多个排版矩阵的环境，其区别主要是用什么包围矩阵。列举如下：  </p>
+<ul>
+<li>matrix：无</li>
+<li>bmatrix：方括号</li>
+<li>vmatrix：竖线</li>
+<li>pmatrix：圆括号</li>
+<li>Bmatrix：花括号</li>
+<li>Vmatrix：双竖线</li>
+</ul>
+<p>在排版矩阵中的元素时，需要用 &amp; 符号作为对齐的标志，并用 \ 表示换行。举例如下：  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193832225243_1.png' width='838' />---</p>
+<p><strong>数学符号</strong></p>
+<p>首先要跟大家说明的是数学模式中的文字规范。在数学公式中，只有变量才使用意大利体。而数学常数 e、i，微分符号 d，函数名 sin、cos、log、ln 等都需要用罗马正体来表示。另外表示数集的字母 R、C、Q、N 等，需要用空心字体来表示。还有一些特殊的花体，使用场合比较有限，大家可以查阅相关的资料和书籍来了解使用方式。</p>
+<p>一般的拉丁字母大家都可以方便地用键盘输入。而数学中常用的希腊字母就不太好用美式键盘输入了。在 LaTeX 中输入小写希腊字母时，只需要用反斜杠加上字母的读音就可以输入相应的希腊字母了。比如用 \alpha 输入 α，用 \beta 输入 β 等。对应的大写字母只需要将读音的首字母大写即可（LaTeX 中提供的大写希腊字母只有11个，不过已经够用了）。通常我们还会用到希伯来字母 א，可以用 \aleph 来输入。</p>
+<p>对于特殊的符号，我们在这里作一个简单的列举，大家可以自己在电脑上尝试输入一下。</p>
+<ul>
+<li>
+<p>普朗克常数，\hbar  </p>
+</li>
+<li>
+<p>无穷符号，\infty  </p>
+</li>
+<li>
+<p>空集符号，\emptyset（也可以调用 amssymb 宏包后使用 \varnothing）  </p>
+</li>
+<li>
+<p>偏微分符号，\partial  </p>
+</li>
+<li>
+<p>积分符号，\int，\iint，\iiint，\iiiint，分别对应一重、二重、三重、四重积分；更多重积分可以用 \idotsint  </p>
+</li>
+<li>
+<p>环路积分符号，\oint  </p>
+</li>
+<li>
+<p>求和符号，\sum  </p>
+</li>
+<li>
+<p>求积符号，\prod  </p>
+</li>
+<li>
+<p>交集符号，\cap；并集符号，\cup  </p>
+</li>
+<li>
+<p>乘号，\times；除号，\div  </p>
+</li>
+<li>
+<p>不等号，\neq；小于等于，\leq；大于等于，\geq；  </p>
+</li>
+<li>
+<p>属于，\in；  </p>
+</li>
+</ul>
+<p>另外还有很多函数名，应该用罗马正体书写的，都可以用反斜杠加函数名来实现。比如 \sin，\cos，\log，\ln。还有一些算子也需要这样实现，如 \lim，\max、\min、\gcd 等。  </p>
+<p>数学符号实在是太多了，变化也十分多样，以上只是一些非常基本的符号，篇幅所限没有办法囊括更多。大家可以去看《LaTeX 入门》的第四章了解更多数学符号的输入方式。对于一般的使用而言，上面的这些应该已经足够了。</p>
+<p>---</p>
+<p><strong>多行公式排版</strong></p>
+<p>大家如果自己尝试了 equation 环境就会发现，在这个环境中是没有办法换行的。那么我们遇到特别长的公式或者方程组之类的公式，equation 环境就无能为力了。这个时候我们就需要运用多行公式的排版技巧。</p>
+<p>如果是简单的多个公式的堆积，我们可以用 gather 和 align 环境。gather 环境中，所有的公式都是居中的；而 align 环境可以用 &amp; 符号指定位置对齐（比如按等号对齐）。两个环境都默认编号，例子如下：</p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193832759721_1.jpeg' width='806' />如果我们是要把一个公式拆分成多行来书写，并给出一个单独的编号，那么上面的两个环境就不那么适用了。在这里为大家介绍 split 环境。split 环境需要嵌套在 equation 环境中使用，也支持像 align 环境中那样的对齐方式（但不能多列对齐），举例如下：  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193833257598_1.png' width='804' />还有一种情况，是我们想把多个公式组合成一个大的公式，这时候我们就要用到另外的一些技巧了。最典型的例子就是本文开始的地方展示的概率密度函数了。我们在这里需要用到 cases 环境。我们来看看刚才那个函数的代码。  </p>
+<p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193833677478_1.jpeg' title="mathematical-lesson-layout-latex-formula_21Mar05193833677478_1.jpeg" alt="mathematical-lesson-layout-latex-formula_21Mar05193833677478_1.jpeg" width='806' /></p>
+<p>cases 环境有一个重大的缺陷，就是在每个 case 中，公式都会被变成行内公式。所以在这里我们用 \dfrac 命令来强制让分式变成行间公式。如果我们想简单地解决这个问题，就需要使用 mathtools 宏包定义的 dcases 环境，用法和 cases 完全相同，但是可以以行间公式的形式来排版每个 case。</p>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者: 蒋雨蒙<br />
+来源： <a href="https://zhuanlan.zhihu.com/p/24502400">https://zhuanlan.zhihu.com/p/24502400</a> </p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                指数分布公式的含义
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../statistical-python-probability-distribut_21Mar05202631292241/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                常见概率统计分布及Python实现
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

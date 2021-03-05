@@ -1,0 +1,2103 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="1 泊松分布指数分布和泊松分布息息相关，所以先简单回忆下之前介绍过的泊松分布。公司楼下有家馒头店，每…">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/">
+
+
+<link rel="shortcut icon" href="../../../assets/images/favicon.png">
+
+    
+      
+        <title>指数分布公式的含义是什么？ - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#指数分布公式的含义是什么" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              指数分布公式的含义是什么？
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../python/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ml/matrix/" class="md-tabs__link">
+          机器学习
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" class="md-tabs__link md-tabs__link--active">
+          数学基础
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../nlp/nlp/" class="md-tabs__link">
+          自然语言处理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+          网站SEO优化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-feedparser/" class="md-nav__link">
+      Python feedparser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+      python Uipath Orchestrator Cloud API 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      Python 使用 Google NLP API进行网站分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+      用python算微积分及牛顿迭代求解高阶方程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/py-setuptools/" class="md-nav__link">
+      Python打包分发工具setuptools
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      机器学习
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="机器学习" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        机器学习
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/matrix/" class="md-nav__link">
+      机器学习与矩阵,numpy,sklearn等工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+      Python – 如何使用 t-SNE 進行降維
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+      特征值分解、奇异值分解、PCA概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+      Numpy中矩阵计算模块linalg的常用函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+      深度学习的激活函数
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      数学基础
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="数学基础" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        数学基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      指数分布公式的含义
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+      LaTeX 数学公式排版
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+      常见概率统计分布及Python实现
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      自然语言处理
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="自然语言处理" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        自然语言处理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+      NLP 新手上路
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+      NLP HanNLP 词典分词
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+      评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+      nlp常用工具集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+      NLP pattern库 hands on
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+      基于预训练模型的文本摘要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+      Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+      开源项目，涵盖 11 类 AI 学习框架、平台
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+      自然语言处理工具包之NLTK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+      基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+      bert-extractive-summarizer 中文文章的抽取式摘要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+      理解NLP中的CNN卷积神经网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+      依存分析与依存树 dependency parse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+      关键词与文章相关性, 关键词自动标注与提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      Python 使用 Google NLP API进行网站分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+      使用 AI 自动执行 Web 爬网
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+      通过机器学习对网站进行分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+      TextRank算法简述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+      NLTK TextRank实现英文关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+      使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+      使用余弦相似度算法计算文本相似度
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/semantic-search/" class="md-nav__link">
+      什么是语义搜索？它是如何影响SEO的
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+      如何把网站提交给搜索引擎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/meta-description/" class="md-nav__link">
+      如何编写完美的元描述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+      使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+      动态网站使用 Python 向 Google 自动提交站点地图
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      使用 Python 进行 Facebook 抓取和情绪分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      Instagram 爬虫
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+      使用 Python 查找关键字类别的搜索量上限
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      网站SEO优化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        网站SEO优化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+      长尾词优化入网页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
+      关键词难度：如何确认你在 Google 获得排名的机会
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+      如何让网站排名进入谷歌首页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+      如何搭建一个成功的亚马逊联盟网站
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+      SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+      抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
+      SEO每日流量如何从0到10000
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+      Python与SEO 词库完整指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+      Python百度下拉框关键词采集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/adsense/" class="md-nav__link">
+      hexo个人next主题博客接入谷歌广告
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="指数分布公式的含义是什么">指数分布公式的含义是什么？<a class="headerlink" href="#指数分布公式的含义是什么" title="Permanent link">&para;</a></h1>
+<p><strong>1 泊松分布</strong></p>
+<p>指数分布和泊松分布息息相关，所以先简单回忆下之前介绍过的泊松分布。公司楼下有家馒头店，每天早上六点到十点营业。老板统计了一周每日卖出的馒头（为了方便计算和讲解，缩小了数据），想从中找到一些规律：</p>
+<p><img src='images/mean-formula-exponential-distribution01.jpg' alt=' \begin{array}{c|c}     \qquad\qquad&\qquad销售\qquad\\     \hline\color{SkyBlue}{周一}& 3 \\     \hline \color{blue}{周二}& 7 \\     \hline \color{orange}{周三}&4\\     \hline \color{Goldenrod}{周四}&6\\     \hline \color{green}{周五}&5\\ \end{array} \\' /></p>
+<p>从中可以得到最简单的规律，均值：</p>
+<p><img src='images/mean-formula-exponential-distribution02.jpg' alt='\overline{X}=\frac{3+7+4+6+5}{5}=5 \\' /></p>
+<p>这个规律显然不够好，如果把营业时间抽象为一根线段，把这段时间用<code>T</code>来表示：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_21Mar04200959246725_1.jpeg' width='628' /></p>
+<p>然后把卖出的馒头数画在这根线段上（节约篇幅，只画出周一周二作为示意），可以看到每天卖出的馒头起伏还是很大的：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_21Mar04200959655874_1.jpeg' width='655' />
+<img src='images/mean-formula-exponential-distribution_21_21Mar04201000075806_1.jpeg' width='650' /></p>
+<p>经过老板一系列的骚操作（更具体的推导请看<a href="https://link.zhihu.com/?target=https%3A//www.matongxue.com/madocs/858/">如何理解泊松分布</a>），最后得到每日卖出的馒头数<code>X</code>服从泊松分布：</p>
+<p><img src='images/mean-formula-exponential-distribution03.jpg' alt='X\sim P(\lambda),\quad \lambda=\overline{X}\\' /></p>
+<p>泊松分布的具体表达式为：</p>
+<p><img src='images/mean-formula-exponential-distribution04.jpg' alt='P(X=k)=\frac{\lambda^k}{k!}e^{-\lambda}\\' /></p>
+<p>据此可以画出每日卖出馒头数的概率分布，这个规律就比均值要精细很多了：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_21Mar04201002114362_1.jpeg' width='406' /><img src='' width='406' /></p>
+<p><strong>2 馒头卖出之间的时间间隔</strong></p>
+<p>下面来讨论另外一个问题，馒头卖出之间的时间间隔：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_21Mar04201002532327_1.jpeg' width='617' /><img src='' width='617' /></p>
+<p>可以看出也是随机变量（也就是图中的T<sub>1</sub>,T<sub>2</sub>,T<sub>3</sub>），不过相对馒头卖出个数而言，时间间隔肯定是连续的随机变量。</p>
+<p>如果知道这个时间间隔，老板也好调整自己的服务员人数（时间间隔短，那么需要的服务人员就多，反之需要的就少），优化成本结构。那么问题来了，这个时间间隔服从什么分布？</p>
+<p><strong>3 一天的间隔</strong></p>
+<p>既然都是卖馒头的问题，那么还是让我们从已知的泊松分布上想想办法。之前得到的泊松分布让我们知道了每天卖出的馒头数，所以下面按天来分析看看。</p>
+<p>假如某一天没有卖出馒头，比如说周三吧，这意味着，周二最后卖出的馒头，和周四最早卖出的馒头中间至少间隔了一天：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_21Mar04201003453812_1.jpeg' width='630' /></p>
+<p>当然也可能运气不好，周二也没有卖出馒头。那么卖出两个馒头的时间间隔就隔了两天，但无论如何时间间隔都是大于一天的：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_21Mar04201003864017_1.jpeg' width='656' /></p>
+<p>而某一天没有卖出馒头的概率可以由泊松分布得出：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_05.jpg' alt='P(X=0)=\frac{\lambda^0}{0!}e^{-\lambda}=e^{-\lambda}\\' /></p>
+<p>根据上面的分析，卖出两个馒头之间的时间间隔要大于一天，那么必然要包含没有卖出馒头的这天，所以两者的概率是相等的。如果假设随机变量为：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_06.jpg' alt='Y=卖出两个馒头之间的时间间隔\\' /></p>
+<p>那么就有：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_07.jpg' alt='P(Y > 1)=P(X=0)=e^{-\lambda}\' /&gt;</p>
+<p><strong>4 泊松过程</strong></p>
+<p>之前求出的泊松分布实在限制太大，只告诉了我们每天卖出的馒头数。不过没有关系，稍微扩展下可以得到新的函数：</p>
+<p><img src='images/mean-formula-exponential-distribution_08.jpg' alt='P(X=k,t)=\frac{\left(\lambda t\right)^k}{k!}e^{-\lambda t}\\' /></p>
+<p>通过新的这个函数就可知不同的时间段内卖出的馒头数的分布了（<code>t=1</code> 时就是泊松分布）：</p>
+<p><img src='images/mean-formula-exponential-distribution_09.jpg' alt=' \begin{array}{c|c}     \hline     \quad \quad &\quad t\quad&\quad PDF\quad\\     \hline     \\     每天卖出的馒头数 & 1 & P(X=k,1)=\frac{\lambda^k}{k!}e^{-\lambda}\\     半天卖出的馒头数 & \frac{1}{2} & P(X=k,\frac{1}{2})=\frac{\left(\frac{1}{2}\lambda\right)^k}{k!}e^{-\frac{1}{2}\lambda}\\     三小时卖出的馒头数 & \frac{1}{8} & P(X=k,\frac{1}{8})=\frac{\left(\frac{1}{8}\lambda\right)^k}{k!}e^{-\frac{1}{8}\lambda}\\     \\     \hline \end{array}\\' /></p>
+<p>扩展后得到的函数称为 <code>泊松过程</code> ，这里涉及到比较复杂的知识，就不做推导了，感兴趣的同学可以自行根据关键字扩展学习。</p>
+<p><strong>5 指数分布</strong></p>
+<p>两次卖出馒头之间的时间间隔大于 t 的概率，根据之前的分析，等同于 t 时间内没有卖出一个馒头的概率，而后者的概率可以由泊松过程给出。至此所需的条件都齐备了，那么开始解题吧，假设随机变量：</p>
+<p><img src='images/mean-formula-exponential-distribution_10.jpg' /></p>
+<p>这个随机变量的概率可以如下计算：</p>
+<p><img src='images/mean-formula-exponential-distribution_11.jpg' alt='P(Y > t)=P(X=0, t)=\frac{\left(\lambda t\right)<sup -_lambda="-\lambda" t="t">0}{0!}e</sup>=e^{-\lambda t},\quad t \ge 0\' /&gt;</p>
+<p>进而有：</p>
+<p><img src='images/mean-formula-exponential-distribution_12.jpg' alt='P(Y \le t)=1-P(Y > t)=1-e^{-\lambda t}\' /&gt;</p>
+<p>这其实已经得到了 Y 的累积分布函数了：</p>
+<p><img src='images/mean-formula-exponential-distribution_13.jpg'/></p>
+<p>对其求导就可以得到概率密度函数：</p>
+<p><img src='images/mean-formula-exponential-distribution_14.jpg'/></p>
+<p>这就是卖出馒头的时间间隔 Y的概率密度函数，也称为<code>指数分布</code>。</p>
+<p><strong>6 指数分布的图像</strong></p>
+<p>指数分布中的 λ 是每日平均卖出的馒头数，如果λ 越大，也就是说每日卖出的馒头越多，那么两个馒头之间的时间间隔必然越短，这点从图像上也可以看出。</p>
+<p>当λ 较小的时候，比如说λ=1吧，也就是说一天只卖出一个馒头，那么馒头卖出间隔时间大于1的可能性就很大（下图是指数分布的概率密度函数的图像，对应的概率是曲线下面积）：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_21Mar04201016756559_1.jpeg' width='465' /></p>
+<p>而如果λ 较大的时候，比如说λ=3 吧，也就是说一天卖出三个馒头，那么馒头卖出间隔时间大于1的可能性已经变得很小了：</p>
+<p><img src='images/mean-formula-exponential-distribution_21_21Mar04201018395740_1.jpeg' width='465' /><img src='' width='465' /></p>
+<p><strong>7 泊松分布与指数分布的期望</strong></p>
+<p>每日卖出馒头的数目X 服从泊松分布，卖出馒头的时间间隔 Y 服从指数分布：</p>
+<p><img src='images/mean-formula-exponential-distribution_15.jpg' alt='X\sim P(\lambda),\quad Y\sim Exp(\lambda)\\' /></p>
+<p>他们的期望分别为：</p>
+<p><img src='images/mean-formula-exponential-distribution_16.jpg' alt='E(X)=\lambda,\quad E(Y)=\frac{1}{\lambda}\\' /></p>
+<p>根据之前的分析就比较好理解了，E(X) 的含义是平均每日卖出的馒头数，而E(Y)是每个馒头之间卖出的平均时间间隔，所以两者是倒数关系：每日卖出的越多自然间隔时间越短，每日卖出的越少自然间隔时间越长。</p>
+<p><strong>8 小结</strong></p>
+<p>还有未尽的一些解释，比如：</p>
+<ul>
+<li>为什么指数分布常常用来描述电器寿命？</li>
+<li>为什么指数分布和几何分布一样具有无记忆性？</li>
+</ul>
+<p>这些都是因为泊松分布、指数分布源于二项分布导致的，这里不再一一解释</p>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者: 马同学<br />
+来源： <a href="https://www.zhihu.com/question/24796044">https://www.zhihu.com/question/24796044</a> </p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                深度学习的激活函数
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                LaTeX 数学公式排版
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
