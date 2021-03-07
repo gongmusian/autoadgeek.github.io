@@ -2319,6 +2319,34 @@ P(x)
 </td></tr></table>
 
 <p>E(X) = 1 * &#8537; + 2 * &#8537; + 3 * &#8537; + 4 * &#8537; + 5 * &#8537; + 6 * &#8537; = 3.5</p>
+<p>numpy 可以通过使用mean（）函数为NumPy中的矢量或矩阵计算算术平均数。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">v</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">result</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>mean函数可以通过分别指定axis参数（0或1）来计算矩阵的行或列的平均值</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">M</span><span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="n">col_mean</span><span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">col_mean</span><span class="p">)</span>
+<span class="n">row_mean</span><span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">row_mean</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
 <ul>
 <li>连续情况：<br />
 如果X是连续的随机变量，存在一个相应的概率密度函数 f(x)，则X的期望值为：<br />
@@ -2333,30 +2361,52 @@ E[X] = ∫x f(x) dx</li>
 <strong>总体方差</strong> 计算公式：<br />
 σ<sup>2</sup>=∑(X-μ)<sup>2</sup> / N <br />
 X为变量，μ为总体均值，N为总体例数。  </p>
+<p>假设已经计算了变量的期望值（E [X]），则可以将随机变量的方差计算为，每个样本与期望值的平方差乘以该值的概率的总和。</p>
+<p><code>Var[X]= sum(p(x1)(x1- E[X])^2, p(x2)(x2- E[X])^2, ..., p(x1)(xn- E[X])^2)</code></p>
+<p>如果分布中每个实例的概率相等，则方差计算可以舍去实例的概率，并将平方差的和乘以分布中实例数的倒数。</p>
+<p><code>Var[X]= sum((x1- E[X])^2, (x2- E[X])^2, ...,(xn- E[X])^2) * 1/n</code></p>
 <p>实际工作中，总体均数难以得到时，应用样本统计量代替总体参数，经校正后， <strong>样本方差</strong> 计算公式：<br />
 S2= ∑(X - A)<sup>2</sup> / （n-1）   <br />
 S2为样本方差，X为变量，A为样本均值，n为样本例数。</p>
 <p>2. 在概率分布中，离散型随机变量方差计算公式：<br />
 D(X) = E{[X-E(X)] ^ 2} = E(X ^ 2) - [ E(X)]^2<br />
-D(X)称为变量X的方差，而 σ = D(X)(&frac12;) 称为 <strong>标准差（或均方差）</strong> 。</p>
+D(X)称为变量X的方差，而 σ = D(X)<sup>½</sup> 称为 <strong>标准差（或均方差）</strong> 。</p>
 <p>方差刻画了随机变量的取值对于其数学期望的离散程度。（标准差、方差越大，离散程度越大）<br />
 若X的取值比较集中，则方差D（X）较小，若X的取值比较分散，则方差D（X）较大。<br />
 因此，D（X）是刻画X取值分散程度的一个量，它是衡量取值分散程度的一个尺度。</p>
 <h3 id="2-示例">2. 示例：<a class="headerlink" href="#2-示例" title="Permanent link">&para;</a></h3>
 <p>如 X 样本为：5、6、9、16，则 X 的方差计算如下为：<br />
 先求 X 的平均数为 （5+6+9+16）/ 4 = 9<br />
-总体方差 = （(5-9)2+(6-9)2+(9-9)2+(16-9)2）/ 4 = 18.5<br />
-样本方差 = （(5-9)2+(6-9)2+(9-9)2+(16-9)2）/ （4-1） = 24.667</p>
+总体方差 = （(5-9)<sup>2</sup>+(6-9)<sup>2</sup>+(9-9)<sup>2</sup>+(16-9)<sup>2</sup>）/ 4 = 18.5<br />
+样本方差 = （(5-9)<sup>2</sup>+(6-9)<sup>2</sup>+(9-9)<sup>2</sup>+(16-9)<sup>2</sup>）/ （4-1） = 24.667</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">v</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">16</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="c1">#ddof ：int, 可选 “自由度增量”：计算中使用的除数为N-ddof，其中N表示元素数。默认情况下，ddof为零</span>
+<span class="c1">#ddof = 0为正态分布变量提供方差的最大似然估计</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;样本方差&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;总体方差&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</code></pre></div>
+</td></tr></table>
+<p>NumPy还提供了一个直接通过<code>std()</code>函数计算标准差的函数。与<code>var()</code>函数一样，ddof参数必须设置为1，以计算无偏样本标准差，并且可通过分别将axis参数设置为0或1来计算列和行的标准差。</p>
 <h2 id="三协方差">三、协方差<a class="headerlink" href="#三协方差" title="Permanent link">&para;</a></h2>
 <h3 id="1-概念_1">1. 概念：<a class="headerlink" href="#1-概念_1" title="Permanent link">&para;</a></h3>
 <p>协方差（Covariance）在概率论和统计学中用于衡量 <strong>两个变量</strong> 的总体误差。而方差是协方差的一种特殊情况，即当两个变量是相同的情况（方差是衡量一个变量之间的离散程度）。</p>
 <p>期望值分别为E(X) = u 与 E(Y) = ν 的两个实随机变量 X 与 Y 之间的协方差定义为：<br />
 COV(X，Y) = E[(X-E(X))(Y-E(Y))] = E(XY) - 2E(X)E(Y) + E(X)(Y) = E(XY) - uv</p>
+<p>假设X和Y的期望值已经计算出来，协方差可以计算为x值与它的期望值的差值乘以y值与它的期望值的差值乘以实例总数的倒数
+Cov(X,Y)=∑(X<sup>i</sup>−E(X))(Y<sup>i</sup>−E(Y)) / N</p>
 <p>也可以用平均值来计算协方差：<br />
-Cov(X,Y)=1/（N−1）∑(Xi−Xi_)(Yi−Yi_) <br />
-Xi_,Yi_为平均值。这里，之所以除以 N-1 而不是 N 的原因是对总体样本期望的无偏估计。<br />
+Cov(X,Y)=1/（N−1）∑(X<sup>i</sup>−E(X))(Y<sup>i</sup>−E(Y)) <br />
+这里，之所以除以 N-1 而不是 N 的原因是对总体样本期望的无偏估计。<br />
 <img src='images/correlation-co-variances-variance-coeffi_21Mar07115147216861_1.png' alt='在这里插入图片描述' /><br />
-直观上来看，协方差表示的是两个变量总体误差的方差，这与只表示一个变量误差的方差不同。如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值，另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值。 如果两个变量的变化趋势相反，即其中一个大于自身的期望值，另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。<br />
+协方差的符号可以解释为：协方差表示的是两个变量总体误差的方差, 两个变量是一起增加（正数）还是一起减少（负数）。如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值，另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值。 如果两个变量的变化趋势相反，即其中一个大于自身的期望值，另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。<br />
 如果X与Y是统计独立的，那么二者之间的协方差就是0，反之则不成立</p>
 <h3 id="2-示例_1">2. 示例：<a class="headerlink" href="#2-示例_1" title="Permanent link">&para;</a></h3>
 <p>X,Y的变量取值如下：  </p>
@@ -2423,10 +2473,26 @@ Y的均值为Yi_：(4+3+9) / 3 = 16/3</li>
 X方差 Var(X,X) = ( (1-4) * (1-4) + (5-4) * (5-4) + (6-4) * (6-4) ) / (3-1) = 7<br />
 可以看出协方差与方差的区别和联系。</li>
 </ol>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X=&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Y=&#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1"># 当平方协方差矩阵[0,1]元素返回时，我们只获取两个变量的协方差</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X,Y协方差=&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+</td></tr></table>
 <h2 id="四协方差矩阵">四、协方差矩阵<a class="headerlink" href="#四协方差矩阵" title="Permanent link">&para;</a></h2>
 <h3 id="1-概念_2">1. 概念：<a class="headerlink" href="#1-概念_2" title="Permanent link">&para;</a></h3>
 <p>协方差也只能处理二维问题，那维数多了自然就需要计算多个协方差，比如n维的数据集就需要计算 n! / ((n-2)!<em>2) 个协方差，那自然而然的我们会想到使用矩阵来组织这些数据。<br />
-在统计学与概率论中， </em><em>协方差矩阵</em>* （也称离差矩阵、方差-协方差矩阵）是一个矩阵，其 i, j 位置的元素是第 i 个与第 j 个随机变量之间的协方差。这是从标量随机变量到高维度随机向量的自然推广。</p>
+在统计学与概率论中， </em><em>协方差矩阵</em>* （也称离差矩阵、方差-协方差矩阵）是一个矩阵，其 i, j 位置的元素是第 i 个与第 j 个随机变量之间的协方差。协方差矩阵是描述两个或更多随机变量之间的协方差的方型对称矩阵。协方差矩阵的对角线是每个随机变量的方差。</p>
+<p>协方差矩阵是两个变量的协方差的泛化，并捕捉数据集中所有变量可以一起变化的方式。</p>
 <p>给出协方差矩阵的定义：<br />
 假设 X 是以 n 个随机变数组成的列向量，<br />
 X = [ X<sup>(1)</sup>, X<sup>(2)</sup>, . . . X <sup>(n)</sup>]
@@ -2533,6 +2599,13 @@ K
 协方差 Cov(X,Y) = 1/（N−1）∑(Xi−Xi_)(Yi−Yi_) = ( (1-4) * (4-16/3) + (5-4) * (3-16/3) + (6-4) * (9-16/3) ) / (3-1) = 4.5</p>
 <p>最终的协方差矩阵为：<br />
 <img src='images/correlation-co-variances-variance-coeffi_02.jpg' /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span> <span class="p">,</span><span class="mi">5</span> <span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="p">,[</span><span class="mi">4</span> <span class="p">,</span><span class="mi">3</span> <span class="p">,</span><span class="mi">9</span> <span class="p">],[</span> <span class="mi">4</span> <span class="p">,</span><span class="mi">2</span> <span class="p">,</span><span class="mi">9</span><span class="p">],[</span> <span class="mi">4</span> <span class="p">,</span><span class="mi">7</span> <span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</code></pre></div>
+</td></tr></table>
 <h2 id="五协方差的相关系数">五、协方差的相关系数<a class="headerlink" href="#五协方差的相关系数" title="Permanent link">&para;</a></h2>
 <h3 id="1-概念_3">1. 概念：<a class="headerlink" href="#1-概念_3" title="Permanent link">&para;</a></h3>
 <p>相关关系是一种非确定性的关系，相关系数是研究变量之间线性相关程度的量。<br />
