@@ -8,17 +8,17 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <meta name="description" content="以下关键词过滤的具体规则（应该是中文最全的规则了）：这里可以过滤掉包含黑名单里的关键词，而黑名单可人工维护，比如最近的一些敏感词 优化是精细化的运营，比如有一批页面一直未抓取，则添加一批内链促进其抓取；…">
+  <meta name="description" content="softmax初探在机器学习尤其是深度学习中，softmax是个非常常用而且比较重要的函数，尤其在多分类的场景中使用广泛。他把一些输入映射为0-1之间的实数，并且归一化保证和为1，因此多分类的概率之和也刚好为1。 首先我们简单来看看softmax是什么意思。顾名思义，softmax由两个单词组成，其中一个是max。对于max我们都很熟悉，比如有两个变量ab。如果a>b，则max为">
 
 
-  <link rel="canonical" href="https://geek.digiasset.org/pages/affiliate/use-python-to-get-keywords/">
+  <link rel="canonical" href="https://geek.digiasset.org/pages/mathbasic/explain-_softmax_21Mar10194153839999/">
 
 
 <link rel="shortcut icon" href="../../../assets/images/favicon.png">
 
     
       
-        <title>Python与SEO 词库完整指南 - 广告流程自动化</title>
+        <title>softmax详解 - 广告流程自动化</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#Python与SEO-词库完整指南" class="md-skip">
+        <a href="#softmax详解" class="md-skip">
           跳转至
         </a>
       
@@ -108,7 +108,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Python与SEO 词库完整指南
+              softmax详解
             
           </span>
         </div>
@@ -215,7 +215,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+        <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link md-tabs__link--active">
           数学基础
         </a>
       
@@ -241,7 +241,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../seo_competitor_analyze/" class="md-tabs__link">
+        <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
           广告程序化
         </a>
       
@@ -254,7 +254,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../long-tail-keywords-in-article/" class="md-tabs__link md-tabs__link--active">
+        <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
           网站SEO优化
         </a>
       
@@ -1174,7 +1174,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+    <a href="../function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
       深度学习的激活函数
     </a>
   </li>
@@ -1201,10 +1201,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       数学基础
@@ -1224,7 +1226,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+    <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
       指数分布公式的含义
     </a>
   </li>
@@ -1236,7 +1238,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+    <a href="../mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
       LaTeX 数学公式排版
     </a>
   </li>
@@ -1248,7 +1250,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+    <a href="../statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
       常见概率统计分布及Python实现
     </a>
   </li>
@@ -1260,7 +1262,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+    <a href="../correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
       期望值、方差、协方差、相关系数
     </a>
   </li>
@@ -1270,11 +1272,70 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        softmax详解
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       softmax详解
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#softmax初探" class="md-nav__link">
+    softmax初探
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax的定义" class="md-nav__link">
+    softmax的定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax求导" class="md-nav__link">
+    softmax求导
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax-VS-k个二元分类器" class="md-nav__link">
+    softmax VS k个二元分类器
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1648,7 +1709,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../seo_competitor_analyze/" class="md-nav__link">
+    <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
       围绕SEO开展竞争对手分析
     </a>
   </li>
@@ -1660,7 +1721,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../select-products-from-hottrend/" class="md-nav__link">
+    <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
       Shopify独立站的几套选品方法
     </a>
   </li>
@@ -1672,7 +1733,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../semantic-search/" class="md-nav__link">
+    <a href="../../affiliate/semantic-search/" class="md-nav__link">
       什么是语义搜索？它是如何影响SEO的
     </a>
   </li>
@@ -1684,7 +1745,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../submit-website-to-search-engines/" class="md-nav__link">
+    <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
       如何把网站提交给搜索引擎
     </a>
   </li>
@@ -1696,7 +1757,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../meta-description/" class="md-nav__link">
+    <a href="../../affiliate/meta-description/" class="md-nav__link">
       如何编写完美的元描述
     </a>
   </li>
@@ -1708,7 +1769,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+    <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
       使用 Google Trend、Python 和 Ahrefs 查找关键字商机
     </a>
   </li>
@@ -1720,7 +1781,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+    <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
       动态网站使用 Python 向 Google 自动提交站点地图
     </a>
   </li>
@@ -1732,7 +1793,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+    <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
       使用 Python 进行 Facebook 抓取和情绪分析
     </a>
   </li>
@@ -1744,7 +1805,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+    <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
       Instagram 爬虫
     </a>
   </li>
@@ -1756,7 +1817,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+    <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
       使用 Python 查找关键字类别的搜索量上限
     </a>
   </li>
@@ -1768,7 +1829,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+    <a href="../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
       可视化 100，000 亚马逊产品
     </a>
   </li>
@@ -1783,12 +1844,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
     <label class="md-nav__link" for="nav-8">
       网站SEO优化
@@ -1808,7 +1867,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../long-tail-keywords-in-article/" class="md-nav__link">
+    <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
       长尾词优化入网页
     </a>
   </li>
@@ -1820,7 +1879,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../keyword-difficulty/" class="md-nav__link">
+    <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
       关键词难度：如何确认你在 Google 获得排名的机会
     </a>
   </li>
@@ -1832,7 +1891,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+    <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
       如何让网站排名进入谷歌首页
     </a>
   </li>
@@ -1844,7 +1903,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../amazon-affiliate-marketing/" class="md-nav__link">
+    <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
       如何搭建一个成功的亚马逊联盟网站
     </a>
   </li>
@@ -1856,7 +1915,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../seo-backlink-website-directories/" class="md-nav__link">
+    <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
       SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
     </a>
   </li>
@@ -1868,7 +1927,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+    <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
       抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
     </a>
   </li>
@@ -1880,7 +1939,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../how-to-start-seo/" class="md-nav__link">
+    <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
       SEO每日流量如何从0到10000
     </a>
   </li>
@@ -1890,20 +1949,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
       Python与SEO 词库完整指南
     </a>
-    
   </li>
 
         
@@ -1913,7 +1963,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../use-python-to-get-keywords2/" class="md-nav__link">
+    <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
       Python百度下拉框关键词采集
     </a>
   </li>
@@ -1925,7 +1975,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../adsense/" class="md-nav__link">
+    <a href="../../affiliate/adsense/" class="md-nav__link">
       hexo个人next主题博客接入谷歌广告
     </a>
   </li>
@@ -1965,6 +2015,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#softmax初探" class="md-nav__link">
+    softmax初探
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax的定义" class="md-nav__link">
+    softmax的定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax求导" class="md-nav__link">
+    softmax求导
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax-VS-k个二元分类器" class="md-nav__link">
+    softmax VS k个二元分类器
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1976,78 +2062,46 @@
               
                 
                 
-                <h1 id="Python与SEO-词库完整指南">Python与SEO 词库完整指南<a class="headerlink" href="#Python与SEO-词库完整指南" title="Permanent link">&para;</a></h1>
-<p>之前讲到了 SEO 频道，其中极其重要的一步，就是词库的建立了。</p>
-<p>词库的整理和收集，一方面可以根据关键词获取到精准的、大量的流量，另一方面也可以了解用户的需求，方便第二步的模板设置。</p>
-<p>关键步骤</p>
-<p>SEO 词库一般有以下几个关键步骤：</p>
-<p>第一步 关键词抓取</p>
-<p>关键词抓取一般有以下几个来源：</p>
-<p>抓取的工具也有很多，比如：</p>
-<p>不过需要注意的是，抓取工具一定要支持往下一层抓取（也叫深度抓取），而不能仅限于源页面的抓取。</p>
-<p>第二步 关键词扩展</p>
-<p>抓取一批数据之后不要急着过滤和使用，要先扩展一批。</p>
-<p>这里可以借用搜索引擎的能力和工具进行扩展，有以下几个方式：</p>
-<p>扩展一大堆关键词之后还有非常重要的一步，就是关键词分析，整理关键词组合。</p>
-<p>首先，通过分词和整理，可以拿到关键词的词根，以及对应的搜索量。</p>
-<p>其次，手工把每个词根对应的关键词组合整理出来，并加上搜索量和出现次数</p>
-<p>最后，就是考虑这些关键词怎么应用。如果关键词组合的搜索量特别大，而且主题明确且独特，是建议单独开设一个频道，比如 「城市」+ 天气。而对一些比较零散，无明确规则的关键词，则是需要添加到 SEO 频道，比如 “杭州八景”。</p>
-<p>借用一张 GoGo闯 博文中的一张图：</p>
-<p><img src='images/use-python-to-get-keywords_1.png' title="use-python-to-get-keywords_1.png" alt="use-python-to-get-keywords_1.png" /></p>
-<p>注：GoGo闯 有一篇讲关键词分析的文章，这里推荐一下《【如何搭建SEO词库？】SEO关键词分析》。</p>
-<p>第三步 关键词过滤</p>
-<p>SEO 入库前还需要进行过滤。以下关键词过滤的具体规则（应该是中文最全的规则了）：</p>
-<ul>
-<li>单复数过滤，比如 led light 和 led lights</li>
-<li>前后顺序调整过滤，比如 led light 和 light led</li>
-<li>空格处理，其中包含首尾空格去除、多个合并为一个</li>
-<li>特殊字符处理。除了字母和数字外的其他符号，都是特殊字符</li>
-<li>大小写处理。一般是全部转换为小写</li>
-<li>年份替换，比如 2016 替换为 2018</li>
-<li>去停止词后去重。一定要注意，先去停止词之后再去重，比如 “南京天气” 和 “南京的天气”，这样就可以过滤掉</li>
-<li>黑名单过滤。这里可以过滤掉包含黑名单里的关键词，而黑名单可人工维护，比如最近的一些敏感词</li>
-<li>违禁词过滤，比如政治类敏感词、侵权品牌类关键词</li>
-<li>结果数和相关性档位过滤。根据搜索结果进行过滤，比如相关性档位为 3 的产品少于 20 个，页面就不会创建（或自动添加 noindex）</li>
-<li>纯数字, 字母过滤。对中文站来讲，纯字母的关键词比较偏向垃圾词，对英文站则不然</li>
-<li>语种过滤。中文站需要排除掉其他语向的关键词</li>
-<li>长度过滤。可以过滤掉过长或过短的关键词</li>
-<li>单词数过滤，可以过滤掉一个单词，或者超过3个单词的关键词</li>
-</ul>
-<p>注：上述很多规则来自阿里内部的关键词过滤工具中的功能。</p>
-<p>第四步 补充字段 &amp; 入库</p>
-<p>入库时除了关键词以外，还需要补充相关的字段（对应每个数据库字段）</p>
-<p>一般有以下数据：</p>
-<ul>
-<li>关键词</li>
-<li>行业分类，比如属于 3C 行业</li>
-<li>关键词类型，比如是 price 类</li>
-<li>添加时间</li>
-<li>修改时间</li>
-<li>添加人</li>
-<li>搜索量</li>
-<li>百度 / Google 结果数</li>
-<li>分词结果，比如 “南京|旅游|攻略”</li>
-</ul>
-<p>第五步 清理 &amp; 优化</p>
-<ul>
-<li>清理是为了剔除掉低效的页面，保证频道的效率。比如近一年内没有任何流量的页面。</li>
-<li>优化是精细化的运营，比如有一批页面一直未抓取，则添加一批内链促进其抓取；或者排名在第二页但仍有流量，则需要稍微给一点内链帮助其上升到第一页</li>
-</ul>
-<p>其他高级功能</p>
-<p>随着词库规模的扩大，会遇到更多问题。这些都是考虑和解决的。</p>
-<ul>
-<li>聚类。可以解决页面重复的问题，提高频道效率。</li>
-<li>分类。可以根据不同的关键词类型，使用不同的模板，以更好的满足用户需求。</li>
-<li>倾斜。根据搜索量或者转化率，资源向部分页面倾斜。</li>
-</ul>
-<p>站群的词库</p>
-<p>最后多说一点，我也做过站群的词库。</p>
-<p>在站群项目中，内容、抓取量、链接资源都是极其有限的。这个时候，词库就显得极其重要。</p>
-<p>一个好的词库，比一般词库的效果要好上几十倍。</p>
-<p>而好的词库，甚至不惜人肉整理。几万个关键词人工筛选。</p>
+                <h1 id="softmax详解">softmax详解<a class="headerlink" href="#softmax详解" title="Permanent link">&para;</a></h1>
+<h2 id="softmax初探">softmax初探<a class="headerlink" href="#softmax初探" title="Permanent link">&para;</a></h2>
+<p>在机器学习尤其是深度学习中，softmax是个非常常用而且比较重要的函数，尤其在多分类的场景中使用广泛。他把一些输入映射为0-1之间的实数，并且归一化保证和为1，因此多分类的概率之和也刚好为1。<br />
+首先我们简单来看看softmax是什么意思。顾名思义，softmax由两个单词组成，其中一个是max。对于max我们都很熟悉，比如有两个变量a,b。如果a&gt;b，则max为a，反之为b。用伪码简单描述一下就是 <code>if a &gt; b return a; else b</code>。<br />
+另外一个单词为soft。max存在的一个问题是什么呢？如果将max看成一个分类问题，就是非黑即白，最后的输出是一个确定的变量。更多的时候，我们希望输出的是取到某个分类的概率，或者说，我们希望分值大的那一项被经常取到，而分值较小的那一项也有一定的概率偶尔被取到，所以我们就应用到了soft的概念，即最后的输出是每个分类被取到的概率。</p>
+<h2 id="softmax的定义">softmax的定义<a class="headerlink" href="#softmax的定义" title="Permanent link">&para;</a></h2>
+<p>首先给一个图，这个图比较清晰地告诉大家softmax是怎么计算的。<br />
+<img src='images/explain-_softmax_21Mar10194155497094_1.jpeg' title="explain-_softmax_21Mar10194155497094_1.jpeg" alt='softmax运算逻辑' />  </p>
+<p>假设有一个数组V， v<sub>i</sub>​表示V中的第i个元素，那么这个元素的softmax值为:<br />
+S<sub>i</sub> = exp(v<sub>i</sub>) / ∑<sub>j</sub>exp(v<sub>j</sub>)​<br />
+该元素的softmax值，就是该元素的指数与所有元素指数和的比值。</p>
+<p>这个定义可以说很简单，也很直观。那为什么要定义成这个形式呢？原因主要如下。<br />
+1. softmax设计的初衷，是希望特征对概率的影响是乘性的。<br />
+2. 多类分类问题的目标函数常常选为cross-entropy。即 L = − ∑<sub>k</sub>t<sub>k</sub> ⋅ lnP(y=k)，其中目标类的t<sub>k</sub>，其余类的t<sub>k</sub>为0。<br />
+在神经网络模型中(最简单的logistic regression也可看成没有隐含层的神经网络)，输出层第i个神经元的输入a<sub>i</sub>​=∑<sub>d</sub>​w<sub>id</sub>​x<sub>d</sub>​。<br />
+神经网络是用error back-propagation训练的，这个过程中有一个关键的量是 ∂L/∂α<sub>i</sub>​。</p>
+<h2 id="softmax求导">softmax求导<a class="headerlink" href="#softmax求导" title="Permanent link">&para;</a></h2>
+<p>前面提到，在多分类问题中，我们经常使用交叉熵作为损失函数<br />
+Loss=−∑<sub>i</sub>t<sub>i</sub>lny<sub>i</sub> 
+其中， t<sub>i</sub>​表示真实值， y<sub>i</sub>​表示求出的softmax值。当预测第i个时，可以认为t<sub>i</sub>​=1。此时损失函数变成了:Loss<sub>i</sub>=-lny<sub>i</sub>
+接下来对Loss求导。</p>
+<p>根据定义： y<sub>i</sub> = exp(i)/ ∑<sub>j</sub>exp(j)</p>
+<p>我们已经将数值映射到了0-1之间，并且和为1，则有：<br />
+<img src='images/explain-_softmax_01.jpg' title="explain-_softmax_01.jpg" alt='\frac{e^i}{\sum_j e^j} = 1 - \frac{\sum_{j \neq i} e^j}{\sum_j e^j}' />  </p>
+<p>接下来开始求导</p>
+<p><img src='images/explain-_softmax_02.jpg' title="explain-_softmax_01.jpg" alt='{\begin{aligned} \frac{\partial Loss_i}{\partial _i} & = - \frac{\partial ln y_i}{\partial _i} \\\ & = \frac{\partial (-ln \frac{e^i}{\sum_j e^j}) }{\partial _i} \\\ & = - \frac {1}{ \frac{e^i}{\sum_j e^j}} \cdot \frac{\partial (\frac{e^i}{\sum_j e^j})}{ \partial_i} \\\ & = -\frac{\sum_j e^j}{e^i} \cdot \frac{\partial (1 - \frac{\sum_{j \neq i} e^j}{\sum_j e^j}) } {\partial_i} \\\ & = -\frac{\sum_j e^j}{e^i} \cdot (- \sum _ {j \neq i}e^j ) \cdot \frac{\partial( \frac {1} {\sum_j e^j} ) } { \partial _i} \\\ &= \frac { \sum_j e^j \cdot \sum_{j \neq i} e^j} {e^i } \cdot \frac { - e^i} { (\sum_j e^j) ^ 2} \\\ & = -\frac { \sum_{j \neq i} e^j } { \sum_j e^j } \\\ & = -(1 - \frac{ e ^ i } { \sum_j e^j } ) \\\ & = y_i - 1 \end{aligned}}' /></p>
+<p>上面的结果表示，我们只需要正想求出 y<sub>i</sub>​，将结果减1就是反向更新的梯度，导数的计算是不是非常简单！</p>
+<p>上面的推导过程会稍微麻烦一些，特意整理了一下，结合交叉熵损失函数，整理了一篇新的内容，看起来更直观一些。<br />
+<a href="https://blog.csdn.net/bitcarmanlee/article/details/105619286">交叉熵损失函数(Cross Entropy Error Function)与均方差损失函数(Mean Squared Error)</a></p>
+<h2 id="softmax-VS-k个二元分类器">softmax VS k个二元分类器<a class="headerlink" href="#softmax-VS-k个二元分类器" title="Permanent link">&para;</a></h2>
+<p>如果你在开发一个音乐分类的应用，需要对k种类型的音乐进行识别，那么是选择使用 softmax 分类器呢，还是使用 logistic 回归算法建立 k 个独立的二元分类器呢？<br />
+这一选择取决于你的类别之间是否互斥，例如，如果你有四个类别的音乐，分别为：古典音乐、乡村音乐、摇滚乐和爵士乐，那么你可以假设每个训练样本只会被打上一个标签（即：一首歌只能属于这四种音乐类型的其中一种），此时你应该使用类别数 k = 4 的softmax回归。（如果在你的数据集中，有的歌曲不属于以上四类的其中任何一类，那么你可以添加一个“其他类”，并将类别数 k 设为5。）<br />
+如果你的四个类别如下：人声音乐、舞曲、影视原声、流行歌曲，那么这些类别之间并不是互斥的。例如：一首歌曲可以来源于影视原声，同时也包含人声 。这种情况下，使用4个二分类的 logistic 回归分类器更为合适。这样，对于每个新的音乐作品 ，我们的算法可以分别判断它是否属于各个类别。<br />
+现在我们来看一个计算视觉领域的例子，你的任务是将图像分到三个不同类别中。(i) 假设这三个类别分别是：室内场景、户外城区场景、户外荒野场景。你会使用sofmax回归还是 3个logistic 回归分类器呢？ (ii) 现在假设这三个类别分别是室内场景、黑白图片、包含人物的图片，你又会选择 softmax 回归还是多个 logistic 回归分类器呢？<br />
+在第一个例子中，三个类别是互斥的，因此更适于选择softmax回归分类器 。而在第二个例子中，建立三个独立的 logistic回归分类器更加合适。</p>
+<p>参考文献：<br />
+1.<a href="https://www.zhihu.com/question/40403377">https://www.zhihu.com/question/40403377</a>  </p>
 <p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
-作者:   阿里国际站张亚楠
-来源： <a href="https://www.sohu.com/a/287934039_100143190">https://www.sohu.com/a/287934039_100143190</a> </p>
+作者:  bitcarmanlee  <br />
+来源： <a href="https://blog.csdn.net/bitcarmanlee/article/details/82320853">https://blog.csdn.net/bitcarmanlee/article/details/82320853</a> </p>
                 
                   
                 
@@ -2089,7 +2143,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../how-to-start-seo/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -2098,19 +2152,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                SEO每日流量如何从0到10000
+                期望值、方差、协方差、相关系数
               </div>
             </div>
           </a>
         
         
-          <a href="../use-python-to-get-keywords2/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../nlp/nlp/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                Python百度下拉框关键词采集
+                自然语言处理
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
