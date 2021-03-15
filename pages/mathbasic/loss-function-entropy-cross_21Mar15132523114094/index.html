@@ -1,0 +1,2629 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="Cross Entropy Error Function（交叉熵损失函数）是常用的损失函数。损失函数有很多种：均方误差（MSE）、SVM的合页损失（hinge loss）、交叉熵（cross entropy), 如何深入理解应用？我们先从一个简单的分类例开始">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/mathbasic/loss-function-entropy-cross_21Mar15132523114094/">
+
+
+<link rel="shortcut icon" href="../../../assets/images/favicon.png">
+
+    
+      
+        <title>损失函数 - 交叉熵损失函数 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#损失函数---交叉熵损失函数" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              损失函数 - 交叉熵损失函数
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../python/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ml/matrix/" class="md-tabs__link">
+          机器学习
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link md-tabs__link--active">
+          数学基础
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../nlp/nlp/" class="md-tabs__link">
+          自然语言处理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+          网站SEO优化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-feedparser/" class="md-nav__link">
+      Python feedparser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+      python Uipath Orchestrator Cloud API 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      Python 使用 Google NLP API进行网站分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+      用python算微积分及牛顿迭代求解高阶方程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/py-setuptools/" class="md-nav__link">
+      Python打包分发工具setuptools
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      机器学习
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="机器学习" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        机器学习
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/matrix/" class="md-nav__link">
+      机器学习与矩阵,numpy,sklearn等工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+      Python – 如何使用 t-SNE 進行降維
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+      特征值分解、奇异值分解、PCA概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+      Numpy中矩阵计算模块linalg的常用函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+      深度学习的激活函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+      加快Scikit-Learn训练
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      数学基础
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="数学基础" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        数学基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+      指数分布公式的含义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+      LaTeX 数学公式排版
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+      常见概率统计分布及Python实现
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+      期望值、方差、协方差、相关系数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+      softmax详解
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+      最小二乘法多项式曲线拟合及其python实现
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        损失函数 - 交叉熵损失函数
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      损失函数 - 交叉熵损失函数
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#交叉熵的来源" class="md-nav__link">
+    交叉熵的来源
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#交叉熵作为loss函数的直觉" class="md-nav__link">
+    交叉熵作为loss函数的直觉
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-预测政治倾向" class="md-nav__link">
+    1. 预测政治倾向
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-Classification-Error分类错误率" class="md-nav__link">
+    1.1 Classification Error（分类错误率）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-Mean-Squared-Error-均方误差" class="md-nav__link">
+    1.2 Mean Squared Error (均方误差)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-Cross-Entropy-Error-Function交叉熵损失函数" class="md-nav__link">
+    1.3 Cross Entropy Error Function（交叉熵损失函数）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131-表达式" class="md-nav__link">
+    1.3.1 表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-二分类" class="md-nav__link">
+    (1) 二分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-多分类" class="md-nav__link">
+    (2) 多分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-函数性质" class="md-nav__link">
+    2. 函数性质
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-学习过程" class="md-nav__link">
+    3. 学习过程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-二分类情况" class="md-nav__link">
+    3.1 二分类情况
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#311-计算第一项" class="md-nav__link">
+    3.1.1 计算第一项： 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#312-计算第二项" class="md-nav__link">
+    3.1.2 计算第二项： 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#313-计算第三项" class="md-nav__link">
+    3.1.3 计算第三项： 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#314-计算结果" class="md-nav__link">
+    3.1.4 计算结果 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-多分类情况" class="md-nav__link">
+    3.2 多分类情况
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-优缺点" class="md-nav__link">
+    4. 优缺点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-优点" class="md-nav__link">
+    4.1 优点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-缺点" class="md-nav__link">
+    4.2 缺点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-参考" class="md-nav__link">
+    5. 参考
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      自然语言处理
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="自然语言处理" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        自然语言处理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+      NLP 新手上路
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+      NLP HanNLP 词典分词
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+      评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+      nlp常用工具集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+      NLP pattern库 hands on
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+      基于预训练模型的文本摘要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+      Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+      开源项目，涵盖 11 类 AI 学习框架、平台
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+      自然语言处理工具包之NLTK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+      基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+      bert-extractive-summarizer 中文文章的抽取式摘要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+      理解NLP中的CNN卷积神经网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+      依存分析与依存树 dependency parse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+      关键词与文章相关性, 关键词自动标注与提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      Python 使用 Google NLP API进行网站分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+      使用 AI 自动执行 Web 爬网
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+      通过机器学习对网站进行分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+      TextRank算法简述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+      NLTK TextRank实现英文关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+      使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+      使用余弦相似度算法计算文本相似度
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+      细数2018年最好的词嵌入和句嵌入技术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+      从头开始多标签文本分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+      没有模型训练情况下用BERT做文本分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+      用 NLP 做文本分析和特征工程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/semantic-search/" class="md-nav__link">
+      什么是语义搜索？它是如何影响SEO的
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+      如何把网站提交给搜索引擎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/meta-description/" class="md-nav__link">
+      如何编写完美的元描述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+      使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+      动态网站使用 Python 向 Google 自动提交站点地图
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      使用 Python 进行 Facebook 抓取和情绪分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      Instagram 爬虫
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+      使用 Python 查找关键字类别的搜索量上限
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+      可视化 100，000 亚马逊产品
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      网站SEO优化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        网站SEO优化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+      长尾词优化入网页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
+      关键词难度：如何确认你在 Google 获得排名的机会
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+      如何让网站排名进入谷歌首页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+      如何搭建一个成功的亚马逊联盟网站
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+      SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+      抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
+      SEO每日流量如何从0到10000
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+      Python与SEO 词库完整指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+      Python百度下拉框关键词采集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/adsense/" class="md-nav__link">
+      hexo个人next主题博客接入谷歌广告
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#交叉熵的来源" class="md-nav__link">
+    交叉熵的来源
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#交叉熵作为loss函数的直觉" class="md-nav__link">
+    交叉熵作为loss函数的直觉
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-预测政治倾向" class="md-nav__link">
+    1. 预测政治倾向
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-Classification-Error分类错误率" class="md-nav__link">
+    1.1 Classification Error（分类错误率）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-Mean-Squared-Error-均方误差" class="md-nav__link">
+    1.2 Mean Squared Error (均方误差)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-Cross-Entropy-Error-Function交叉熵损失函数" class="md-nav__link">
+    1.3 Cross Entropy Error Function（交叉熵损失函数）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131-表达式" class="md-nav__link">
+    1.3.1 表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-二分类" class="md-nav__link">
+    (1) 二分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-多分类" class="md-nav__link">
+    (2) 多分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-函数性质" class="md-nav__link">
+    2. 函数性质
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-学习过程" class="md-nav__link">
+    3. 学习过程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-二分类情况" class="md-nav__link">
+    3.1 二分类情况
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#311-计算第一项" class="md-nav__link">
+    3.1.1 计算第一项： 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#312-计算第二项" class="md-nav__link">
+    3.1.2 计算第二项： 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#313-计算第三项" class="md-nav__link">
+    3.1.3 计算第三项： 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#314-计算结果" class="md-nav__link">
+    3.1.4 计算结果 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-多分类情况" class="md-nav__link">
+    3.2 多分类情况
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-优缺点" class="md-nav__link">
+    4. 优缺点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-优点" class="md-nav__link">
+    4.1 优点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-缺点" class="md-nav__link">
+    4.2 缺点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-参考" class="md-nav__link">
+    5. 参考
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="损失函数---交叉熵损失函数">损失函数 - 交叉熵损失函数<a class="headerlink" href="#损失函数---交叉熵损失函数" title="Permanent link">&para;</a></h1>
+<p><img src='images/loss-function-entropy-cross_01.jpeg' width='500' /></p>
+<h2 id="交叉熵的来源">交叉熵的来源<a class="headerlink" href="#交叉熵的来源" title="Permanent link">&para;</a></h2>
+<p><strong>信息量</strong></p>
+<p>一条信息的信息量大小和它的不确定性有很大的关系。一句话如果需要很多外部信息才能确定，我们就称这句话的信息量比较大。比如你听到“云南西双版纳下雪了”，那你需要去看天气预报、问当地人等等查证（因为云南西双版纳从没下过雪）。相反，如果和你说“人一天要吃三顿饭”，那这条信息的信息量就很小，因为条信息的确定性很高。</p>
+<p>那我们就能将事件x<sub>0</sub>的信息量定义如下（其中p(x<sub>0</sub>)表示事件x<sub>0</sub>发生的概率）：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134006943543_1.png' width='265' /> <br />
+<img src='images/understand-simple-really-cross-entropy_2_21Mar15134009305288_1.jpeg' width='338' /> <br />
+概率总是一个0-1之间的值，-log(x)的图像如上</p>
+<p><strong>熵</strong></p>
+<p>信息量是对于单个事件来说的，但是实际情况一件事有很多种发生的可能，比如掷骰子有可能出现6种情况，明天的天气可能晴、多云或者下雨等等。 <strong>熵是表示随机变量不确定的度量，是对所有可能发生的事件产生的信息量的期望</strong> 。公式如下：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134010729660_1.jpeg' width='399' /> <br />
+n表示事件可能发生的情况总数</p>
+<p>其中一种比较特殊的情况就是掷硬币，只有正、反两种情况，该种情况（二项分布或者0-1分布）熵的计算可以简化如下：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134013222165_1.jpeg' width='651' /> <br />
+p(x)代表掷正面的概率，1-p(x)则表示掷反面的概率（反之亦然）</p>
+<p><strong>相对熵</strong></p>
+<p>相对熵又称KL散度，用于衡量对于同一个随机变量x的两个分布p(x)和q(x)之间的差异。在机器学习中，p(x)常用于描述样本的真实分布，例如[1,0,0,0]表示样本属于第一类，而q(x)则常常用于表示预测的分布，例如[0.7,0.1,0.1,0.1]。显然使用q(x)来描述样本不如p(x)准确，q(x)需要不断地学习来拟合准确的分布p(x)。</p>
+<p>KL散度的公式如下：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134014517315_1.jpeg' width='416' /> <br />
+n表示事件可能发生的情况总数</p>
+<p>KL散度的值越小表示两个分布越接近。</p>
+<p><strong>交叉熵</strong></p>
+<p>我们将KL散度的公式进行变形，得到：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134016780252_1.jpeg' width='680' /></p>
+<p>前半部分就是p(x)的熵，后半部分就是我们的交叉熵：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134018306146_1.jpeg' width='403' /></p>
+<p>机器学习中，我们常常使用KL散度来评估predict和label之间的差别，但是由于KL散度的前半部分是一个常量，所以我们常常将后半部分的交叉熵作为损失函数，其实二者是一样的。</p>
+<h2 id="交叉熵作为loss函数的直觉"><strong>交叉熵作为loss函数的直觉</strong><a class="headerlink" href="#交叉熵作为loss函数的直觉" title="Permanent link">&para;</a></h2>
+<p>在回归问题中，我们常常使用均方误差（MSE）作为损失函数，其公式如下：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134019330259_1.jpeg' width='332' /> <br />
+m表示样本个数，loss表示的是m个样本的均值</p>
+<p>其实这里也比较好理解，因为回归问题要求拟合实际的值，通过MSE衡量预测值和实际值之间的误差，可以通过梯度下降的方法来优化。而不像分类问题，需要一系列的激活函数（sigmoid、softmax）来将预测值映射到0-1之间，这时候再使用MSE的时候就要好好掂量一下了，为啥这么说，请继续看：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134020270057_1.jpeg' width='398' /> <br />
+sigmoid加MES的基本公式 <br />
+<img src='images/understand-simple-really-cross-entropy_2_21Mar15134021899600_1.jpeg' width='401' /> <br />
+gradient推导过程</p>
+<p>上面复杂的推导过程，其实结论就是下面一张图：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134023323972_1.jpeg' width='240' /> <br />
+C就是 的J，sigma就是sigmoid函数，a就是predict</p>
+<p>从以上公式可以看出，w和b的梯度跟激活函数的梯度成正比，激活函数的梯度越大，w和b的大小调整得越快，训练收敛得就越快。而我们都知道sigmoid函数长这样：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134024288448_1.jpeg' width='957' /> <br />
+图片来自：<a href="https://blog.csdn.net/u014313009/article/details/51043064">https://blog.csdn.net/u014313009/article/details/51043064</a></p>
+<p>在上图的绿色部分，初始值是0.98，红色部分初始值是0.82，假如真实值是0。直观来看那么0.82下降的速度明显高于0.98，但是明明0.98的误差更大，这就导致了神经网络不能像人一样，误差越大，学习的越快。 </p>
+<p>但是如果我们把MSE换成交叉熵会怎么样呢？</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134025986786_1.png' width='421' /> <br />
+x表示样本，n表示样本的总数</p>
+<p>重新计算梯度：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134027024732_1.jpeg' width='497' /> <br />
+推导过程 <br />
+<img src='images/understand-simple-really-cross-entropy_2_21Mar15134027727118_1.jpeg' width='253' /></p>
+<p>另外sigmoid有一个很好的性质：</p>
+<p><img src='images/understand-simple-really-cross-entropy_2_21Mar15134028443510_1.png' title="understand-simple-really-cross-entropy_2_21Mar15134028443510_1.png" alt="understand-simple-really-cross-entropy_2_21Mar15134028443510_1.png" width='252' /><img src='' width='252' /></p>
+<p>我们从结果可以看出梯度中不再含有sigmoid的导数，有的是sigmoid的值和实际值之间的差，也就满足了我们之前所说的错误越大，下降的越快。</p>
+<p>这也就是在分类问题中常用cross entropy 而不是 MSE的原因了。</p>
+<p>用例子来解释。</p>
+<h2 id="1-预测政治倾向">1. 预测政治倾向<a class="headerlink" href="#1-预测政治倾向" title="Permanent link">&para;</a></h2>
+<p>我们希望根据一个人的年龄、性别、年收入等相互独立的特征，来预测一个人的政治倾向，有三种可预测结果：民主党、共和党、其他党。假设我们当前有两个逻辑回归模型（参数不同），这两个模型都是通过sigmoid的方式得到对于每个预测结果的概率值：</p>
+<p><strong>模型1</strong> ：</p>
+<p><img src='images/loss-function-entropy-cross_21Mar1513252_21Mar15132523640920_1.jpeg' width='361' />模型1预测结果</p>
+<p><strong>模型1</strong> 对于样本1和样本2以非常微弱的优势判断正确，对于样本3的判断则彻底错误。</p>
+<p><strong>模型2</strong> ：</p>
+<p><img src='images/loss-function-entropy-cross_21Mar1513252_21Mar15132523829876_1.jpeg' width='359' />模型2预测结果</p>
+<p><strong>模型2</strong> 对于样本1和样本2判断非常准确，对于样本3判断错误，但是相对来说没有错得太离谱。</p>
+<p>好了，有了模型之后，我们需要通过定义损失函数来判断模型在样本上的表现了，那么我们可以定义哪些损失函数呢？</p>
+<h2 id="11-Classification-Error分类错误率">1.1 Classification Error（分类错误率）<a class="headerlink" href="#11-Classification-Error分类错误率" title="Permanent link">&para;</a></h2>
+<p>最为直接的损失函数定义为： <img src='https://www.zhihu.com/equation?tex=classification%5C+error%3D%5Cfrac%7Bcount%5C+of%5C+error%5C+items%7D%7Bcount%5C+of+%5C+all%5C+items%7D' alt='classification\ error=\frac{count\ of\ error\ items}{count\ of \ all\ items}' /></p>
+<p><strong>模型1：</strong> <img src='https://www.zhihu.com/equation?tex=classification%5C+error%3D%5Cfrac%7B1%7D%7B3%7D' alt='classification\ error=\frac{1}{3}' /></p>
+<p><strong>模型2：</strong></p>
+<p>我们知道， <strong>模型1</strong> 和 <strong>模型2</strong> 虽然都是预测错了1个，但是相对来说 <strong>模型2</strong> 表现得更好，损失函数值照理来说应该更小，但是，很遗憾的是， <img src='https://www.zhihu.com/equation?tex=classification%5C+error' alt='classification\ error' /> 并不能判断出来，所以这种损失函数虽然好理解，但表现不太好。</p>
+<h2 id="12-Mean-Squared-Error-均方误差">1.2 Mean Squared Error (均方误差)<a class="headerlink" href="#12-Mean-Squared-Error-均方误差" title="Permanent link">&para;</a></h2>
+<p>均方误差损失也是一种比较常见的损失函数，其定义为： <img src='https://www.zhihu.com/equation?tex=MSE%3D%5Cfrac%7B1%7D%7Bn%7D%5Csum_%7Bi%7D%5En%28%5Chat%7By_i%7D-y_i%29%5E2' alt='MSE=\frac{1}{n}\sum_{i}^n(\hat{y_i}-y_i)^2' /></p>
+<p><strong>模型1：</strong></p>
+<p><img src='https://www.zhihu.com/equation?tex=%5Cbegin%7Baligned%7D++++%5Ctext%7Bsample+1+loss%3D%7D%280.3-0%29%5E2+%2B+%280.3-0%29%5E2+%2B+%280.4-1%29%5E2+%3D+0.54+%5C%5C++++%5Ctext%7Bsample+2+loss%3D%7D%280.3-0%29%5E2+%2B+%280.4-1%29%5E2+%2B+%280.3-0%29%5E2+%3D+0.54+%5C%5C++++%5Ctext%7Bsample+3+loss%3D%7D%280.1-1%29%5E2+%2B+%280.2-0%29%5E2+%2B+%280.7-0%29%5E2+%3D+1.32+%5C%5C+%5Cend%7Baligned%7D+%5C%5C' alt='\begin{aligned}    \text{sample 1 loss=}(0.3-0)^2 + (0.3-0)^2 + (0.4-1)^2 = 0.54 \\    \text{sample 2 loss=}(0.3-0)^2 + (0.4-1)^2 + (0.3-0)^2 = 0.54 \\    \text{sample 3 loss=}(0.1-1)^2 + (0.2-0)^2 + (0.7-0)^2 = 1.32 \\ \end{aligned} \\' /></p>
+<p>对所有样本的loss求平均： </p>
+<p><img src='https://www.zhihu.com/equation?tex=MSE%3D%5Cfrac%7B0.54%2B0.54%2B1.32%7D%7B3%7D%3D0.8+%5C%5C' alt='MSE=\frac{0.54+0.54+1.32}{3}=0.8 \\' /></p>
+<p><strong>模型2：</strong></p>
+<p><img src='https://www.zhihu.com/equation?tex=%5Cbegin%7Baligned%7D++++%5Ctext%7Bsample+1+loss%3D%7D%280.1-0%29%5E2+%2B+%280.2-0%29%5E2+%2B+%280.7-1%29%5E2+%3D+0.138%5C%5C++++%5Ctext%7Bsample+2+loss%3D%7D%280.1-0%29%5E2+%2B+%280.7-1%29%5E2+%2B+%280.2-0%29%5E2+%3D+0.138%5C%5C++++%5Ctext%7Bsample+3+loss%3D%7D%280.3-1%29%5E2+%2B+%280.4-0%29%5E2+%2B+%280.3-0%29%5E2+%3D+0.72%5C%5C+%5Cend%7Baligned%7D+%5C%5C' alt='\begin{aligned}    \text{sample 1 loss=}(0.1-0)^2 + (0.2-0)^2 + (0.7-1)^2 = 0.138\\    \text{sample 2 loss=}(0.1-0)^2 + (0.7-1)^2 + (0.2-0)^2 = 0.138\\    \text{sample 3 loss=}(0.3-1)^2 + (0.4-0)^2 + (0.3-0)^2 = 0.72\\ \end{aligned} \\' /></p>
+<p>对所有样本的loss求平均： </p>
+<p><img src='https://www.zhihu.com/equation?tex=MSE%3D%5Cfrac%7B0.138%2B0.138%2B0.72%7D%7B3%7D%3D0.332+%5C%5C' alt='MSE=\frac{0.138+0.138+0.72}{3}=0.332 \\' /></p>
+<p>我们发现，MSE能够判断出来 <strong>模型2</strong> 优于 <strong>模型1</strong> ，那为什么不采样这种损失函数呢？主要原因是逻辑回归配合MSE损失函数时，采用梯度下降法进行学习时，会出现模型一开始训练时，学习速率非常慢的情况（<a href="https://zhuanlan.zhihu.com/p/35707643">MSE损失函数</a>）。</p>
+<p>有了上面的直观分析，我们可以清楚的看到，对于分类问题的损失函数来说，分类错误率和均方误差损失都不是很好的损失函数，下面我们来看一下交叉熵损失函数的表现情况。</p>
+<h2 id="13-Cross-Entropy-Error-Function交叉熵损失函数">1.3 Cross Entropy Error Function（交叉熵损失函数）<a class="headerlink" href="#13-Cross-Entropy-Error-Function交叉熵损失函数" title="Permanent link">&para;</a></h2>
+<h2 id="131-表达式">1.3.1 表达式<a class="headerlink" href="#131-表达式" title="Permanent link">&para;</a></h2>
+<h2 id="1-二分类">(1) 二分类<a class="headerlink" href="#1-二分类" title="Permanent link">&para;</a></h2>
+<p>在二分的情况下，模型最后需要预测的结果只有两种情况，对于每个类别我们的预测得到的概率为 <img src='https://www.zhihu.com/equation?tex=p' alt='p' /> 和 <img src='https://www.zhihu.com/equation?tex=1-p' alt='1-p' /> 。此时表达式为：</p>
+<p><img src='https://www.zhihu.com/equation?tex=L+%3D+%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bi%7D+L_i+%3D+%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bi%7D-%5By_i%5Ccdot+log%28p_i%29+%2B+%281-y_i%29%5Ccdot+log%281-p_i%29%5D+%5C%5C' alt='L = \frac{1}{N}\sum_{i} L_i = \frac{1}{N}\sum_{i}-[y_i\cdot log(p_i) + (1-y_i)\cdot log(1-p_i)] \\' /></p>
+<p>其中：<br />
+- <img src='https://www.zhihu.com/equation?tex=y_i' alt='y_i' /> —— 表示样本i的label，正类为1，负类为0<br />
+- <img src='https://www.zhihu.com/equation?tex=p_i' alt='p_i' /> —— 表示样本i预测为正的概率</p>
+<h2 id="2-多分类">(2) 多分类<a class="headerlink" href="#2-多分类" title="Permanent link">&para;</a></h2>
+<p>多分类的情况实际上就是对二分类的扩展：</p>
+<p><img src='https://www.zhihu.com/equation?tex=L+%3D+%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bi%7D+L_i+%3D+%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bi%7D+-%5Csum_%7Bc%3D1%7D%5EMy_%7Bic%7D%5Clog%28p_%7Bic%7D%29+%5C%5C' alt='L = \frac{1}{N}\sum_{i} L_i = \frac{1}{N}\sum_{i} -\sum_{c=1}^My_{ic}\log(p_{ic}) \\' /></p>
+<p>其中：<br />
+- <img src='https://www.zhihu.com/equation?tex=M' alt='M' /> ——类别的数量；<br />
+- <img src='https://www.zhihu.com/equation?tex=y_%7Bic%7D' alt='y_{ic}' /> ——指示变量（0或1）,如果该类别和样本i的类别相同就是1，否则是0；<br />
+- <img src='https://www.zhihu.com/equation?tex=p_%7Bic%7D' alt='p_{ic}' /> ——对于观测样本i属于类别 <img src='https://www.zhihu.com/equation?tex=c' alt='c' /> 的预测概率。</p>
+<p>现在我们利用这个表达式计算上面例子中的损失函数值：</p>
+<p><strong>模型1</strong> ：<br />
+<img src='https://www.zhihu.com/equation?tex=%5Cbegin%7Baligned%7D++++%5Ctext%7Bsample+1+loss%7D+%3D+-+%280%5Ctimes+log0.3+%2B+0%5Ctimes+log0.3+%2B+1%5Ctimes+log0.4%29+%3D+0.91+%5C%5C++++%5Ctext%7Bsample+2+loss%7D+%3D+-+%280%5Ctimes+log0.3+%2B+1%5Ctimes+log0.4+%2B+0%5Ctimes+log0.3%29+%3D+0.91+%5C%5C++++%5Ctext%7Bsample+3+loss%7D+%3D+-+%281%5Ctimes+log0.1+%2B+0%5Ctimes+log0.2+%2B+0%5Ctimes+log0.7%29+%3D+2.30+%5C%5C+%5Cend%7Baligned%7D+%5C%5C' alt='\begin{aligned}    \text{sample 1 loss} = - (0\times log0.3 + 0\times log0.3 + 1\times log0.4) = 0.91 \\    \text{sample 2 loss} = - (0\times log0.3 + 1\times log0.4 + 0\times log0.3) = 0.91 \\    \text{sample 3 loss} = - (1\times log0.1 + 0\times log0.2 + 0\times log0.7) = 2.30 \\ \end{aligned} \\' /></p>
+<p>对所有样本的loss求平均： </p>
+<p><img src='https://www.zhihu.com/equation?tex=L%3D%5Cfrac%7B0.91%2B0.91%2B2.3%7D%7B3%7D%3D1.37+%5C%5C' alt='L=\frac{0.91+0.91+2.3}{3}=1.37 \\' /></p>
+<p><strong>模型2：</strong></p>
+<p><img src='https://www.zhihu.com/equation?tex=%5Cbegin%7Baligned%7D++++%5Ctext%7Bsample+1+loss%7D+%3D+-+%280%5Ctimes+log0.1+%2B+0%5Ctimes+log0.2+%2B+1%5Ctimes+log0.7%29+%3D+0.35+%5C%5C++++%5Ctext%7Bsample+2+loss%7D+%3D+-+%280%5Ctimes+log0.1+%2B+1%5Ctimes+log0.7+%2B+0%5Ctimes+log0.2%29+%3D+0.35+%5C%5C++++%5Ctext%7Bsample+3+loss%7D+%3D+-+%281%5Ctimes+log0.3+%2B+0%5Ctimes+log0.4+%2B+0%5Ctimes+log0.4%29+%3D+1.20+%5C%5C+%5Cend%7Baligned%7D+%5C%5C' alt='\begin{aligned}    \text{sample 1 loss} = - (0\times log0.1 + 0\times log0.2 + 1\times log0.7) = 0.35 \\    \text{sample 2 loss} = - (0\times log0.1 + 1\times log0.7 + 0\times log0.2) = 0.35 \\    \text{sample 3 loss} = - (1\times log0.3 + 0\times log0.4 + 0\times log0.4) = 1.20 \\ \end{aligned} \\' /></p>
+<p>对所有样本的loss求平均： </p>
+<p><img src='https://www.zhihu.com/equation?tex=L%3D%5Cfrac%7B0.35%2B0.35%2B1.2%7D%7B3%7D%3D0.63+%5C%5C' alt='L=\frac{0.35+0.35+1.2}{3}=0.63 \\' /></p>
+<p>可以发现，交叉熵损失函数可以捕捉到 <strong>模型1</strong> 和 <strong>模型2</strong> 预测效果的差异。</p>
+<h2 id="2-函数性质">2. 函数性质<a class="headerlink" href="#2-函数性质" title="Permanent link">&para;</a></h2>
+<p><img src='images/loss-function-entropy-cross_21Mar1513252_21Mar15132534602731_1.jpeg' width='556' /></p>
+<p>可以看出，该函数是凸函数，求导时能够得到全局最优值。</p>
+<h2 id="3-学习过程">3. 学习过程<a class="headerlink" href="#3-学习过程" title="Permanent link">&para;</a></h2>
+<p>交叉熵损失函数经常用于分类问题中，特别是在神经网络做分类问题时，也经常使用交叉熵作为损失函数，此外，由于交叉熵涉及到计算每个类别的概率，所以交叉熵几乎每次都和 <strong>sigmoid(或softmax)函数</strong> 一起出现。</p>
+<p>我们用神经网络最后一层输出的情况，来看一眼整个模型预测、获得损失和学习的流程：</p>
+<ol>
+<li>神经网络最后一层得到每个类别的得分 <strong>scores</strong> ；</li>
+<li>该得分经过 <strong>sigmoid(或softmax)函数</strong> 获得概率输出；</li>
+<li>模型预测的类别概率输出与真实类别的one hot形式进行交叉熵损失函数的计算。</li>
+</ol>
+<p>学习任务分为二分类和多分类情况，我们分别讨论这两种情况的学习过程。 </p>
+<h2 id="31-二分类情况">3.1 二分类情况<a class="headerlink" href="#31-二分类情况" title="Permanent link">&para;</a></h2>
+<p><img src='images/loss-function-entropy-cross_21Mar1513252_21Mar15132536084995_1.jpeg' title="loss-function-entropy-cross_21Mar1513252_21Mar15132536084995_1.jpeg" alt="loss-function-entropy-cross_21Mar1513252_21Mar15132536084995_1.jpeg" width='2054' />二分类交叉熵损失函数学习过程</p>
+<p>如上图所示，求导过程可分成三个子过程，即拆成三项偏导的乘积：</p>
+<p><img src='https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+L_i%7D%7B%5Cpartial+w_i%7D%3D%5Cfrac%7B1%7D%7BN%7D%5Cfrac%7B%5Cpartial+L_i%7D%7B%5Cpartial+w_i%7D%3D%5Cfrac%7B1%7D%7BN%7D%5Cfrac%7B%5Cpartial+L_i%7D%7B%5Cpartial+p_i%7D%5Ccdot+%5Cfrac%7B%5Cpartial+p_i%7D%7B%5Cpartial+s_i%7D%5Ccdot+%5Cfrac%7B%5Cpartial+s_i%7D%7B%5Cpartial+w_i%7D%5C%5C' alt='\frac{\partial L_i}{\partial w_i}=\frac{1}{N}\frac{\partial L_i}{\partial w_i}=\frac{1}{N}\frac{\partial L_i}{\partial p_i}\cdot \frac{\partial p_i}{\partial s_i}\cdot \frac{\partial s_i}{\partial w_i}\\' /></p>
+<h2 id="311-计算第一项">3.1.1 计算第一项： <img src='https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+L_i%7D%7B%5Cpartial+p_i%7D' alt='\frac{\partial L_i}{\partial p_i}' /><a class="headerlink" href="#311-计算第一项" title="Permanent link">&para;</a></h2>
+<p><img src='https://www.zhihu.com/equation?tex=L_i+%3D+-%5By_i%5Ccdot+log%28p_i%29+%2B+%281-y_i%29%5Ccdot+log%281-p_i%29%5D+%5C%5C' alt='L_i = -[y_i\cdot log(p_i) + (1-y_i)\cdot log(1-p_i)] \\' /></p>
+<p>- <img src='https://www.zhihu.com/equation?tex=p_i' alt='p_i' /> 表示样本i预测为True的概率；</p>
+<p>- <img src='https://www.zhihu.com/equation?tex=y_i' alt='y_i' /> 表示样本i为True时等于1，否则等于0； </p>
+<p><img src='https://www.zhihu.com/equation?tex=%5Cbegin%7Baligned%7D+%5Cfrac%7B%5Cpartial+L_i%7D%7B%5Cpartial+p_i%7D+%26%3D%5Cfrac%7B%5Cpartial+-%5By_i%5Ccdot+log%28p_i%29+%2B+%281-y_i%29%5Ccdot+log%281-p_i%29%5D%7D%7B%5Cpartial+p_i%7D%5C%5C+%26%3D+-%5Cfrac%7By_i%7D%7Bp_i%7D-%5B%281-y_i%29%5Ccdot+%5Cfrac%7B1%7D%7B1-p_i%7D%5Ccdot+%28-1%29%5D+%5C%5C++%26%3D+-%5Cfrac%7By_i%7D%7Bp_i%7D%2B%5Cfrac%7B1-y_i%7D%7B1-p_i%7D+%5C%5C+%5Cend%7Baligned%7D+%5C%5C' alt='\begin{aligned} \frac{\partial L_i}{\partial p_i} &=\frac{\partial -[y_i\cdot log(p_i) + (1-y_i)\cdot log(1-p_i)]}{\partial p_i}\\ &= -\frac{y_i}{p_i}-[(1-y_i)\cdot \frac{1}{1-p_i}\cdot (-1)] \\  &= -\frac{y_i}{p_i}+\frac{1-y_i}{1-p_i} \\ \end{aligned} \\' /></p>
+<h2 id="312-计算第二项">3.1.2 计算第二项： <img src='https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+p_i%7D%7B%5Cpartial+s_i%7D+' alt='\frac{\partial p_i}{\partial s_i} ' /><a class="headerlink" href="#312-计算第二项" title="Permanent link">&para;</a></h2>
+<p>这一项要计算的是sigmoid函数对于score的导数，我们先回顾一下sigmoid函数和分数求导的公式： </p>
+<blockquote>
+<p><img src='https://www.zhihu.com/equation?tex=p+%3D+%5Csigma%28s%29+%3D+%5Cfrac%7Be%5E%7Bs%7D%7D%7B1%2Be%5E%7Bs%7D%7D++%5C%5C' alt='p = \sigma(s) = \frac{e^{s}}{1+e^{s}}  \\' /> <br />
+<img src='https://www.zhihu.com/equation?tex=f%27%28x%29+%3D+%5Cfrac%7Bg%28x%29%7D%7Bh%28x%29%7D%3D%5Cfrac%7Bg%27%28x%29h%28x%29-g%28x%29%7Bh%7D%27%28x%29%7D%7Bh%5E2%28x%29%7D+%5C%5C' alt="f'(x) = \frac{g(x)}{h(x)}=\frac{g'(x)h(x)-g(x){h}'(x)}{h^2(x)} \\" /></p>
+</blockquote>
+<p><img src='https://www.zhihu.com/equation?tex=%5Cbegin%7Baligned%7D++%5Cfrac%7B%5Cpartial+p_i%7D%7B%5Cpartial+s_i%7D+%26%3D+%5Cfrac%7B%28e%5E%7Bs_i%7D%29%27%5Ccdot+%281%2Be%5E%7Bs_i%7D%29-e%5E%7Bs_i%7D%5Ccdot+%281%2Be%5E%7Bs_i%7D%29%27%7D%7B%281%2Be%5E%7Bs_i%7D%29%5E2%7D+%5C%5C++%26%3D+%5Cfrac%7Be%5E%7Bs_i%7D%5Ccdot+%281%2Be%5E%7Bs_i%7D%29-e%5E%7Bs_i%7D%5Ccdot+e%5E%7Bs_i%7D%7D%7B%281%2Be%5E%7Bs_i%7D%29%5E2%7D+%5C%5C++%26%3D+%5Cfrac%7Be%5E%7Bs_i%7D%7D%7B%281%2Be%5E%7Bs_i%7D%29%5E2%7D+%5C%5C++%26%3D+%5Cfrac%7Be%5E%7Bs_i%7D%7D%7B1%2Be%5E%7Bs_i%7D%7D%5Ccdot+%5Cfrac%7B1%7D%7B1%2Be%5E%7Bs_i%7D%7D+%5C%5C++%26%3D+%5Csigma%28s_i%29%5Ccdot+%5B1-%5Csigma%28s_i%29%5D+%5C%5C+%5Cend%7Baligned%7D+%5C%5C' alt="\begin{aligned}  \frac{\partial p_i}{\partial s_i} &= \frac{(e^{s_i})'\cdot (1+e^{s_i})-e^{s_i}\cdot (1+e^{s_i})'}{(1+e^{s_i})^2} \\  &= \frac{e^{s_i}\cdot (1+e^{s_i})-e^{s_i}\cdot e^{s_i}}{(1+e^{s_i})^2} \\  &= \frac{e^{s_i}}{(1+e^{s_i})^2} \\  &= \frac{e^{s_i}}{1+e^{s_i}}\cdot \frac{1}{1+e^{s_i}} \\  &= \sigma(s_i)\cdot [1-\sigma(s_i)] \\ \end{aligned} \\" /></p>
+<h2 id="313-计算第三项">3.1.3 计算第三项： <img src='https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+s_i%7D%7B%5Cpartial+w_i+%5C%5C%7D' alt='\frac{\partial s_i}{\partial w_i \\}' /><a class="headerlink" href="#313-计算第三项" title="Permanent link">&para;</a></h2>
+<p>一般来说，scores是输入的线性函数作用的结果，所以有：<br />
+<img src='https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+s_i%7D%7B%5Cpartial+w_i%7D%3Dx_i+%5C%5C' alt='\frac{\partial s_i}{\partial w_i}=x_i \\' /></p>
+<h2 id="314-计算结果">3.1.4 计算结果 <img src='https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+L_i%7D%7B%5Cpartial+w_i%7D' alt='\frac{\partial L_i}{\partial w_i}' /><a class="headerlink" href="#314-计算结果" title="Permanent link">&para;</a></h2>
+<p><img src='https://www.zhihu.com/equation?tex=%5Cbegin%7Baligned%7D++%5Cfrac%7B%5Cpartial+L_i%7D%7B%5Cpartial+w_i%7D+%26%3D+%5Cfrac%7B%5Cpartial+L_i%7D%7B%5Cpartial+p_i%7D%5Ccdot+%5Cfrac%7B%5Cpartial+p_i%7D%7B%5Cpartial+s_i%7D%5Ccdot+%5Cfrac%7B%5Cpartial+s_i%7D%7B%5Cpartial+w_i%7D+%5C%5C++%26%3D+%5B-%5Cfrac%7By_i%7D%7Bp_i%7D%2B%5Cfrac%7B1-y_i%7D%7B1-p_i%7D%5D+%5Ccdot+%5Csigma%28s_i%29%5Ccdot+%5B1-%5Csigma%28s_i%29%5D%5Ccdot+x_i+%5C%5C++%26%3D+%5B-%5Cfrac%7By_i%7D%7B%5Csigma%28s_i%29%7D%2B%5Cfrac%7B1-y_i%7D%7B1-%5Csigma%28s_i%29%7D%5D+%5Ccdot+%5Csigma%28s_i%29%5Ccdot+%5B1-%5Csigma%28s_i%29%5D%5Ccdot+x_i+%5C%5C++%26%3D+%5B-%5Cfrac%7By_i%7D%7B%5Csigma%28s_i%29%7D%5Ccdot+%5Csigma%28s_i%29%5Ccdot+%281-%5Csigma%28s_i%29%29%2B%5Cfrac%7B1-y_i%7D%7B1-%5Csigma%28s_i%29%7D%5Ccdot+%5Csigma%28s_i%29%5Ccdot+%281-%5Csigma%28s_i%29%29%5D%5Ccdot+x_i+%5C%5C++%26%3D+%5B-y_i%2By_i%5Ccdot+%5Csigma%28s_i%29%2B%5Csigma%28s_i%29-y_i%5Ccdot+%5Csigma%28s_i%29%5D%5Ccdot+x_i+%5C%5C++%26%3D+%5B%5Csigma%28s_i%29-y_i%5D%5Ccdot+x_i+%5C%5C+%5Cend%7Baligned%7D+%5C%5C' alt='\begin{aligned}  \frac{\partial L_i}{\partial w_i} &= \frac{\partial L_i}{\partial p_i}\cdot \frac{\partial p_i}{\partial s_i}\cdot \frac{\partial s_i}{\partial w_i} \\  &= [-\frac{y_i}{p_i}+\frac{1-y_i}{1-p_i}] \cdot \sigma(s_i)\cdot [1-\sigma(s_i)]\cdot x_i \\  &= [-\frac{y_i}{\sigma(s_i)}+\frac{1-y_i}{1-\sigma(s_i)}] \cdot \sigma(s_i)\cdot [1-\sigma(s_i)]\cdot x_i \\  &= [-\frac{y_i}{\sigma(s_i)}\cdot \sigma(s_i)\cdot (1-\sigma(s_i))+\frac{1-y_i}{1-\sigma(s_i)}\cdot \sigma(s_i)\cdot (1-\sigma(s_i))]\cdot x_i \\  &= [-y_i+y_i\cdot \sigma(s_i)+\sigma(s_i)-y_i\cdot \sigma(s_i)]\cdot x_i \\  &= [\sigma(s_i)-y_i]\cdot x_i \\ \end{aligned} \\' /></p>
+<p>可以看到，我们得到了一个非常漂亮的结果，所以，使用交叉熵损失函数，不仅可以很好的衡量模型的效果，又可以很容易的的进行求导计算。</p>
+<h2 id="32-多分类情况">3.2 多分类情况<a class="headerlink" href="#32-多分类情况" title="Permanent link">&para;</a></h2>
+<h2 id="4-优缺点">4. 优缺点<a class="headerlink" href="#4-优缺点" title="Permanent link">&para;</a></h2>
+<h2 id="41-优点">4.1 优点<a class="headerlink" href="#41-优点" title="Permanent link">&para;</a></h2>
+<p>在用梯度下降法做参数更新的时候，模型学习的速度取决于两个值：一、 <strong>学习率</strong> ；二、 <strong>偏导值</strong> 。其中，学习率是我们需要设置的超参数，所以我们重点关注偏导值。从上面的式子中，我们发现，偏导值的大小取决于 <img src='https://www.zhihu.com/equation?tex=x_i' alt='x_i' /> 和 <img src='https://www.zhihu.com/equation?tex=%5B%5Csigma%28s%29-y%5D' alt='[\sigma(s)-y]' /> ，我们重点关注后者，后者的大小值反映了我们模型的错误程度，该值越大，说明模型效果越差，但是该值越大同时也会使得偏导值越大，从而模型学习速度更快。所以，使用逻辑函数得到概率，并结合交叉熵当损失函数时，在模型效果差的时候学习速度比较快，在模型效果好的时候学习速度变慢。</p>
+<h2 id="42-缺点">4.2 缺点<a class="headerlink" href="#42-缺点" title="Permanent link">&para;</a></h2>
+<p>Deng [4]在2019年提出了ArcFace Loss，并在论文里说了Softmax Loss的两个缺点：1、随着分类数目的增大，分类层的线性变化矩阵参数也随着增大；2、对于封闭集分类问题，学习到的特征是可分离的，但对于开放集人脸识别问题，所学特征却没有足够的区分性。对于人脸识别问题，首先人脸数目(对应分类数目)是很多的，而且会不断有新的人脸进来，不是一个封闭集分类问题。</p>
+<p>另外，sigmoid(softmax)+cross-entropy loss 擅长于学习类间的信息，因为它采用了类间竞争机制，它只关心对于正确标签预测概率的准确性，忽略了其他非正确标签的差异，导致学习到的特征比较散。基于这个问题的优化有很多，比如对softmax进行改进，如L-Softmax、SM-Softmax、AM-Softmax等。 </p>
+<h2 id="5-参考">5. 参考<a class="headerlink" href="#5-参考" title="Permanent link">&para;</a></h2>
+<p>[1]. <a href="http://jackon.me/posts/why-use-cross-entropy-error-for-loss-function/">博客 - 神经网络的分类模型 LOSS 函数为什么要用 CROSS ENTROPY</a></p>
+<p>[2]. <a href="http://sefiks.com/2017/11/08/softmax-as-a-neural-networks-activation-function/">博客 - Softmax as a Neural Networks Activation Function</a></p>
+<p>[3]. <a href="https://sefiks.com/2017/12/17/a-gentle-introduction-to-cross-entropy-loss-function/">博客 - A Gentle Introduction to Cross-Entropy Loss Function</a></p>
+<p>[4]. Deng, Jiankang, et al. "Arcface: Additive angular margin loss for deep face recognition." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2019.</p>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者: 飞鱼Talk, 蔡杰       <br />
+来源： <a href="https://zhuanlan.zhihu.com/p/35709485">https://zhuanlan.zhihu.com/p/35709485</a> , <a href="https://zhuanlan.zhihu.com/p/61944055">https://zhuanlan.zhihu.com/p/61944055</a></p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../least-squares-polynomial-curve-fitting-python/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                最小二乘法多项式曲线拟合及其python实现
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../nlp/nlp/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                自然语言处理
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
