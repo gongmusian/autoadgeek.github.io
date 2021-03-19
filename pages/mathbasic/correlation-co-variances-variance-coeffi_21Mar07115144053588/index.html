@@ -2447,11 +2447,11 @@ P(x)
 5
 6
 7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">M</span><span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">M</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-<span class="n">col_mean</span><span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">col_mean</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">col_mean</span><span class="p">)</span>
-<span class="n">row_mean</span><span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">row_mean</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">row_mean</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
@@ -2509,9 +2509,9 @@ D(X)称为变量X的方差，而 σ = D(X)<sup>½</sup> 称为 <strong>标准差
 <p>期望值分别为E(X) = u 与 E(Y) = ν 的两个实随机变量 X 与 Y 之间的协方差定义为：<br />
 COV(X，Y) = E[(X-E(X))(Y-E(Y))] = E(XY) - 2E(X)E(Y) + E(X)(Y) = E(XY) - uv</p>
 <p>假设X和Y的期望值已经计算出来，协方差可以计算为x值与它的期望值的差值乘以y值与它的期望值的差值乘以实例总数的倒数
-Cov(X,Y)=∑(X<sup>i</sup>−E(X))(Y<sup>i</sup>−E(Y)) / N</p>
+Cov(X,Y)=∑(X<sub>i</sub>−E(X))(Y<sub>i</sub>−E(Y)) / N</p>
 <p>也可以用平均值来计算协方差：<br />
-Cov(X,Y)=1/（N−1）∑(X<sup>i</sup>−E(X))(Y<sup>i</sup>−E(Y)) <br />
+Cov(X,Y)=1/（N−1）∑(X<sub>i</sub>−E(X))(Y<sub>i</sub>−E(Y)) <br />
 这里，之所以除以 N-1 而不是 N 的原因是对总体样本期望的无偏估计。<br />
 <img src='images/correlation-co-variances-variance-coeffi_21Mar07115147216861_1.png' alt='在这里插入图片描述' /><br />
 协方差的符号可以解释为：协方差表示的是两个变量总体误差的方差, 两个变量是一起增加（正数）还是一起减少（负数）。如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值，另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值。 如果两个变量的变化趋势相反，即其中一个大于自身的期望值，另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。<br />
@@ -2573,9 +2573,9 @@ Y
 
 <p>求解X,Y的协方差过程如下：</p>
 <ol>
-<li>X的均值为Xi_：(1+5+6) / 3 = 4<br />
-Y的均值为Yi_：(4+3+9) / 3 = 16/3</li>
-<li>协方差 Cov(X,Y) = 1/（N−1）∑(Xi−Xi_)(Yi−Yi_) = ( (1-4) * (4-16/3) + (5-4) * (3-16/3) + (6-4) * (9-16/3) ) / (3-1) = 4.5<br />
+<li>X的均值为X̄：(1+5+6) / 3 = 4<br />
+Y的均值为y̅：(4+3+9) / 3 = 16/3</li>
+<li>协方差 Cov(X,Y) = 1/（N−1）∑(Xi−x̅)(Yi−y̅) = ( (1-4) * (4-16/3) + (5-4) * (3-16/3) + (6-4) * (9-16/3) ) / (3-1) = 4.5<br />
 (numpy源码中也是使用这种方式来计算协方差的)<br />
 注：<br />
 X方差 Var(X,X) = ( (1-4) * (1-4) + (5-4) * (5-4) + (6-4) * (6-4) ) / (3-1) = 7<br />
@@ -2704,7 +2704,7 @@ K
 <p>所以协方差矩阵C为：<br />
 <img src='images/correlation-co-variances-variance-coeffi_01.jpg' /></p>
 <p>每一个协方差的求解过程为：<br />
-协方差 Cov(X,Y) = 1/（N−1）∑(Xi−Xi_)(Yi−Yi_) = ( (1-4) * (4-16/3) + (5-4) * (3-16/3) + (6-4) * (9-16/3) ) / (3-1) = 4.5</p>
+协方差 Cov(X,Y) = 1/（N−1）∑(Xi−x̅)(Yi−y̅) = ( (1-4) * (4-16/3) + (5-4) * (3-16/3) + (6-4) * (9-16/3) ) / (3-1) = 4.5</p>
 <p>最终的协方差矩阵为：<br />
 <img src='images/correlation-co-variances-variance-coeffi_02.jpg' /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -2784,7 +2784,7 @@ Y
 
 <p>求解X,Y的协方差过程如下：</p>
 <ol>
-<li>协方差 Cov(X,Y) = 1/（N−1）∑(Xi−Xi_)(Yi−Yi_) = ( (1-4) * (4-16/3) + (5-4) * (3-16/3) + (6-4) * (9-16/3) ) / (3-1) = 4.5</li>
+<li>协方差 Cov(X,Y) = 1/（N−1）∑(Xi−x̅)(Yi−y̅) = ( (1-4) * (4-16/3) + (5-4) * (3-16/3) + (6-4) * (9-16/3) ) / (3-1) = 4.5</li>
 <li>X的标准差 σX = 71/2<br />
 Y的标准差 σY = 10.331/2</li>
 <li>相关系数 r(X,Y) = 4.5 / (71/2 * 10.331/2) = 0.529</li>
