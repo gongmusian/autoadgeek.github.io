@@ -1893,6 +1893,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+      使用SimHash进行海量文本去重流程
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2115,9 +2127,9 @@
 <p>1. 奇异值</p>
 <p>特征值分解是一个提取矩阵特征很不错的方法，但是它只是对方阵而言的，在现实的世界中，我们看到的大部分矩阵都不是方阵，比如说有N个学生，每个学生有M科成绩，这样形成的一个N * M的矩阵就不可能是方阵，我们怎样才能描述这样普通的矩阵呢的重要特征呢？奇异值分解可以用来干这个事情，奇异值分解是一个能适用于任意的矩阵的一种分解的方法： </p>
 <p>分解形式：<img src='images/eigenvalue-singular-value-deco_8.png' title="eigenvalue-singular-value-deco_8.png" alt="eigenvalue-singular-value-deco_8.png" />  </p>
-<p>假设A是一个M * N的矩阵，那么得到的U是一个M * M的方阵（称为左奇异向量），Σ是一个M * N的对角矩阵（除了对角线的元素都是0，对角线上的元素称为奇异值），VT(V的转置)是一个N * N的矩阵（称为右奇异向量）。</p>
+<p>假设A是一个M * N的矩阵，那么得到的U是一个M * M的方阵（称为左奇异向量），Σ是一个M * N的对角矩阵（除了对角线的元素都是0，对角线上的元素称为奇异值），V<sup>T</sup>(V的转置)是一个N * N的矩阵（称为右奇异向量）。</p>
 <p>2. 奇异值与特征值</p>
-<p>那么奇异值和特征值是怎么对应起来的呢？我们将一个矩阵A的转置乘以 A，并对(AA T)求特征值，则有下面的形式： </p>
+<p>那么奇异值和特征值是怎么对应起来的呢？我们将一个矩阵A的转置乘以 A，并对(A<sup>T</sup>A)求特征值，则有下面的形式： </p>
 <p><img src='images/eigenvalue-singular-value-deco_9.png' title="eigenvalue-singular-value-deco_9.png" alt="eigenvalue-singular-value-deco_9.png" />  </p>
 <p>这里V就是上面的右奇异向量，另外还有：  </p>
 <p><img src='images/eigenvalue-singular-value-deco_10.png' title="eigenvalue-singular-value-deco_10.png" alt="eigenvalue-singular-value-deco_10.png" /></p>
