@@ -1,0 +1,2501 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="对任意一个矩阵 A_{mtimes n} 来说（本文只考虑实矩阵）均有四个空间与其对应，他们分别是列空间（column space）、行空间（row space）、零（核）空间（nullspace or kernel space）、左零空间（left nullspace)">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/mathbasic/subspace-matrix-four-connection_21Apr04163955797249/">
+
+
+<link rel="shortcut icon" href="../../../assets/images/favicon.png">
+
+    
+      
+        <title>从sympy求最简形矩阵到矩阵的四个子空间及其联系 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#从sympy求最简形矩阵到矩阵的四个子空间及其联系" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            广告流程自动化
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              从sympy求最简形矩阵到矩阵的四个子空间及其联系
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../python/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../html5/" class="md-tabs__link">
+          HTML5/CSS
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ml/matrix/" class="md-tabs__link">
+          机器学习
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link md-tabs__link--active">
+          数学基础
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../nlp/nlp/" class="md-tabs__link">
+          自然语言处理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          广告程序化
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+          网站SEO优化
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/" class="md-nav__link">
+      python 基础教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+      Python 语法结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-datatypes/" class="md-nav__link">
+      Python 数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-strings/" class="md-nav__link">
+      Python 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-fstring/" class="md-nav__link">
+      Python f 字符串
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lists/" class="md-nav__link">
+      Python 列表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+      Python 字典
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-set/" class="md-nav__link">
+      Python 集合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-map/" class="md-nav__link">
+      Python 映射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-operators/" class="md-nav__link">
+      Python 运算符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-keywords/" class="md-nav__link">
+      Python 关键字
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-forloop/" class="md-nav__link">
+      Python for 循环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-itergener/" class="md-nav__link">
+      Python 迭代器和生成器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+      Python 列表推导式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-reverse/" class="md-nav__link">
+      Python 反转
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-functions/" class="md-nav__link">
+      Python 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+      Python 正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-oop/" class="md-nav__link">
+      Python 面向对象编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-modules/" class="md-nav__link">
+      Python 模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-packages/" class="md-nav__link">
+      Python 中的软件包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-exceptions/" class="md-nav__link">
+      Python 异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-introspection/" class="md-nav__link">
+      Python 自省
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-lambda/" class="md-nav__link">
+      Python Lambda 函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-logging/" class="md-nav__link">
+      Python 日志教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-simplejson/" class="md-nav__link">
+      Python JSON 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-faker/" class="md-nav__link">
+      Python Faker 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-feedparser/" class="md-nav__link">
+      Python feedparser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+      Python bcrypt 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-socket/" class="md-nav__link">
+      Python 套接字教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-smtplib/" class="md-nav__link">
+      Python smtplib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-yaml/" class="md-nav__link">
+      Python YAML 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-hashing/" class="md-nav__link">
+      Python 哈希教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-configparser/" class="md-nav__link">
+      Python ConfigParser 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-argparse/" class="md-nav__link">
+      Python argparse 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-sqlite/" class="md-nav__link">
+      Python SQLite 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-cerberus/" class="md-nav__link">
+      Python Cerberus 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pymysql/" class="md-nav__link">
+      Python PyMySQL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-peewee/" class="md-nav__link">
+      Python Peewee 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pydal/" class="md-nav__link">
+      Python pyDAL 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pytest/" class="md-nav__link">
+      Python Pytest 单元测试教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+      BeautifulSoup 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pyquery/" class="md-nav__link">
+      Python pyquery 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-sympy/" class="md-nav__link">
+      SymPy 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pandas/" class="md-nav__link">
+      Pandas 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+      Matplotlib 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-pillow/" class="md-nav__link">
+      Pillow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-ftp/" class="md-nav__link">
+      Python FTP 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-requests/" class="md-nav__link">
+      Python Requests 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-arrow/" class="md-nav__link">
+      Python Arrow 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+      Python 魔术方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+      python Uipath Orchestrator Cloud API 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      Python 使用 Google NLP API进行网站分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+      用python算微积分及牛顿迭代求解高阶方程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pytutorial/py-setuptools/" class="md-nav__link">
+      Python打包分发工具setuptools
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      HTML5/CSS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        HTML5/CSS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/" class="md-nav__link">
+      HTML5 教程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_intro/" class="md-nav__link">
+      HTML5 简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-head/" class="md-nav__link">
+      HTML5 头部
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_video/" class="md-nav__link">
+      HTML5 视频
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-tables/" class="md-nav__link">
+      HTML5 表格
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html-images/" class="md-nav__link">
+      HTML5 图像
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_geolocation/" class="md-nav__link">
+      HTML5 地理定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../html5/html_5_webworkers/" class="md-nav__link">
+      HTML5 Worker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      机器学习
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="机器学习" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        机器学习
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/matrix/" class="md-nav__link">
+      机器学习与矩阵,numpy,sklearn等工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+      Python – 如何使用 t-SNE 進行降維
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+      特征值分解、奇异值分解、PCA概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+      Numpy中矩阵计算模块linalg的常用函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+      深度学习的激活函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+      加快Scikit-Learn训练
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      数学基础
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="数学基础" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        数学基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+      指数分布公式的含义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+      LaTeX 数学公式排版
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+      常见概率统计分布及Python实现
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+      期望值、方差、协方差、相关系数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+      softmax详解
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+      最小二乘法多项式曲线拟合及其python实现
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+      损失函数 - 交叉熵损失函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+      向量的距离度量
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+      协方差、PCA、样本中心化，白化、方差、标准差、BN
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+      降维基础知识（样本均值、样本方差、中心矩阵）与PCA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
+      如何画lda投影结果_线性判别分析（LDA）原理总结
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+      协方差矩阵的几何解释
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        从sympy求最简形矩阵到矩阵的四个子空间及其联系
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      从sympy求最简形矩阵到矩阵的四个子空间及其联系
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Part-1-Four-Subspaces" class="md-nav__link">
+    Part 1 Four Subspaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11列空间的维度与秩相等" class="md-nav__link">
+    1.1列空间的维度与秩相等
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12行空间的维度与秩相等" class="md-nav__link">
+    1.2行空间的维度与秩相等
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13零空间的维度等于列数减去秩n-r" class="md-nav__link">
+    1.3零空间的维度等于列数减去秩（n-r）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14左零空间的维度等于行数目减去秩m-r" class="md-nav__link">
+    1.4左零空间的维度等于行数目减去秩（m-r）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Part-2-四个子空间的联系" class="md-nav__link">
+    Part 2 四个子空间的联系
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-四个子空间的正交性orthogonality" class="md-nav__link">
+    2.1 四个子空间的正交性(orthogonality)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22正交补orthogonal-complement" class="md-nav__link">
+    2.2正交补(orthogonal complement)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-的几何意义" class="md-nav__link">
+    2.3 的几何意义
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      自然语言处理
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="自然语言处理" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        自然语言处理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlp/" class="md-nav__link">
+      自然语言处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+      NLP 新手上路
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+      NLP HanNLP 词典分词
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+      评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      文本关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      用Python从海量文本抽取主题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+      nlp常用工具集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+      NLP pattern库 hands on
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+      基于预训练模型的文本摘要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+      Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+      开源项目，涵盖 11 类 AI 学习框架、平台
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+      自然语言处理工具包之NLTK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+      基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+      bert-extractive-summarizer 中文文章的抽取式摘要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+      理解NLP中的CNN卷积神经网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+      依存分析与依存树 dependency parse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+      关键词与文章相关性, 关键词自动标注与提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      Python 使用 Google NLP API进行网站分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+      使用 AI 自动执行 Web 爬网
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+      通过机器学习对网站进行分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+      TextRank算法简述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+      NLTK TextRank实现英文关键词提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+      使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+      使用余弦相似度算法计算文本相似度
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+      细数2018年最好的词嵌入和句嵌入技术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+      从头开始多标签文本分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+      没有模型训练情况下用BERT做文本分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+      用 NLP 做文本分析和特征工程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      广告程序化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        广告程序化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      围绕SEO开展竞争对手分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      Shopify独立站的几套选品方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/semantic-search/" class="md-nav__link">
+      什么是语义搜索？它是如何影响SEO的
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+      如何把网站提交给搜索引擎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/meta-description/" class="md-nav__link">
+      如何编写完美的元描述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+      使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+      动态网站使用 Python 向 Google 自动提交站点地图
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      使用 Python 进行 Facebook 抓取和情绪分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      Instagram 爬虫
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+      使用 Python 查找关键字类别的搜索量上限
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+      可视化 100，000 亚马逊产品
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+      使用SimHash进行海量文本去重流程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      网站SEO优化
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        网站SEO优化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+      长尾词优化入网页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
+      关键词难度：如何确认你在 Google 获得排名的机会
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+      如何让网站排名进入谷歌首页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+      如何搭建一个成功的亚马逊联盟网站
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+      SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+      抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
+      SEO每日流量如何从0到10000
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+      Python与SEO 词库完整指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+      Python百度下拉框关键词采集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../affiliate/adsense/" class="md-nav__link">
+      hexo个人next主题博客接入谷歌广告
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Part-1-Four-Subspaces" class="md-nav__link">
+    Part 1 Four Subspaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11列空间的维度与秩相等" class="md-nav__link">
+    1.1列空间的维度与秩相等
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12行空间的维度与秩相等" class="md-nav__link">
+    1.2行空间的维度与秩相等
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13零空间的维度等于列数减去秩n-r" class="md-nav__link">
+    1.3零空间的维度等于列数减去秩（n-r）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14左零空间的维度等于行数目减去秩m-r" class="md-nav__link">
+    1.4左零空间的维度等于行数目减去秩（m-r）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Part-2-四个子空间的联系" class="md-nav__link">
+    Part 2 四个子空间的联系
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-四个子空间的正交性orthogonality" class="md-nav__link">
+    2.1 四个子空间的正交性(orthogonality)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22正交补orthogonal-complement" class="md-nav__link">
+    2.2正交补(orthogonal complement)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-的几何意义" class="md-nav__link">
+    2.3 的几何意义
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="从sympy求最简形矩阵到矩阵的四个子空间及其联系">从sympy求最简形矩阵到矩阵的四个子空间及其联系<a class="headerlink" href="#从sympy求最简形矩阵到矩阵的四个子空间及其联系" title="Permanent link">&para;</a></h1>
+<p><strong>行最简的意义</strong></p>
+<p>利用初等行交换将矩阵化为行最简形矩阵，行最简形矩阵在求逆矩阵、求解矩阵方程、求解线性方程组、求矩阵与向量组的秩、求向量组的极大无关组、求矩阵的特征值与特征向量等方面具有关键作用。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">rref</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">rref</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rref</span><span class="p">)</span>
+<span class="c1"># [[1, 0, 0, -5], [0, 1, 0, 4], [0, 0, 1, -3]]</span>
+</code></pre></div>
+</td></tr></table>
+<p>对任意一个矩阵<span class="arithmatex">\( A_{m\times n} \)</span>来说（本文只考虑实矩阵）,均有四个空间与其对应，他们分别是列空间（column space）、行空间（row space）、零（核）空间（nullspace or kernel space）、左零空间（left nullspace）。熟悉这些空间的性质及其联系能帮助我们在脑海中建立一个舞台,线代中的一些重要内容便是在这个舞台上展开的，比如线性方程组（linear equation system）<span class="arithmatex">\( Ax=b \)</span>解的情况、奇异值分解（SVD）的几何直观。</p>
+<p><img src='images/subspace-matrix-four-connection_21Apr041_21Apr04163959484921_1.jpeg' width='696' /></p>
+<h2 id="Part-1-Four-Subspaces"><strong>Part 1 Four Subspaces</strong><a class="headerlink" href="#Part-1-Four-Subspaces" title="Permanent link">&para;</a></h2>
+<p><strong>考虑一个矩阵</strong> <span class="arithmatex">\( A_{m\times n} \)</span> <strong>，不妨设其行阶梯形矩阵为</strong><span class="arithmatex">\( R_{3\times 5}= \left[ \begin{matrix} 1&amp;3&amp;5&amp;0&amp;7\\ 0&amp;0&amp;0&amp;1&amp;2\\ 0&amp;0&amp;0&amp;0&amp;0 \end{matrix} \right] \)</span> <strong>，</strong> 其主元分别在在1, 4列两个位置。主元数目在取值上与矩阵的秩相等，所以 <span class="arithmatex">\( r=rank(A)=rank(R)=2 \)</span>。</p>
+<h2 id="11列空间的维度与秩相等"><strong>1.1列空间的维度与秩相等</strong><a class="headerlink" href="#11列空间的维度与秩相等" title="Permanent link">&para;</a></h2>
+<p><strong>列空间（column space）就是由矩阵的列向量组张成的空间。</strong></p>
+<p>此处为 <img src='https://www.zhihu.com/equation?tex=column_1%3D%281%2C0%2C0%29' alt='column_1=(1,0,0)' /> 和 <img src='https://www.zhihu.com/equation?tex=column_4%3D%280%2C1%2C0%29' alt='column_4=(0,1,0)' /> 张成的空间。那么 <img src='https://www.zhihu.com/equation?tex=column_2%2Ccolumn_3%2Ccolumn_5' alt='column_2,column_3,column_5' /> 为什么不作为基向量呢？因为这三个向量可以由 <img src='https://www.zhihu.com/equation?tex=column_1' alt='column_1' /> ， <img src='https://www.zhihu.com/equation?tex=column_4' alt='column_4' /> 线性表示，在三维空间中表现为与这两个基向量共面，用它们作为基的一部分不能扩展基向量组的表达能力，根据奥卡姆剃刀原理舍弃它们。</p>
+<p><img src='https://www.zhihu.com/equation?tex=%281%2C0%2C0%29%E5%92%8C%280%2C1%2C0%29' alt='(1,0,0)和(0,1,0)' /> 构成的无疑是一个3维空间中的（2维）平面，正好维度与rank(R)相等。观察我们选取的基向量 <img src='https://www.zhihu.com/equation?tex=column_1' alt='column_1' /> 和 <img src='https://www.zhihu.com/equation?tex=column_4' alt='column_4' /> ，他们是主元所在的列，也称为 <strong>pivot columns</strong></p>
+<h2 id="12行空间的维度与秩相等"><strong>1.2行空间的维度与秩相等</strong><a class="headerlink" href="#12行空间的维度与秩相等" title="Permanent link">&para;</a></h2>
+<p><strong>行空间（row space）就是由矩阵的行向量组张成的空间。</strong></p>
+<p>此处为 <img src='https://www.zhihu.com/equation?tex=row_1%3D%281%5C+3+%5C+5+%5C+0+%5C+7%29' alt='row_1=(1\ 3 \ 5 \ 0 \ 7)' /> 和 <img src='https://www.zhihu.com/equation?tex=row_2%3D%280%5C+0+%5C+0+%5C+1+%5C+2%29' alt='row_2=(0\ 0 \ 0 \ 1 \ 2)' />张成的空间， <img src='https://www.zhihu.com/equation?tex=row_3' alt='row_3' /> 为零向量，并不能作为空间的基向量（basis vector）。虽然行向量有5个元素，看似是在一个5维的空间中，但实际上因为我们的基向量只有两个，它们只能张成一个嵌套在5维空间中的2维子空间。我提供一个理解的思路，空间中任意向量由该空间基向量的线性组合表示，即 <img src='https://www.zhihu.com/equation?tex=%5Cforall+r%5Csubset+rowspace%2C+%5Cexists+%5C+a%2Cb%5Csubset+%5Cmathbb%7BR%7D+%2C+r%3Da%5Ccdot+row_1%2Bb%5Ccdot+row_2' alt='\forall r\subset rowspace, \exists \ a,b\subset \mathbb{R} , r=a\cdot row_1+b\cdot row_2' /> ，这个式子意味着我们可以用 向量<img src='https://www.zhihu.com/equation?tex=%28a%2Cb%29' alt='(a,b)' /> 来 <strong>唯一标识</strong> <img src='https://www.zhihu.com/equation?tex=r' alt='r' /> , <img src='https://www.zhihu.com/equation?tex=%28a%2Cb%29' alt='(a,b)' /> 只有两个元素，所以 实际上 <img src='https://www.zhihu.com/equation?tex=r%5Csubset+%5Cmathbb%7BR%5E2%7D' alt='r\subset \mathbb{R^2}' /> 。</p>
+<p>再观察下我们选的基向量 <img src='https://www.zhihu.com/equation?tex=row_1' alt='row_1' /> 和 <img src='https://www.zhihu.com/equation?tex=row_2' alt='row_2' /> 实际上是主元所在的行，这样的行称为 <strong>pivot rows</strong></p>
+<h2 id="13零空间的维度等于列数减去秩n-r"><strong>1.3零空间的维度等于列数减去秩（n-r）</strong><a class="headerlink" href="#13零空间的维度等于列数减去秩n-r" title="Permanent link">&para;</a></h2>
+<p><strong>零空间（nullspace or kernel space）是<img src='https://www.zhihu.com/equation?tex=Ax%3D0%28%5CLeftrightarrow+Rx%3D0%29' alt='Ax=0(\Leftrightarrow Rx=0)' /> 的全部解所构成的空间。</strong></p>
+<p>为了形象直观，我们先来讨论下 <img src='https://www.zhihu.com/equation?tex=Rx%3D0' alt='Rx=0' /> 的解。 <img src='https://www.zhihu.com/equation?tex=%5Cleft%5B+%5Cbegin%7Bmatrix%7D+1%263%265%260%267%5C%5C+0%260%260%261%262%5C%5C+0%260%260%260%260+%5Cend%7Bmatrix%7D+%5Cright%5D%5Ccdot+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+x_1%5C%5Cx_2%5C%5Cx_3%5C%5Cx_4%5C%5Cx_5+%5Cend%7Bmatrix%7D+%5Cright%5D%3D+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+0%5C%5C0%5C%5C0+%5Cend%7Bmatrix%7D+%5Cright%5D+' alt='\left[ \begin{matrix} 1&3&5&0&7\\ 0&0&0&1&2\\ 0&0&0&0&0 \end{matrix} \right]\cdot \left[ \begin{matrix} x_1\\x_2\\x_3\\x_4\\x_5 \end{matrix} \right]= \left[ \begin{matrix} 0\\0\\0 \end{matrix} \right] ' /> ,第一列和第四列含有主元，为 <strong>pivot columns，</strong> 其对应的 <img src='https://www.zhihu.com/equation?tex=x_1' alt='x_1' /> 和 <img src='https://www.zhihu.com/equation?tex=x_4' alt='x_4' /> 称为 <strong>pivot variables。</strong> 其他三列不含主元，称为 <strong>free columns,</strong> 相应的 <img src='https://www.zhihu.com/equation?tex=x_2%2Cx_3%2Cx_5' alt='x_2,x_3,x_5' /> 则称为 <strong>free variables，free variables可以自由取值，分别取三组值</strong> <img src='https://www.zhihu.com/equation?tex=%281%EF%BC%8C0%EF%BC%8C0%29' alt='(1，0，0)' /> ， <img src='https://www.zhihu.com/equation?tex=%280%EF%BC%8C1%EF%BC%8C0%29' alt='(0，1，0)' /> ， <img src='https://www.zhihu.com/equation?tex=%280%EF%BC%8C0%EF%BC%8C1%29' alt='(0，0，1)' /> ，将三组值分别回代入方程，可解得相应的 <img src='https://www.zhihu.com/equation?tex=x_1%2Cx_4' alt='x_1,x_4' />。这样 <img src='https://www.zhihu.com/equation?tex=x_1%5Csim+x_5' alt='x_1\sim x_5' /> 的值就都知道了，我们可以写出方程 <img src='https://www.zhihu.com/equation?tex=Rx%3D0' alt='Rx=0' /> 的解向量 <img src='https://www.zhihu.com/equation?tex=s_2%2Cs_3%2Cs_5' alt='s_2,s_3,s_5' /></p>
+<p><img src='https://www.zhihu.com/equation?tex=s_2%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+-3%5C%5C1%5C%5C0%5C%5C0%5C%5C0+%5Cend%7Bmatrix%7D+%5Cright%5D' alt='s_2=\left[ \begin{matrix} -3\\1\\0\\0\\0 \end{matrix} \right]' /> , <img src='https://www.zhihu.com/equation?tex=s_3%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+-5%5C%5C0%5C%5C1%5C%5C0%5C%5C0+%5Cend%7Bmatrix%7D+%5Cright%5D' alt='s_3=\left[ \begin{matrix} -5\\0\\1\\0\\0 \end{matrix} \right]' /> , <img src='https://www.zhihu.com/equation?tex=s_5%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D+-7%5C%5C0%5C%5C0%5C%5C-2%5C%5C1+%5Cend%7Bmatrix%7D+%5Cright%5D' alt='s_5=\left[ \begin{matrix} -7\\0\\0\\-2\\1 \end{matrix} \right]' /> ，这三个向量被称为 <strong>special solutions。</strong></p>
+<p><strong>容易验证，</strong> <img src='https://www.zhihu.com/equation?tex=s_2%2Cs_3%2Cs_5' alt='s_2,s_3,s_5' /> 的任意线性组合 <img src='https://www.zhihu.com/equation?tex=s%3Da%5Ccdot+s_2%2Bb%5Ccdot+s_3%2B+c%5Ccdot+s_5%28a%2Cb%2Cc+%5Csubset+%5Cmathbb%7BR%7D%29' alt='s=a\cdot s_2+b\cdot s_3+ c\cdot s_5(a,b,c \subset \mathbb{R})' /> 也为 <img src='https://www.zhihu.com/equation?tex=Rx%3D0' alt='Rx=0' /> 的解，这意味着以 <img src='https://www.zhihu.com/equation?tex=s_2%2Cs_3%2Cs_5' alt='s_2,s_3,s_5' /> 为基的空间中任一向量 <img src='https://www.zhihu.com/equation?tex=s' alt='s' /> 是 <img src='https://www.zhihu.com/equation?tex=Rx%3D0' alt='Rx=0' /> 的解。这个以 <strong>special solutions为基的空间就是<img src='https://www.zhihu.com/equation?tex=R%28or%5C+A%29' alt='R(or\ A)' /> 的kernel space。</strong></p>
+<h2 id="14左零空间的维度等于行数目减去秩m-r"><strong>1.4左零空间的维度等于行数目减去秩（m-r）</strong><a class="headerlink" href="#14左零空间的维度等于行数目减去秩m-r" title="Permanent link">&para;</a></h2>
+<p><strong>左零空间 （left nullspace）是<img src='https://www.zhihu.com/equation?tex=R%5E%5Ctop+y%3D0%28%5CLeftrightarrow+y%5E%5Ctop+R%3D0%29' alt='R^\top y=0(\Leftrightarrow y^\top R=0)' /> 的全部解所构成的空间。</strong></p>
+<p><strong>零空间定义中是未知向量右乘</strong> <img src='https://www.zhihu.com/equation?tex=R' alt='R' /> <strong>，而这里是未知向量左乘</strong> 按照 <strong>1.3的方法进行讨论可得：</strong></p>
+<p><strong>以</strong><img src='https://www.zhihu.com/equation?tex=R%5E%5Ctop+y%3D0' alt='R^\top y=0' /> 的m-r个 <strong>special solutions为基的空间就是 left nullspace。</strong></p>
+<blockquote>
+<p>上面的讨论是用A的行阶梯形矩阵R来作讨论的，一些人肯定会提出疑问？我们讨论的是R的四个子空间，这不代表A的四个子空间也具有相同的性质，其实可以证明A和R的子空间的维度是相同的。可参考 <em>Introduction to linear algebra 4<sup>th</sup> edtion p186-p189, The Four Subspace for</em><img src='https://www.zhihu.com/equation?tex=A' alt='A' /></p>
+</blockquote>
+<h2 id="Part-2-四个子空间的联系"><strong>Part 2 四个子空间的联系</strong><a class="headerlink" href="#Part-2-四个子空间的联系" title="Permanent link">&para;</a></h2>
+<p><img src='images/subspace-matrix-four-connection_21Apr041_21Apr04164021172790_1.jpeg' width='728' /> 图1</p>
+<h2 id="21-四个子空间的正交性orthogonality"><strong>2.1 四个子空间的正交性(orthogonality)</strong><a class="headerlink" href="#21-四个子空间的正交性orthogonality" title="Permanent link">&para;</a></h2>
+<p>起初看到这张图时我并不是很理解，但从直观上可以看出它是想表达 <img src='https://www.zhihu.com/equation?tex=row%5C+space%5Cbot+null%5C+space' alt='row\ space\bot null\ space' /> , <img src='https://www.zhihu.com/equation?tex=column%5C+space%5Cbot+left%5C+null%5C+space' alt='column\ space\bot left\ null\ space' /></p>
+<p>在我们证明它们之前，首先，我们得知道 <strong>向量垂直的定义:</strong></p>
+<p><strong>若两向量内积为0，即<img src='https://www.zhihu.com/equation?tex=v%5E%5Ctop+w%3D0' alt='v^\top w=0' /> ，则称 <img src='https://www.zhihu.com/equation?tex=v+%5Cbot+w' alt='v \bot w' /> .</strong></p>
+<p><strong>将这个垂直（perpendicular）的概念从向量的层次扩展到空间的层次，给出以下定义：</strong></p>
+<blockquote>
+<p><strong>定义一：Two subspaces<img src='https://www.zhihu.com/equation?tex=V' alt='V' /> and <img src='https://www.zhihu.com/equation?tex=W' alt='W' /> of a vector space are orthogonal if every vector <img src='https://www.zhihu.com/equation?tex=v' alt='v' /> in <img src='https://www.zhihu.com/equation?tex=V' alt='V' /> is perpendicular to every vector <img src='https://www.zhihu.com/equation?tex=w' alt='w' /> in <img src='https://www.zhihu.com/equation?tex=W' alt='W' /></strong></p>
+</blockquote>
+<p><strong>举个栗子，垂直于一张平铺的纸（2-D空间）作该平面的法线（一条线是一个1-D空间），这两个空间即是垂直的。</strong></p>
+<blockquote>
+<p><strong> <em>Theorem1:</em></strong> <img src='https://www.zhihu.com/equation?tex=nullspace+%5Cbot+rowspace' alt='nullspace \bot rowspace' /> <strong><em>Proof:</em></strong><br />
+ 根据nullspace的定义，我们有<br />
+ <img src='https://www.zhihu.com/equation?tex=%5Cforall+x%5Csubset+nullspace%5C+N%28A%29' alt='\forall x\subset nullspace\ N(A)' /> , <img src='https://www.zhihu.com/equation?tex=Ax%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7Drow%5C+1+%5Ccdot+x%5C%5C+%5Cvdots+%5C%5Crow%5C+m+%5Ccdot+x%5Cend%7Bmatrix%7D+%5Cright%5D+%3D+%5Cleft%5B+%5Cbegin%7Bmatrix%7D+0%5C%5C+%5Cvdots%5C%5C0%5Cend%7Bmatrix%7D%5Cright%5D' alt='Ax=\left[ \begin{matrix}row\ 1 \cdot x\\ \vdots \\row\ m \cdot x\end{matrix} \right] = \left[ \begin{matrix} 0\\ \vdots\\0\end{matrix}\right]' /> ，即 <img src='https://www.zhihu.com/equation?tex=row_i%28i%3D1%2C2%2C%5Cdots%2Cm%29x%3D0+' alt='row_i(i=1,2,\dots,m)x=0 ' /> <br />
+根据rowspace的定义，我们有<img src='https://www.zhihu.com/equation?tex=%5Cforall+r%5Csubset+rowspace%2C+%5Cexists%E6%95%B0%E5%AF%B9a_1%2Ca_2%2C+%5Cdots%2C+a_m%5Csubset+%5Cmathbb%7BR%7D%2C%E4%BD%BF%E5%BE%97r%3Da_1+row_1%2B+%5Cdots%2Ba_m+row_m' alt='\forall r\subset rowspace, \exists数对a_1,a_2, \dots, a_m\subset \mathbb{R},使得r=a_1 row_1+ \dots+a_m row_m' />所以 <img src='https://www.zhihu.com/equation?tex=r+%5Ccdot+x%3D%28a_1+row_1%2B+%5Cdots%2Ba_m+row_m%29+%5Ccdot+x%3D0' alt='r \cdot x=(a_1 row_1+ \dots+a_m row_m) \cdot x=0' /> <br />
+即nullspace中任一向量与rowspace中任一向量垂直。<br />
+由定义一知: <img src='https://www.zhihu.com/equation?tex=nullspace+%5Cbot+rowspace' alt='nullspace \bot rowspace' /></p>
+</blockquote>
+<p>上面证明了big picture中的左半部分，接着证明右半部分</p>
+<blockquote>
+<p><strong> <em>Theorem2:</em></strong> <img src='https://www.zhihu.com/equation?tex=column%5C+space+%5Cbot+left+%5C+nullspace' alt='column\ space \bot left \ nullspace' /> <strong><em>Proof:</em></strong><br />
+ 根据left nullspace的定义，我们有<br />
+ <img src='https://www.zhihu.com/equation?tex=%5Cforall+y%5Csubset+left%5C+nullspace%2CA%5E%5Ctop+y%3D%5Cleft%5B%5Cbegin%7Bmatrix%7D+column_1%5E%5Ctop+%5Ccdot+y%5C%5C+%5Cdots%5C%5C+column_n%5E%5Ctop+%5Ccdot+y+%5Cend%7Bmatrix%7D%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D0%5C%5C.%5C%5C0+%5Cend%7Bmatrix%7D%5Cright%5D' alt='\forall y\subset left\ nullspace,A^\top y=\left[\begin{matrix} column_1^\top \cdot y\\ \dots\\ column_n^\top \cdot y \end{matrix}\right]=\left[ \begin{matrix}0\\.\\0 \end{matrix}\right]' /> <br />
+即 <img src='https://www.zhihu.com/equation?tex=column%5C+i%5E%5Ctop+%5Ccdot+y%3D0' alt='column\ i^\top \cdot y=0' /> <br />
+根据column space的定义，我们有<br />
+ <img src='https://www.zhihu.com/equation?tex=%5Cforall+c+%5Csubset+column%5C+space%2C+%5Cexists+b_1%2Cb_2%2C%5Cdots%2Cb_n+%5Csubset+%5Cmathbb%7BR%7D%2C%E4%BD%BF%E5%BE%97c%3Db_1column_1%2B%5Cdots%2Bb_ncolumn_n' alt='\forall c \subset column\ space, \exists b_1,b_2,\dots,b_n \subset \mathbb{R},使得c=b_1column_1+\dots+b_ncolumn_n' /> <br />
+所以 <img src='https://www.zhihu.com/equation?tex=c%5E%5Ctop+%5Ccdot+y%3D%28b_1column_1%5E%5Ctop%2B%5Cdots%2Bb_ncolumn_n%5E%5Ctop%29+%5Ccdot+y%3D0' alt='c^\top \cdot y=(b_1column_1^\top+\dots+b_ncolumn_n^\top) \cdot y=0' /> <br />
+因此： <img src='https://www.zhihu.com/equation?tex=column%5C+space+%5Cbot+left+%5C+nullspace' alt='column\ space \bot left \ nullspace' /></p>
+</blockquote>
+<h2 id="22正交补orthogonal-complement"><strong>2.2正交补(orthogonal complement)</strong><a class="headerlink" href="#22正交补orthogonal-complement" title="Permanent link">&para;</a></h2>
+<p><strong>在Part 1中我们知道了四个子空间的维度，其中</strong> <img src='https://www.zhihu.com/equation?tex=dim%28row%5C+space%29%3Ddim%28column%5C+space%29%3Drank%28A%29%3Dr%5C%5C+dim%28nullspace%29%3Dn-r%2Cdim%28left-nullspace%29%3Dm-r' alt='dim(row\ space)=dim(column\ space)=rank(A)=r\\ dim(nullspace)=n-r,dim(left-nullspace)=m-r' /></p>
+<p>不难发现，当 <img src='https://www.zhihu.com/equation?tex=A_%7Bm%5Ctimes+n%7D' alt='A_{m\times n}' /> 给定以后， <img src='https://www.zhihu.com/equation?tex=m' alt='m' /> 和 <img src='https://www.zhihu.com/equation?tex=n' alt='n' /> 也就给定了，它们就成了常量(constant)</p>
+<p><img src='https://www.zhihu.com/equation?tex=dim%28row%5C+space%29%2Bdim%28nullspace%29%3Dn%3Dconstant' alt='dim(row\ space)+dim(nullspace)=n=constant' /></p>
+<p><img src='https://www.zhihu.com/equation?tex=dim%28column%5C+space%29%2Bdim%28left-nullspace%29%3Dm%3Dconstant' alt='dim(column\ space)+dim(left-nullspace)=m=constant' /></p>
+<p>这两个式子也意味着 <img src='https://www.zhihu.com/equation?tex=C%28A%5E%5Ctop%29%5Ccup+N%28A%29%3D%5Cmathbb%7BR%5En%7D%2CC%28A%29%5Ccup+N%28A%5E%5Ctop%29%3D%5Cmathbb%7BR%5Em%7D+%5Ctag%7B1%7D' alt='C(A^\top)\cup N(A)=\mathbb{R^n},C(A)\cup N(A^\top)=\mathbb{R^m} \tag{1}' /></p>
+<p>而 <strong>Part 2.1告诉我们</strong> <img src='https://www.zhihu.com/equation?tex=C%28A%5E%5Ctop%29%5Cbot+N%28A%29%2CC%28A%29%5Cbot+N%28A%5E%5Ctop%29+%5Ctag%7B2%7D' alt='C(A^\top)\bot N(A),C(A)\bot N(A^\top) \tag{2}' /> 不妨视 <img src='https://www.zhihu.com/equation?tex=%5C%7B%5Cvec0%5C%7D' alt='\{\vec0\}' /> 为“空集” <img src='https://www.zhihu.com/equation?tex=%5Cphi' alt='\phi' /> ,根据空间垂直的定义 <strong>应该</strong> 可用反证法证得 <img src='https://www.zhihu.com/equation?tex=C%28A%5E%5Ctop%29%5Ccap+N%28A%29%3DC%28A%29%5Ccap+N%28A%5E%5Ctop%29%3D%5C%7B%5Cvec0%5C%7D%3A%3D%5Cphi+%5Ctag%7B3%7D' alt='C(A^\top)\cap N(A)=C(A)\cap N(A^\top)=\{\vec0\}:=\phi \tag{3}' /></p>
+<p>这样一来 <strong>借鉴集合论中关于绝对补集合的定义</strong> ，我们这样 <strong>理解四个子空间的正交补性质</strong></p>
+<p><img src='https://www.zhihu.com/equation?tex=C%28A%5E%5Ctop%29%E6%98%AFN%28A%29%E5%9C%A8%5Cmathbb%7BR%5En%7D%E4%B8%AD%E7%9A%84%E8%A1%A5%E9%9B%86%EF%BC%8CC%28A%29%E6%98%AFN%28A%5E%5Ctop%29%E5%9C%A8%5Cmathbb%7BR%5Em%7D%E4%B8%AD%E7%9A%84%E8%A1%A5%E9%9B%86' alt='C(A^\top)是N(A)在\mathbb{R^n}中的补集，C(A)是N(A^\top)在\mathbb{R^m}中的补集' /></p>
+<p>在 <strong>线性代数中，我们定义这样的成对空间互为正交补</strong> 。由正交补具有的特点可以 <strong>从另一角度</strong> 给出以下定义：</p>
+<blockquote>
+<p><strong>定义二：如果一个子空间</strong> <img src='https://www.zhihu.com/equation?tex=W' alt='W' /> <strong>包含所有与子空间</strong> <img src='https://www.zhihu.com/equation?tex=V' alt='V' /> <strong>垂直的向量，称</strong> <img src='https://www.zhihu.com/equation?tex=W' alt='W' /> 为 <img src='https://www.zhihu.com/equation?tex=V' alt='V' /><strong>的正交补，记作</strong><img src='https://www.zhihu.com/equation?tex=V%5E%5Cbot' alt='V^\bot' /> <strong>(发音为"V perp")</strong></p>
+<p><strong> <em>Theorem3:</em></strong> <img src='https://www.zhihu.com/equation?tex=nullspace%5C+is%5C+the+%5C+orthogonal%5C+complement%5C+of%5C+row%5C+space' alt='nullspace\ is\ the \ orthogonal\ complement\ of\ row\ space' /> <br />
+<strong><em>Proof:</em></strong><br />
+ 我们根据 <strong>定义二</strong> 来证明，那么待证命题转化为：<br />
+ <img src='https://www.zhihu.com/equation?tex=nullspace%28+%5Cmathbb%7BR%5E%7Bn-r%7D%7D%29' alt='nullspace( \mathbb{R^{n-r}})' /> 包含 <img src='https://www.zhihu.com/equation?tex=%5Cmathbb%7BR%5E%7Bn%7D%7D' alt='\mathbb{R^{n}}' /> 中 <strong>所有</strong> 与 <img src='https://www.zhihu.com/equation?tex=row%5C+space%28%5Cmathbb%7BR%5Er%7D%29' alt='row\ space(\mathbb{R^r})' /> 垂直的向量<br />
+用反证法来证明这个全称命题，假设 <img src='https://www.zhihu.com/equation?tex=%5Cexists+s%5Cin+%5Cmathbb%7BR%5En%7D+%5Cwedge+s%5Cbot+row%5C+space%2Cs+%5Cnotin+nullspace' alt='\exists s\in \mathbb{R^n} \wedge s\bot row\ space,s \notin nullspace' /> <img src='https://www.zhihu.com/equation?tex=%5Cbecause+s+%5Cbot+row%5C+space+%5Ctherefore+A+%5Ccdot+s%3D+%5Cleft%5B+%5Cbegin%7Bmatrix%7Drow_1%5C%5C+%5Cvdots%5C%5C+row_m+%5Cend%7Bmatrix%7D+%5Cright%5D+%5Ccdot+s%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D0%5C%5C+%5Cvdots%5C%5C+0+%5Cend%7Bmatrix%7D+%5Cright%5D' alt='\because s \bot row\ space \therefore A \cdot s= \left[ \begin{matrix}row_1\\ \vdots\\ row_m \end{matrix} \right] \cdot s=\left[ \begin{matrix}0\\ \vdots\\ 0 \end{matrix} \right]' /> ，即 <img src='https://www.zhihu.com/equation?tex=s' alt='s' /> 是 <img src='https://www.zhihu.com/equation?tex=Ax%3D0' alt='Ax=0' /> 的解<br />
+根据 <img src='https://www.zhihu.com/equation?tex=nullspace' alt='nullspace' /> 的定义(由 <img src='https://www.zhihu.com/equation?tex=Ax%3D0' alt='Ax=0' /> 的全部解组成的空间)， <img src='https://www.zhihu.com/equation?tex=s+%5Cin+nullspace' alt='s \in nullspace' /> ,与假设矛盾。<br />
+故 <img src='https://www.zhihu.com/equation?tex=%5Cmathbb%7BR%5En%7D' alt='\mathbb{R^n}' /> 中 <strong>不存在</strong> 与 <img src='https://www.zhihu.com/equation?tex=row+space' alt='row space' /> 垂直而不在 <img src='https://www.zhihu.com/equation?tex=nullspace' alt='nullspace' /> 中的向量，即 <img src='https://www.zhihu.com/equation?tex=%5Cmathbb%7BR%5En%7D' alt='\mathbb{R^n}' /> 中所有与 <img src='https://www.zhihu.com/equation?tex=rowspace' alt='rowspace' /> 垂直的向量都在 <img src='https://www.zhihu.com/equation?tex=nullspace' alt='nullspace' /> 中。</p>
+</blockquote>
+<p>类似地可以证明</p>
+<blockquote>
+<p><strong> <em>Theorem4:</em></strong> <img src='https://www.zhihu.com/equation?tex=left%5C+nullspace%5C+is%5C+the+%5C+orthogonal%5C+complement%5C+of%5C+column%5C+space' alt='left\ nullspace\ is\ the \ orthogonal\ complement\ of\ column\ space' /></p>
+</blockquote>
+<h2 id="23-的几何意义"><strong>2.3</strong> <strong><img src='https://www.zhihu.com/equation?tex=Ax%3Db' alt='Ax=b' />的几何意义</strong><a class="headerlink" href="#23-的几何意义" title="Permanent link">&para;</a></h2>
+<p><img src='images/subspace-matrix-four-connection_21Apr041_21Apr04164047103232_1.jpeg' width='696' /> 图2</p>
+<p><img src='https://www.zhihu.com/equation?tex=A_%7Bm+%5Ctimes+n%7D%5Ccdot+x_%7Bn+%5Ctimes+1%7D%3Db_%7Bm%5Ctimes+1%7D' alt='A_{m \times n}\cdot x_{n \times 1}=b_{m\times 1}' /> 这个方程中， <img src='https://www.zhihu.com/equation?tex=x' alt='x' /> 是 <img src='https://www.zhihu.com/equation?tex=n' alt='n' /> 维的，行空间也是 维的。 <img src='https://www.zhihu.com/equation?tex=b' alt='b' /> 是 <img src='https://www.zhihu.com/equation?tex=m' alt='m' /> 维的，列空间也是 维的。 <strong>所以这个方程可以解读为将<img src='https://www.zhihu.com/equation?tex=%5Cmathbb%7BR%5En%7D' alt='\mathbb{R^n}' /> 中的一个向量 <img src='https://www.zhihu.com/equation?tex=x' alt='x' /> 映射到<img src='https://www.zhihu.com/equation?tex=%5Cmathbb%7BR%5Em%7D' alt='\mathbb{R^m}' /> 中,</strong>同时注意到 <img src='https://www.zhihu.com/equation?tex=x' alt='x' /> 由分别来自行空间和零空间的 <img src='https://www.zhihu.com/equation?tex=x_r' alt='x_r' /> 和 <img src='https://www.zhihu.com/equation?tex=x_n' alt='x_n' /> 构成，这两个空间是 <img src='https://www.zhihu.com/equation?tex=%5Cmathbb%7BR%5En%7D' alt='\mathbb{R^n}' /> 的子空间。而 <img src='https://www.zhihu.com/equation?tex=b' alt='b' /> 来自列空间（ <img src='https://www.zhihu.com/equation?tex=%5Cmathbb%7BR%5Em%7D' alt='\mathbb{R^m}' /> 的子空间）。我们在学习解方程 <img src='https://www.zhihu.com/equation?tex=Ax%3Db' alt='Ax=b' /> 时总是分别求出一个 <strong>particular solution</strong> 和 <strong>special solutions,再将它们相加，这两个部分即</strong> <img src='https://www.zhihu.com/equation?tex=x_r' alt='x_r' /> 和 <img src='https://www.zhihu.com/equation?tex=x_n' alt='x_n' /> 。</p>
+<blockquote>
+<p>结合图2 思考 <strong>3.4节</strong> （<a href="https://zhuanlan.zhihu.com/p/30347472">3.4The Complete Solution to Ax=b</a>） <strong>关于</strong><img src='https://www.zhihu.com/equation?tex=Ax%3Db' alt='Ax=b' /> 解情况的判定（图3），可以从几何角度加深理解</p>
+</blockquote>
+<p><img src='images/subspace-matrix-four-connection_21Apr041_21Apr04164055488783_1.png' title="subspace-matrix-four-connection_21Apr041_21Apr04164055488783_1.png" alt="subspace-matrix-four-connection_21Apr041_21Apr04164055488783_1.png" width='680' />图3</p>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者: 信息门下勃狗  <br />
+来源： <a href="https://zhuanlan.zhihu.com/p/34056351">https://zhuanlan.zhihu.com/p/34056351</a> </p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                协方差矩阵的几何解释
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../nlp/nlp/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                自然语言处理
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
