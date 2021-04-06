@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bc7e593a.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab28b872.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
         
       
     
@@ -33,9 +33,9 @@
     
       
         
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
       
     
     
@@ -70,8 +70,12 @@
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
-      
   
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -87,56 +91,76 @@
       
     </div>
     
-      
-
-<header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-header-nav__button md-logo" aria-label="广告流程自动化">
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             广告流程自动化
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               Python 字符串
             
           </span>
         </div>
-      
+      </div>
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo" type="radio" name="__palette" id="__palette_1">
+          <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+          </label>
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue" type="radio" name="__palette" id="__palette_2">
+          <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+          </label>
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
       
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            正在初始化搜索引擎
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -154,32 +178,36 @@
       
         
           
-
-  
-
-<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
+  
+  
+
+
   <li class="md-tabs__item">
-    
-      <a href="../../../.." class="md-tabs__link">
-        Home
-      </a>
-    
+    <a href="../../../.." class="md-tabs__link">
+      Home
+    </a>
   </li>
 
       
         
   
   
+    
+  
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-        <a href="../../" class="md-tabs__link md-tabs__link--active">
-          Python
-        </a>
-      
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Python
+      </a>
     </li>
   
 
@@ -187,12 +215,15 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-        <a href="../../../html5/" class="md-tabs__link">
-          HTML5/CSS
-        </a>
-      
+      <a href="../../../html5/" class="md-tabs__link">
+        HTML5/CSS
+      </a>
     </li>
   
 
@@ -200,12 +231,15 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-        <a href="../../../ml/matrix/" class="md-tabs__link">
-          机器学习
-        </a>
-      
+      <a href="../../../ml/matrix/" class="md-tabs__link">
+        机器学习
+      </a>
     </li>
   
 
@@ -213,12 +247,15 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-        <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
-          数学基础
-        </a>
-      
+      <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+        数学基础
+      </a>
     </li>
   
 
@@ -226,12 +263,15 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-        <a href="../../../nlp/nlp/" class="md-tabs__link">
-          自然语言处理
-        </a>
-      
+      <a href="../../../nlp/nlp/" class="md-tabs__link">
+        自然语言处理
+      </a>
     </li>
   
 
@@ -239,12 +279,15 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-        <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
-          广告程序化
-        </a>
-      
+      <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+        广告程序化
+      </a>
     </li>
   
 
@@ -252,17 +295,30 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-        <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
-          网站SEO优化
-        </a>
-      
+      <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+        网站SEO优化
+      </a>
     </li>
   
 
       
         
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../about/" class="md-tabs__link">
+      关于
+    </a>
+  </li>
+
       
     </ul>
   </div>
@@ -273,17 +329,23 @@
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://geek.digiasset.org/" title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化">
+    <a href="../../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
     广告流程自动化
@@ -295,12 +357,15 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../../../.." class="md-nav__link">
-      Home
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
 
     
       
@@ -308,84 +373,86 @@
       
 
   
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+  
+  
     
-    <label class="md-nav__link" for="nav-2">
-      Python
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Python" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
-        <span class="md-nav__icon md-icon"></span>
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
         Python
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../" class="md-nav__link">
-      python 基础教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-lexicalstructure/" class="md-nav__link">
-      Python 语法结构
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-datatypes/" class="md-nav__link">
-      Python 数据类型
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Python 字符串
         <span class="md-nav__icon md-icon"></span>
       </label>
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        python 基础教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-lexicalstructure/" class="md-nav__link">
+        Python 语法结构
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-datatypes/" class="md-nav__link">
+        Python 数据类型
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
-    <a href="./" class="md-nav__link md-nav__link--active">
-      Python 字符串
-    </a>
-    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
       
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Python 字符串
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Python 字符串
+      </a>
+      
+        
 <nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
@@ -396,7 +463,7 @@
       <span class="md-nav__icon md-icon"></span>
       目录
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#Python-字符串字面值" class="md-nav__link">
@@ -506,1705 +573,1746 @@
     </ul>
   
 </nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-fstring/" class="md-nav__link">
-      Python f 字符串
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-lists/" class="md-nav__link">
-      Python 列表
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-dictionaries/" class="md-nav__link">
-      Python 字典
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-set/" class="md-nav__link">
-      Python 集合
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-map/" class="md-nav__link">
-      Python 映射
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-operators/" class="md-nav__link">
-      Python 运算符
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-keywords/" class="md-nav__link">
-      Python 关键字
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-forloop/" class="md-nav__link">
-      Python for 循环
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-itergener/" class="md-nav__link">
-      Python 迭代器和生成器
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-listcomprehensions/" class="md-nav__link">
-      Python 列表推导式
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-reverse/" class="md-nav__link">
-      Python 反转
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-functions/" class="md-nav__link">
-      Python 函数
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-regularexpressions/" class="md-nav__link">
-      Python 正则表达式
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-oop/" class="md-nav__link">
-      Python 面向对象编程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-modules/" class="md-nav__link">
-      Python 模块
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-packages/" class="md-nav__link">
-      Python 中的软件包
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-exceptions/" class="md-nav__link">
-      Python 异常
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-introspection/" class="md-nav__link">
-      Python 自省
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-lambda/" class="md-nav__link">
-      Python Lambda 函数
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-logging/" class="md-nav__link">
-      Python 日志教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-simplejson/" class="md-nav__link">
-      Python JSON 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-faker/" class="md-nav__link">
-      Python Faker 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-feedparser/" class="md-nav__link">
-      Python feedparser 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-bcrypt/" class="md-nav__link">
-      Python bcrypt 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-socket/" class="md-nav__link">
-      Python 套接字教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-smtplib/" class="md-nav__link">
-      Python smtplib 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-yaml/" class="md-nav__link">
-      Python YAML 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-hashing/" class="md-nav__link">
-      Python 哈希教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-configparser/" class="md-nav__link">
-      Python ConfigParser 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-argparse/" class="md-nav__link">
-      Python argparse 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-sqlite/" class="md-nav__link">
-      Python SQLite 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-cerberus/" class="md-nav__link">
-      Python Cerberus 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-pymysql/" class="md-nav__link">
-      Python PyMySQL 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-peewee/" class="md-nav__link">
-      Python Peewee 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-pydal/" class="md-nav__link">
-      Python pyDAL 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-pytest/" class="md-nav__link">
-      Python Pytest 单元测试教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-beautifulsoup/" class="md-nav__link">
-      BeautifulSoup 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-pyquery/" class="md-nav__link">
-      Python pyquery 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-sympy/" class="md-nav__link">
-      SymPy 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-pandas/" class="md-nav__link">
-      Pandas 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-matplotlib/" class="md-nav__link">
-      Matplotlib 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-pillow/" class="md-nav__link">
-      Pillow 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-ftp/" class="md-nav__link">
-      Python FTP 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-requests/" class="md-nav__link">
-      Python Requests 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-arrow/" class="md-nav__link">
-      Python Arrow 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-magicmethods/" class="md-nav__link">
-      Python 魔术方法
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../python-run-job-orchestrator/" class="md-nav__link">
-      python Uipath Orchestrator Cloud API 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
-      Python 使用 Google NLP API进行网站分类
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
-      用python算微积分及牛顿迭代求解高阶方程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../py-setuptools/" class="md-nav__link">
-      Python打包分发工具setuptools
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-fstring/" class="md-nav__link">
+        Python f 字符串
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-lists/" class="md-nav__link">
+        Python 列表
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dictionaries/" class="md-nav__link">
+        Python 字典
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-set/" class="md-nav__link">
+        Python 集合
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-map/" class="md-nav__link">
+        Python 映射
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-operators/" class="md-nav__link">
+        Python 运算符
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-keywords/" class="md-nav__link">
+        Python 关键字
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-forloop/" class="md-nav__link">
+        Python for 循环
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-itergener/" class="md-nav__link">
+        Python 迭代器和生成器
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-listcomprehensions/" class="md-nav__link">
+        Python 列表推导式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-reverse/" class="md-nav__link">
+        Python 反转
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-functions/" class="md-nav__link">
+        Python 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-regularexpressions/" class="md-nav__link">
+        Python 正则表达式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-oop/" class="md-nav__link">
+        Python 面向对象编程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modules/" class="md-nav__link">
+        Python 模块
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-packages/" class="md-nav__link">
+        Python 中的软件包
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-exceptions/" class="md-nav__link">
+        Python 异常
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-introspection/" class="md-nav__link">
+        Python 自省
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-lambda/" class="md-nav__link">
+        Python Lambda 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-logging/" class="md-nav__link">
+        Python 日志教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-simplejson/" class="md-nav__link">
+        Python JSON 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-faker/" class="md-nav__link">
+        Python Faker 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-feedparser/" class="md-nav__link">
+        Python feedparser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-bcrypt/" class="md-nav__link">
+        Python bcrypt 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-socket/" class="md-nav__link">
+        Python 套接字教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-smtplib/" class="md-nav__link">
+        Python smtplib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-yaml/" class="md-nav__link">
+        Python YAML 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-hashing/" class="md-nav__link">
+        Python 哈希教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-configparser/" class="md-nav__link">
+        Python ConfigParser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-argparse/" class="md-nav__link">
+        Python argparse 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-sqlite/" class="md-nav__link">
+        Python SQLite 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-cerberus/" class="md-nav__link">
+        Python Cerberus 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pymysql/" class="md-nav__link">
+        Python PyMySQL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-peewee/" class="md-nav__link">
+        Python Peewee 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pydal/" class="md-nav__link">
+        Python pyDAL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pytest/" class="md-nav__link">
+        Python Pytest 单元测试教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-beautifulsoup/" class="md-nav__link">
+        BeautifulSoup 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pyquery/" class="md-nav__link">
+        Python pyquery 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-sympy/" class="md-nav__link">
+        SymPy 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pandas/" class="md-nav__link">
+        Pandas 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-matplotlib/" class="md-nav__link">
+        Matplotlib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pillow/" class="md-nav__link">
+        Pillow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-ftp/" class="md-nav__link">
+        Python FTP 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-requests/" class="md-nav__link">
+        Python Requests 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-arrow/" class="md-nav__link">
+        Python Arrow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-magicmethods/" class="md-nav__link">
+        Python 魔术方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-run-job-orchestrator/" class="md-nav__link">
+        python Uipath Orchestrator Cloud API 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+        Python 使用 Google NLP API进行网站分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+        用python算微积分及牛顿迭代求解高阶方程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../py-setuptools/" class="md-nav__link">
+        Python打包分发工具setuptools
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item md-nav__item--nested">
+  
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      HTML5/CSS
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        <span class="md-nav__icon md-icon"></span>
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
         HTML5/CSS
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../html5/" class="md-nav__link">
-      HTML5 教程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../html5/html_5_intro/" class="md-nav__link">
-      HTML5 简介
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../html5/html-head/" class="md-nav__link">
-      HTML5 头部
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../html5/html_5_video/" class="md-nav__link">
-      HTML5 视频
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../html5/html-tables/" class="md-nav__link">
-      HTML5 表格
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../html5/html-images/" class="md-nav__link">
-      HTML5 图像
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
-      HTML5 地理定位
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
-      HTML5 Worker
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      机器学习
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="机器学习" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          HTML5/CSS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/" class="md-nav__link">
+        HTML5 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_intro/" class="md-nav__link">
+        HTML5 简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-head/" class="md-nav__link">
+        HTML5 头部
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_video/" class="md-nav__link">
+        HTML5 视频
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-tables/" class="md-nav__link">
+        HTML5 表格
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-images/" class="md-nav__link">
+        HTML5 图像
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+        HTML5 地理定位
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+        HTML5 Worker
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
         机器学习
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../ml/matrix/" class="md-nav__link">
-      机器学习与矩阵,numpy,sklearn等工具
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
-      Python – 如何使用 t-SNE 進行降維
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
-      特征值分解、奇异值分解、PCA概念
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
-      Numpy中矩阵计算模块linalg的常用函数
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
-      深度学习的激活函数
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
-      加快Scikit-Learn训练
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
-    
-    <label class="md-nav__link" for="nav-5">
-      数学基础
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="数学基础" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
         <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="机器学习" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          机器学习
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/matrix/" class="md-nav__link">
+        机器学习与矩阵,numpy,sklearn等工具
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+        Python – 如何使用 t-SNE 進行降維
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+        特征值分解、奇异值分解、PCA概念
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+        Numpy中矩阵计算模块linalg的常用函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+        深度学习的激活函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+        加快Scikit-Learn训练
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" data-md-state="indeterminate" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
         数学基础
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
-      指数分布公式的含义
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
-      LaTeX 数学公式排版
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
-      常见概率统计分布及Python实现
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
-      期望值、方差、协方差、相关系数
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
-      softmax详解
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
-      最小二乘法多项式曲线拟合及其python实现
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
-      损失函数 - 交叉熵损失函数
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
-      向量的距离度量
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
-      协方差、PCA、样本中心化，白化、方差、标准差、BN
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
-      降维基础知识（样本均值、样本方差、中心矩阵）与PCA
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
-      如何画lda投影结果_线性判别分析（LDA）原理总结
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
-      协方差矩阵的几何解释
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
-      从sympy求最简形矩阵到矩阵的四个子空间及其联系
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      自然语言处理
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="自然语言处理" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
         <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="数学基础" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+        指数分布公式的含义
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+        LaTeX 数学公式排版
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+        常见概率统计分布及Python实现
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+        期望值、方差、协方差、相关系数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+        softmax详解
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+        最小二乘法多项式曲线拟合及其python实现
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+        损失函数 - 交叉熵损失函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+        向量的距离度量
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+        协方差、PCA、样本中心化，白化、方差、标准差、BN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+        降维基础知识（样本均值、样本方差、中心矩阵）与PCA
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
+        如何画lda投影结果_线性判别分析（LDA）原理总结
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+        协方差矩阵的几何解释
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
+        从sympy求最简形矩阵到矩阵的四个子空间及其联系
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
+        了解卷积
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" data-md-state="indeterminate" type="checkbox" id="__nav_6" checked>
+      
+      <label class="md-nav__link" for="__nav_6">
         自然语言处理
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlp/" class="md-nav__link">
-      自然语言处理
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
-      NLP 新手上路
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
-      NLP HanNLP 词典分词
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
-      评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
-      文本关键词提取
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/topicextract/" class="md-nav__link">
-      用Python从海量文本抽取主题
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
-      nlp常用工具集
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
-      NLP pattern库 hands on
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
-      基于预训练模型的文本摘要
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
-      Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
-      开源项目，涵盖 11 类 AI 学习框架、平台
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
-      自然语言处理工具包之NLTK
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
-      基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
-      bert-extractive-summarizer 中文文章的抽取式摘要
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
-      理解NLP中的CNN卷积神经网络
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
-      依存分析与依存树 dependency parse
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
-      关键词与文章相关性, 关键词自动标注与提取
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
-      Python 使用 Google NLP API进行网站分类
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
-      使用 AI 自动执行 Web 爬网
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
-      通过机器学习对网站进行分类
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
-      TextRank算法简述
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
-      NLTK TextRank实现英文关键词提取
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
-      使用 Spacy和 FuzzyWuzzy 构建关键字提取API
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
-      使用余弦相似度算法计算文本相似度
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
-      细数2018年最好的词嵌入和句嵌入技术
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
-      从头开始多标签文本分类
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
-      没有模型训练情况下用BERT做文本分类
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
-      用 NLP 做文本分析和特征工程
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
-    
-    <label class="md-nav__link" for="nav-7">
-      广告程序化
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
         <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="自然语言处理" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          自然语言处理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlp/" class="md-nav__link">
+        自然语言处理
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+        NLP 新手上路
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+        NLP HanNLP 词典分词
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+        评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+        文本关键词提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+        用Python从海量文本抽取主题
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+        nlp常用工具集
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+        NLP pattern库 hands on
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+        基于预训练模型的文本摘要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+        Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+        开源项目，涵盖 11 类 AI 学习框架、平台
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+        自然语言处理工具包之NLTK
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+        基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+        bert-extractive-summarizer 中文文章的抽取式摘要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+        理解NLP中的CNN卷积神经网络
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+        依存分析与依存树 dependency parse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+        关键词与文章相关性, 关键词自动标注与提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+        Python 使用 Google NLP API进行网站分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+        使用 AI 自动执行 Web 爬网
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+        通过机器学习对网站进行分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+        TextRank算法简述
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+        NLTK TextRank实现英文关键词提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+        使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+        使用余弦相似度算法计算文本相似度
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+        细数2018年最好的词嵌入和句嵌入技术
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+        从头开始多标签文本分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+        没有模型训练情况下用BERT做文本分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+        用 NLP 做文本分析和特征工程
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" data-md-state="indeterminate" type="checkbox" id="__nav_7" checked>
+      
+      <label class="md-nav__link" for="__nav_7">
         广告程序化
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
-      围绕SEO开展竞争对手分析
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
-      Shopify独立站的几套选品方法
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/semantic-search/" class="md-nav__link">
-      什么是语义搜索？它是如何影响SEO的
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
-      如何把网站提交给搜索引擎
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/meta-description/" class="md-nav__link">
-      如何编写完美的元描述
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
-      使用 Google Trend、Python 和 Ahrefs 查找关键字商机
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
-      动态网站使用 Python 向 Google 自动提交站点地图
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
-      使用 Python 进行 Facebook 抓取和情绪分析
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
-      Instagram 爬虫
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
-      使用 Python 查找关键字类别的搜索量上限
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
-      可视化 100，000 亚马逊产品
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
-      使用SimHash进行海量文本去重流程
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
-    
-    <label class="md-nav__link" for="nav-8">
-      网站SEO优化
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
-      <label class="md-nav__title" for="nav-8">
         <span class="md-nav__icon md-icon"></span>
-        网站SEO优化
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+      <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          广告程序化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+        围绕SEO开展竞争对手分析
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+        Shopify独立站的几套选品方法
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/semantic-search/" class="md-nav__link">
+        什么是语义搜索？它是如何影响SEO的
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
-      长尾词优化入网页
-    </a>
-  </li>
-
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+        如何把网站提交给搜索引擎
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/meta-description/" class="md-nav__link">
+        如何编写完美的元描述
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+        使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/keyword-difficulty/" class="md-nav__link">
-      关键词难度：如何确认你在 Google 获得排名的机会
-    </a>
-  </li>
-
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+        动态网站使用 Python 向 Google 自动提交站点地图
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        使用 Python 进行 Facebook 抓取和情绪分析
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        Instagram 爬虫
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
-      如何让网站排名进入谷歌首页
-    </a>
-  </li>
-
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+        使用 Python 查找关键字类别的搜索量上限
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+        可视化 100，000 亚马逊产品
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+        使用SimHash进行海量文本去重流程
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
-      如何搭建一个成功的亚马逊联盟网站
-    </a>
-  </li>
-
-        
           
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
-      SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
-      抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/how-to-start-seo/" class="md-nav__link">
-      SEO每日流量如何从0到10000
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
-      Python与SEO 词库完整指南
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
-      Python百度下拉框关键词采集
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../affiliate/adsense/" class="md-nav__link">
-      hexo个人next主题博客接入谷歌广告
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
       
       
 
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" data-md-state="indeterminate" type="checkbox" id="__nav_8" checked>
+      
+      <label class="md-nav__link" for="__nav_8">
+        网站SEO优化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          网站SEO优化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+        长尾词优化入网页
+      </a>
+    </li>
+  
 
-  <li class="md-nav__item">
-    <a href="../../../../about/" class="md-nav__link">
-      关于
-    </a>
-  </li>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/keyword-difficulty/" class="md-nav__link">
+        关键词难度：如何确认你在 Google 获得排名的机会
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+        如何让网站排名进入谷歌首页
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+        如何搭建一个成功的亚马逊联盟网站
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+        SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+        抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-start-seo/" class="md-nav__link">
+        SEO每日流量如何从0到10000
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+        Python与SEO 词库完整指南
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+        Python百度下拉框关键词采集
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/adsense/" class="md-nav__link">
+        hexo个人next主题博客接入谷歌广告
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        关于
+      </a>
+    </li>
+  
 
     
   </ul>
@@ -2214,136 +2322,8 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#Python-字符串字面值" class="md-nav__link">
-    Python 字符串字面值
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-中的-Unicode" class="md-nav__link">
-    Python 中的 Unicode
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#在-Python-中使用引号" class="md-nav__link">
-    在 Python 中使用引号
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-字符串长度" class="md-nav__link">
-    Python 字符串长度
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-字符串剥离空白字符" class="md-nav__link">
-    Python 字符串剥离空白字符
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-字符串转义序列" class="md-nav__link">
-    Python 字符串转义序列
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-比较字符串" class="md-nav__link">
-    Python 比较字符串
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-访问字符串元素" class="md-nav__link">
-    Python 访问字符串元素
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-查找子字符串" class="md-nav__link">
-    Python 查找子字符串
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-基本字符串操作" class="md-nav__link">
-    Python 基本字符串操作
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-替换字符串" class="md-nav__link">
-    Python 替换字符串
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-分割和连接字符串" class="md-nav__link">
-    Python 分割和连接字符串
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-字符串大小写" class="md-nav__link">
-    Python 字符串大小写
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#对字符串的-Python-操作" class="md-nav__link">
-    对字符串的 Python 操作
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#Python-字符串格式化" class="md-nav__link">
-    Python 字符串格式化
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
-          <div class="md-content">
+          <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
@@ -2352,22 +2332,22 @@
 <p>Python 中的字符串是字符序列，它是派生的数据类型。 字符串是不可变的，这意味着一旦定义，就无法更改。 许多 Python 方法，例如<code>replace()</code>，<code>join()</code>或<code>split()</code>都会修改字符串。 但是，它们不会修改原始字符串。 他们创建一个字符串副本，然后对其进行修改并返回给调用者。</p>
 <h2 id="Python-字符串字面值">Python 字符串字面值<a class="headerlink" href="#Python-字符串字面值" title="Permanent link">&para;</a></h2>
 <p>可以使用单引号，双引号或三引号创建 Python 字符串。 当我们使用三引号时，字符串可以跨越多行而无需使用转义符。</p>
-<details class="abstract" open="open"><summary>string_literals.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>string_literals.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # string_literals.py
 
@@ -2387,14 +2367,14 @@ print(c)
 </td></tr></table>
 </details>
 <p>在我们的示例中，我们为<code>a</code>，<code>b</code>和<code>c</code>变量分配了三个字符串字面值。 然后将它们打印到控制台。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./string_literals.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./string_literals.py 
 proximity alert
 evacuation
 
@@ -2407,15 +2387,15 @@ tower
 </details>
 <h2 id="Python-中的-Unicode">Python 中的 Unicode<a class="headerlink" href="#Python-中的-Unicode" title="Permanent link">&para;</a></h2>
 <p>如果要创建 Unicode 字符串，请在文本开头添加<code>u</code>或<code>U</code>字符。</p>
-<details class="abstract" open="open"><summary>unicode.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>unicode.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # unicode.py
 
@@ -2428,23 +2408,23 @@ print(text)
 </td></tr></table>
 </details>
 <p>在我们的示例中，我们在 azbuka 中打​​印了托尔斯泰：《安娜·卡列尼娜》。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./unicode.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./unicode.py 
 Лев Николаевич Толстой: 
 Анна Каренина
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>如果我们使用编码注释，则可以直接使用俄语字母。</p>
-<details class="abstract" open="open"><summary>unicode2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
+<details class="abstract" open="open"><summary>unicode2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # unicode2.py
@@ -2458,15 +2438,15 @@ print(text)
 <p>在此示例中，我们直接在源代码中使用非拉丁字符。 我们定义了带有编码注释的 UTF-8 编码。</p>
 <h2 id="在-Python-中使用引号">在 Python 中使用引号<a class="headerlink" href="#在-Python-中使用引号" title="Permanent link">&para;</a></h2>
 <p>Python 中的字符串由单引号或双引号字符分隔。 如果我们想显示报价，例如直接讲话怎么办？ 有两种基本方法可以做到这一点。</p>
-<details class="abstract" open="open"><summary>quotes.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>quotes.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # quotes.py
 
@@ -2479,11 +2459,11 @@ print(&#39;He said, &quot;Which one is your favourite?&quot;&#39;)
 </td></tr></table>
 </details>
 <p>我们使用<code>\</code>字符转义其他引号。 通常，双引号用于分隔字符串字面值。 但是，当转义时，其原始含义被抑制。 它显示为普通字符，可以在字符串字面值中使用。 在引号中使用引号的第二种方法是混合单引号和双引号。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./quotes.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./quotes.py
 There are many stars.
 He said, &quot;Which one is your favourite?&quot;
 There are many stars.
@@ -2494,17 +2474,17 @@ He said, &quot;Which one is your favourite?&quot;
 <p>这是输出。</p>
 <h2 id="Python-字符串长度">Python 字符串长度<a class="headerlink" href="#Python-字符串长度" title="Permanent link">&para;</a></h2>
 <p><code>len()</code>方法计算字符串中的字符数。 空白字符也算在内。</p>
-<details class="abstract" open="open"><summary>string_length.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>string_length.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # string_length.py
 
@@ -2519,24 +2499,24 @@ print(len(s3))
 </td></tr></table>
 </details>
 <p>我们计算三个字符串的长度。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>s1 = &quot;Eagle&quot;
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>s1 = &quot;Eagle&quot;
 s2 = &quot;Eagle\n&quot;
 s3 = &quot;Eagle  &quot;
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>定义了三个字符串。 第二个字符串的末尾有换行符。 第三个有两个额外的空格字符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(len(s1))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(len(s1))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>我们将字符数打印到控制台。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./length.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./length.py
 5
 6
 7
@@ -2546,20 +2526,20 @@ s3 = &quot;Eagle  &quot;
 <p>从输出中我们可以看到，空格（在本例中为换行符和空格符）也被计算在内。</p>
 <h2 id="Python-字符串剥离空白字符">Python 字符串剥离空白字符<a class="headerlink" href="#Python-字符串剥离空白字符" title="Permanent link">&para;</a></h2>
 <p>在字符串处理中，我们通常可能会以在字符串开头或结尾处带有空白字符的字符串结尾。 术语空白（字符）是指不可见的字符，例如换行符，制表符，空格或其他控制字符。 我们有<code>strip()</code>，<code>lstrip()</code>和<code>rstrip()</code>方法来删除这些字符。</p>
-<details class="abstract" open="open"><summary>stripping.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>stripping.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # strippig.py
 
@@ -2577,31 +2557,31 @@ print(&#39;{0} {1}&#39;.format(s4, len(s4)))
 </td></tr></table>
 </details>
 <p>我们对具有三个空格的字符串单词应用剥离方法。 开头一个空格，结尾两个空格。 请注意，这些方法会删除任意数量的空格，而不仅仅是一个空格。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>s2 = s.rstrip()
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>s2 = s.rstrip()
 </code></pre></div>
 </td></tr></table>
 </details>
 <p><code>rstrip()</code>方法返回一个字符串，其中删除了结尾的空白字符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>s3 = s.lstrip()
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>s3 = s.lstrip()
 </code></pre></div>
 </td></tr></table>
 </details>
 <p><code>lstrip()</code>方法返回一个字符串，其中删除了前导空格字符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>s4 = s.strip()
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>s4 = s.strip()
 </code></pre></div>
 </td></tr></table>
 </details>
 <p><code>strip()</code>方法返回字符串的副本，其中删除了前导和尾随字符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;{0} {1}&#39;.format(s2, len(s2)))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;{0} {1}&#39;.format(s2, len(s2)))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p><code>format()</code>方法用于动态构建字符串。 <code>{0}</code>是参考<code>format()</code>方法第一个参数的控制字符。 <code>{1}</code>是指第二个参数。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./stripping.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./stripping.py 
  Eagle   8
  Eagle 6
 Eagle   7
@@ -2612,17 +2592,17 @@ Eagle 5
 <p>这是<code>stripping.py</code>示例的输出。</p>
 <h2 id="Python-字符串转义序列">Python 字符串转义序列<a class="headerlink" href="#Python-字符串转义序列" title="Permanent link">&para;</a></h2>
 <p>在处理字符串时，可以使用转义序列。 转义序列是特殊字符，在字符串中使用时具有特定目的。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;   bbb\raaa&quot;) # prints aaabbb
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;   bbb\raaa&quot;) # prints aaabbb
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>回车<code>\r</code>是行尾到行首的控制字符。</p>
-<details class="abstract" open="open"><summary>strophe.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>strophe.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # strophe.py
 
@@ -2632,11 +2612,11 @@ print(&quot;Speak out if you do\nYou&#39;re not easy to find&quot;)
 </td></tr></table>
 </details>
 <p>新行是控制字符，它开始新的一行文本。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./strophe.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./strophe.py 
 Incompatible, it don&#39;t matter though
 &#39;cos someone&#39;s bound to hear my cry
 Speak out if you do
@@ -2645,29 +2625,29 @@ You&#39;re not easy to find
 </td></tr></table>
 </details>
 <p>接下来，我们检查退格控制字符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;Python\b\b\booo&quot;) # prints Pytooo
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;Python\b\b\booo&quot;) # prints Pytooo
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>退格控制字符<code>\b</code>将光标向后移动一个字符。 在本例中，我们使用三个退格字符删除三个字母，并用三个 o 字符替换它们。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;Towering\tinferno&quot;) # prints Towering        inferno
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;Towering\tinferno&quot;) # prints Towering        inferno
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>水平选项卡在文本之间放置一个空格。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&quot;Johnie&#39;s dog&quot;
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&quot;Johnie&#39;s dog&quot;
 &#39;Johnie\&#39;s dog&#39;
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>单引号和双引号可以嵌套。 或者，如果仅使用单引号，则可以使用反斜杠来转义单引号的默认含义。</p>
 <p>如果我们在字符串前面加上 r，则会得到原始字符串。 转义序列不被解释。</p>
-<details class="abstract" open="open"><summary>raw.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>raw.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # raw.py
 
@@ -2675,8 +2655,8 @@ print(r&quot;Another world\n&quot;)
 </code></pre></div>
 </td></tr></table>
 </details>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./raw.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./raw.py 
 Another world\n
 </code></pre></div>
 </td></tr></table>
@@ -2684,16 +2664,16 @@ Another world\n
 <p>我们得到的字符串包括换行符。</p>
 <h2 id="Python-比较字符串">Python 比较字符串<a class="headerlink" href="#Python-比较字符串" title="Permanent link">&para;</a></h2>
 <p>比较字符串是编程中的常见工作。 我们可以使用<code>==</code>运算符比较两个字符串。 我们可以用非等式<code>!=</code>运算符检查相反的情况。 运算符返回布尔<code>True</code>或<code>False</code>。</p>
-<details class="abstract" open="open"><summary>comparing.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>comparing.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # comparing.py
 
@@ -2707,27 +2687,27 @@ print(&quot;efg&quot; != &quot;efg&quot;)
 </td></tr></table>
 </details>
 <p>在此代码示例中，我们比较了一些字符串。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;12&quot; == &quot;12&quot;)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;12&quot; == &quot;12&quot;)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>这两个字符串相等，因此该行返回<code>True</code>。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;aa&quot; == &quot;ab&quot;)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;aa&quot; == &quot;ab&quot;)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>两个字符串的前两个字符相等。 接下来比较以下字符。 它们不同，因此该行返回<code>False</code>。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;abc&quot; != &quot;bce&quot;)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&quot;abc&quot; != &quot;bce&quot;)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>由于两个字符串不同，因此该行返回<code>True</code>。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./comparing.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./comparing.py
 True
 False
 False
@@ -2739,22 +2719,22 @@ False
 <p>这是输出。</p>
 <h2 id="Python-访问字符串元素">Python 访问字符串元素<a class="headerlink" href="#Python-访问字符串元素" title="Permanent link">&para;</a></h2>
 <p>可以在 Python 中访问字符串元素。</p>
-<details class="abstract" open="open"><summary>string_elements.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>string_elements.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # string_elements.py
 
@@ -2774,39 +2754,39 @@ print(s[:])
 </td></tr></table>
 </details>
 <p>索引操作用于获取字符串的元素。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(s[0])
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(s[0])
 print(s[4])
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>第一行打印第一个字符。 第二行打印第五个字符。 索引从零开始。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(s[-1])
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(s[-1])
 print(s[-2])
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>当索引为负数时，我们从字符串的末尾检索元素。 在这种情况下，我们将打印最后一个字符和最后一个字符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(s[0:4])
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(s[0:4])
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>也可以访问字符范围。 该行打印从第一个字符开始到第四个字符结束的一系列字符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(s[:])
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(s[:])
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>此行将打印字符串中的所有字符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./string_elements.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./string_elements.py
 E
 e
 e
@@ -2820,14 +2800,14 @@ Eagle
 </details>
 <p>这是输出。</p>
 <p>for 循环可用于遍历字符串的所有字符。</p>
-<details class="abstract" open="open"><summary>traverse.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>traverse.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # traverse.py
 
@@ -2839,8 +2819,8 @@ for i in s:
 </td></tr></table>
 </details>
 <p>该脚本将给定字符串的所有字符打印到控制台。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./traverse.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./traverse.py
 Z e t C o d e
 </code></pre></div>
 </td></tr></table>
@@ -2849,10 +2829,10 @@ Z e t C o d e
 <h2 id="Python-查找子字符串">Python 查找子字符串<a class="headerlink" href="#Python-查找子字符串" title="Permanent link">&para;</a></h2>
 <p><code>find()</code>，<code>rfind()</code>，<code>index()</code>和<code>rindex()</code>方法用于查找字符串中的子字符串。 它们返回第一次出现的子字符串的索引。 <code>find()</code>和<code>index()</code>方法从字符串的开头搜索。 <code>rfind()</code>和<code>rindex()</code>从字符串的末尾开始搜索。</p>
 <p><code>find()</code>和<code>index()</code>方法之间的区别在于，当找不到子字符串时，前者返回-1。 后者引发<code>ValueError</code>异常。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>find(str, beg=0, end=len(string))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>find(str, beg=0, end=len(string))
 rfind(str, beg=0, end=len(string))
 index(str, beg=0, end=len(string))
 rindex(str, beg=0, end=len(string))
@@ -2860,17 +2840,17 @@ rindex(str, beg=0, end=len(string))
 </td></tr></table>
 </details>
 <p>str 是要搜索的子字符串。 <code>beg</code>参数是起始索引，默认值为 0。<code>end</code>参数是终止索引。 默认情况下，它等于字符串的长度。</p>
-<details class="abstract" open="open"><summary>substrings.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>substrings.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # substrings.py
 
@@ -2885,31 +2865,31 @@ print(a.rfind(&quot;wolf&quot;))
 </td></tr></table>
 </details>
 <p>我们有一个简单的句子。 我们尝试在句子中找到子字符串的索引。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.find(&quot;wolf&quot;))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.find(&quot;wolf&quot;))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>该行查找句子中子字符串“ wolf”的第一次出现。 打印 8。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.find(&quot;wolf&quot;, 10, 20))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.find(&quot;wolf&quot;, 10, 20))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>该行尝试查找“ wolf”子字符串。 它从第 10 个字符开始，然后搜索接下来的 20 个字符。 在此范围内没有这样的子字符串，因此该行显示-1（未找到）。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.find(&quot;wolf&quot;, 15))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.find(&quot;wolf&quot;, 15))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>在这里，我们搜索从第 15 个字符到字符串结尾的子字符串。 我们找到子字符串的第二次出现。 该行打印 35。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.rfind(&quot;wolf&quot;))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.rfind(&quot;wolf&quot;))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p><code>rfind()</code>从末尾查找子字符串。 它查找“ wolf”子字符串的第二次出现。 该行打印 35。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./substrings.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./substrings.py
 8
 -1
 35
@@ -2919,19 +2899,19 @@ print(a.rfind(&quot;wolf&quot;))
 </details>
 <p>这是输出。</p>
 <p>在第二个示例中，我们将使用<code>index()</code>和<code>rindex()</code>方法。</p>
-<details class="abstract" open="open"><summary>substrings2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>substrings2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # substrings2.py
 
@@ -2948,17 +2928,17 @@ except ValueError as e:
 </td></tr></table>
 </details>
 <p>在示例中，我们使用<code>index()</code>和<code>rindex()</code>方法搜索子字符串。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.index(&quot;wolf&quot;))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.index(&quot;wolf&quot;))
 print(a.rindex(&quot;wolf&quot;))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>这些行从开头和结尾开始查找“ wolf”子字符串的第一个匹配项。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>try:
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>try:
     print(a.rindex(&quot;fox&quot;))
 except ValueError as e:
     print(&quot;Could not find substring&quot;)
@@ -2966,10 +2946,10 @@ except ValueError as e:
 </td></tr></table>
 </details>
 <p>当找不到子字符串时，<code>rindex()</code>方法引发<code>ValueError</code>异常。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./substrings2.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./substrings2.py
 8
 35
 Could not find substring
@@ -2979,15 +2959,15 @@ Could not find substring
 <p>这是示例的输出。</p>
 <h2 id="Python-基本字符串操作">Python 基本字符串操作<a class="headerlink" href="#Python-基本字符串操作" title="Permanent link">&para;</a></h2>
 <p>在下一个示例中，我们将进行字符串乘法和串联。</p>
-<details class="abstract" open="open"><summary>add_multiply.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>add_multiply.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # add_multiply.py
 
@@ -3000,10 +2980,10 @@ print(&quot;eagle &quot; + &quot;and &quot; + &quot;falcon&quot;)
 </td></tr></table>
 </details>
 <p><code>*</code>运算符将字符串重复 n 次。 在我们的情况下是五次。 彼此相邻的两个字符串字面值会自动连接在一起。 我们还可以使用<code>+</code>运算符显式连接字符串。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./add_multiply.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./add_multiply.py 
 eagle eagle eagle eagle eagle 
 eagle falcon
 eagle and falcon
@@ -3012,13 +2992,13 @@ eagle and falcon
 </details>
 <p>这是<code>add_multiply.py</code>脚本的输出。</p>
 <p>我们可以使用<code>len()</code>函数来计算字符串的长度（以字符为单位）。</p>
-<details class="abstract" open="open"><summary>eagle.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
+<details class="abstract" open="open"><summary>eagle.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
 
 # eagle.py
 
@@ -3029,20 +3009,20 @@ print(var, &quot;has&quot;, len(var), &quot;characters&quot;)
 </td></tr></table>
 </details>
 <p>在示例中，我们计算字符串变量中的字符数。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./eagle.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./eagle.py 
 eagle has 5 characters
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>一些编程语言允许隐式添加字符串和数字。 在 Python 语言中，这是不可能的。 我们必须显式转换值。</p>
-<details class="abstract" open="open"><summary>string_number.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
+<details class="abstract" open="open"><summary>string_number.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
 
 # string_number.py
 
@@ -3055,22 +3035,22 @@ print(float(&#39;22.33&#39;) + 22.55)
 <p>我们使用内置的<code>int()</code>函数将字符串转换为整数。 并且还有一个内置的<code>str()</code>函数将数字转换为字符串。 然后，我们使用<code>float()</code>函数将字符串转换为浮点数。</p>
 <h2 id="Python-替换字符串">Python 替换字符串<a class="headerlink" href="#Python-替换字符串" title="Permanent link">&para;</a></h2>
 <p><code>replace()</code>方法将字符串中的子字符串替换为其他子字符串。 由于 Python 中的字符串是不可变的，因此将使用替换的值构建新的字符串。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>replace(old, new [, max])
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>replace(old, new [, max])
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>默认情况下，<code>replace()</code>方法将替换所有出现的子字符串。 该方法采用第三个参数，它将替换次数限制为一定数量。</p>
-<details class="abstract" open="open"><summary>replacing.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>replacing.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # replacing.py
 
@@ -3085,19 +3065,19 @@ print(c)
 </td></tr></table>
 </details>
 <p>我们有一句话用“ fox”代替“ wolf”。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>b = a.replace(&quot;wolf&quot;, &quot;fox&quot;)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>b = a.replace(&quot;wolf&quot;, &quot;fox&quot;)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>该行将所有出现的“狼”替换为“ fox”。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>c = a.replace(&quot;wolf&quot;, &quot;fox&quot;, 1)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>c = a.replace(&quot;wolf&quot;, &quot;fox&quot;, 1)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>在这里，我们仅替换第一次出现的情况。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./replacing.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./replacing.py
 I saw a fox in the forest. A lonely fox.
 I saw a fox in the forest. A lonely wolf.
 </code></pre></div>
@@ -3106,20 +3086,20 @@ I saw a fox in the forest. A lonely wolf.
 <p>这是输出。</p>
 <h2 id="Python-分割和连接字符串">Python 分割和连接字符串<a class="headerlink" href="#Python-分割和连接字符串" title="Permanent link">&para;</a></h2>
 <p>可以使用<code>split()</code>或<code>rsplit()</code>方法分割字符串。 它们返回使用分隔符从字符串中切出的字符串列表。 可选的第二个参数是允许的最大分割数。</p>
-<details class="abstract" open="open"><summary>splitting.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>splitting.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # splitting.py
 
@@ -3137,25 +3117,25 @@ print(m)
 </td></tr></table>
 </details>
 <p>我们有一个逗号分隔的字符串。 我们把绳子切成小段。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>k = nums.split(&quot;,&quot;)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>k = nums.split(&quot;,&quot;)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>我们使用逗号作为分隔符将字符串分成八个部分。 该方法返回八个字符串的列表。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>l = nums.split(&quot;,&quot;, 5)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>l = nums.split(&quot;,&quot;, 5)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>在这里，我们将字符串分成六个部分。 有五个子字符串，其余部分为字符串。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>m = nums.rsplit(&quot;,&quot;, 3)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>m = nums.rsplit(&quot;,&quot;, 3)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>在这里，我们将字符串分成四个部分。 这次拆分是从右侧进行的。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./splitting.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./splitting.py
 [&#39;1&#39;, &#39;5&#39;, &#39;6&#39;, &#39;8&#39;, &#39;2&#39;, &#39;3&#39;, &#39;1&#39;, &#39;9&#39;]
 [&#39;1&#39;, &#39;5&#39;, &#39;6&#39;, &#39;8&#39;, &#39;2&#39;, &#39;3,1,9&#39;]
 [&#39;1,5,6,8,2&#39;, &#39;3&#39;, &#39;1&#39;, &#39;9&#39;]
@@ -3163,17 +3143,17 @@ print(m)
 </td></tr></table>
 </details>
 <p>字符串可以与<code>join()</code>字符串连接。 它返回由作为参数传递的字符串连接而成的字符串。 元素之间的分隔符是提供此方法的字符串。</p>
-<details class="abstract" open="open"><summary>split_join.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>split_join.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # split_join.py
 
@@ -3188,14 +3168,14 @@ print(m)
 </td></tr></table>
 </details>
 <p>首先，我们将字符串拆分为字符串列表。 然后，我们将字符串连接到一个字符串中，并用提供的字符分隔元素。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>m = &#39;:&#39;.join(n)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>m = &#39;:&#39;.join(n)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p><code>join()</code>方法从字符串列表中创建一个字符串。 元素由<code>:</code>字符分隔。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./split_join.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./split_join.py
 [&#39;1&#39;, &#39;5&#39;, &#39;6&#39;, &#39;8&#39;, &#39;2&#39;, &#39;3&#39;, &#39;1&#39;, &#39;9&#39;]
 1:5:6:8:2:3:1:9
 </code></pre></div>
@@ -3203,15 +3183,15 @@ print(m)
 </details>
 <p>这是输出。</p>
 <p>可以用于分割字符串的另一种方法是<code>partition()</code>。 它将在第一次出现分隔符时分割字符串，并返回一个三元组，其中包含分隔符之前的部分，分隔符本身以及分隔符之后的部分。</p>
-<details class="abstract" open="open"><summary>partition.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>partition.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # partition.py
 
@@ -3224,13 +3204,13 @@ print(a)
 </td></tr></table>
 </details>
 <p>在此示例中，我们使用<code>partition()</code>方法。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>a = s.partition(&quot;=&quot;)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>a = s.partition(&quot;=&quot;)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>这会将字符串切成三部分。 <code>=</code>字符前的一个，分隔符，分隔符的右边。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./partition.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./partition.py
 (&#39;1 + 2 + 3 &#39;, &#39;=&#39;, &#39; 6&#39;)
 </code></pre></div>
 </td></tr></table>
@@ -3238,16 +3218,16 @@ print(a)
 <p>这是输出。</p>
 <h2 id="Python-字符串大小写">Python 字符串大小写<a class="headerlink" href="#Python-字符串大小写" title="Permanent link">&para;</a></h2>
 <p>Python 有四种处理字符串大小写的字符串方法。 这些方法返回一个新的修改后的字符串。</p>
-<details class="abstract" open="open"><summary>convert_case.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>convert_case.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # convert_case.py
 
@@ -3261,31 +3241,31 @@ print(a.title())
 </td></tr></table>
 </details>
 <p>我们有一个字符串词，我们将在上面演示这四种方法。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.upper())
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.upper())
 </code></pre></div>
 </td></tr></table>
 </details>
 <p><code>upper()</code>方法返回字符串的副本，其中所有字符均转换为大写。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.lower())
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.lower())
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>在这里，我们以小写字母获取字符串的副本。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.swapcase())
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.swapcase())
 </code></pre></div>
 </td></tr></table>
 </details>
 <p><code>swapcase()</code>方法交换字母的大小写。 小写字符将变为大写，反之亦然。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.title())
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(a.title())
 </code></pre></div>
 </td></tr></table>
 </details>
 <p><code>title()</code>方法返回字符串的副本，其中第一个字符为大写，其余字符为小写。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./convert_case.py
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./convert_case.py
 ZETCODE
 zetcode
 zETcODE
@@ -3296,31 +3276,31 @@ Zetcode
 <p>这是输出。</p>
 <h2 id="对字符串的-Python-操作">对字符串的 Python 操作<a class="headerlink" href="#对字符串的-Python-操作" title="Permanent link">&para;</a></h2>
 <p>有几个有用的内置函数可用于处理字符串。</p>
-<details class="abstract" open="open"><summary>letters.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>letters.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # letters.py
 
@@ -3349,11 +3329,11 @@ print(&quot;There are&quot;, spaces, &quot;spaces&quot;)
 </td></tr></table>
 </details>
 <p>在我们的示例中，我们有一个字符串句子。 我们计算句子中的绝对字符数，字母字符数，数字和空格。 为此，我们使用以下功能：<code>len()</code>，<code>isalpha()</code>，<code>isdigit()</code>和<code>isspace()</code>。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./letters.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./letters.py 
 There are 19 characters
 There are 14 alphabetic characters
 There are 2 digits
@@ -3362,13 +3342,13 @@ There are 3 spaces
 </td></tr></table>
 </details>
 <p>在下一个示例中，我们将打印足球比赛的结果。</p>
-<details class="abstract" open="open"><summary>teams1.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>teams1.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # teams1.py
 
@@ -3379,10 +3359,10 @@ print(&quot;Dortmund&quot; &quot; - &quot; &quot;Sparta Praha &quot; &quot;2:1&q
 </td></tr></table>
 </details>
 <p>我们已经知道相邻的字符串是串联在一起的。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./teams1.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./teams1.py 
 Ajax Amsterdam - Inter Milano 2:3
 Real Madridi - AC Milano 3:3
 Dortmund - Sparta Praha 2:1
@@ -3390,22 +3370,22 @@ Dortmund - Sparta Praha 2:1
 </td></tr></table>
 </details>
 <p>接下来，我们将改善输出的外观。</p>
-<details class="abstract" open="open"><summary>teams2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>teams2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # teams2.py
 
@@ -3425,10 +3405,10 @@ for i in teams:
 </td></tr></table>
 </details>
 <p><code>ljust()</code>方法返回左对齐字符串，<code>rjust()</code>方法返回右对齐字符串。 如果字符串小于我们提供的宽度，则将用空格填充。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./teams2.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./teams2.py 
 Ajax Amsterdam  -    Inter Milano    2:3
 Real Madrid     -    AC Milano       3:3
 Dortmund        -    Sparta Praha    2:1
@@ -3438,12 +3418,12 @@ Dortmund        -    Sparta Praha    2:1
 <p>现在输出看起来更好。</p>
 <h2 id="Python-字符串格式化">Python 字符串格式化<a class="headerlink" href="#Python-字符串格式化" title="Permanent link">&para;</a></h2>
 <p>字符串格式化是将各种值动态地放入字符串中。 可以使用<code>%</code>运算符或<code>format()</code>方法实现字符串格式化。</p>
-<details class="abstract" open="open"><summary>oranges.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>oranges.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # oranges.py
 
@@ -3453,31 +3433,31 @@ print(&#39;There are {0} oranges in the basket&#39;.format(32))
 </td></tr></table>
 </details>
 <p>在代码示例中，我们动态构建一个字符串。 我们在句子中加上数字。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;There are %d oranges in the basket&#39; % 32)
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;There are %d oranges in the basket&#39; % 32)
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>我们使用<code>%d</code>格式说明符。 <code>d</code>字符表示我们期望一个整数。 在字符串之后，我们放置一个模运算符和一个参数。 在这种情况下，我们有一个整数值。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;There are {0} oranges in the basket&#39;.format(32))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;There are {0} oranges in the basket&#39;.format(32))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>使用<code>format()</code>方法可以完成相同的任务。 这次，格式化说明符是<code>{0}</code>。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./oranges.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./oranges.py 
 There are 32 oranges in the basket
 There are 32 oranges in the basket
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>下一个示例显示如何向字符串中添加更多值。</p>
-<details class="abstract" open="open"><summary>fruits.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>fruits.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # fruits.py
 
@@ -3487,21 +3467,21 @@ print(&#39;There are {0} oranges and {1} apples in the basket&#39;.format(12, 23
 </td></tr></table>
 </details>
 <p>在这两行中，我们添加了两个格式说明符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./fruits.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./fruits.py 
 There are 12 oranges and 23 apples in the basket
 There are 12 oranges and 23 apples in the basket
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>在下一个示例中，我们构建一个带有浮点数和字符串值的字符串。</p>
-<details class="abstract" open="open"><summary>height.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>height.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # height.py
 
@@ -3511,31 +3491,31 @@ print(&#39;Height: {0:f} {1:s}&#39;.format(172.3, &#39;cm&#39;))
 </td></tr></table>
 </details>
 <p>我们打印一个人的身高。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;Height: %f %s&#39; % (172.3, &#39;cm&#39;))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;Height: %f %s&#39; % (172.3, &#39;cm&#39;))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>浮点值的格式说明符为<code>%f</code>，字符串为<code>%s</code>。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;Height: {0:f} {1:s}&#39;.format(172.3, &#39;cm&#39;))
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(&#39;Height: {0:f} {1:s}&#39;.format(172.3, &#39;cm&#39;))
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>使用<code>format()</code>方法，我们将<code>f</code>和<code>s</code>字符添加到说明符中。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./height.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./height.py 
 Height: 172.300000 cm
 Height: 172.300000 cm
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>我们可能不喜欢上面示例中的数字默认情况下具有 6 个小数位的事实。 我们可以控制格式说明符中的小数位数。</p>
-<details class="abstract" open="open"><summary>height2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>height2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # height2.py
 
@@ -3545,28 +3525,28 @@ print(&#39;Height: {0:.2f} {1:s}&#39;.format(172.3, &#39;cm&#39;))
 </td></tr></table>
 </details>
 <p>小数点后跟一个整数控制小数位数。 在我们的情况下，该数字将保留两位小数。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./height2.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./height2.py 
 Height: 172.30 cm
 Height: 172.30 cm
 </code></pre></div>
 </td></tr></table>
 </details>
 <p>下面的示例显示其他格式设置选项。</p>
-<details class="abstract" open="open"><summary>various.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
+<details class="abstract" open="open"><summary>various.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
 
 # various.py
 
@@ -3583,11 +3563,11 @@ print(&quot;%e&quot; % 300000)
 </td></tr></table>
 </details>
 <p>前两种格式使用十六进制数。 <code>x</code>字符将以十六进制格式格式化数字。 <code>#</code>字符会将<code>0x</code>添加到十六进制数字。 <code>o</code>字符以八进制格式显示数字。 <code>e</code>字符将以科学格式显示数字。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./various.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./various.py 
 12c
 0x12c
 454
@@ -3596,22 +3576,22 @@ print(&quot;%e&quot; % 300000)
 </td></tr></table>
 </details>
 <p><code>format()</code>方法还支持二进制格式。</p>
-<details class="abstract" open="open"><summary>various2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
+<details class="abstract" open="open"><summary>various2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/python
 
 # various2.py
 
@@ -3632,12 +3612,12 @@ print(&quot;{:e}&quot;.format(300000))
 </details>
 <p>该示例以十六进制，二进制，八进制和科学格式打印数字。</p>
 <p>下一个示例将打印三列数字。</p>
-<details class="abstract" open="open"><summary>columns1.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>columns1.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # columns1.py
 
@@ -3647,17 +3627,17 @@ for x in range(1, 11):
 </td></tr></table>
 </details>
 <p>数字左对齐，输出不是最佳的。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./columns1.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./columns1.py 
 1 1 1
 2 4 8
 3 9 27
@@ -3672,12 +3652,12 @@ for x in range(1, 11):
 </td></tr></table>
 </details>
 <p>为了解决这个问题，我们使用宽度说明符。 宽度说明符定义对象的最小宽度。 如果对象小于宽度，则将填充空格。</p>
-<details class="abstract" open="open"><summary>columns2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>columns2.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # columns2.py
 
@@ -3687,17 +3667,17 @@ for x in range(1, 11):
 </td></tr></table>
 </details>
 <p>现在输出看起来正常。 值 2 使第一列宽 2 个字符。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./columns2.py 
+<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ ./columns2.py 
  1   1    1
  2   4    8
  3   9   27
@@ -3712,12 +3692,12 @@ for x in range(1, 11):
 </td></tr></table>
 </details>
 <p>现在我们有了<code>format()</code>方法的改进格式。</p>
-<details class="abstract" open="open"><summary>columns3.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
+<details class="abstract" open="open"><summary>columns3.py</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/bin/env python
 
 # columns3.py
 
@@ -3759,6 +3739,7 @@ for x in range(1, 11):
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -3832,19 +3813,13 @@ for x in range(1, 11):
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "toc.integrate"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
-      <script src="../../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
-      <script src="../../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
-      
-      <script>
-        app = initialize({
-          base: "../../../..",
-          features: ['navigation.tabs', 'navigation.instant', 'navigation.sections', 'navigation.expand', 'toc.integrate'],
-          search: Object.assign({
-            worker: "../../../../assets/javascripts/worker/search.4ac00218.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
+    
+      <script src="../../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
         <script src="../../../../javascripts/config.js"></script>
       
