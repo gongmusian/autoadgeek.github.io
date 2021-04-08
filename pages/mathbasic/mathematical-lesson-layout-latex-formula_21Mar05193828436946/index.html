@@ -1325,9 +1325,51 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          LaTeX 数学公式排版
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         LaTeX 数学公式排版
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#常用数学符号的-LaTeX-表示方法" class="md-nav__link">
+    常用数学符号的 LaTeX 表示方法
+  </a>
+  
+    <nav class="md-nav" aria-label="常用数学符号的 LaTeX 表示方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#以下提供一些常用符号的表示方法" class="md-nav__link">
+    以下提供一些常用符号的表示方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1472,6 +1514,18 @@
     <li class="md-nav__item">
       <a href="../understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
         了解卷积
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
+        向量内积外积的几何意义
       </a>
     </li>
   
@@ -2289,6 +2343,30 @@
 <p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193833257598_1.png' width='804' />还有一种情况，是我们想把多个公式组合成一个大的公式，这时候我们就要用到另外的一些技巧了。最典型的例子就是本文开始的地方展示的概率密度函数了。我们在这里需要用到 cases 环境。我们来看看刚才那个函数的代码。  </p>
 <p><img src='images/mathematical-lesson-layout-latex-formula_21Mar05193833677478_1.jpeg' title="mathematical-lesson-layout-latex-formula_21Mar05193833677478_1.jpeg" alt="mathematical-lesson-layout-latex-formula_21Mar05193833677478_1.jpeg" width='806' /></p>
 <p>cases 环境有一个重大的缺陷，就是在每个 case 中，公式都会被变成行内公式。所以在这里我们用 \dfrac 命令来强制让分式变成行间公式。如果我们想简单地解决这个问题，就需要使用 mathtools 宏包定义的 dcases 环境，用法和 cases 完全相同，但是可以以行间公式的形式来排版每个 case。</p>
+<h2 id="常用数学符号的-LaTeX-表示方法">常用数学符号的 LaTeX 表示方法<a class="headerlink" href="#常用数学符号的-LaTeX-表示方法" title="Permanent link">&para;</a></h2>
+<p>１、指数和下标可以用^和_后加相应字符来实现。比如：</p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183751738968_1.gif' /></p>
+<p>2、平方根（square root）的输入命令为：\sqrt，n 次方根相应地为: \sqrt[n]。方根符号的大小由LATEX自动加以调整。也可用\surd 仅给出<br />
+符号。比如：</p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183752332215_1.gif' width='726' height='118' /></p>
+<p>3、命令\overline 和\underline 在表达式的上、下方画出水平线。比如：</p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183752946463_1.gif' width='716' height='67' /></p>
+<p>4、命令\overbrace 和\underbrace 在表达式的上、下方给出一水平的大括号。</p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183753561891_1.gif' width='711' height='99' /></p>
+<p>5、向量（Vectors）通常用上方有小箭头（arrow symbols）的变量表示。这可由\vec 得到。另两个命令\overrightarrow 和\overleftarrow在定义从A 到B 的向量时非常有用。</p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183754175377_1.gif' width='713' height='86' /></p>
+<p>6、分数（fraction）使用\frac{...}{...} 排版。一般来说，&frac12; 这种形式更受欢迎，因为对于少量的分式，它看起来更好些。</p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183754688088_1.gif' width='721' height='155' /></p>
+<p>7、积分运算符（integral operator）用\int 来生成。求和运算符（sum operator）由\sum 生成。乘积运算符（product operator）由\prod 生成。上限和下限用^ 和_来生成，类似于上标和下标。</p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183755215483_1.gif' width='721' height='141' /></p>
+<h3 id="以下提供一些常用符号的表示方法">以下提供一些常用符号的表示方法<a class="headerlink" href="#以下提供一些常用符号的表示方法" title="Permanent link">&para;</a></h3>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183756324959_1.gif' width='585' height='846' /></p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183757144973_1.gif' width='576' height='815' /></p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183758066638_1.gif' width='607' height='859' /></p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183758885174_1.gif' width='579' height='806' /></p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183759705891_1.gif' width='632' height='827' /></p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183800626120_1.gif' width='576' height='802' /></p>
+<p><img src='images/symbol-representation-mathematical-latex_21Apr08183801372135_1.gif' width='583' height='756' /></p>
 <p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
 作者: 蒋雨蒙<br />
 来源： <a href="https://zhuanlan.zhihu.com/p/24502400">https://zhuanlan.zhihu.com/p/24502400</a> </p>
