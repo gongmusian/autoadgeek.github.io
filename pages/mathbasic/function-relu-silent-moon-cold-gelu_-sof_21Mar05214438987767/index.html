@@ -1343,8 +1343,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8Softmax" class="md-nav__link">
-    （8）Softmax
+  <a href="#8Softmax-函数" class="md-nav__link">
+    （8）Softmax 函数
   </a>
   
 </li>
@@ -2349,8 +2349,11 @@
 1.首先，“非饱和激活函数”能解决深度神经网络【层数非常多！！】的“ <strong>梯度消失”问题</strong> ，浅层网络【三五层那种】才用sigmoid 作为激活函数。<br />
 2.其次，它能 <strong>加快收敛速度</strong> 。</p>
 <h3 id="1-sigmoid-函数">（1） <strong>sigmoid 函数 </strong><a class="headerlink" href="#1-sigmoid-函数" title="Permanent link">&para;</a></h3>
-<p><img src='images/function-relu-silent-moon-cold-gelu_-sof_21Mar05214444761022_1.png' width='553' height='63' /></p>
-<p>参数 α &gt; 0 可控制其斜率。 sigmoid 将一个实值输入压缩至[0,1]的范围,也可用于 <strong>二分类的输出层</strong> 。</p>
+<div class="arithmatex">\[\begin{equation} 
+S(x) = \frac{1}{1 + e^{- \theta x}} 
+\end{equation}\]</div>
+<p>参数 <span class="arithmatex">\( \theta &gt; 0 \)</span>可控制其斜率。 sigmoid 将一个实值输入压缩至[0,1]的范围,也可用于 <strong>二分类的输出层</strong> 。
+Sigmoid 是一个可微的有界函数，在各点均有非负的导数。当 𝑥→∞ 时，𝑆(𝑥)→1；当 𝑥→−∞ 时，𝑆(𝑥)→0。常用于二元分类（Binary Classification）问题，以及神经网络的激活函数（Activation Function）（把线性的输入转换为非线性的输出）</p>
 <p><img src='images/function-relu-silent-moon-cold-gelu_-sof_21Mar05214445946897_1.png' width='387' height='290' alt='技术分享' /></p>
 <h3 id="2tanh-双曲正切函数-Hyperbolic-tangent-function">（2）tanh (双曲正切函数 ;Hyperbolic tangent function)<a class="headerlink" href="#2tanh-双曲正切函数-Hyperbolic-tangent-function" title="Permanent link">&para;</a></h3>
 <p><img src='images/function-relu-silent-moon-cold-gelu_-sof_21Mar05214447175406_1.png' width='546' height='64' /></p>
@@ -2403,9 +2406,41 @@ tf.maximum(leak * x, x)
 <h3 id="7-softplus">（7） <strong>softplus</strong><a class="headerlink" href="#7-softplus" title="Permanent link">&para;</a></h3>
 <p>Softplus函数是Logistic-Sigmoid函数原函数 Softplus(x)=log(1+e<sup>x</sup>) ,加了1是为了保证非负性。Softplus可以看作是强制非负校正函数max(0,x)平滑版本。红色的即为ReLU。</p>
 <p><img src='images/function-relu-silent-moon-cold-gelu_-sof_21Mar05214500522612_1.png' width='399' height='305' alt='技术分享' /></p>
-<h3 id="8Softmax">（8）Softmax<a class="headerlink" href="#8Softmax" title="Permanent link">&para;</a></h3>
-<p>用于多分类神经网络输出</p>
-<p><img src='images/function-relu-silent-moon-cold-gelu_-sof_21Mar05214501614017_1.jpeg' width='174' height='72' /></p>
+<h3 id="8Softmax-函数">（8）Softmax 函数<a class="headerlink" href="#8Softmax-函数" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\begin{equation} 
+S(x_j) = \frac{e^{x_j}}{\sum_{k=1}^K e^{x_k}}, j = 1, 2, …, K 
+\end{equation}
+\]</div>
+<p>对于一个长度为 K 的任意实数矢量，Softmax 可以把它压缩为一个长度为 K 的、取值在 (0, 1) 区间的实数矢量，且矢量中各元素之和为 1。它在多元分类（Multiclass Classification）和神经网络中也有很多应用。Softmax 不同于普通的 max 函数：max 函数只输出最大的那个值，而 Softmax 则确保较小的值也有较小的概率，不会被直接舍弃掉，是一个比较“Soft”的“max”。softmax 用于多分类神经网络输出。</p>
+<p>在二元分类的情况下，对于 Sigmod，有：</p>
+<div class="arithmatex">\[
+\begin{equation} 
+p(y = 1 | x) = \frac{1}{1 + e^{-\theta^Tx}} 
+\end{equation}
+\]</div>
+<div class="arithmatex">\[
+\begin{equation} 
+p(y = 0 | x) = 1 – p(y = 1 | x) = \frac{e^{-\theta^Tx}}{1 + e^{-\theta^Tx}} 
+\end{equation}
+\]</div>
+<p>而对 𝐾=2 的 Softmax ，有：</p>
+<div class="arithmatex">\[
+\begin{equation} 
+p(y = 1|x) = \frac{e^{\theta_1^Tx}}{e^{\theta_0^Tx} + e^{\theta_1^Tx}} = \frac{1}{1 + e^{(\theta_0^T – \theta_1^T)x}} = \frac{1}{1 + e^{-\beta x}} 
+\end{equation}
+\]</div>
+<div class="arithmatex">\[
+\begin{equation} 
+p(y = 0|x) = \frac{e^{\theta_0^Tx}}{e^{\theta_0^Tx} + e^{\theta_1^Tx}} = \frac{e^{(\theta_0^T-\theta_1^T)x}}{1 + e^{(\theta_0^T-\theta_1^T)x}} = \frac{e^{-\beta x}}{1 + e^{-\beta x}} 
+\end{equation}
+\]</div>
+<div class="arithmatex">\[
+\begin{equation} 
+\beta = -(\theta_0^T – \theta_1^T) 
+\end{equation}
+\]</div>
+<p>可见在二元分类的情况下，Softmax 退化为了 Sigmoid。</p>
 <h3 id="11GELU-高斯误差线性单元">（11）GELU ：高斯误差线性单元<a class="headerlink" href="#11GELU-高斯误差线性单元" title="Permanent link">&para;</a></h3>
 <p>在<a href="https://arxiv.org/pdf/1606.08415.pdf">这篇论文</a>中，作者展示了几个使用GELU的神经网络优于使用ReLU作为激活的神经网络的实例。GELU也被用于BERT。</p>
 <p>GELU、ReLU和LeakyReLU的函数

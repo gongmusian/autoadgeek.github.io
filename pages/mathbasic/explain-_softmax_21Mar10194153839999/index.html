@@ -2295,12 +2295,16 @@
 <h2 id="softmax的定义">softmax的定义<a class="headerlink" href="#softmax的定义" title="Permanent link">&para;</a></h2>
 <p>首先给一个图，这个图比较清晰地告诉大家softmax是怎么计算的。<br />
 <img src='images/explain-_softmax_21Mar10194155497094_1.jpeg' title="explain-_softmax_21Mar10194155497094_1.jpeg" alt='softmax运算逻辑' />  </p>
-<p>假设有一个数组V， v<sub>i</sub>​表示V中的第i个元素，那么这个元素的softmax值为:<br />
-S<sub>i</sub> = exp(v<sub>i</sub>) / ∑<sub>j</sub>exp(v<sub>j</sub>)​<br />
-该元素的softmax值，就是该元素的指数与所有元素指数和的比值。</p>
+<p>假设有一个向量组X，<span class="arithmatex">\( x_j \)</span> ​表示V中的第j个元素，那么这个元素的softmax值为:</p>
+<div class="arithmatex">\[
+\begin{equation} 
+S(x_j) = \frac{e^{x_j}}{\sum_{k=1}^K e^{x_k}}, j = 1, 2, …, K 
+\end{equation}
+\]</div>
+<p>该元素的softmax值，就是该元素的指数与所有元素指数和的比值。</p>
 <p>这个定义可以说很简单，也很直观。那为什么要定义成这个形式呢？原因主要如下。<br />
 1. softmax设计的初衷，是希望特征对概率的影响是乘性的。<br />
-2. 多类分类问题的目标函数常常选为cross-entropy。即 L = − ∑<sub>k</sub>t<sub>k</sub> ⋅ lnP(y=k)，其中目标类的t<sub>k</sub>，其余类的t<sub>k</sub>为0。<br />
+2. 多类分类问题的损失函数常常选为交叉熵函数(cross-entropy)。即 L = − ∑<sub>k</sub>t<sub>k</sub> ⋅ lnP(y=k)，其中目标类的t<sub>k</sub>，其余类的t<sub>k</sub>为0。<br />
 在神经网络模型中(最简单的logistic regression也可看成没有隐含层的神经网络)，输出层第i个神经元的输入a<sub>i</sub>​=∑<sub>d</sub>​w<sub>id</sub>​x<sub>d</sub>​。<br />
 神经网络是用error back-propagation训练的，这个过程中有一个关键的量是 ∂L/∂α<sub>i</sub>​。</p>
 <h2 id="softmax求导">softmax求导<a class="headerlink" href="#softmax求导" title="Permanent link">&para;</a></h2>
