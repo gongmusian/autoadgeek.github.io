@@ -1,0 +1,3295 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="一、导入CSS和JS文件 1、css link js scr 2import 导入Public文件夹下面的Js目录中的testjs文件，import标签可以省略type属性，默认就是js的">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/html5/thinkphp-template-syntax_21Apr18100959778030/">
+
+
+<link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    
+      
+        <title>ThinkPHP 模板中的语法 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.33e2939f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ThinkPHP-模板语法" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            广告流程自动化
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ThinkPHP 模板中的语法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo" type="radio" name="__palette" id="__palette_1">
+          <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+          </label>
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue" type="radio" name="__palette" id="__palette_2">
+          <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+          </label>
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../python/" class="md-tabs__link">
+        Python
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        HTML5/CSS
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ml/matrix/" class="md-tabs__link">
+        机器学习
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+        数学基础
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../nlp/nlp/" class="md-tabs__link">
+        自然语言处理
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+        广告程序化
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+        网站SEO优化
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../about/" class="md-tabs__link">
+      关于
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" data-md-state="indeterminate" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/" class="md-nav__link">
+        python 基础教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+        Python 语法结构
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-datatypes/" class="md-nav__link">
+        Python 数据类型
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-strings/" class="md-nav__link">
+        Python 字符串
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-fstring/" class="md-nav__link">
+        Python f 字符串
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-lists/" class="md-nav__link">
+        Python 列表
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+        Python 字典
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-set/" class="md-nav__link">
+        Python 集合
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-map/" class="md-nav__link">
+        Python 映射
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-operators/" class="md-nav__link">
+        Python 运算符
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-keywords/" class="md-nav__link">
+        Python 关键字
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-forloop/" class="md-nav__link">
+        Python for 循环
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-itergener/" class="md-nav__link">
+        Python 迭代器和生成器
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+        Python 列表推导式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-reverse/" class="md-nav__link">
+        Python 反转
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-functions/" class="md-nav__link">
+        Python 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+        Python 正则表达式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-oop/" class="md-nav__link">
+        Python 面向对象编程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-modules/" class="md-nav__link">
+        Python 模块
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-packages/" class="md-nav__link">
+        Python 中的软件包
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-exceptions/" class="md-nav__link">
+        Python 异常
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-introspection/" class="md-nav__link">
+        Python 自省
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-lambda/" class="md-nav__link">
+        Python Lambda 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-logging/" class="md-nav__link">
+        Python 日志教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-simplejson/" class="md-nav__link">
+        Python JSON 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-faker/" class="md-nav__link">
+        Python Faker 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-feedparser/" class="md-nav__link">
+        Python feedparser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+        Python bcrypt 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-socket/" class="md-nav__link">
+        Python 套接字教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-smtplib/" class="md-nav__link">
+        Python smtplib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-yaml/" class="md-nav__link">
+        Python YAML 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-hashing/" class="md-nav__link">
+        Python 哈希教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-configparser/" class="md-nav__link">
+        Python ConfigParser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-argparse/" class="md-nav__link">
+        Python argparse 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-sqlite/" class="md-nav__link">
+        Python SQLite 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-cerberus/" class="md-nav__link">
+        Python Cerberus 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pymysql/" class="md-nav__link">
+        Python PyMySQL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-peewee/" class="md-nav__link">
+        Python Peewee 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pydal/" class="md-nav__link">
+        Python pyDAL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pytest/" class="md-nav__link">
+        Python Pytest 单元测试教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+        BeautifulSoup 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pyquery/" class="md-nav__link">
+        Python pyquery 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-sympy/" class="md-nav__link">
+        SymPy 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pandas/" class="md-nav__link">
+        Pandas 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+        Matplotlib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pillow/" class="md-nav__link">
+        Pillow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-ftp/" class="md-nav__link">
+        Python FTP 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-requests/" class="md-nav__link">
+        Python Requests 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-arrow/" class="md-nav__link">
+        Python Arrow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+        Python 魔术方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+        python Uipath Orchestrator Cloud API 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+        Python 使用 Google NLP API进行网站分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+        用python算微积分及牛顿迭代求解高阶方程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/py-setuptools/" class="md-nav__link">
+        Python打包分发工具setuptools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
+        用于数据处理的Python工具(Numerizer,Faker,Missingno,emot,Arrow)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        HTML5/CSS
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          HTML5/CSS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        HTML5 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html_5_intro/" class="md-nav__link">
+        HTML5 简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html-head/" class="md-nav__link">
+        HTML5 头部
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html_5_video/" class="md-nav__link">
+        HTML5 视频
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html-tables/" class="md-nav__link">
+        HTML5 表格
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html-images/" class="md-nav__link">
+        HTML5 图像
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html_5_geolocation/" class="md-nav__link">
+        HTML5 地理定位
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html_5_webworkers/" class="md-nav__link">
+        HTML5 Worker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ThinkPHP 模板语法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        ThinkPHP 模板语法
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#路径" class="md-nav__link">
+    路径
+  </a>
+  
+    <nav class="md-nav" aria-label="路径">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#变量输出" class="md-nav__link">
+    变量输出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#模板布局" class="md-nav__link">
+    模板布局
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#循环" class="md-nav__link">
+    循环
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Switch-条件判断" class="md-nav__link">
+    Switch 条件判断
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#比较标签" class="md-nav__link">
+    比较标签
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Range标签" class="md-nav__link">
+    Range标签
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Defined标签" class="md-nav__link">
+    Defined标签
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#IF标签" class="md-nav__link">
+    IF标签
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#标签嵌套" class="md-nav__link">
+    标签嵌套
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用PHP代码" class="md-nav__link">
+    使用PHP代码
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#原样输出" class="md-nav__link">
+    原样输出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#模板注释" class="md-nav__link">
+    模板注释
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        机器学习
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="机器学习" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          机器学习
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/matrix/" class="md-nav__link">
+        机器学习与矩阵,numpy,sklearn等工具
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+        Python – 如何使用 t-SNE 進行降維
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+        特征值分解、奇异值分解、PCA概念
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+        Numpy中矩阵计算模块linalg的常用函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+        深度学习的激活函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+        加快Scikit-Learn训练
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" data-md-state="indeterminate" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
+        数学基础
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="数学基础" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+        指数分布公式的含义
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+        LaTeX 数学公式排版
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+        常见概率统计分布及Python实现
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+        期望值、方差、协方差、相关系数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+        softmax详解
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+        最小二乘法多项式曲线拟合及其python实现
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+        损失函数 - 交叉熵损失函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+        向量的距离度量
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+        协方差、PCA、样本中心化，白化、方差、标准差、BN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+        降维基础知识（样本均值、样本方差、中心矩阵）与PCA
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
+        如何画lda投影结果_线性判别分析（LDA）原理总结
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+        协方差矩阵的几何解释
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
+        从sympy求最简形矩阵到矩阵的四个子空间及其联系
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
+        了解卷积
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
+        向量内积外积的几何意义
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" data-md-state="indeterminate" type="checkbox" id="__nav_6" checked>
+      
+      <label class="md-nav__link" for="__nav_6">
+        自然语言处理
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="自然语言处理" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          自然语言处理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlp/" class="md-nav__link">
+        自然语言处理
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+        NLP 新手上路
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+        NLP HanNLP 词典分词
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+        评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+        文本关键词提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+        用Python从海量文本抽取主题
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+        nlp常用工具集
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+        NLP pattern库 hands on
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+        基于预训练模型的文本摘要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+        Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+        开源项目，涵盖 11 类 AI 学习框架、平台
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+        自然语言处理工具包之NLTK
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+        基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+        bert-extractive-summarizer 中文文章的抽取式摘要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+        理解NLP中的CNN卷积神经网络
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+        依存分析与依存树 dependency parse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+        关键词与文章相关性, 关键词自动标注与提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+        Python 使用 Google NLP API进行网站分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+        使用 AI 自动执行 Web 爬网
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+        通过机器学习对网站进行分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+        TextRank算法简述
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+        NLTK TextRank实现英文关键词提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+        使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+        使用余弦相似度算法计算文本相似度
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+        细数2018年最好的词嵌入和句嵌入技术
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+        从头开始多标签文本分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+        没有模型训练情况下用BERT做文本分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+        用 NLP 做文本分析和特征工程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
+        如何使用 BERT 和 Word2Vec 计算句子相似性
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" data-md-state="indeterminate" type="checkbox" id="__nav_7" checked>
+      
+      <label class="md-nav__link" for="__nav_7">
+        广告程序化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          广告程序化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+        围绕SEO开展竞争对手分析
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+        Shopify独立站的几套选品方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/semantic-search/" class="md-nav__link">
+        什么是语义搜索？它是如何影响SEO的
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+        如何把网站提交给搜索引擎
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/meta-description/" class="md-nav__link">
+        如何编写完美的元描述
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+        使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+        动态网站使用 Python 向 Google 自动提交站点地图
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        使用 Python 进行 Facebook 抓取和情绪分析
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        Instagram 爬虫
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+        使用 Python 查找关键字类别的搜索量上限
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+        可视化 100，000 亚马逊产品
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+        使用SimHash进行海量文本去重流程
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" data-md-state="indeterminate" type="checkbox" id="__nav_8" checked>
+      
+      <label class="md-nav__link" for="__nav_8">
+        网站SEO优化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          网站SEO优化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+        长尾词优化入网页
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
+        关键词难度：如何确认你在 Google 获得排名的机会
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+        如何让网站排名进入谷歌首页
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+        如何搭建一个成功的亚马逊联盟网站
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+        SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+        抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
+        SEO每日流量如何从0到10000
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+        Python与SEO 词库完整指南
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+        Python百度下拉框关键词采集
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/adsense/" class="md-nav__link">
+        hexo个人next主题博客接入谷歌广告
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        关于
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="ThinkPHP-模板语法">ThinkPHP 模板语法<a class="headerlink" href="#ThinkPHP-模板语法" title="Permanent link">&para;</a></h1>
+<p>ThinkTemplate使用了xml标签库技术的编译型模板引擎，支持两种类型的模板标签，使用了动态编译和缓存技术，而且支持自定义标签库。</p>
+<p>每个模板文件在执行过程中都会生成一个编译后的缓存文件，其实就是一个可以运行的PHP文件。模板缓存默认位于项目的 <code>Runtime/Cache</code> 目录下面，以模板文件的md5编码作为缓存文件名保存的，如果开启页面Trace功能的话，可以在Trace信息里面看到当前页面对应的模板缓存文件名。如果在模板标签的使用过程中发现问题，可以尝试通过查看模板缓存文件找到问题所在。</p>
+<p>内置的模板引擎支持普通标签和xml标签方式两种标签定义，分别用于不同的目的：普通标签主要用于输出变量和做一些基本的操作；xml 标签除了包含了普通标签的所有功能外，还可以完成一些逻辑判断、控制和循环输出，但是在变量输出上，普通标签具有简洁明了的优势。</p>
+<p>例如：<code>{$name}</code> 看起来比 <code>&lt;var name=”name” /&gt;</code> 更加容易使用，但是在控制和判断方面，xml标签却有着普通标签无法替代的作用。</p>
+<p>这种方式的结合保证了模板引擎的简洁和强大的有效融合。</p>
+<h2 id="路径">路径<a class="headerlink" href="#路径" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th align="center">传参示例</th>
+<th align="center">说明</th>
+<th align="center">获取模板路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>view()</code></td>
+<td align="center">默认模板的地址</td>
+<td align="center"><code>app/index/view/index/index.html</code></td>
+</tr>
+<tr>
+<td align="center"><code>view(‘upload’)</code></td>
+<td align="center">修改文件</td>
+<td align="center"><code>app/index/view/index/upload.html</code></td>
+</tr>
+<tr>
+<td align="center"><code>view(‘public/upload’)</code></td>
+<td align="center">修改目录</td>
+<td align="center"><code>app/index/view/ipublic/upload.html</code></td>
+</tr>
+<tr>
+<td align="center"><code>view(’./index’)</code></td>
+<td align="center">入口文件同级的模板文件</td>
+<td align="center"><code>public/index.html</code></td>
+</tr>
+<tr>
+<td align="center"><code>view(’./html/index’)</code></td>
+<td align="center">入口文件同级的模板文件</td>
+<td align="center"><code>public/html/index.html</code></td>
+</tr>
+</tbody>
+</table>
+<p>注意：如果命名为<code>index.html</code>，首先会访问<code>public/index.html</code>,即入口文件的<code>index.html</code>）</p>
+<p><strong>模板渲染</strong></p>
+<p>示范： 
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x"># app/index/controller/Index</span>
+<span class="x">view(&#39;template&#39;, [&#39;name&#39;=&gt;&#39;Peng shiyu&#39;])</span>
+
+<span class="x"># app/index/view/index/template.html</span>
+<span class="x">{$name}</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>1) 使用assign和fetch
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">use think\Controller;</span>
+
+<span class="x">class Index extends Controller</span>
+<span class="x">{</span>
+<span class="x">    public function index()</span>
+<span class="x">    {</span>
+<span class="x">        $this-&gt;assign(&#39;name&#39;, &#39;Peng shiyu&#39;);</span>
+
+<span class="x">        return $this-&gt;fetch(&#39;index&#39;, [</span>
+<span class="x">           &#39;username&#39;=&gt; &#39;Tom&#39;,</span>
+<span class="x">           &#39;password&#39;=&gt; &#39;123456&#39;,</span>
+<span class="x">        ], [</span>
+<span class="x">            &#39;STATIC&#39; =&gt; &#39;THIS IS STATIC&#39;</span>
+<span class="x">        ]);</span>
+<span class="x">    }</span>
+
+<span class="x"># 模板替换</span>
+<span class="x">{$name}</span>
+<span class="x">{$username}</span>
+<span class="x">{$password}</span>
+<span class="x">STATIC</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>2）使用display返回字符串
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">namespace app\index\controller;</span>
+
+<span class="x">use think\Controller;</span>
+
+<span class="x">class Index extends Controller</span>
+<span class="x">{</span>
+<span class="x">    public function index()</span>
+<span class="x">    {</span>
+<span class="x">        $this-&gt;assign(&#39;name&#39;, &#39;Peng shiyu&#39;);</span>
+
+<span class="x">        return $this-&gt;display(&#39;我的名字叫：{$name} 今年{$age} 岁了&#39;, [</span>
+<span class="x">            &#39;age&#39;=&gt; 23</span>
+<span class="x">        ]);</span>
+<span class="x">    }</span>
+
+<span class="x"># 显示</span>
+<span class="x">我的名字叫：Peng shiyu 今年23 岁了</span>
+</code></pre></div>
+</td></tr></table>
+变量输出
+模板中的变量花括号<code>{</code>之间不能有空格</p>
+<p>可修改变量前后标识符
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>template.tpl_begin
+template.tpl_end
+</code></pre></div>
+</td></tr></table></p>
+<p>3）变量赋值(四种)
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">$this-&gt;assign(&#39;变量名&#39;，$变量值(名))；      //继承 think\Controller;</span>
+<span class="x">$this-&gt;view-&gt;变量名 = &#39;变量值&#39;;              //继承 think\Controller;</span>
+<span class="x">View::share(&#39;变量名&#39;,$变量名)；               //引入think\View;</span>
+<span class="x">return $this-&gt;fetch(&#39;html页面&#39;,[</span>
+<span class="x">    &#39;变量名&#39;  =&gt; ‘变量值&#39;,</span>
+<span class="x">    ],[</span>
+<span class="x">    &#39;大写字母&#39;  =&gt;  &#39;替换内容&#39;</span>
+<span class="x">]); // 继承 think\Controller;</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><strong>系统提供的路径常量有：</strong>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>__URL__         //路由地址
+__ROOT__        //根目录
+__STATIC__      //static目录
+__CSS__         //css目录
+__JS__          //js目录
+</code></pre></div>
+</td></tr></table></p>
+<p>可自行在config目录中替换，替换函数为：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>’view_replace_str‘      =&gt;  [
+    &#39;常量名&#39;   =&gt;  &#39;替换路径&#39;
+]
+</code></pre></div>
+</td></tr></table></p>
+<h3 id="变量输出">变量输出<a class="headerlink" href="#变量输出" title="Permanent link">&para;</a></h3>
+<p>我们已经知道了在Action中使用assign方法可以给模板变量赋值，赋值后怎么在模板文件中输出变量的值呢？
+如果我们在Action中赋值了一个name模板变量：  <br />
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$name = &#39;ThinkPHP&#39;;
+$this-&gt;assign(&#39;name&#39;,$name);
+//使用内置的模板引擎输出变量，只需要在模版文件使用： {$name}
+
+模板编译后的结果就是
+&lt;?php echo($name);?&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>注意模板标签的<code>{</code>和<code>$</code>之间不能有任何的空格，否则标签无效。普通标签默认开始标记是 <code>{</code>，结束标记是 <code>}</code>。也可以通过设置TMPL_L_DELIM和TMPL_R_DELIM进行更改。例如，我们在项目配置文件中定义：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&#39;TMPL_L_DELIM&#39;=&gt;&#39;&lt;{&#39;,
+&#39;TMPL_R_DELIM&#39;=&gt;&#39;}&gt;&#39;,
+</code></pre></div>
+</td></tr></table>
+那么，上面的变量输出标签就应该改成： <code>&lt;{$name}&gt;</code> 后面的内容我们都以默认的标签定义来说明。assign方法里面的第一个参数才是模板文件中使用的变量名称。如果改成下面的代码：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$name = &#39;ThinkPHP&#39;;
+$this-&gt;assign(&#39;name2&#39;,$name);
+</code></pre></div>
+</td></tr></table>
+再使用<code>{$name}</code> 输出就无效了，必须使用 <code>{$name2}</code> 才能输出模板变量的值了。如果我们需要把一个用户数据对象赋值给模板变量：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">$User = M(&#39;name&#39;);</span>
+<span class="x">$user = $User-&gt;find(1);</span>
+<span class="x">$this-&gt;assign(&#39;user&#39;,$user);</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>也就是说<code>$user</code>其实是一个数组变量，我们可以使用下面的方式来输出相关的值：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{$user[&#39;name&#39;]} // 输出用户的名称
+{$user[&#39;email&#39;]} // 输出用户的email地址
+</code></pre></div>
+</td></tr></table></p>
+<p>如果<code>$user</code>是一个对象而不是数组的话，
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">$User = M(&#39;name&#39;);</span>
+<span class="x">$User-&gt;find(1);</span>
+<span class="x">$this-&gt;assign(&#39;user&#39;,$User);</span>
+</code></pre></div>
+</td></tr></table>
+可以使用下面的方式输出相关的属性值：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{$user:name} // 输出用户的名称
+{$user:email} // 输出用户的email地址
+</code></pre></div>
+</td></tr></table></p>
+<p>为了方便模板定义，还可以支持点语法，例如，上面的
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{$user[&#39;name&#39;]} // 输出用户的名称
+{$user[&#39;email&#39;]} // 输出用户的email地址
+//可以改成
+{$user.name}
+{$user.email}
+</code></pre></div>
+</td></tr></table></p>
+<p>点语法默认的输出是数组方式，所以上面两种方式是在没有配置的情况下是等效的。我们可以通过配置TMPL_VAR_IDENTIFY参数来决定点语法的输出效果。
+如果是多维数组或者多层对象属性的输出，可以使用下面的定义方式：<code>{$user.sub.name} // 使用点语法输出</code> 或者使用<code>{$user['sub']['name']} // 输出三维数组的值</code>, <code>{$user:sub:name} // 输出对象的多级属性</code></p>
+<p><strong>模板函数</strong>   <br />
+仅仅是输出变量并不能满足模板输出的需要，内置模板引擎支持对模板变量使用调节器和格式化功能，其实也就是提供函数支持，并支持多个函数同时使用。用于模板标签的函数可以是PHP内置函数或者是用户自定义函数，和smarty不同，用于模板的函数不需要特别的定义。
+模板变量的函数调用格式为：<code>{$varname|function1|function2=arg1,arg2,### }</code></p>
+<p>说明： <br />
+1. <code>{</code> 和 <code>$</code> 符号之间不能有空格 ，后面参数的空格就没有问题
+2. <code>###</code>表示模板变量本身的参数位置
+3. 支持多个函数，函数之间支持空格
+4. 支持变量缓存功能，重复变量字串不多次解析</p>
+<p>使用例子：<code>{$webtitle|md5|strtoupper|substr=0,3}</code> 编译后的PHP代码就是：<code>&lt;?php echo (substr(strtoupper(md5($webtitle)),0,3)); ?&gt;</code></p>
+<p>注意函数的定义和使用顺序的对应关系，通常来说函数的第一个参数就是前面的变量或者前一个函数使用的结果，如果你的变量并不是函数的第一个参数，需要使用定位符号，例如：<code>{$create_time|date="y-m-d",###}</code> 编译后的PHP是：<code>&lt;?php echo (date("y-m-d",$create_time)); ?&gt;</code></p>
+<p>函数的使用没有个数限制，但是可以允许配置TMPL_DENY_FUNC_LIST定义禁用函数列表，系统默认禁用了exit和echo函数，以防止破坏模板输出，我们也可以增加额外的定义，例如：<code>TMPL_DENY_FUNC_LIST=&gt;"echo,exit,halt"</code></p>
+<p>并且还提供了在模板文件中直接调用函数的快捷方法，无需通过模板变量，包括两种方式： <br />
+1、执行方法并输出返回值 格式：<code>{:function(…)}</code>, 例如，输出U方法的返回值：<code>{:U('User/insert')}</code>,编译后的PHP代码是 <code>&lt;?php echo U('User/insert');?&gt;</code></p>
+<p>2、执行方法但不输出 格式：<code>{~function(…)}</code>, 例如，调用say_hello函数：<code>{~say_hello('ThinkPHP')}</code>,编译后的PHP代码是：<code>&lt;?php say_hello('ThinkPHP');?&gt;</code></p>
+<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{$email|md5}
+{$email|md5|strtoupper}
+{$email|default=&#39;123456@qq.com&#39;}
+{$email|substr=0,8}
+{$email|substr=###,0,8}
+{$time|date=&#39;Y-m-d&#39;,###}
+</code></pre></div>
+</td></tr></table>
+<code>###</code>起占位的作用，如果是第一个参数可以省略不写</p>
+<p><strong>系统变量</strong>   <br />
+除了常规变量的输出外，模板引擎还支持系统变量和系统常量、以及系统特殊变量的输出。它们的输出不需要事先赋值给某个模板变量。系统变量的输出必须以<code>$Think.</code> 打头，并且仍然可以支持使用函数。  <br />
+1、系统变量：包括 server、session、post、get、request、cookie
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{$Think.server.script_name } // 输出$_SERVER变量
+{$Think.session.session_id|md5 } // 输出$_SESSION变量
+{$Think.get.pageNumber } // 输出$_GET变量
+{$Think.cookie.name } // 输出$_COOKIE变量
+
+{$Think.server.HTTP_HOST}
+{$Think.env.PHP_APP_STATUS}
+{$Think.session.name}
+{$Think.cookie.id}
+
+{$Think.request.id}
+{$Think.get.id}
+{$Think.post.id}
+{$Think.const.APP_PATH}     // 获取系统常量
+{$Think.APP_PATH}       // 获取系统常量，可省略const，直接加常量名
+</code></pre></div>
+</td></tr></table></p>
+<p>支持输出 <code>$_SERVER、$_ENV、 $_POST、 $_GET、 $_REQUEST、$_SESSION和 $_COOKIE</code> 变量。后面的<code>server、cookie、config</code>不区分大小写，但是变量区分大小写。例如：<code>{$Think.server.script_name }</code>和<code>{$Think.SERVER.script_name }</code>等效</p>
+<p>SESSION 、COOKIE还支持二维数组的输出，例如：<code>{$Think.CONFIG.user.user_name}</code>,<code>{$Think.session.user.user_name}</code></p>
+<p>以上方式还可以写成：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{$_SERVER.script_name } // 输出$_SERVER变量
+{$_SESSION.session_id|md5 } // 输出$_SESSION变量
+{$_GET.pageNumber } // 输出$_GET变量
+{$_COOKIE.name } // 输出$_COOKIE变量
+</code></pre></div>
+</td></tr></table></p>
+<p>2、系统常量 ：使用 <code>$Think.const</code> 输出
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{$Think.const.!-SELF-! }
+{$Think.const.MODULE_NAME }
+//或者直接使用
+{$Think.!-SELF-! }
+{$Think.MODULE_NAME }
+</code></pre></div>
+</td></tr></table></p>
+<p>3、特殊变量 ：由ThinkPHP系统内部定义的常量
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{$Think.version } //版本
+{$Think.now } //现在时间
+{$Think.template|basename } //模板页面
+{$Think.LDELIM } //模板标签起始符号
+{$Think.RDELIM } //模板标签结束符号
+</code></pre></div>
+</td></tr></table></p>
+<p>4、配置参数 ：输出项目的配置参数值 <code>{$Think.config.db_charset}</code>  输出的值和 <code>C('db_charset')</code> 的返回结果是一样的。也可以输出二维的配置参数，例如：<code>{$Think.config.user.user_name}</code></p>
+<p>5、语言变量：输出项目的当前语言定义值 <code>{$Think.lang.page_error}</code> 输出的值和 <code>L('page_error')</code>的返回结果是一样的。</p>
+<p><strong>默认值输出</strong>  <br />
+如果输出的模板变量没有值，但是我们需要在显示的时候赋予一个默认值的话，可以使用default语法，格式: 
+<code>{$变量|default="默认值"}</code>,  这里的default不是函数，而是系统的一个语法规则，例如：<code>{$user.nickname|default="这家伙很懒，什么也没留下"}</code></p>
+<p>对系统变量的输出也可以支持默认值，例如: <code>{$Think.post.name|default="名称为空"}</code></p>
+<h3 id="模板布局">模板布局<a class="headerlink" href="#模板布局" title="Permanent link">&para;</a></h3>
+<p><strong>模版引入</strong></p>
+<p>可以使用Include标签来包含外部的模板文件，使用方法如下：</p>
+<p>1、 使用完整文件名包含, 格式：<code>&lt;include file="完整模板文件名" /&gt;</code></p>
+<p>例如：<code>&lt;include file="./Tpl/default/Public/header.html" /&gt;</code> 这种情况下，模板文件名必须包含后缀。使用完整文件名包含的时候，特别要注意文件包含指的是服务器端包含，而不是包含一个URL地址，也就是说file参数的写法是服务器端的路径，如果使用相对路径的话，是基于项目的入口文件位置。</p>
+<p>2、包含当前模块的其他操作模板文件, 格式：<code>&lt;include file="操作名" /&gt;</code></p>
+<p>例如 导入当前模块下面的read操作模版：<code>&lt;include file="read" /&gt;</code> 操作模板无需带后缀。</p>
+<p>3、 包含其他模块的操作模板, 格式：<code>&lt;include file="模块名:操作名" /&gt;</code>, 例如，包含Public模块的header操作模版：<code>&lt;include file="Public:header" /&gt;</code></p>
+<p>4、包含其他模板主题的模块操作模板, 格式：<code>&lt;include file="主题名@模块名:操作名" /&gt;</code></p>
+<p>例如，包含blue主题的User模块的read操作模版：<code>&lt;include file="blue@User:read" /&gt;</code></p>
+<p>5、 用变量控制要导入的模版, 格式：<code>&lt;include file="$变量名" /&gt;</code>, 例如<code>&lt;include file="$tplName" /&gt;</code>, 给$tplName赋不同的值就可以包含不同的模板文件，变量的值的用法和上面的用法相同。</p>
+<p><strong>模板继承</strong></p>
+<p><code>{extend name="common/base" /}</code></p>
+<p>被继承的文件预留坑位, 继承后可以重写
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{block name=&quot;ID&quot;}
+    原始内容
+{/block}
+</code></pre></div>
+</td></tr></table></p>
+<p>继承后可以保留原有内容
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{block name=&quot;ID&quot;}
+    重写内容 + {__block__}
+{/block}
+</code></pre></div>
+</td></tr></table></p>
+<p><strong>layout布局</strong></p>
+<p>开启布局配置 <code>config.php</code>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&#39;template&#39;=&gt;[
+    &#39;layout_on&#39;=&gt;true, 
+    &#39;layout_name&#39;=&gt;&#39;layout&#39;
+]
+</code></pre></div>
+</td></tr></table></p>
+<p><code>app/index/view/layout.html</code> 预留坑位 <code>{__CONTENT__}</code></p>
+<p><strong>导入文件</strong>   <br />
+传统方式的导入外部JS和CSS文件的方法是<strong>直接</strong>在模板文件使用：  <br />
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;script type=&#39;text/javascript&#39; src=&#39;/Public/Js/Util/Array.js&#39;&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/App/Tpl/default/Public/css/style.css&quot; /&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>系统提供了专门的标签来简化上面的导入：</p>
+<p>第一个是import标签 ，导入方式采用类似ThinkPHP的import函数的命名空间方式，例如：<code>&lt;import type='js' file="Js.Util.Array" /&gt;</code></p>
+<p>Type属性默认是js， 所以下面的效果是相同的：<code>&lt;import file="Js.Util.Array" /&gt;</code>, 还可以支持多个文件批量导入，例如： <code>&lt;import file="Js.Util.Array,Js.Util.Date" /&gt;</code></p>
+<p>导入外部CSS文件必须指定type属性的值，例如： <code>&lt;import type='css' file="Css.common" /&gt;</code></p>
+<p>上面的方式默认的import的起始路径是网站的Public目录，如果需要指定其他的目录，可以使用basepath属性，例如：<code>&lt;import file="Js.Util.Array" basepath="./Common" /&gt;</code></p>
+<p>第二个是load标签，通过文件方式导入当前项目的公共JS或者CSS</p>
+<p>例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;load href=&quot;!-Public-!/Js/Common.js&quot; /&gt;
+&lt;load href=&quot;!-Public-!/Css/common.css&quot; /&gt;
+\\ 在href属性中可以使用特殊模板标签替换，例如：
+&lt;load href=&quot;!-PUBLIC-!/Js/Common.js&quot; /&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>Load标签可以无需指定type属性，系统会自动根据后缀自动判断。系统还提供了两个标签别名js和css 用法和load一致，例如：
+<code>&lt;js href="!-PUBLIC-!/Js/Common.js" /&gt;</code>, <code>&lt;css href="!-Public-!/Css/common.css" /&gt;</code></p>
+<p>另外，系统提供了普通标签的方式加载外部js和css文件。<code>{load: !-PUBLIC-!/Js/Common.js}</code>, <code>{load: !-Public-!/Css/common.css }</code></p>
+<h3 id="循环">循环<a class="headerlink" href="#循环" title="Permanent link">&para;</a></h3>
+<p><strong>Volist标签</strong>  <br />
+Volist标签主要用于在模板中循环输出数据集或者多维数组。通常模型的select和findall方法返回的结果是一个二维数组，可以直接使用volist标签进行输出。   <br />
+在Action中首先对模版赋值：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">$User = M(&#39;User&#39;);</span>
+<span class="x">$list = $User-&gt;select();</span>
+<span class="x">$this-&gt;assign(&#39;list&#39;,$list);</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>在模版定义如下，循环输出用户的编号和姓名：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot;&gt;
+{$vo.id}
+{$vo.name}
+&lt;/volist&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>Volist标签的name属性表示模板赋值的变量名称，因此不可随意在模板文件中改变。id表示当前的循环变量，可以随意指定，但确保不要和name属性冲突，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;data&quot;&gt;
+{$data.id}
+{$data.name}
+&lt;/volist&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>支持输出部分数据，例如输出其中的第5～15条记录
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot; offset=&quot;5&quot; length=&#39;10&#39;&gt;
+{$vo.name}
+&lt;/volist&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>输出偶数记录
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot; mod=&quot;2&quot; &gt;
+&lt;eq name=&quot;mod&quot; value=&quot;1&quot;&gt;{$vo.name}&lt;/eq&gt;
+&lt;/volist&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>Mod属性还用于控制一定记录的换行，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot; mod=&quot;5&quot; &gt;
+{$vo.name}
+&lt;eq name=&quot;mod&quot; value=&quot;4&quot;&gt;&lt;br/&gt;&lt;/eq&gt;
+&lt;/volist&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>输出循环变量
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot; key=&quot;k&quot; &gt;
+{$k}.{$vo.name}
+&lt;/volist&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>如果没有指定key属性的话，默认使用循环变量i，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot; &gt;
+{$i}.{$vo.name}
+&lt;/volist&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>如果要输出数组的索引，可以直接使用key变量，和循环变量不同的是，这个key是由数据本身决定，而不是循环控制的，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot; &gt;
+{$key}.{$vo.name}
+&lt;/volist&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>volist还有一个别名iterate，用法和volist是一样。</p>
+<p><strong>Foreach标签</strong>  <br />
+foreach标签也是用于循环输出
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;foreach name=&quot;list&quot; item=&quot;vo&quot; &gt;
+{$vo.id}
+{$vo.name}
+&lt;/foreach&gt;
+</code></pre></div>
+</td></tr></table></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;foreach name=&#39;list&#39; item=&#39;v&#39; key=&#39;k&#39;&gt;  
+{$k}-------{$v}&lt;br/&gt;  
+&lt;/foreach&gt;  
+</code></pre></div>
+</td></tr></table>
+<p>Foreach标签相对比volist标签简洁，没有volist标签那么多的功能。优势是可以对对象进行遍历输出，而volist标签通常是用于输出数组。</p>
+<p><strong>for标签</strong></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;table border=&#39;1&#39; width=&#39;500&#39;&gt;  
+&lt;for start=&#39;10&#39; end=&#39;00&#39; name=&#39;j&#39; step=&#39;-2&#39; comparison=&#39;gt&#39;&gt;  
+&lt;tr&gt;&lt;td&gt;{$j}&lt;/td&gt;&lt;td&gt;abc&lt;/td&gt;&lt;/tr&gt;  
+&lt;/for&gt;  
+&lt;/table&gt;  
+</code></pre></div>
+</td></tr></table>
+<p>php 代码:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">public function index()</span>
+<span class="x">    $list = [</span>
+<span class="x">{</span>
+<span class="x">        &#39;user1&#39; =&gt; [</span>
+<span class="x">            &#39;name&#39; =&gt; &#39;value1&#39;,</span>
+<span class="x">        ],</span>
+<span class="x">        &#39;user2&#39; =&gt; [</span>
+<span class="x">            &#39;name&#39; =&gt; &#39;value2&#39;,</span>
+<span class="x">        ]</span>
+<span class="x">    ];</span>
+
+<span class="x">    $this-&gt;assign(&#39;list&#39;, $list);</span>
+<span class="x">    return $this-&gt;fetch(&#39;index&#39;);</span>
+<span class="x">}</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>volist循环
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{php}
+    $empty = &quot;&lt;h1&gt;内容是空的&lt;h2&gt;&quot;;  // 注意结尾的分号
+{/php}
+{volist name=&#39;list&#39; id=&#39;ov&#39; key=&#39;i&#39; offset=&#39;0&#39; length=&#39;2&#39; mod=&#39;1&#39; empty=&#39;$empty&#39;}
+    {$mod}  // 取余结果
+    {$i}   // 循环次数 默认i
+    {$ov.name}
+{/volist}
+</code></pre></div>
+</td></tr></table></p>
+<p>foreach循环
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{foreach $list as $vo}
+    {$vo.name}
+{/foreach}
+{foreach name=&#39;list&#39; item=&#39;vo&#39; key=&#39;key&#39;}
+    {$key} &lt;!-- 数组下标 默认$key --&gt;
+    {$vo.name}
+{/foreach}
+</code></pre></div>
+</td></tr></table></p>
+<p>for循环
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{for start=&#39;1&#39; end=&#39;10&#39; step=&#39;2&#39; name=&#39;i&#39;}
+    {$i} &lt;!-- 默认i--&gt;
+{/for}
+</code></pre></div>
+</td></tr></table></p>
+<h3 id="Switch-条件判断">Switch 条件判断<a class="headerlink" href="#Switch-条件判断" title="Permanent link">&para;</a></h3>
+<p>模板引擎支持Switch标签，格式为：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;switch name=&quot;变量&quot; &gt;
+&lt;case value=&quot;值1&quot;&gt;输出内容1&lt;/case&gt;
+&lt;case value=&quot;值2&quot;&gt;输出内容2&lt;/case&gt;
+&lt;default /&gt;默认情况
+&lt;/switch&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>使用方法如下：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;switch name=&quot;User.level&quot;&gt;
+&lt;case value=&quot;1&quot;&gt;value1&lt;/case&gt;
+&lt;case value=&quot;2&quot;&gt;value2&lt;/case&gt;
+&lt;default /&gt;default
+&lt;/switch&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>其中name属性可以使用函数以及系统变量，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;switch name=&quot;Think.get.userId|abs&quot;&gt;
+&lt;case value=&quot;1&quot;&gt;admin&lt;/case&gt;
+&lt;default /&gt;default
+&lt;/switch&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>对于case的value属性可以支持多个条件的判断，使用<code>|</code>进行分割，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;switch name=&quot;Think.get.type&quot;&gt;
+&lt;case value=&quot;gif|png|jpg&quot;&gt;图像格式&lt;/case&gt;
+&lt;default /&gt;其他格式
+&lt;/switch&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>表示如果<code>$_GET["type"]</code>是gif、png或者jpg的话，就判断为图像格式。</p>
+<p>也可以对case的value属性使用变量，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;switch name=&quot;User.userId&quot;&gt;
+&lt;case value=&quot;$adminId&quot;&gt;admin&lt;/case&gt;
+&lt;case value=&quot;$memberId&quot;&gt;member&lt;/case&gt;
+&lt;default /&gt;default
+&lt;/switch&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>使用变量方式的情况下，不再支持多个条件的同时判断。</p>
+<h3 id="比较标签">比较标签<a class="headerlink" href="#比较标签" title="Permanent link">&para;</a></h3>
+<p>模板引擎提供了丰富的判断标签，比较标签的用法是：<code>&lt;比较标签 name="变量" value="值"&gt;内容&lt;!--比较标签--&gt;</code></p>
+<p>系统支持的比较标签以及所表示的含义分别是：
+1. <code>eq</code>或者 <code>equal</code>等于
+2. <code>neq</code> 或者<code>notequal</code>：不等于
+3. <code>gt</code>：大于
+4. <code>egt</code>：大于等于
+5. <code>lt</code>：小于
+6. <code>elt</code>：小于等于
+7. <code>heq</code>：恒等于
+8. <code>nheq</code>：不恒等于</p>
+<p>他们的用法基本是一致的，区别在于判断的条件不同。例如，要求name变量的值等于value就输出，可以使用：<code>&lt;eq name="name" value="value"&gt;value&lt;/eq&gt;</code> </p>
+<p>也可以支持和else标签混合使用：<code>&lt;eq name="name" value="value"&gt;相等&lt;else/&gt;不相等&lt;/eq&gt;</code></p>
+<p>当 name变量的值大于5就输出 <code>&lt;gt name="name" value="5"&gt;value&lt;/gt&gt;</code></p>
+<p>当name变量的值不小于5就输出<code>&lt;egt name="name" value="5"&gt;value&lt;/egt&gt;</code></p>
+<p>比较标签中的变量可以支持对象的属性或者数组，甚至可以是系统变量,举例说明：</p>
+<p>当vo对象的属性（或者数组，或者自动判断）等于5就输出<code>&lt;eq name="vo.name" value="5"&gt;{$vo.name}&lt;/eq&gt;</code></p>
+<p>当vo对象的属性等于5就输出 <code>&lt;eq name="vo:name" value="5"&gt;{$vo.name}&lt;/eq&gt;</code></p>
+<p>当<code>$vo['name']</code> 等于5就输出<code>&lt;eq name="vo['name']" value="5"&gt;{$vo.name}&lt;/eq&gt;</code></p>
+<p>而且还可以支持对变量使用函数, 当vo对象的属性值的字符串长度等于5就输出<code>&lt;eq name="vo:name|strlen" value="5"&gt;{$vo.name}&lt;/eq&gt;</code></p>
+<p>变量名可以支持系统变量的方式，例如： <code>&lt;eq name="Think.get.name" value="value"&gt;相等&lt;else/&gt;不相等&lt;/eq&gt;</code></p>
+<p>通常比较标签的值是一个字符串或者数字，如果需要使用变量，只需要在前面添加<code>$</code>标志：</p>
+<p>当vo对象的属性等于<code>$a</code> 就输出 <code>&lt;eq name="vo:name" value="$a"&gt;{$vo.name}&lt;/eq&gt;</code></p>
+<p>所有的比较标签可以统一使用compare标签（其实所有的比较标签都是compare标签的别名），例如：当name变量的值等于5就输出<code>&lt;compare name="name" value="5" type="eq"&gt;value&lt;/compare&gt;</code></p>
+<p>其中type属性的值就是上面列出的比较标签名称</p>
+<h3 id="Range标签">Range标签<a class="headerlink" href="#Range标签" title="Permanent link">&para;</a></h3>
+<p>Range标签用于判断某个变量是否在某个范围之内，包括in、notin和range三个标签。</p>
+<p>可以使用in标签来判断模板变量是否在某个范围内，例如：<code>&lt;in name="id" value="1,2,3" &gt;输出内容1&lt;/in&gt;</code></p>
+<p>如果判断不再某个范围内，可以使用：<code>&lt;notin name="id" value="1,2,3" &gt;输出内容2&lt;/notin&gt;</code></p>
+<p>可以把上面两个标签合并成为： <code>&lt;in name="id" value="1,2,3" &gt;输出内容1&lt;else/&gt;输出内容2&lt;/in&gt;</code></p>
+<p>Value属性的值可以使用变量，例如： <code>&lt;in name="id" value="$var" &gt;输出内容1&lt;/in&gt;</code></p>
+<p>变量的值可以是字符串或者数组，都可以完成范围判断。</p>
+<p>也可以直接使用range标签，替换in和notin的用法：<code>&lt;range name="id" value="1,2,3" type="in" &gt;输出内容1&lt;/range&gt;</code></p>
+<p>其中type属性的值可以用in或者notin。</p>
+<h3 id="Defined标签">Defined标签<a class="headerlink" href="#Defined标签" title="Permanent link">&para;</a></h3>
+<p>可以使用defined标签判断常量是否已经有定义，例如：<code>&lt;defined name="NAME"&gt;NAME常量已经定义&lt;/defined&gt;</code></p>
+<p>如果判断没有被定义，可以使用：<code>&lt;notdefined name="NAME"&gt;NAME常量未定义&lt;/notdefined&gt;</code></p>
+<p>可以把上面两个标签合并成为：<code>&lt;defined name="NAME"&gt;NAME常量已经定义&lt;else /&gt; NAME常量未定义&lt;/defined&gt;</code></p>
+<h3 id="IF标签">IF标签<a class="headerlink" href="#IF标签" title="Permanent link">&para;</a></h3>
+<p>如果觉得上面的标签都无法满足条件判断要求的话，我们还可以使用if标签来定义复杂的条件判断，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;if condition=&quot;($name eq 1) OR ($name gt 100) &quot;&gt; value1
+&lt;elseif condition=&quot;$name eq 2&quot; /&gt;value2
+&lt;else /&gt; value3
+&lt;/if&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>在condition属性中可以支持eq等判断表达式 ，同上面的比较标签，但是不支持带有<code>&gt;, &lt;</code>等符号的用法，因为会混淆模板解析。</p>
+<p>除此之外，我们可以在condition属性里面使用php代码，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;if condition=&quot;strtoupper($user[&#39;name&#39;]) neq &#39;THINKPHP&#39; &quot;&gt; ThinkPHP
+&lt;else /&gt; other framework
+&lt;/if&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>condition属性可以支持点语法和对象语法，例如：自动判断user变量是数组还是对象
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;if condition=&quot;$user.name neq &#39;ThinkPHP&#39; &quot;&gt; ThinkPHP
+&lt;else /&gt; other framework
+&lt;/if&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>或者知道user变量是对象
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;if condition=&quot;$user:name neq &#39;ThinkPHP&#39; &quot;&gt; ThinkPHP
+&lt;else /&gt; other framework
+&lt;/if&gt;
+</code></pre></div>
+</td></tr></table></p>
+<h3 id="标签嵌套">标签嵌套<a class="headerlink" href="#标签嵌套" title="Permanent link">&para;</a></h3>
+<p>模板引擎支持标签的多层嵌套功能，可以对标签库的标签指定可以嵌套。系统内置的标签中，volist（及其别名iterate）、switch、if、elseif、else、foreach、compare（包括所有的比较标签）、（not）present、（not）empty、（not）defined等标签都可以嵌套使用。例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot;&gt;
+&lt;volist name=&quot;vo[&#39;sub&#39;]&quot; id=&quot;sub&quot;&gt;
+{$sub.name}
+&lt;/volist&gt;
+&lt;/volist&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>上面的标签可以用于输出双重循环。默认的嵌套层次是3级，所以嵌套层次不能超过3层，如果需要更多的层次可以指定TAG_NESTED_LEVEL配置参数。</p>
+<h3 id="使用PHP代码">使用PHP代码<a class="headerlink" href="#使用PHP代码" title="Permanent link">&para;</a></h3>
+<p>Php代码可以和标签在模板文件中混合使用，可以在模板文件里面书写任意的PHP语句代码 ，包括下面两种方式：</p>
+<p>第一种是使用php标签： <code>&lt;php&gt;echo 'Hello,world!';&lt;/php&gt;</code></p>
+<p>第二种就是直接使用原始的php代码：<code>&lt;?php echo 'Hello,world!'; ?&gt;</code></p>
+<p>但是php标签或者php代码里面就不能再使用标签（包括普通标签和xml标签）</p>
+<h3 id="原样输出">原样输出<a class="headerlink" href="#原样输出" title="Permanent link">&para;</a></h3>
+<p>可以使用literal标签来防止模板标签被解析，例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;literal&gt;
+&lt;if condition=&quot;$name eq 1 &quot;&gt; value1
+&lt;elseif condition=&quot;$name eq 2&quot; /&gt;value2
+&lt;else /&gt; value3
+&lt;/if&gt;
+&lt;/literal&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>上面的if标签被literal标签包含，因此if标签里面的内容并不会被模板引擎解析，而是保持原样输出。 Literal标签可以用于页面的JS代码外面，确保JS代码中的某些用法和模板引擎不产生混淆。</p>
+<h3 id="模板注释">模板注释<a class="headerlink" href="#模板注释" title="Permanent link">&para;</a></h3>
+<p>模板支持注释功能，该注释文字在最终页面不会显示，仅供模板制作人员参考和识别。格式：<code>{/* 注释内容 */ }</code> 或 <code>{// 注释内容 }</code>
+说明：在显示页面的时候不会显示模板注释，仅供模板制作的时候参考。</p>
+<p>注意{和注释标记之间不能有空格。</p>
+<p>例如：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>{// 这是模板注释内容 }
+
+{/* 这是模板
+
+注释内容*/ }
+
+&lt;!-- html注释 用户可见 --&gt;
+</code></pre></div>
+</td></tr></table></p>
+<p>模板注释支持多行可以。模板注释在生成编译缓存文件后会自动删除，这一点和Html的注释不同。</p>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者: <br />
+来源： <a href="https://www.cnblogs.com/mr-amazing/p/3938805.html">https://www.cnblogs.com/mr-amazing/p/3938805.html</a>, <a href="http://www.thinkphp.cn/topic/2427.html?__cf_chl_jschl_tk__=6316a9901d3f1c4c83c15378b7cda2b9245ff8f7-1618733638-0-AVehsxwZRMUQybRFRYefw4xkJh9Msb8AA3x8I09FVdS0zf-8PK4K7lXB1Lk2TGhk-KtpJYDhYiFPp3FA9aqr-_DF-KUSQV2wnpWs3cPplqv6wDBbaYW_uADraAV8rIhrPpvFp5MuiyhV8M4Wa7AtADHuWZaeamATpuT-kJLeUOnHw3y7gvjvF57rN-1LVLEvAp3Tkk5Eokj6AAUqCCP3-NcCboKiTvqGWdpYo3q6y7wU5Ze_N3jIop8Jq_0uXv9TZYwR9AjYrGmDHa0jOeuLfOoretHhv35yj-_NLDhF8iqNeKf7JmipZ5lZAi8UOJG9G_x5sBXZy3hUMR1A_TNjUEmPWmYbm_dez7kS8A2bk02jEt-GynUL5DYrLCfaS3pk_1JnA5PZ5tLcmv5psPFpXlY">ThinkPHP</a>,  <a href="https://blog.csdn.net/mouday/article/details/88595682">ThinkPHP视图View模板语法</a></p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../html_5_webworkers/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                HTML5 Worker
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../ml/matrix/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                机器学习与矩阵,numpy,sklearn等工具
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "toc.integrate"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d892486b.min.js"></script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
