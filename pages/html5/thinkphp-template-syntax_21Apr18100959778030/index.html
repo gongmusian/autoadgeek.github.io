@@ -1052,6 +1052,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
+        用 Python Camelot从 PDF 文件中提取表格
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1417,6 +1429,18 @@
     <li class="md-nav__item">
       <a href="../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
         加快Scikit-Learn训练
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
+        特征选择,如何丢掉95%的数据并获得95%的准确率
       </a>
     </li>
   
@@ -2852,27 +2876,79 @@ Volist标签主要用于在模板中循环输出数据集或者多维数组。�
 <p>输出循环变量
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot; key=&quot;k&quot; &gt;
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">volist</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;list&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;vo&quot;</span> <span class="na">key</span><span class="o">=</span><span class="s">&quot;k&quot;</span> <span class="p">&gt;</span>
 {$k}.{$vo.name}
-&lt;/volist&gt;
+<span class="p">&lt;/</span><span class="nt">volist</span><span class="p">&gt;</span>
 </code></pre></div>
 </td></tr></table></p>
 <p>如果没有指定key属性的话，默认使用循环变量i，例如：
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot; &gt;
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">volist</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;list&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;vo&quot;</span> <span class="p">&gt;</span>
 {$i}.{$vo.name}
-&lt;/volist&gt;
+<span class="p">&lt;/</span><span class="nt">volist</span><span class="p">&gt;</span>
 </code></pre></div>
 </td></tr></table></p>
 <p>如果要输出数组的索引，可以直接使用key变量，和循环变量不同的是，这个key是由数据本身决定，而不是循环控制的，例如：
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;volist name=&quot;list&quot; id=&quot;vo&quot; &gt;
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">volist</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;list&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;vo&quot;</span> <span class="p">&gt;</span>
 {$key}.{$vo.name}
-&lt;/volist&gt;
+<span class="p">&lt;/</span><span class="nt">volist</span><span class="p">&gt;</span>
 </code></pre></div>
 </td></tr></table></p>
+<p><strong>下拉列表时配合使用缺省项</strong></p>
+<p>在ThinkPHP中，使用volist实现下拉菜单项的填充，如果需要设置缺省项，</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">$sourceLangs = [</span>
+<span class="x">        &#39;en&#39; =&gt; &#39;英语&#39;,</span>
+<span class="x">        &#39;zh&#39; =&gt; &#39;中文&#39;,</span>
+<span class="x">        &#39;ja&#39; =&gt; &#39;日语&#39;,</span>
+<span class="x">        &#39;fr&#39; =&gt; &#39;法语&#39;,</span>
+<span class="x">        &#39;de&#39; =&gt; &#39;德语&#39;,</span>
+<span class="x">        &#39;es&#39; =&gt; &#39;西班牙语&#39;,</span>
+<span class="x">        &#39;pt&#39; =&gt; &#39;葡萄牙语&#39;,</span>
+<span class="x">        &#39;it&#39; =&gt; &#39;意大利语&#39;,</span>
+<span class="x">        &#39;ru&#39; =&gt; &#39;俄语&#39;,</span>
+<span class="x">        &#39;nl&#39; =&gt; &#39;荷兰语&#39;</span>
+<span class="x">    ];</span>
+
+<span class="x">$this-&gt;assign(&#39;row&#39;, $row); // mysql读出的数据行</span>
+<span class="x">$this-&gt;assign(&#39;list&#39;, $this-&gt;sourceLangs);</span>
+<span class="x">return $this-&gt;fetch();</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;layui-input-block&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">select</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;lang&quot;</span> <span class="na">lay-verify</span><span class="o">=</span><span class="s">&quot;required&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        {foreach name=&#39;list&#39; item=&#39;v&#39; key=&#39;k&#39;}
+            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;{$k}&quot;</span> <span class="err">{</span><span class="na">if</span> <span class="na">condition</span><span class="o">=</span><span class="s">&quot;($row.lang eq $k)&quot;</span><span class="err">}</span> <span class="na">selected</span><span class="o">=</span><span class="s">&quot;selected&quot;</span> <span class="err">{/</span><span class="na">if</span><span class="err">}</span><span class="p">&gt;</span>{$v}<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        {/foreach}
+    <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+</td></tr></table>
 <p>volist还有一个别名iterate，用法和volist是一样。</p>
 <p><strong>Foreach标签</strong>  <br />
 foreach标签也是用于循环输出
