@@ -1,0 +1,2902 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="六种工具可以显著加快你的Pandas代码。对于大多数工具，只需安装模块并添加几行代码。使用多个内核将任务并行执行Pandas。一些简单的方法通过jit汇编和Multiprocessing使用工具，如Numba和Pandarallel加快pandas的速度。更强大的工具，如Dask，Modin和Swifter">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/ml/pandas/speed-pandas-line-couple-significantly-c_21May12202229315527/">
+
+
+<link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    
+      
+        <title>用几行代码显著加快pandas速度的6种方法 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.33e2939f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#用几行代码显著加快pandas速度的6种方法" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            广告流程自动化
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              用几行代码显著加快pandas速度的6种方法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo" type="radio" name="__palette" id="__palette_1">
+          <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+          </label>
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue" type="radio" name="__palette" id="__palette_2">
+          <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+          </label>
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../python/" class="md-tabs__link">
+        Python
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../html5/" class="md-tabs__link">
+        HTML5/CSS
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../matrix/" class="md-tabs__link md-tabs__link--active">
+        机器学习
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+        数学基础
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../nlp/nlp/" class="md-tabs__link">
+        自然语言处理
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+        广告程序化
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+        网站SEO优化
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../about/" class="md-tabs__link">
+      关于
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" data-md-state="indeterminate" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/" class="md-nav__link">
+        python 基础教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+        Python 语法结构
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-datatypes/" class="md-nav__link">
+        Python 数据类型
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-strings/" class="md-nav__link">
+        Python 字符串
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-fstring/" class="md-nav__link">
+        Python f 字符串
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-lists/" class="md-nav__link">
+        Python 列表
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+        Python 字典
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-set/" class="md-nav__link">
+        Python 集合
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-map/" class="md-nav__link">
+        Python 映射
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-operators/" class="md-nav__link">
+        Python 运算符
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-keywords/" class="md-nav__link">
+        Python 关键字
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-forloop/" class="md-nav__link">
+        Python for 循环
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-itergener/" class="md-nav__link">
+        Python 迭代器和生成器
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+        Python 列表推导式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-reverse/" class="md-nav__link">
+        Python 反转
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-functions/" class="md-nav__link">
+        Python 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+        Python 正则表达式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-oop/" class="md-nav__link">
+        Python 面向对象编程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-modules/" class="md-nav__link">
+        Python 模块
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-packages/" class="md-nav__link">
+        Python 中的软件包
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-exceptions/" class="md-nav__link">
+        Python 异常
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-introspection/" class="md-nav__link">
+        Python 自省
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-lambda/" class="md-nav__link">
+        Python Lambda 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-logging/" class="md-nav__link">
+        Python 日志教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-simplejson/" class="md-nav__link">
+        Python JSON 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-faker/" class="md-nav__link">
+        Python Faker 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-feedparser/" class="md-nav__link">
+        Python feedparser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+        Python bcrypt 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-socket/" class="md-nav__link">
+        Python 套接字教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-smtplib/" class="md-nav__link">
+        Python smtplib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-yaml/" class="md-nav__link">
+        Python YAML 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-hashing/" class="md-nav__link">
+        Python 哈希教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-configparser/" class="md-nav__link">
+        Python ConfigParser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-argparse/" class="md-nav__link">
+        Python argparse 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-sqlite/" class="md-nav__link">
+        Python SQLite 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-cerberus/" class="md-nav__link">
+        Python Cerberus 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pymysql/" class="md-nav__link">
+        Python PyMySQL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-peewee/" class="md-nav__link">
+        Python Peewee 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pydal/" class="md-nav__link">
+        Python pyDAL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pytest/" class="md-nav__link">
+        Python Pytest 单元测试教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+        BeautifulSoup 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pyquery/" class="md-nav__link">
+        Python pyquery 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-sympy/" class="md-nav__link">
+        SymPy 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pandas/" class="md-nav__link">
+        Pandas 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+        Matplotlib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pillow/" class="md-nav__link">
+        Pillow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-ftp/" class="md-nav__link">
+        Python FTP 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-requests/" class="md-nav__link">
+        Python Requests 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-arrow/" class="md-nav__link">
+        Python Arrow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+        Python 魔术方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+        python Uipath Orchestrator Cloud API 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+        Python 使用 Google NLP API进行网站分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+        用python算微积分及牛顿迭代求解高阶方程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/py-setuptools/" class="md-nav__link">
+        Python打包分发工具setuptools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
+        用于数据处理的Python工具(Numerizer,Faker,Missingno,emot,Arrow)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
+        用 Python Camelot从 PDF 文件中提取表格
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        HTML5/CSS
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          HTML5/CSS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/" class="md-nav__link">
+        HTML5 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_intro/" class="md-nav__link">
+        HTML5 简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-head/" class="md-nav__link">
+        HTML5 头部
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_video/" class="md-nav__link">
+        HTML5 视频
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-tables/" class="md-nav__link">
+        HTML5 表格
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-images/" class="md-nav__link">
+        HTML5 图像
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+        HTML5 地理定位
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+        HTML5 Worker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/thinkphp-template-syntax_21Apr18100959778030/" class="md-nav__link">
+        ThinkPHP 模板语法
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        机器学习
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="机器学习" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          机器学习
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../matrix/" class="md-nav__link">
+        机器学习与矩阵,numpy,sklearn等工具
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+        Python – 如何使用 t-SNE 進行降維
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+        特征值分解、奇异值分解、PCA概念
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+        Numpy中矩阵计算模块linalg的常用函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+        深度学习的激活函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+        加快Scikit-Learn训练
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
+        特征选择,如何丢掉95%的数据并获得95%的准确率
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          用几行代码显著加快pandas速度的6种方法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        用几行代码显著加快pandas速度的6种方法
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#第一章" class="md-nav__link">
+    第一章：
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第二章" class="md-nav__link">
+    第二章：
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Numba" class="md-nav__link">
+    Numba
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Multiprocessing" class="md-nav__link">
+    Multiprocessing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Pandarallel" class="md-nav__link">
+    Pandarallel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Swifter" class="md-nav__link">
+    Swifter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Modin" class="md-nav__link">
+    Modin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#Dask" class="md-nav__link">
+    Dask
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#结论" class="md-nav__link">
+    结论
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" data-md-state="indeterminate" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
+        数学基础
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="数学基础" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+        指数分布公式的含义
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+        LaTeX 数学公式排版
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+        常见概率统计分布及Python实现
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+        期望值、方差、协方差、相关系数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+        softmax详解
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+        最小二乘法多项式曲线拟合及其python实现
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+        损失函数 - 交叉熵损失函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+        向量的距离度量
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+        协方差、PCA、样本中心化，白化、方差、标准差、BN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+        降维基础知识（样本均值、样本方差、中心矩阵）与PCA
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
+        如何画lda投影结果_线性判别分析（LDA）原理总结
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+        协方差矩阵的几何解释
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
+        从sympy求最简形矩阵到矩阵的四个子空间及其联系
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
+        了解卷积
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
+        向量内积外积的几何意义
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" data-md-state="indeterminate" type="checkbox" id="__nav_6" checked>
+      
+      <label class="md-nav__link" for="__nav_6">
+        自然语言处理
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="自然语言处理" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          自然语言处理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlp/" class="md-nav__link">
+        自然语言处理
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+        NLP 新手上路
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+        NLP HanNLP 词典分词
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+        评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+        文本关键词提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+        用Python从海量文本抽取主题
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+        nlp常用工具集
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+        NLP pattern库 hands on
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+        基于预训练模型的文本摘要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+        Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+        开源项目，涵盖 11 类 AI 学习框架、平台
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+        自然语言处理工具包之NLTK
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+        基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+        bert-extractive-summarizer 中文文章的抽取式摘要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+        理解NLP中的CNN卷积神经网络
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+        依存分析与依存树 dependency parse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+        关键词与文章相关性, 关键词自动标注与提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+        Python 使用 Google NLP API进行网站分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+        使用 AI 自动执行 Web 爬网
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+        通过机器学习对网站进行分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+        TextRank算法简述
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+        NLTK TextRank实现英文关键词提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+        使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+        使用余弦相似度算法计算文本相似度
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+        细数2018年最好的词嵌入和句嵌入技术
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+        从头开始多标签文本分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+        没有模型训练情况下用BERT做文本分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+        用 NLP 做文本分析和特征工程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
+        如何使用 BERT 和 Word2Vec 计算句子相似性
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/text-similarity-measuring-bert_21May08200617801479/" class="md-nav__link">
+        BERT用于计算句子文本相似度
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/topic-modeling-interactive-bertopic_21Apr27173610787396/" class="md-nav__link">
+        用BERTopic进行交互式主题建模
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" data-md-state="indeterminate" type="checkbox" id="__nav_7" checked>
+      
+      <label class="md-nav__link" for="__nav_7">
+        广告程序化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          广告程序化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+        围绕SEO开展竞争对手分析
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+        Shopify独立站的几套选品方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/semantic-search/" class="md-nav__link">
+        什么是语义搜索？它是如何影响SEO的
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+        如何把网站提交给搜索引擎
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/meta-description/" class="md-nav__link">
+        如何编写完美的元描述
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+        使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+        动态网站使用 Python 向 Google 自动提交站点地图
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        使用 Python 进行 Facebook 抓取和情绪分析
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        Instagram 爬虫
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+        使用 Python 查找关键字类别的搜索量上限
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+        可视化 100，000 亚马逊产品
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+        使用SimHash进行海量文本去重流程
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" data-md-state="indeterminate" type="checkbox" id="__nav_8" checked>
+      
+      <label class="md-nav__link" for="__nav_8">
+        网站SEO优化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          网站SEO优化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+        长尾词优化入网页
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/keyword-difficulty/" class="md-nav__link">
+        关键词难度：如何确认你在 Google 获得排名的机会
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+        如何让网站排名进入谷歌首页
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+        如何搭建一个成功的亚马逊联盟网站
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+        SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+        抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-start-seo/" class="md-nav__link">
+        SEO每日流量如何从0到10000
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+        Python与SEO 词库完整指南
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+        Python百度下拉框关键词采集
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/adsense/" class="md-nav__link">
+        hexo个人next主题博客接入谷歌广告
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        关于
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="用几行代码显著加快pandas速度的6种方法">用几行代码显著加快pandas速度的6种方法<a class="headerlink" href="#用几行代码显著加快pandas速度的6种方法" title="Permanent link">&para;</a></h1>
+<p>长期以来，Pandas一直是任何开发人员不可或缺的工具，这要归功于简单易懂的 API，以及一套丰富的数据清洁、研究和分析工具。一切都会很好，但是当涉及到 <strong>不适应RAM</strong> 或 <strong>需要复杂计算的数据时</strong> ，Pandas的表现是不够的。</p>
+<p>在本文中，我不会描述数据分析的质不同方法，如 Spark 或数据流。相反，我将描述六种有趣的工具，并演示它们的使用结果：</p>
+<h2 id="第一章">第一章：<a class="headerlink" href="#第一章" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Numba</li>
+<li>Multiprocessing</li>
+<li>Pandarallel</li>
+</ul>
+<h2 id="第二章">第二章：<a class="headerlink" href="#第二章" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Swifter</li>
+<li>Modin</li>
+<li>Dask</li>
+</ul>
+<h2 id="Numba">Numba<a class="headerlink" href="#Numba" title="Permanent link">&para;</a></h2>
+<p>此工具直接加速 Python 本身。 <a href="https://github.com/numba/numba">Numba</a> 是一个 <strong>JIT 编译器</strong> ，像循环、数学操作和 Numpy，这是Pandas的核心库。让我们在实践中检查它提供了哪些优势。</p>
+<p>我们将模拟一个典型情况-您需要通过使用该方法将某些功能应用到现有列中来添加一个新列 <code>apply</code> 。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numba</span>
+
+<span class="c1"># create a table of 100,000 rows and 4 columns filled with random numbers from 0 to 100</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
+
+<span class="c1"># function for creating new col</span>
+<span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">5</span>
+
+<span class="c1"># optimized version of this function</span>
+<span class="nd">@numba</span><span class="o">.</span><span class="n">vectorize</span>
+<span class="k">def</span> <span class="nf">multiply_numba</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">5</span>
+</code></pre></div>
+</td></tr></table>
+<p>正如您所看到的，您不需要更改代码中的任何东西。只需添加一个装饰器。现在查看结果：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># our function</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;new_col&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">multiply</span><span class="p">)</span>
+<span class="mf">23.9</span> <span class="n">ms</span> <span class="err">±</span> <span class="mf">1.93</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="c1"># pandas implementation</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;new_col&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="mi">545</span> <span class="n">µs</span> <span class="err">±</span> <span class="mf">21.4</span> <span class="n">µs</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">1000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="c1"># out function, optimized by numba</span>
+<span class="c1"># we use vector of values so that numba itself performs the loop optimization</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;new_col&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">multiply_numba</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="mi">329</span> <span class="n">µs</span> <span class="err">±</span> <span class="mf">2.37</span> <span class="n">µs</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">1000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>优化版 <strong>速度是快~70倍！</strong> 然而，就相对而言，Pandas的实现稍稍落后，因此让我们来考虑一个更复杂的案例。让我们定义新功能：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># square the values and take their mean</span>
+<span class="k">def</span> <span class="nf">square_mean</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+  <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="c1"># usage:</span>
+<span class="c1"># df[&#39;new_col&#39;] = df.apply(square_mean, axis=1)</span>
+
+<span class="c1"># numba does not know how to work with pandas primitives (Dataframe, Series, etc.)</span>
+<span class="c1"># so that we use a two-dimensional numpy array</span>
+<span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">square_mean_numba</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+  <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+  <span class="k">return</span> <span class="n">res</span>
+<span class="c1"># usage:</span>
+<span class="c1"># df[&#39;new_col&#39;] = square_mean_numba(df.to_numpy())</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>让我们构建一个图表，显示计算时间对数据框架中行数的依赖性：</p>
+<p><img src='images/speed-pandas-line-couple-significantly-c_21May12203058108930_1.png' title="speed-pandas-line-couple-significantly-c_21May12203058108930_1.png" alt="speed-pandas-line-couple-significantly-c_21May12203058108930_1.png" width='800'/></p>
+<p><strong>小结</strong></p>
+<ul>
+<li>可以实现 <strong>超过 x1000 的加速度</strong></li>
+<li>有时您需要重写代码才能使用Numba</li>
+<li><strong>不能到处使用</strong> ，优化数学操作是主要案例</li>
+<li>请记住，Numba 并不支持 <a href="http://numba.pydata.org/numba-doc/latest/reference/pysupported.html">python</a>和<a href="http://numba.pydata.org/numba-doc/latest/reference/numpysupported.html">numpy</a>的所有功能</li>
+</ul>
+<h2 id="Multiprocessing">Multiprocessing<a class="headerlink" href="#Multiprocessing" title="Permanent link">&para;</a></h2>
+<p>在处理大型数据集时，首先想到的是将所有的计算并行化。这一次我们将不使用任何第三方库--只使用python工具。</p>
+<p>我们将使用文本处理作为一个例子。下面我拿的是<a href="https://www.kaggle.com/therohk/million-headlines">新闻头条的数据集</a>。像上次一样，我们将尝试加快<code>apply</code>方法。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;abcnews-date-text.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># increase the dataset 10 times, adding copies to the end</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+<p><img src='images/p001.jpg' width='800' /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># calculate the average word length in the title</span>
+<span class="k">def</span> <span class="nf">mean_word_len</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+  <span class="c1"># this cycle just complicates the task</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="k">def</span> <span class="nf">compute_avg_word</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;headline_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">mean_word_len</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>并行方式用下面的代码</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+<span class="c1"># I have 4 cores</span>
+<span class="n">n_cores</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">n_cores</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">apply_parallel</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+  <span class="c1"># split dataframe</span>
+  <span class="n">df_split</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_cores</span><span class="p">)</span>
+  <span class="c1"># calculate metrics for each and concatenate</span>
+  <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">df_split</span><span class="p">))</span>
+  <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1"># df[&#39;new_col&#39;] = apply_parallel(df, compute_avg_word)</span>
+</code></pre></div>
+</td></tr></table>
+<p>比较速度：</p>
+<p><img src='images/p002.jpg' width='800'/></p>
+<p><strong>小结</strong>:</p>
+<ul>
+<li>在标准的Python库上工作</li>
+<li>我们得到了x2-3的速度提升</li>
+<li>在小数据上使用并行化是个坏主意，因为进程间通信的开销超过了时间上的收益。</li>
+</ul>
+<h2 id="Pandarallel">Pandarallel<a class="headerlink" href="#Pandarallel" title="Permanent link">&para;</a></h2>
+<p>Pandarallel是一个小型的pandas库，它增加了使用多核工作的能力。在引擎盖下，它工作在标准的多处理器上，所以你不应该期望与以前的方法相比速度有所提高，但一切都开箱即用+一些糖的形式，即漂亮的进度条。</p>
+<p>让我们开始测试吧。进一步说，我将使用与上一部分相同的数据和函数来处理它们。首先设置pandarallel--它非常简单。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pandarallel</span> <span class="kn">import</span> <span class="n">pandarallel</span>
+<span class="c1"># pandarallel will determine how many cores you have, but you can specify it yourself</span>
+<span class="n">pandarallel</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+<p>现在只剩下写一个优化版的处理程序了，这也很简单--只要用<code>parallel_apply</code>替换<code>apply</code>。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;headline_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">parallel_apply</span><span class="p">(</span><span class="n">mean_word_len</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img src='images/p003.jpg' width='800'/></p>
+<p><strong>小结</strong></p>
+<ul>
+<li>在大约0.5秒的时间里，一个相当大的开销立刻吸引了你的注意。每次使用时，pandarallel首先创建一个工作池，然后关闭它。在上面的自写版本中，我创建了1次池子，然后重新使用它，所以开销要低得多</li>
+<li>如果不考虑上述的成本，那么加速效果和前一个版本一样--大约2-3倍</li>
+<li>Pandarallel还知道如何在分组<code>（groupby）</code>的数据上进行<code>parallel_apply</code>，这相当方便。完整的功能清单和<a href="https://github.com/nalepae/pandarallel/blob/master/docs/examples.ipynb">例子</a>。</li>
+</ul>
+<p>一般来说，我更喜欢这个选项而不是自写，因为对于中/大数据量来说，速度上几乎没有差别，而且我们得到了一个极其简单的API和进度条。</p>
+<h2 id="Swifter">Swifter<a class="headerlink" href="#Swifter" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/jmcarpenter2/swifter">Swifter</a> 是另一个小而聪明的pandas wrapper。根据情况，它从可能的优化方法中选择最有效的优化方法——矢量化、并行化或pandas实现。与pandas不同，它使用 <a href="https://dask.org/">Dask</a> 而不是裸机Multiprocessing来组织并行计算，我们稍后将讨论它。</p>
+<p>我们相同<a href="https://www.kaggle.com/therohk/million-headlines">新闻数据</a>进行两次测试：</p>
+<ol>
+<li>测试的功能，可以矢量化（矢量化是真的很快）</li>
+<li>具有无法矢量化的复杂函数的测试。</li>
+</ol>
+<p>对于第一个，我使用一个简单的数学操作：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">5</span>
+
+<span class="c1"># df[&#39;publish_date&#39;].apply(multiply)</span>
+<span class="c1"># df[&#39;publish_date&#39;].swifter.apply(multiply)</span>
+<span class="c1"># df[&#39;publish_date&#39;].parallel_apply(multiply)</span>
+<span class="c1"># multiply(df[&#39;publish_date&#39;])</span>
+</code></pre></div>
+</td></tr></table>
+<p>为了明确选择哪种方法，我包括pandas处理，矢量方法，以及pandarallel在测试中：</p>
+<p><img src='images/speed-pandas-line-couple-significantly-c_21May12202236882941_1.png' width='2000' height='1229' /></p>
+<p>该图清楚地表明， <strong>它与矢量化版本相当</strong> ，这是最有效的（除了一个小的开销，更快地花费在计算最佳方法）。这意味着优化正确进行。</p>
+<p>现在让我们看看他将如何应付一个更复杂、更非矢量化的案例。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># calculate the average word length in the title</span>
+<span class="k">def</span> <span class="nf">mean_word_len</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+  <span class="c1"># this cycle just complicates the task</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="c1"># to work with strings, we initiate a special function allow_dask_on_strings ()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;headline_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">swifter</span><span class="o">.</span><span class="n">allow_dask_on_strings</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">mean_word_len</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>比较速度：</p>
+<p><img src='images/speed-pandas-line-couple-significantly-c_21May12202237452591_1.png' width='2000' height='1238' /></p>
+<p>这个案子更有趣。虽然数据量很小（多达100，000行），但更快地使用pandas本身的方法，这是清晰可见的。此外，当pandas不再那么高效时，可以进行并行处理，并且更快地开始处理几个核心，与pandarallel快速对齐。</p>
+<p><strong>小结</strong></p>
+<ul>
+<li>Swifter <strong>不仅允许并行，还允许矢量函数</strong></li>
+<li>自动确定优化计算的最佳策略，使您不必考虑在哪里使用它，在哪里不使用它</li>
+<li>不幸的是，它尚不能 <code>apply</code> 用于分组数据 （ <code>groupby</code> ）</li>
+</ul>
+<h2 id="Modin">Modin<a class="headerlink" href="#Modin" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/modin-project/modin">Modin</a> 是一种并行工具，使用 <a href="https://dask.org/">Dask</a> 或 <a href="https://github.com/ray-project/ray">Ray</a>与以前的项目没有太大区别。然而，这是一个相当强大的工具，我不能称之为只是一个wrapper。Modin 实现了自己的 <code>dataframe</code> 类别（虽然pandas仍在引擎盖下使用），目前已经有大约 80% 的原始功能，其余 20% 指的是pandas实现，从而 <strong>完全重复其 API</strong> 。</p>
+<p>因此，让我们开始配置，为此我们只需要将 <code>env</code> 变量设置为所需的引擎并导入数据帧类：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># The Dask engine is currently considered experimental, so I use ray</span>
+<span class="o">%</span><span class="n">env</span> <span class="n">MODIN_ENGINE</span><span class="o">=</span><span class="n">ray</span>
+<span class="kn">import</span> <span class="nn">modin.pandas</span> <span class="k">as</span> <span class="nn">mpd</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>一个有趣的模数功能是 <strong>优化文件读取</strong> 。为了测试，创建大小为 1.2 GB 的 csv 文件：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">mpd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;abcnews-date-text.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">mpd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">]</span> <span class="o">*</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;big_csv.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>现在用Modin和pandas读入：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">mpd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;big_csv.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="mf">8.61</span> <span class="n">s</span> <span class="err">±</span> <span class="mi">176</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">5</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">1</span> <span class="n">loop</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;big_csv.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="mf">22.9</span> <span class="n">s</span> <span class="err">±</span> <span class="mf">1.95</span> <span class="n">s</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">5</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">1</span> <span class="n">loop</span> <span class="n">each</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>我们有 <strong>x3加速</strong> 。当然，读取文件不是最常见的操作，但仍然不错。让我们看看Modin如何表现在我们的主文本处理案例：</p>
+<p><img src='images/speed-pandas-line-couple-significantly-c_21May12202237987507_1.png' width='2000' height='1235' /></p>
+<p>我们看到， <code>apply</code> 这不是Modin最强的一面，最有可能它会开始受益于更大的数据，但我没有足够的RAM来检查它。然而，Modin武器库并没有就此结束，因此我们将检查其他操作：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># This time I used numerical data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abcdef&#39;</span><span class="p">))</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><img src='images/speed-pandas-line-couple-significantly-c_21May12202238654038_1.png' width='2000' height='1304' />
+<img src='images/speed-pandas-line-couple-significantly-c_21May12202239302733_1.png' width='2000' height='1304' /></p>
+<p>我们看到了什么？非常大的开销。在这种情况下 <code>median</code> <code>nunique</code> ，我们只有当数据帧的大小增长到加速 <code>10 ** 7</code> ，而在这种情况下 <code>mean</code> <code>prod (axis = 1)</code> ，并没有发生，但从图表可以看出，pandas的计算时间增长更快，与 <code>10 ** 8</code> Modin的大小已经在所有情况下更加有效。</p>
+<p><strong>小结</strong></p>
+<ul>
+<li><strong>Modin 数据框架 API 与pandas相同</strong> ，要调整大数据代码，只需更改一行</li>
+<li><strong>非常大的开销</strong> ，不应该用于小数据。根据我的计算，在大于1GB的数据上使用它</li>
+<li><strong>支持大量方法</strong> -目前 <a href="https://modin.readthedocs.io/en/latest/supported_apis/index.html">超过80%</a> 的方法具有优化版本</li>
+<li>Modin <strong>不仅能够进行并行计算，还可以进行集群</strong> 处理 -您可以配置Ray/Dask集群，Modin将连接到它</li>
+<li>有一 <a href="https://modin.readthedocs.io/en/latest/out_of_core.html">个非常有用的功能</a> ，允许您 <strong>使用磁盘，如果RAM已满</strong></li>
+<li>Ray 和 Dask 都在浏览器中提出了一个非常有用的仪表板。我用Ray：</li>
+</ul>
+<p><img src='images/speed-pandas-line-couple-significantly-c_21May12202239934861_1.png' width='2000' height='858' /></p>
+<h2 id="Dask">Dask<a class="headerlink" href="#Dask" title="Permanent link">&para;</a></h2>
+<p><a href="https://dask.org/">Dask</a> 是我名单上最后一个也是最强大的工具。它具有大量的功能，值得单独的文章，甚至其中几个。除了与numpy和pandas合作，他还有机器学习模型——dask与 <strong>sklearn</strong> 和 <strong>xgboost</strong> 集成，以及许多自己的模型和工具。所有这些 <strong>都可以在集群和本地机器上</strong> 工作，所有内核都连接在一起。然而，在这篇文章中，我将关注pandas。</p>
+<p>配置 dask 所需的全部工作是设置一组workers。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="c1"># create local cluster</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="mi">8</span>
+</code></pre></div>
+</td></tr></table>
+<p>Dask，像Modin一样，使用自己的 <code>dataframe</code> 类，它涵盖 <a href="https://docs.dask.org/en/latest/dataframe-api.html">所有的主要功能</a>：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
+</code></pre></div>
+</td></tr></table>
+<p>现在我们可以开始测试了。让我们比较阅读文件的速度：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;big_csv.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="mf">6.79</span> <span class="n">s</span> <span class="err">±</span> <span class="mi">798</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">1</span> <span class="n">loop</span> <span class="n">each</span><span class="p">)</span><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;big_csv.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="mf">19.8</span> <span class="n">s</span> <span class="err">±</span> <span class="mf">2.75</span> <span class="n">s</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">1</span> <span class="n">loop</span> <span class="n">each</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>Dask在某些地方工作 <strong>的速度是前者3倍</strong> 。让我们看看它将如何应付我们的主要任务—— <code>apply</code> 加速。相比之下， 我在这里增加了 <a href="https://alievmagomed.com/6-ways-to-significantly-speed-up-pandas-with-a-couple-lines-of-code/">pandas和Swifter</a> ， 在我看来， 这也做得很好：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># compute () is needed because all calculations in dask are lazy</span>
+<span class="c1"># dd.from_pandas - method for converting pandas dataframe to dask version</span>
+<span class="n">dd</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">npartitions</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">mean_word_len</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><img src='images/speed-pandas-line-couple-significantly-c_21May12202240484076_1.png' width='2000' height='1229' /></p>
+<p>我们可以说，dask显示了最好的结果，锻炼速度比任何人从 <code>10 ** 4</code> 线开始。现在让我们看看一些其他有用的功能：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># same numerical data as for modin</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abcdef&#39;</span><span class="p">))</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><img src='images/speed-pandas-line-couple-significantly-c_21May12202241109978_1.png' width='2000' height='1304' />
+<img src='images/speed-pandas-line-couple-significantly-c_21May12202241958599_1.png' width='2000' height='1304' /></p>
+<p>与Modin一样，我们有一个相当大的开销，但结果相当复杂。对于具有参数的操作， <code>axis = 0</code> 我们没有得到加速，但根据增长率，很明显，与 <code>data size &gt; 10 ** 8</code> Dask将表现更好。对于操作 <code>axis = 1</code> ，你甚至可以说，pandas将工作得更快（除了 <code>quantile (axis = 1)</code> 方法）。</p>
+<p>尽管大pandas在许多操作中都表现更好，但不要忘记，dask 主要是一种集群解决方案，可以在pandas无法应付的情况下工作（例如，使用不适合 RAM 的大数据）。</p>
+<p><strong>小结</strong></p>
+<ul>
+<li>擅长 <code>apply</code> 加速</li>
+<li>非常大的开销。 <strong>旨在操纵不适合内存的大数据集。</strong></li>
+<li>它可以 <strong>在集群中和单台计算机上工作</strong></li>
+<li><strong>Dask API 复制pandas</strong> ，但不完全复制，因此仅替换数据帧类来调整 Dask 下的代码可能会失败</li>
+<li><strong>支持</strong><a href="https://docs.dask.org/en/latest/dataframe-api.html">大量方法</a></li>
+<li>有用的仪表板</li>
+</ul>
+<p><img src='images/speed-pandas-line-couple-significantly-c_21May12202242769957_1.png' width='1838' height='988' /></p>
+<h2 id="结论">结论<a class="headerlink" href="#结论" title="Permanent link">&para;</a></h2>
+<p>应该理解， <strong>并行化并不是解决所有问题的办法，你总是需要从优化代码开始</strong> 。在将函数平行或应用像 Dask 这样的集群解决方案之前，请问自己：是否可以应用矢量化？数据存储效率高吗？索引配置正确吗？如果在回答这些问题后，您的意见没有改变，那么您确实需要描述的工具，或者您懒得进行优化。</p>
+<p>谢谢你的关注，我希望这些工具派上用场！</p>
+<blockquote>
+<p>信任，但验证-文章中使用的所有代码（基准和图表绘图），我张贴在 <a href="https://github.com/30mb1/pandas-boost">github</a></p>
+</blockquote>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者: Magomed Aliev<br />
+来源： <a href="https://medium.com/swlh/6-ways-to-significantly-speed-up-pandas-with-a-couple-lines-of-code-part-2-7a9e41ba76dc">https://medium.com/swlh/6-ways-to-significantly-speed-up-pandas-with-a-couple-lines-of-code-part-2-7a9e41ba76dc</a></p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                特征选择,如何丢掉95%的数据并获得95%的准确率
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                指数分布公式的含义
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "toc.integrate"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d892486b.min.js"></script>
+      
+        <script src="../../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
