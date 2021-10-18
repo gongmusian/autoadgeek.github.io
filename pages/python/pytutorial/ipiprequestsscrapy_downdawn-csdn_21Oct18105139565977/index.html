@@ -8,24 +8,24 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <meta name="description" content="HTML 表格，表格由 <table> 标签来定义。每个表格均有若干行（由 <tr> 标签定义），每行被分割为若干单元格（由 <td> 标签定义）。字母 td 指表格数据（table data），即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。  HTML 表格  表格由 <table> 标签来定义。每个表格均有若干行（由 <tr">
+  <meta name="description" content="多ip服务器绑定ip发送请求（requests和scrapy。本篇文章针对python的两个爬虫库：requests和scrapy，怎么绑定指定ip发送请求做的整理笔记。">
 
 
-  <link rel="canonical" href="https://geek.digiasset.org/pages/html5/html-tables/">
+  <link rel="canonical" href="https://geek.digiasset.org/pages/python/pytutorial/ipiprequestsscrapy_downdawn-csdn_21Oct18105139565977/">
 
 
 <link rel="shortcut icon" href="/assets/images/favicon.png">
 
     
       
-        <title>HTML 表格 - 广告流程自动化</title>
+        <title>多ip服务器绑定ip发送请求（requests和scrapy）_downdawn-CSDN博客 - 广告流程自动化</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.33e2939f.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
         
       
     
@@ -40,7 +40,7 @@
     
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
     
       <!-- Add custom analytics integration here -->
@@ -72,7 +72,7 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
   
     
-    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
       <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#HTML-表格" class="md-skip">
+        <a href="#多ip服务器绑定ip发送请求requests和scrapy" class="md-skip">
           跳转至
         </a>
       
@@ -93,7 +93,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+    <a href="../../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              HTML 表格
+              多ip服务器绑定ip发送请求（requests和scrapy）_downdawn-CSDN博客
             
           </span>
         </div>
@@ -188,26 +188,10 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../.." class="md-tabs__link">
+    <a href="../../../.." class="md-tabs__link">
       Home
     </a>
   </li>
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../python/" class="md-tabs__link">
-        Python
-      </a>
-    </li>
-  
 
       
         
@@ -221,7 +205,23 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link md-tabs__link--active">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Python
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../html5/" class="md-tabs__link">
         HTML5/CSS
       </a>
     </li>
@@ -237,7 +237,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../ml/matrix/" class="md-tabs__link">
+      <a href="../../../ml/matrix/" class="md-tabs__link">
         机器学习
       </a>
     </li>
@@ -253,7 +253,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+      <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
         数学基础
       </a>
     </li>
@@ -269,7 +269,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../nlp/nlp/" class="md-tabs__link">
+      <a href="../../../nlp/nlp/" class="md-tabs__link">
         自然语言处理
       </a>
     </li>
@@ -285,7 +285,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+      <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
         广告程序化
       </a>
     </li>
@@ -301,7 +301,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+      <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
         网站SEO优化
       </a>
     </li>
@@ -314,7 +314,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../../about/" class="md-tabs__link">
+    <a href="../../../../about/" class="md-tabs__link">
       关于
     </a>
   </li>
@@ -342,7 +342,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+    <a href="../../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -361,723 +361,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" data-md-state="indeterminate" type="checkbox" id="__nav_2" checked>
-      
-      <label class="md-nav__link" for="__nav_2">
-        Python
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Python" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Python
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/" class="md-nav__link">
-        python 基础教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
-        Python 语法结构
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-datatypes/" class="md-nav__link">
-        Python 数据类型
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-strings/" class="md-nav__link">
-        Python 字符串
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-fstring/" class="md-nav__link">
-        Python f 字符串
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-lists/" class="md-nav__link">
-        Python 列表
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-dictionaries/" class="md-nav__link">
-        Python 字典
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-set/" class="md-nav__link">
-        Python 集合
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-map/" class="md-nav__link">
-        Python 映射
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-operators/" class="md-nav__link">
-        Python 运算符
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-keywords/" class="md-nav__link">
-        Python 关键字
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-forloop/" class="md-nav__link">
-        Python for 循环
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-itergener/" class="md-nav__link">
-        Python 迭代器和生成器
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
-        Python 列表推导式
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-reverse/" class="md-nav__link">
-        Python 反转
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-functions/" class="md-nav__link">
-        Python 函数
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
-        Python 正则表达式
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-oop/" class="md-nav__link">
-        Python 面向对象编程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-modules/" class="md-nav__link">
-        Python 模块
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-packages/" class="md-nav__link">
-        Python 中的软件包
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-exceptions/" class="md-nav__link">
-        Python 异常
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-introspection/" class="md-nav__link">
-        Python 自省
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-lambda/" class="md-nav__link">
-        Python Lambda 函数
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-logging/" class="md-nav__link">
-        Python 日志教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-simplejson/" class="md-nav__link">
-        Python JSON 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-faker/" class="md-nav__link">
-        Python Faker 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-feedparser/" class="md-nav__link">
-        Python feedparser 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-bcrypt/" class="md-nav__link">
-        Python bcrypt 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-socket/" class="md-nav__link">
-        Python 套接字教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-smtplib/" class="md-nav__link">
-        Python smtplib 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-yaml/" class="md-nav__link">
-        Python YAML 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-hashing/" class="md-nav__link">
-        Python 哈希教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-configparser/" class="md-nav__link">
-        Python ConfigParser 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-argparse/" class="md-nav__link">
-        Python argparse 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-sqlite/" class="md-nav__link">
-        Python SQLite 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-cerberus/" class="md-nav__link">
-        Python Cerberus 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-pymysql/" class="md-nav__link">
-        Python PyMySQL 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-peewee/" class="md-nav__link">
-        Python Peewee 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-pydal/" class="md-nav__link">
-        Python pyDAL 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-pytest/" class="md-nav__link">
-        Python Pytest 单元测试教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
-        BeautifulSoup 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-pyquery/" class="md-nav__link">
-        Python pyquery 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-sympy/" class="md-nav__link">
-        SymPy 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-pandas/" class="md-nav__link">
-        Pandas 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-matplotlib/" class="md-nav__link">
-        Matplotlib 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-pillow/" class="md-nav__link">
-        Pillow 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-ftp/" class="md-nav__link">
-        Python FTP 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-requests/" class="md-nav__link">
-        Python Requests 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-arrow/" class="md-nav__link">
-        Python Arrow 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-magicmethods/" class="md-nav__link">
-        Python 魔术方法
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
-        python Uipath Orchestrator Cloud API 教程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
-        Python 使用 Google NLP API进行网站分类
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
-        用python算微积分及牛顿迭代求解高阶方程
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/py-setuptools/" class="md-nav__link">
-        Python打包分发工具setuptools
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
-        用于数据处理的Python工具(Numerizer,Faker,Missingno,emot,Arrow)
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
-        用 Python Camelot从 PDF 文件中提取表格
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/pytutorial/ipiprequestsscrapy_downdawn-csdn_21Oct18105139565977/" class="md-nav__link">
-        多ip服务器绑定ip发送请求（requests和scrapy）
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -1095,16 +381,16 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
-      <label class="md-nav__link" for="__nav_3">
-        HTML5/CSS
+      <label class="md-nav__link" for="__nav_2">
+        Python
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          HTML5/CSS
+          Python
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1113,8 +399,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        HTML5 教程
+      <a href="../../" class="md-nav__link">
+        python 基础教程
       </a>
     </li>
   
@@ -1125,8 +411,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../html_5_intro/" class="md-nav__link">
-        HTML5 简介
+      <a href="../python-lexicalstructure/" class="md-nav__link">
+        Python 语法结构
       </a>
     </li>
   
@@ -1137,8 +423,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../html-head/" class="md-nav__link">
-        HTML5 头部
+      <a href="../python-datatypes/" class="md-nav__link">
+        Python 数据类型
       </a>
     </li>
   
@@ -1149,8 +435,632 @@
   
   
     <li class="md-nav__item">
-      <a href="../html_5_video/" class="md-nav__link">
-        HTML5 视频
+      <a href="../python-strings/" class="md-nav__link">
+        Python 字符串
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-fstring/" class="md-nav__link">
+        Python f 字符串
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-lists/" class="md-nav__link">
+        Python 列表
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dictionaries/" class="md-nav__link">
+        Python 字典
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-set/" class="md-nav__link">
+        Python 集合
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-map/" class="md-nav__link">
+        Python 映射
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-operators/" class="md-nav__link">
+        Python 运算符
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-keywords/" class="md-nav__link">
+        Python 关键字
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-forloop/" class="md-nav__link">
+        Python for 循环
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-itergener/" class="md-nav__link">
+        Python 迭代器和生成器
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-listcomprehensions/" class="md-nav__link">
+        Python 列表推导式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-reverse/" class="md-nav__link">
+        Python 反转
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-functions/" class="md-nav__link">
+        Python 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-regularexpressions/" class="md-nav__link">
+        Python 正则表达式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-oop/" class="md-nav__link">
+        Python 面向对象编程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-modules/" class="md-nav__link">
+        Python 模块
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-packages/" class="md-nav__link">
+        Python 中的软件包
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-exceptions/" class="md-nav__link">
+        Python 异常
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-introspection/" class="md-nav__link">
+        Python 自省
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-lambda/" class="md-nav__link">
+        Python Lambda 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-logging/" class="md-nav__link">
+        Python 日志教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-simplejson/" class="md-nav__link">
+        Python JSON 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-faker/" class="md-nav__link">
+        Python Faker 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-feedparser/" class="md-nav__link">
+        Python feedparser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-bcrypt/" class="md-nav__link">
+        Python bcrypt 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-socket/" class="md-nav__link">
+        Python 套接字教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-smtplib/" class="md-nav__link">
+        Python smtplib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-yaml/" class="md-nav__link">
+        Python YAML 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-hashing/" class="md-nav__link">
+        Python 哈希教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-configparser/" class="md-nav__link">
+        Python ConfigParser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-argparse/" class="md-nav__link">
+        Python argparse 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-sqlite/" class="md-nav__link">
+        Python SQLite 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-cerberus/" class="md-nav__link">
+        Python Cerberus 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pymysql/" class="md-nav__link">
+        Python PyMySQL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-peewee/" class="md-nav__link">
+        Python Peewee 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pydal/" class="md-nav__link">
+        Python pyDAL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pytest/" class="md-nav__link">
+        Python Pytest 单元测试教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-beautifulsoup/" class="md-nav__link">
+        BeautifulSoup 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pyquery/" class="md-nav__link">
+        Python pyquery 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-sympy/" class="md-nav__link">
+        SymPy 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pandas/" class="md-nav__link">
+        Pandas 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-matplotlib/" class="md-nav__link">
+        Matplotlib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-pillow/" class="md-nav__link">
+        Pillow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-ftp/" class="md-nav__link">
+        Python FTP 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-requests/" class="md-nav__link">
+        Python Requests 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-arrow/" class="md-nav__link">
+        Python Arrow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-magicmethods/" class="md-nav__link">
+        Python 魔术方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-run-job-orchestrator/" class="md-nav__link">
+        python Uipath Orchestrator Cloud API 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+        Python 使用 Google NLP API进行网站分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+        用python算微积分及牛顿迭代求解高阶方程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../py-setuptools/" class="md-nav__link">
+        Python打包分发工具setuptools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
+        用于数据处理的Python工具(Numerizer,Faker,Missingno,emot,Arrow)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
+        用 Python Camelot从 PDF 文件中提取表格
       </a>
     </li>
   
@@ -1170,12 +1080,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          HTML5 表格
+          多ip服务器绑定ip发送请求（requests和scrapy）
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        HTML5 表格
+        多ip服务器绑定ip发送请求（requests和scrapy）
       </a>
       
         
@@ -1192,92 +1102,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#HTML-表格_1" class="md-nav__link">
-    HTML 表格
+  <a href="#1获取本机所有ip" class="md-nav__link">
+    1、获取本机所有ip
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#HTML-表格和边框属性" class="md-nav__link">
-    HTML 表格和边框属性
+  <a href="#2requests" class="md-nav__link">
+    2、requests
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#HTML-表格表头" class="md-nav__link">
-    HTML 表格表头
+  <a href="#3测试requests请求" class="md-nav__link">
+    3、测试requests请求
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#HTML-表格标签" class="md-nav__link">
-    HTML 表格标签
+  <a href="#4scrapy" class="md-nav__link">
+    4、scrapy
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#HTML-表格实例" class="md-nav__link">
-    HTML 表格实例
+  <a href="#5scrapy测试" class="md-nav__link">
+    5、scrapy测试
   </a>
-  
-    <nav class="md-nav" aria-label="HTML 表格实例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#HTML-没有边框的表格" class="md-nav__link">
-    HTML 没有边框的表格：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#HTML-如何显示表格表头" class="md-nav__link">
-    HTML 如何显示表格表头：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#HTML-一个带标题-caption-的表格" class="md-nav__link">
-    HTML 一个带标题 \(caption\) 的表格：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#HTML-如何定义跨行或跨列的表格单元格" class="md-nav__link">
-    HTML 如何定义跨行或跨列的表格单元格:
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#HTML-表格内显示其他元素" class="md-nav__link">
-    HTML 表格内显示其他元素:
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#HTML-如何显示单元格边距" class="md-nav__link">
-    HTML 如何显示单元格边距：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#HTML-如何增加单元格之间的距离" class="md-nav__link">
-    HTML 如何增加单元格之间的距离：
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1289,12 +1144,102 @@
   
 
           
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        HTML5/CSS
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          HTML5/CSS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
             
   
   
   
     <li class="md-nav__item">
-      <a href="../html-images/" class="md-nav__link">
+      <a href="../../../html5/" class="md-nav__link">
+        HTML5 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_intro/" class="md-nav__link">
+        HTML5 简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-head/" class="md-nav__link">
+        HTML5 头部
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_video/" class="md-nav__link">
+        HTML5 视频
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-tables/" class="md-nav__link">
+        HTML5 表格
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-images/" class="md-nav__link">
         HTML5 图像
       </a>
     </li>
@@ -1306,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html_5_geolocation/" class="md-nav__link">
+      <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
         HTML5 地理定位
       </a>
     </li>
@@ -1318,7 +1263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html_5_webworkers/" class="md-nav__link">
+      <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
         HTML5 Worker
       </a>
     </li>
@@ -1330,7 +1275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../thinkphp-template-syntax_21Apr18100959778030/" class="md-nav__link">
+      <a href="../../../html5/thinkphp-template-syntax_21Apr18100959778030/" class="md-nav__link">
         ThinkPHP 模板语法
       </a>
     </li>
@@ -1372,7 +1317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ml/matrix/" class="md-nav__link">
+      <a href="../../../ml/matrix/" class="md-nav__link">
         机器学习与矩阵,numpy,sklearn等工具
       </a>
     </li>
@@ -1384,7 +1329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+      <a href="../../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
         Python – 如何使用 t-SNE 進行降維
       </a>
     </li>
@@ -1396,7 +1341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+      <a href="../../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
         特征值分解、奇异值分解、PCA概念
       </a>
     </li>
@@ -1408,7 +1353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+      <a href="../../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
         Numpy中矩阵计算模块linalg的常用函数
       </a>
     </li>
@@ -1420,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+      <a href="../../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
         深度学习的激活函数
       </a>
     </li>
@@ -1432,7 +1377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+      <a href="../../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
         加快Scikit-Learn训练
       </a>
     </li>
@@ -1444,7 +1389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ml/sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
+      <a href="../../../ml/sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
         特征选择,如何丢掉95%的数据并获得95%的准确率
       </a>
     </li>
@@ -1456,7 +1401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ml/pandas/speed-pandas-line-couple-significantly-c_21May12202229315527/" class="md-nav__link">
+      <a href="../../../ml/pandas/speed-pandas-line-couple-significantly-c_21May12202229315527/" class="md-nav__link">
         用几行代码显著加快pandas速度的6种方法
       </a>
     </li>
@@ -1498,7 +1443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+      <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
         指数分布公式的含义
       </a>
     </li>
@@ -1510,7 +1455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+      <a href="../../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
         LaTeX 数学公式排版
       </a>
     </li>
@@ -1522,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+      <a href="../../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
         常见概率统计分布及Python实现
       </a>
     </li>
@@ -1534,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+      <a href="../../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
         期望值、方差、协方差、相关系数
       </a>
     </li>
@@ -1546,7 +1491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+      <a href="../../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
         softmax详解
       </a>
     </li>
@@ -1558,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+      <a href="../../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
         最小二乘法多项式曲线拟合及其python实现
       </a>
     </li>
@@ -1570,7 +1515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+      <a href="../../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
         损失函数 - 交叉熵损失函数
       </a>
     </li>
@@ -1582,7 +1527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+      <a href="../../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
         向量的距离度量
       </a>
     </li>
@@ -1594,7 +1539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+      <a href="../../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
         协方差、PCA、样本中心化，白化、方差、标准差、BN
       </a>
     </li>
@@ -1606,7 +1551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+      <a href="../../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
         降维基础知识（样本均值、样本方差、中心矩阵）与PCA
       </a>
     </li>
@@ -1618,7 +1563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
+      <a href="../../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
         如何画lda投影结果_线性判别分析（LDA）原理总结
       </a>
     </li>
@@ -1630,7 +1575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+      <a href="../../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
         协方差矩阵的几何解释
       </a>
     </li>
@@ -1642,7 +1587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
+      <a href="../../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
         从sympy求最简形矩阵到矩阵的四个子空间及其联系
       </a>
     </li>
@@ -1654,7 +1599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
+      <a href="../../../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
         了解卷积
       </a>
     </li>
@@ -1666,7 +1611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mathbasic/within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
+      <a href="../../../mathbasic/within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
         向量内积外积的几何意义
       </a>
     </li>
@@ -1708,7 +1653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlp/" class="md-nav__link">
+      <a href="../../../nlp/nlp/" class="md-nav__link">
         自然语言处理
       </a>
     </li>
@@ -1720,7 +1665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
         NLP 新手上路
       </a>
     </li>
@@ -1732,7 +1677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
         NLP HanNLP 词典分词
       </a>
     </li>
@@ -1744,7 +1689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
         评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
       </a>
     </li>
@@ -1756,7 +1701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
         文本关键词提取
       </a>
     </li>
@@ -1768,7 +1713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/topicextract/" class="md-nav__link">
         用Python从海量文本抽取主题
       </a>
     </li>
@@ -1780,7 +1725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
         nlp常用工具集
       </a>
     </li>
@@ -1792,7 +1737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
         NLP pattern库 hands on
       </a>
     </li>
@@ -1804,7 +1749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
         基于预训练模型的文本摘要
       </a>
     </li>
@@ -1816,7 +1761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
         Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
       </a>
     </li>
@@ -1828,7 +1773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
         开源项目，涵盖 11 类 AI 学习框架、平台
       </a>
     </li>
@@ -1840,7 +1785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
         自然语言处理工具包之NLTK
       </a>
     </li>
@@ -1852,7 +1797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
         基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
       </a>
     </li>
@@ -1864,7 +1809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
         bert-extractive-summarizer 中文文章的抽取式摘要
       </a>
     </li>
@@ -1876,7 +1821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
         理解NLP中的CNN卷积神经网络
       </a>
     </li>
@@ -1888,7 +1833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
         依存分析与依存树 dependency parse
       </a>
     </li>
@@ -1900,7 +1845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
         关键词与文章相关性, 关键词自动标注与提取
       </a>
     </li>
@@ -1912,7 +1857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
         Python 使用 Google NLP API进行网站分类
       </a>
     </li>
@@ -1924,7 +1869,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
         使用 AI 自动执行 Web 爬网
       </a>
     </li>
@@ -1936,7 +1881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
         通过机器学习对网站进行分类
       </a>
     </li>
@@ -1948,7 +1893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
         TextRank算法简述
       </a>
     </li>
@@ -1960,7 +1905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
         NLTK TextRank实现英文关键词提取
       </a>
     </li>
@@ -1972,7 +1917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
         使用 Spacy和 FuzzyWuzzy 构建关键字提取API
       </a>
     </li>
@@ -1984,7 +1929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
         使用余弦相似度算法计算文本相似度
       </a>
     </li>
@@ -1996,7 +1941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
         细数2018年最好的词嵌入和句嵌入技术
       </a>
     </li>
@@ -2008,7 +1953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
         从头开始多标签文本分类
       </a>
     </li>
@@ -2020,7 +1965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
         没有模型训练情况下用BERT做文本分类
       </a>
     </li>
@@ -2032,7 +1977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
         用 NLP 做文本分析和特征工程
       </a>
     </li>
@@ -2044,7 +1989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
         如何使用 BERT 和 Word2Vec 计算句子相似性
       </a>
     </li>
@@ -2056,7 +2001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/text-similarity-measuring-bert_21May08200617801479/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/text-similarity-measuring-bert_21May08200617801479/" class="md-nav__link">
         BERT用于计算句子文本相似度
       </a>
     </li>
@@ -2068,7 +2013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/topic-modeling-interactive-bertopic_21Apr27173610787396/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/topic-modeling-interactive-bertopic_21Apr27173610787396/" class="md-nav__link">
         用BERTopic进行交互式主题建模
       </a>
     </li>
@@ -2080,7 +2025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nlp/nlpinfo/structured-data-processing-practice20211007/" class="md-nav__link">
+      <a href="../../../nlp/nlpinfo/structured-data-processing-practice20211007/" class="md-nav__link">
         结构化数据提取实践
       </a>
     </li>
@@ -2122,7 +2067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
         围绕SEO开展竞争对手分析
       </a>
     </li>
@@ -2134,7 +2079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
         Shopify独立站的几套选品方法
       </a>
     </li>
@@ -2146,7 +2091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/semantic-search/" class="md-nav__link">
+      <a href="../../../affiliate/semantic-search/" class="md-nav__link">
         什么是语义搜索？它是如何影响SEO的
       </a>
     </li>
@@ -2158,7 +2103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+      <a href="../../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
         如何把网站提交给搜索引擎
       </a>
     </li>
@@ -2170,7 +2115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/meta-description/" class="md-nav__link">
+      <a href="../../../affiliate/meta-description/" class="md-nav__link">
         如何编写完美的元描述
       </a>
     </li>
@@ -2182,7 +2127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+      <a href="../../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
         使用 Google Trend、Python 和 Ahrefs 查找关键字商机
       </a>
     </li>
@@ -2194,7 +2139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+      <a href="../../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
         动态网站使用 Python 向 Google 自动提交站点地图
       </a>
     </li>
@@ -2206,7 +2151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      <a href="../../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
         使用 Python 进行 Facebook 抓取和情绪分析
       </a>
     </li>
@@ -2218,7 +2163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      <a href="../../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
         Instagram 爬虫
       </a>
     </li>
@@ -2230,7 +2175,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+      <a href="../../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
         使用 Python 查找关键字类别的搜索量上限
       </a>
     </li>
@@ -2242,7 +2187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+      <a href="../../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
         可视化 100，000 亚马逊产品
       </a>
     </li>
@@ -2254,7 +2199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+      <a href="../../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
         使用SimHash进行海量文本去重流程
       </a>
     </li>
@@ -2296,7 +2241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+      <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
         长尾词优化入网页
       </a>
     </li>
@@ -2308,7 +2253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
+      <a href="../../../affiliate/keyword-difficulty/" class="md-nav__link">
         关键词难度：如何确认你在 Google 获得排名的机会
       </a>
     </li>
@@ -2320,7 +2265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+      <a href="../../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
         如何让网站排名进入谷歌首页
       </a>
     </li>
@@ -2332,7 +2277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+      <a href="../../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
         如何搭建一个成功的亚马逊联盟网站
       </a>
     </li>
@@ -2344,7 +2289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+      <a href="../../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
         SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
       </a>
     </li>
@@ -2356,7 +2301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+      <a href="../../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
         抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
       </a>
     </li>
@@ -2368,7 +2313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
+      <a href="../../../affiliate/how-to-start-seo/" class="md-nav__link">
         SEO每日流量如何从0到10000
       </a>
     </li>
@@ -2380,7 +2325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+      <a href="../../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
         Python与SEO 词库完整指南
       </a>
     </li>
@@ -2392,7 +2337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+      <a href="../../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
         Python百度下拉框关键词采集
       </a>
     </li>
@@ -2404,7 +2349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../affiliate/adsense/" class="md-nav__link">
+      <a href="../../../affiliate/adsense/" class="md-nav__link">
         hexo个人next主题博客接入谷歌广告
       </a>
     </li>
@@ -2425,7 +2370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/" class="md-nav__link">
+      <a href="../../../../about/" class="md-nav__link">
         关于
       </a>
     </li>
@@ -2445,11 +2390,13 @@
               
                 
                 
-                <h1 id="HTML-表格">HTML 表格<a class="headerlink" href="#HTML-表格" title="Permanent link">&para;</a></h1>
-<p>HTML 表格，表格由 &lt; <strong>table</strong> &gt; 标签来定义。每个表格均有若干行（由 &lt; <strong>tr</strong> &gt; 标签定义），每行被分割为若干单元格（由 &lt; <strong>td</strong> &gt; 标签定义）。字母 td 指表格数据（table data），即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。</p>
-<h2 id="HTML-表格_1">HTML 表格<a class="headerlink" href="#HTML-表格_1" title="Permanent link">&para;</a></h2>
-<p>表格由 &lt; <strong>table</strong> &gt; 标签来定义。每个表格均有若干行（由 &lt; <strong>tr</strong> &gt; 标签定义），每行被分割为若干单元格（由 &lt; <strong>td</strong> &gt; 标签定义）。字母 td 指表格数据（table data），即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+                <h1 id="多ip服务器绑定ip发送请求requests和scrapy">多ip服务器绑定ip发送请求（requests和scrapy）<a class="headerlink" href="#多ip服务器绑定ip发送请求requests和scrapy" title="Permanent link">&para;</a></h1>
+<p>有时候我们会购买多ip服务器（站群服务器），来满足特定的需求，比如建站，SEO等。多ip服务器通常是ip越多价格越贵，ip段也有优劣之分。
+对于爬虫而言，200多个ip，合理利用的话也可以满足很多需求了。
+本篇文章针对python的两个爬虫库：requests和scrapy，怎么绑定指定ip发送请求做的整理笔记。</p>
+<h2 id="1获取本机所有ip">1、获取本机所有ip<a class="headerlink" href="#1获取本机所有ip" title="Permanent link">&para;</a></h2>
+<p>第一步就是要知道本机有多少可用的ip。
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -2458,484 +2405,55 @@
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;table border=&quot;1&quot;&gt;
-    &lt;tr&gt;
-        &lt;td&gt;row 1, cell 1&lt;/td&gt;
-        &lt;td&gt;row 1, cell 2&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;row 2, cell 1&lt;/td&gt;
-        &lt;td&gt;row 2, cell 2&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">psutil</span>
+
+
+<span class="k">def</span> <span class="nf">get_local_ips</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;获取本机所有ip&quot;&quot;&quot;</span>
+    <span class="n">local_ips</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_if_addrs</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s2">&quot;eth&quot;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">local_ips</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;本机ip数量：&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">local_ips</span><span class="p">),</span> <span class="n">local_ips</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">local_ips</span>
 </code></pre></div>
-</td></tr></table>
-</details>
-<p>在浏览器显示如下：<br />
-<img src='images/html-tables_1.jpeg' title="html-tables_1.jpeg" alt="html-tables_1.jpeg" /></p>
-<h2 id="HTML-表格和边框属性">HTML 表格和边框属性<a class="headerlink" href="#HTML-表格和边框属性" title="Permanent link">&para;</a></h2>
-<p>如果不定义边框属性，表格将不显示边框。有时这很有用，但是大多数时候，我们希望显示边框。</p>
-<p>使用边框属性来显示一个带有边框的表格：</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+</td></tr></table></p>
+<h2 id="2requests">2、requests<a class="headerlink" href="#2requests" title="Permanent link">&para;</a></h2>
+<p>主要是使用SourceAddressAdapter绑定ip，发送请求。
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;table border=&quot;1&quot;&gt;
-    &lt;tr&gt;
-        &lt;td&gt;Row 1, cell 1&lt;/td&gt;
-        &lt;td&gt;Row 1, cell 2&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">requests_toolbelt</span> <span class="kn">import</span> <span class="n">SourceAddressAdapter</span>
+
+<span class="k">def</span> <span class="nf">adapter_requests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;随机绑定一个本机ip&quot;&quot;&quot;</span>
+    <span class="n">bind_address</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ips</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;请求ip：&quot;</span><span class="p">,</span> <span class="n">bind_address</span><span class="p">)</span>
+    <span class="n">new_source</span> <span class="o">=</span> <span class="n">SourceAddressAdapter</span><span class="p">(</span><span class="n">bind_address</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;http://&#39;</span><span class="p">,</span> <span class="n">new_source</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="n">new_source</span><span class="p">)</span>
 </code></pre></div>
-</td></tr></table>
-</details>
-<h2 id="HTML-表格表头">HTML 表格表头<a class="headerlink" href="#HTML-表格表头" title="Permanent link">&para;</a></h2>
-<p>表格的表头使用 &lt; <strong>th</strong> &gt; 标签进行定义。<br />
-大多数浏览器会把表头显示为粗体居中的文本：</p>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;table border=&quot;1&quot;&gt;
-    &lt;tr&gt;
-        &lt;th&gt;Header 1&lt;/th&gt;
-        &lt;th&gt;Header 2&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;row 1, cell 1&lt;/td&gt;
-        &lt;td&gt;row 1, cell 2&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;row 2, cell 1&lt;/td&gt;
-        &lt;td&gt;row 2, cell 2&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
-</code></pre></div>
-</td></tr></table>
-</details>
-<p>在浏览器显示如下：<br />
-<img src='images/html-tables_2.jpeg' title="html-tables_2.jpeg" alt="html-tables_2.jpeg" /></p>
-<h2 id="HTML-表格标签">HTML 表格标签<a class="headerlink" href="#HTML-表格标签" title="Permanent link">&para;</a></h2>
-<table>  
-<tr>  
-<th>
-
-标签
-</th>  
-<th>
-
-描述
-</th> </tr>  
-<tr>  
-<td>
-
-<`table`>
-</td>  
-<td>
-
-定义表格
-</td> </tr>  
-<tr>  
-<td>
-
-<`th`>
-</td>  
-<td>
-
-定义表格的表头
-</td> </tr>  
-<tr>  
-<td>
-
-<`tr`>
-</td>  
-<td>
-
-定义表格的行
-</td> </tr>  
-<tr>  
-<td>
-
-<`td`>
-</td>  
-<td>
-
-定义表格单元
-</td> </tr>  
-<tr>  
-<td>
-
-<`caption`>
-</td>  
-<td>
-
-定义表格标题
-</td> </tr>  
-<tr>  
-<td>
-
-<`colgroup`>
-</td>  
-<td>
-
-定义表格列的组
-</td> </tr>  
-<tr>  
-<td>
-
-<`col`>
-</td>  
-<td>
-
-定义用于表格列的属性
-</td> </tr>  
-<tr>  
-<td>
-
-<`thead`>
-</td>  
-<td>
-
-定义表格的页眉
-</td> </tr>  
-<tr>  
-<td>
-
-<`tbody`>
-</td>  
-<td>
-
-定义表格的主体
-</td> </tr>  
-<tr>  
-<td>
-
-<`tfoot`>
-</td>  
-<td>
-
-定义表格的页脚
-</td> </tr> </table>
-
-<h2 id="HTML-表格实例">HTML 表格实例<a class="headerlink" href="#HTML-表格实例" title="Permanent link">&para;</a></h2>
-<h3 id="HTML-没有边框的表格">HTML 没有边框的表格：<a class="headerlink" href="#HTML-没有边框的表格" title="Permanent link">&para;</a></h3>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;h4&gt;这个表格没有边框:&lt;/h4&gt;
-&lt;table&gt;
-&lt;tr&gt;
-  &lt;td&gt;100&lt;/td&gt;
-  &lt;td&gt;200&lt;/td&gt;
-  &lt;td&gt;300&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;400&lt;/td&gt;
-  &lt;td&gt;500&lt;/td&gt;
-  &lt;td&gt;600&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-</code></pre></div>
-</td></tr></table>
-</details>
-<p><strong>输出结果：</strong><br />
-<img src='images/html-tables_3.jpeg' title="html-tables_3.jpeg" alt="html-tables_3.jpeg" /></p>
-<h3 id="HTML-如何显示表格表头">HTML 如何显示表格表头：<a class="headerlink" href="#HTML-如何显示表格表头" title="Permanent link">&para;</a></h3>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;h4&gt;水平标题:&lt;/h4&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;
-  &lt;th&gt;Name&lt;/th&gt;
-  &lt;th&gt;Telephone&lt;/th&gt;
-  &lt;th&gt;Telephone&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;Bill Gates&lt;/td&gt;
-  &lt;td&gt;555 77 854&lt;/td&gt;
-  &lt;td&gt;555 77 855&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;h4&gt;垂直标题:&lt;/h4&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;
-  &lt;th&gt;First Name:&lt;/th&gt;
-  &lt;td&gt;Bill Gates&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;th&gt;Telephone:&lt;/th&gt;
-  &lt;td&gt;555 77 854&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;th&gt;Telephone:&lt;/th&gt;
-  &lt;td&gt;555 77 855&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-</code></pre></div>
-</td></tr></table>
-</details>
-<p><strong>输出结果：</strong><br />
-<img src='images/html-tables_4.jpeg' title="html-tables_4.jpeg" alt="html-tables_4.jpeg" /></p>
-<h3 id="HTML-一个带标题-caption-的表格">HTML 一个带标题 <span class="arithmatex">\(caption\)</span> 的表格：<a class="headerlink" href="#HTML-一个带标题-caption-的表格" title="Permanent link">&para;</a></h3>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;table border=&quot;1&quot;&gt;
-  &lt;caption&gt;Monthly savings&lt;/caption&gt;
-  &lt;tr&gt;
-    &lt;th&gt;Month&lt;/th&gt;
-    &lt;th&gt;Savings&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;January&lt;/td&gt;
-    &lt;td&gt;$100&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;February&lt;/td&gt;
-    &lt;td&gt;$50&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-</code></pre></div>
-</td></tr></table>
-</details>
-<p><strong>输出结果：</strong><br />
-<img src='images/html-tables_5.jpeg' title="html-tables_5.jpeg" alt="html-tables_5.jpeg" /></p>
-<h3 id="HTML-如何定义跨行或跨列的表格单元格">HTML 如何定义跨行或跨列的表格单元格:<a class="headerlink" href="#HTML-如何定义跨行或跨列的表格单元格" title="Permanent link">&para;</a></h3>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;h4&gt;单元格跨两格:&lt;/h4&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;
-  &lt;th&gt;Name&lt;/th&gt;
-  &lt;th colspan=&quot;2&quot;&gt;Telephone&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;Bill Gates&lt;/td&gt;
-  &lt;td&gt;555 77 854&lt;/td&gt;
-  &lt;td&gt;555 77 855&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;h4&gt;单元格跨两列:&lt;/h4&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;
-  &lt;th&gt;First Name:&lt;/th&gt;
-  &lt;td&gt;Bill Gates&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;th rowspan=&quot;2&quot;&gt;Telephone:&lt;/th&gt;
-  &lt;td&gt;555 77 854&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;555 77 855&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-</code></pre></div>
-</td></tr></table>
-</details>
-<p><strong>输出结果：</strong><br />
-<img src='images/html-tables_6.jpeg' title="html-tables_6.jpeg" alt="html-tables_6.jpeg" /></p>
-<h3 id="HTML-表格内显示其他元素">HTML 表格内显示其他元素:<a class="headerlink" href="#HTML-表格内显示其他元素" title="Permanent link">&para;</a></h3>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-   &lt;p&gt;这是一个段落&lt;/p&gt;
-   &lt;p&gt;这是另一个段落&lt;/p&gt;
-  &lt;/td&gt;
-  &lt;td&gt;这个单元格包含一个表格:
-   &lt;table border=&quot;1&quot;&gt;
-   &lt;tr&gt;
-     &lt;td&gt;A&lt;/td&gt;
-     &lt;td&gt;B&lt;/td&gt;
-   &lt;/tr&gt;
-   &lt;tr&gt;
-     &lt;td&gt;C&lt;/td&gt;
-     &lt;td&gt;D&lt;/td&gt;
-   &lt;/tr&gt;
-   &lt;/table&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;这个单元格包含一个列表
-   &lt;ul&gt;
-    &lt;li&gt;apples&lt;/li&gt;
-    &lt;li&gt;bananas&lt;/li&gt;
-    &lt;li&gt;pineapples&lt;/li&gt;
-   &lt;/ul&gt;
-  &lt;/td&gt;
-  &lt;td&gt;HELLO&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-</code></pre></div>
-</td></tr></table>
-</details>
-<p><strong>输出结果：</strong><br />
-<img src='images/html-tables_7.jpeg' title="html-tables_7.jpeg" alt="html-tables_7.jpeg" /></p>
-<h3 id="HTML-如何显示单元格边距">HTML 如何显示单元格边距：<a class="headerlink" href="#HTML-如何显示单元格边距" title="Permanent link">&para;</a></h3>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;h4&gt;没有单元格边距:&lt;/h4&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;
-  &lt;td&gt;First&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;   
-&lt;tr&gt;
-  &lt;td&gt;Second&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;h4&gt;有单元格边距:&lt;/h4&gt;
-&lt;table border=&quot;1&quot; 
-cellpadding=&quot;10&quot;&gt;
-&lt;tr&gt;
-  &lt;td&gt;First&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;   
-&lt;tr&gt;
-  &lt;td&gt;Second&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-</code></pre></div>
-</td></tr></table>
-</details>
-<p><strong>输出结果：</strong><br />
-<img src='images/html-tables_8.jpeg' title="html-tables_8.jpeg" alt="html-tables_8.jpeg" /></p>
-<h3 id="HTML-如何增加单元格之间的距离">HTML 如何增加单元格之间的距离：<a class="headerlink" href="#HTML-如何增加单元格之间的距离" title="Permanent link">&para;</a></h3>
-<details class="abstract" open="open"><summary>  </summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+</td></tr></table></p>
+<h2 id="3测试requests请求">3、测试requests请求<a class="headerlink" href="#3测试requests请求" title="Permanent link">&para;</a></h2>
+<p>利用<a href="http://httpbin.org/get">http://httpbin.org/get</a>网站来测试请求ip。</p>
+<p>总代码为：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -2969,46 +2487,211 @@ cellpadding=&quot;10&quot;&gt;
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;h4&gt;没有单元格间距:&lt;/h4&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;
-  &lt;td&gt;First&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;Second&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="kn">import</span> <span class="nn">psutil</span>
+    <span class="kn">import</span> <span class="nn">requests</span>
+    <span class="kn">from</span> <span class="nn">requests_toolbelt</span> <span class="kn">import</span> <span class="n">SourceAddressAdapter</span>
 
-&lt;h4&gt;单元格间距=&quot;0&quot;:&lt;/h4&gt;
-&lt;table border=&quot;1&quot; cellspacing=&quot;0&quot;&gt;
-&lt;tr&gt;
-  &lt;td&gt;First&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;Second&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
 
-&lt;h4&gt;单元格间距=&quot;10&quot;:&lt;/h4&gt;
-&lt;table border=&quot;1&quot; cellspacing=&quot;10&quot;&gt;
-&lt;tr&gt;
-  &lt;td&gt;First&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;Second&lt;/td&gt;
-  &lt;td&gt;Row&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
+    <span class="k">class</span> <span class="nc">SourceAddressRequests</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ips</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="nd">@staticmethod</span>
+        <span class="k">def</span> <span class="nf">get_local_ips</span><span class="p">():</span>
+            <span class="sd">&quot;&quot;&quot;获取本机所有ip&quot;&quot;&quot;</span>
+            <span class="n">local_ips</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">info</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_if_addrs</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="s2">&quot;eth&quot;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                            <span class="n">local_ips</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;本机ip数量：&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">local_ips</span><span class="p">),</span> <span class="n">local_ips</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">local_ips</span>
+
+        <span class="k">def</span> <span class="nf">adapter_requests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;随机绑定一个本机ip&quot;&quot;&quot;</span>
+            <span class="n">bind_address</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ips</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;请求ip：&quot;</span><span class="p">,</span> <span class="n">bind_address</span><span class="p">)</span>
+            <span class="n">new_source</span> <span class="o">=</span> <span class="n">SourceAddressAdapter</span><span class="p">(</span><span class="n">bind_address</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;http://&#39;</span><span class="p">,</span> <span class="n">new_source</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="n">new_source</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">test_requests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;测试请求&quot;&quot;&quot;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://httpbin.org/get&quot;</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">origin</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;检测到ip：&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ips</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_ips</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;第</span><span class="si">{}</span><span class="s2">次请求&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">adapter_requests</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">test_requests</span><span class="p">()</span>
+
+
+    <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="n">SourceAddressRequests</span><span class="p">()</span>
+        <span class="n">test</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </code></pre></div>
-</td></tr></table>
-</details>
-<p><strong>输出结果：</strong><br />
-<img src='images/html-tables_9.jpeg' title="html-tables_9.jpeg" alt="html-tables_9.jpeg" /></p>
+</td></tr></table></p>
+<p>测试结果为：</p>
+<p>ip地址已经做处理，请自行测试。
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    本机ip数量： 256
+    第1次请求
+    请求ip： 100.100.100.72
+    检测到ip： 100.100.100.72
+    第2次请求
+    请求ip： 100.100.100.52
+    检测到ip： 100.100.100.52
+    第3次请求
+    请求ip： 100.100.100.51
+    检测到ip： 100.100.100.51
+    第4次请求
+    请求ip： 100.100.100.166
+    检测到ip： 100.100.100.166
+    第5次请求
+    请求ip： 100.100.100.75
+    检测到ip： 100.100.100.75
+</code></pre></div>
+</td></tr></table></p>
+<h2 id="4scrapy">4、scrapy<a class="headerlink" href="#4scrapy" title="Permanent link">&para;</a></h2>
+<p>创建一个测试的scrapy项目：demo。</p>
+<p>在middlewares.py中添加自定义中间件
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BindAddressMiddleware</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;随机获取本机ip，发送请求&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_bind_address</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IS_MORE_NETWORK_CARDS&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ips</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BIND_ADDRESS&#39;</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_crawler</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">crawler</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">crawler</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_bind_address</span><span class="p">:</span>
+            <span class="n">bind_address</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ips</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">bind_address</span><span class="p">:</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;bindaddress&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">bind_address</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">spider</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Using: </span><span class="si">%s</span><span class="s1"> as bind address&#39;</span> <span class="o">%</span> <span class="n">bind_address</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>在settings中配置参数
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    &quot;IS_MORE_NETWORK_CARDS&quot;: True,
+    &quot;BIND_ADDRESS&quot;: get_local_ips(),
+</code></pre></div>
+</td></tr></table></p>
+<h2 id="5scrapy测试">5、scrapy测试<a class="headerlink" href="#5scrapy测试" title="Permanent link">&para;</a></h2>
+<p>在spider中进行测试
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">scrapy</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">BinSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;bin&#39;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;httpbin.org&#39;</span><span class="p">]</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://httpbin.org/get&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;origin is&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>测试结果：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    ...
+    2020-11-12 16:41:56 [bin] INFO: Using: 100.100.100.190 as bind address
+    2020-11-12 16:41:56 [bin] INFO: Using: 100.100.100.151 as bind address
+    2020-11-12 16:41:56 [bin] INFO: Using: 100.100.100.34 as bind address
+    2020-11-12 16:41:56 [bin] INFO: Using: 100.100.100.140 as bind address
+    2020-11-12 16:41:56 [bin] INFO: Using: 100.100.100.79 as bind address
+    origin is 100.100.100.190
+    origin is 100.100.100.79
+    origin is 100.100.100.140
+    origin is 100.100.100.151
+    origin is 100.100.100.34
+    ...
+</code></pre></div>
+</td></tr></table></p>
+<p>效果好像还可以，后续自由发挥。</p>
+<p>Any text/graphics/videos and other articles on this website that indicate "Source: xxx" are reprinted on this website for the purpose of transmitting more information, which does not mean that we agree with their views or confirm the authenticity of their content. If you are involved in the content of the work, copyright and other issues, please contact this website, we will delete the content in the first time! <br />
+Author: down_dawn  <br />
+Source: <a href="https://blog.csdn.net/qq_42280510/article/details/109646220">https://blog.csdn.net/qq_42280510/article/details/109646220</a></p>
                 
                   
                 
@@ -3051,7 +2734,7 @@ cellpadding=&quot;10&quot;&gt;
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../html_5_video/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -3060,19 +2743,19 @@ cellpadding=&quot;10&quot;&gt;
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                HTML5 视频
+                用 Python Camelot从 PDF 文件中提取表格
               </div>
             </div>
           </a>
         
         
-          <a href="../html-images/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../../html5/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                HTML5 图像
+                HTML5 教程
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -3119,12 +2802,12 @@ cellpadding=&quot;10&quot;&gt;
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "toc.integrate"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "toc.integrate"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d892486b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
-        <script src="../../../javascripts/config.js"></script>
+        <script src="../../../../javascripts/config.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
