@@ -2032,6 +2032,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpinfo/summary-long-extract-bert-article_21Oct23115502660035/" class="md-nav__link">
+        BERT时代下的摘要提取长文总结
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nlp/nlpex/csdn-blog-_nlp-summary_miner_zhu-summary_21Oct23175443667734/" class="md-nav__link">
+        NLP之文章摘要
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -2411,7 +2435,29 @@
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">psutil</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">psutil</span>
 
 
 <span class="k">def</span> <span class="nf">get_local_ips</span><span class="p">():</span>
@@ -2427,6 +2473,28 @@
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;本机ip数量：&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">local_ips</span><span class="p">),</span> <span class="n">local_ips</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">local_ips</span>
+
+<span class="k">def</span> <span class="nf">getNetiAddrInfo</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;获取IP地址</span>
+<span class="sd">    代码来源: https://www.programcreek.com/python/example/88702/psutil.net_if_addrs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">neti_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ipv4_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ipv6_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># id_neti_list = []</span>
+    <span class="c1"># result_list = []</span>
+    <span class="n">neti_dict</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_if_addrs</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">neti</span> <span class="ow">in</span> <span class="n">neti_dict</span><span class="p">:</span>
+        <span class="n">neti_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neti</span><span class="p">)</span>
+        <span class="c1"># id_neti_list.append(&#39;NETI-{}-{}&#39;.format(self.os_id, neti))</span>
+        <span class="n">snic_list</span> <span class="o">=</span> <span class="n">neti_dict</span><span class="p">[</span><span class="n">neti</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">snic</span> <span class="ow">in</span> <span class="n">snic_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">snic</span><span class="o">.</span><span class="n">family</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;AF_INET&#39;</span><span class="p">:</span>
+                <span class="n">ipv4_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">snic</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">snic</span><span class="o">.</span><span class="n">family</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;AF_INET6&#39;</span><span class="p">:</span>
+                <span class="n">ipv6_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;%.*$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">snic</span><span class="o">.</span><span class="n">address</span><span class="p">))</span>
+    <span class="c1"># result = [&#39;,&#39;.join(neti_list), &#39;,&#39;.join(ipv4_list + ipv6_list), &#39;,&#39;.join(id_neti_list)]</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ipv4_list</span><span class="p">))</span>
 </code></pre></div>
 </td></tr></table></p>
 <h2 id="2requests">2、requests<a class="headerlink" href="#2requests" title="Permanent link">&para;</a></h2>
