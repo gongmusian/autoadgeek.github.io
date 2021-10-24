@@ -1,0 +1,3074 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="本文介绍了自然语言处理中的两种文本自动摘要生成方法——抽取式和抽象式文本摘要。">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/nlp/nlpex/gentle-introduction-to-text-summarization_ml/">
+
+
+<link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    
+      
+        <title>基于词频计算句子权重的文本自动摘要 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.33e2939f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    
+      <!-- Add custom analytics integration here -->
+      
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-HS6FYDNKSV');
+          </script>
+      
+
+    
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#基于词频计算句子权重的文本自动摘要" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            广告流程自动化
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              基于词频计算句子权重的文本自动摘要
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo" type="radio" name="__palette" id="__palette_1">
+          <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+          </label>
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue" type="radio" name="__palette" id="__palette_2">
+          <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+          </label>
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../python/" class="md-tabs__link">
+        Python
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../html5/" class="md-tabs__link">
+        HTML5/CSS
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../ml/matrix/" class="md-tabs__link">
+        机器学习
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+        数学基础
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../nlp/" class="md-tabs__link md-tabs__link--active">
+        自然语言处理
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+        广告程序化
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+        网站SEO优化
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../about/" class="md-tabs__link">
+      关于
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" data-md-state="indeterminate" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/" class="md-nav__link">
+        python 基础教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+        Python 语法结构
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-datatypes/" class="md-nav__link">
+        Python 数据类型
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-strings/" class="md-nav__link">
+        Python 字符串
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-fstring/" class="md-nav__link">
+        Python f 字符串
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-lists/" class="md-nav__link">
+        Python 列表
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+        Python 字典
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-set/" class="md-nav__link">
+        Python 集合
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-map/" class="md-nav__link">
+        Python 映射
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-operators/" class="md-nav__link">
+        Python 运算符
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-keywords/" class="md-nav__link">
+        Python 关键字
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-forloop/" class="md-nav__link">
+        Python for 循环
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-itergener/" class="md-nav__link">
+        Python 迭代器和生成器
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+        Python 列表推导式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-reverse/" class="md-nav__link">
+        Python 反转
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-functions/" class="md-nav__link">
+        Python 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+        Python 正则表达式
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-oop/" class="md-nav__link">
+        Python 面向对象编程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-modules/" class="md-nav__link">
+        Python 模块
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-packages/" class="md-nav__link">
+        Python 中的软件包
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-exceptions/" class="md-nav__link">
+        Python 异常
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-introspection/" class="md-nav__link">
+        Python 自省
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-lambda/" class="md-nav__link">
+        Python Lambda 函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-logging/" class="md-nav__link">
+        Python 日志教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-simplejson/" class="md-nav__link">
+        Python JSON 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-faker/" class="md-nav__link">
+        Python Faker 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-feedparser/" class="md-nav__link">
+        Python feedparser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+        Python bcrypt 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-socket/" class="md-nav__link">
+        Python 套接字教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-smtplib/" class="md-nav__link">
+        Python smtplib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-yaml/" class="md-nav__link">
+        Python YAML 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-hashing/" class="md-nav__link">
+        Python 哈希教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-configparser/" class="md-nav__link">
+        Python ConfigParser 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-argparse/" class="md-nav__link">
+        Python argparse 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-sqlite/" class="md-nav__link">
+        Python SQLite 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-cerberus/" class="md-nav__link">
+        Python Cerberus 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pymysql/" class="md-nav__link">
+        Python PyMySQL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-peewee/" class="md-nav__link">
+        Python Peewee 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pydal/" class="md-nav__link">
+        Python pyDAL 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pytest/" class="md-nav__link">
+        Python Pytest 单元测试教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+        BeautifulSoup 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pyquery/" class="md-nav__link">
+        Python pyquery 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-sympy/" class="md-nav__link">
+        SymPy 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pandas/" class="md-nav__link">
+        Pandas 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+        Matplotlib 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pillow/" class="md-nav__link">
+        Pillow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-ftp/" class="md-nav__link">
+        Python FTP 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-requests/" class="md-nav__link">
+        Python Requests 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-arrow/" class="md-nav__link">
+        Python Arrow 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+        Python 魔术方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+        python Uipath Orchestrator Cloud API 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/website-categorization-python/" class="md-nav__link">
+        Python 使用 Google NLP API进行网站分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+        用python算微积分及牛顿迭代求解高阶方程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/py-setuptools/" class="md-nav__link">
+        Python打包分发工具setuptools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
+        用于数据处理的Python工具(Numerizer,Faker,Missingno,emot,Arrow)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
+        用 Python Camelot从 PDF 文件中提取表格
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/ipiprequestsscrapy_downdawn-csdn_21Oct18105139565977/" class="md-nav__link">
+        多ip服务器绑定ip发送请求（requests和scrapy）
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        HTML5/CSS
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="HTML5/CSS" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          HTML5/CSS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/" class="md-nav__link">
+        HTML5 教程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_intro/" class="md-nav__link">
+        HTML5 简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-head/" class="md-nav__link">
+        HTML5 头部
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_video/" class="md-nav__link">
+        HTML5 视频
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-tables/" class="md-nav__link">
+        HTML5 表格
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-images/" class="md-nav__link">
+        HTML5 图像
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+        HTML5 地理定位
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+        HTML5 Worker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/thinkphp-template-syntax_21Apr18100959778030/" class="md-nav__link">
+        ThinkPHP 模板语法
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        机器学习
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="机器学习" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          机器学习
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/matrix/" class="md-nav__link">
+        机器学习与矩阵,numpy,sklearn等工具
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+        Python – 如何使用 t-SNE 進行降維
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+        特征值分解、奇异值分解、PCA概念
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+        Numpy中矩阵计算模块linalg的常用函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+        深度学习的激活函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+        加快Scikit-Learn训练
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
+        特征选择,如何丢掉95%的数据并获得95%的准确率
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/pandas/speed-pandas-line-couple-significantly-c_21May12202229315527/" class="md-nav__link">
+        用几行代码显著加快pandas速度的6种方法
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" data-md-state="indeterminate" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
+        数学基础
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="数学基础" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+        指数分布公式的含义
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+        LaTeX 数学公式排版
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+        常见概率统计分布及Python实现
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+        期望值、方差、协方差、相关系数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+        softmax详解
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+        最小二乘法多项式曲线拟合及其python实现
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+        损失函数 - 交叉熵损失函数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+        向量的距离度量
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+        协方差、PCA、样本中心化，白化、方差、标准差、BN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+        降维基础知识（样本均值、样本方差、中心矩阵）与PCA
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
+        如何画lda投影结果_线性判别分析（LDA）原理总结
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+        协方差矩阵的几何解释
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
+        从sympy求最简形矩阵到矩阵的四个子空间及其联系
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
+        了解卷积
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
+        向量内积外积的几何意义
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      <label class="md-nav__link" for="__nav_6">
+        自然语言处理
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="自然语言处理" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          自然语言处理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/" class="md-nav__link">
+        自然语言处理
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nlp-new-entry/" class="md-nav__link">
+        NLP 新手上路
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+        NLP HanNLP 词典分词
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/ml-precision-recall/" class="md-nav__link">
+        评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/keywords_extract/" class="md-nav__link">
+        文本关键词提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/topicextract/" class="md-nav__link">
+        用Python从海量文本抽取主题
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nlp-tookits/" class="md-nav__link">
+        nlp常用工具集
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+        NLP pattern库 hands on
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+        基于预训练模型的文本摘要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+        Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+        开源项目，涵盖 11 类 AI 学习框架、平台
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nltk-basic/" class="md-nav__link">
+        自然语言处理工具包之NLTK
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+        基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+        bert-extractive-summarizer 中文文章的抽取式摘要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+        理解NLP中的CNN卷积神经网络
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+        依存分析与依存树 dependency parse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/keywords-auto-extract/" class="md-nav__link">
+        关键词与文章相关性, 关键词自动标注与提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/website-categorization-python/" class="md-nav__link">
+        Python 使用 Google NLP API进行网站分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/automated-web-crawling/" class="md-nav__link">
+        使用 AI 自动执行 Web 爬网
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+        通过机器学习对网站进行分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+        TextRank算法简述
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+        NLTK TextRank实现英文关键词提取
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+        使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+        使用余弦相似度算法计算文本相似度
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+        细数2018年最好的词嵌入和句嵌入技术
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+        从头开始多标签文本分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+        没有模型训练情况下用BERT做文本分类
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+        用 NLP 做文本分析和特征工程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
+        如何使用 BERT 和 Word2Vec 计算句子相似性
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/text-similarity-measuring-bert_21May08200617801479/" class="md-nav__link">
+        BERT用于计算句子文本相似度
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/topic-modeling-interactive-bertopic_21Apr27173610787396/" class="md-nav__link">
+        用BERTopic进行交互式主题建模
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/structured-data-processing-practice20211007/" class="md-nav__link">
+        结构化数据提取实践
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/summary-long-extract-bert-article_21Oct23115502660035/" class="md-nav__link">
+        BERT时代下的摘要提取长文总结
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csdn-blog-_nlp-summary_miner_zhu-summary_21Oct23175443667734/" class="md-nav__link">
+        NLP之文章摘要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        基于词频计算句子权重的文本自动摘要
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-task-summarize-incomplete-auto-summ_21Oct24165632331849/" class="md-nav__link">
+        文本自动摘要任务的“不完全”心得总结
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topic-entity-model-name-recognition-base_21Oct24174759876009/" class="md-nav__link">
+        基于主题模型和命名实体识别的自动摘要方法
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" data-md-state="indeterminate" type="checkbox" id="__nav_7" checked>
+      
+      <label class="md-nav__link" for="__nav_7">
+        广告程序化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="广告程序化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          广告程序化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+        围绕SEO开展竞争对手分析
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+        Shopify独立站的几套选品方法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/semantic-search/" class="md-nav__link">
+        什么是语义搜索？它是如何影响SEO的
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+        如何把网站提交给搜索引擎
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/meta-description/" class="md-nav__link">
+        如何编写完美的元描述
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+        使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+        动态网站使用 Python 向 Google 自动提交站点地图
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        使用 Python 进行 Facebook 抓取和情绪分析
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        Instagram 爬虫
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+        使用 Python 查找关键字类别的搜索量上限
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+        可视化 100，000 亚马逊产品
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+        使用SimHash进行海量文本去重流程
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" data-md-state="indeterminate" type="checkbox" id="__nav_8" checked>
+      
+      <label class="md-nav__link" for="__nav_8">
+        网站SEO优化
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="网站SEO优化" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          网站SEO优化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+        长尾词优化入网页
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/keyword-difficulty/" class="md-nav__link">
+        关键词难度：如何确认你在 Google 获得排名的机会
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+        如何让网站排名进入谷歌首页
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+        如何搭建一个成功的亚马逊联盟网站
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+        SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+        抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-start-seo/" class="md-nav__link">
+        SEO每日流量如何从0到10000
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+        Python与SEO 词库完整指南
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+        Python百度下拉框关键词采集
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/adsense/" class="md-nav__link">
+        hexo个人next主题博客接入谷歌广告
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        关于
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="基于词频计算句子权重的文本自动摘要">基于词频计算句子权重的文本自动摘要<a class="headerlink" href="#基于词频计算句子权重的文本自动摘要" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>我们在阅读新闻报道等实时性文章时，需要快速归纳出文章的大意。但是，如果将一篇很长的文章归纳成一个能够涵盖原文中心思想的小段落，则需要我们耗费大量时间。本文介绍了自然语言处理中的两种文本自动摘要生成方法——抽取式和抽象式文本摘要。这两种方法通过计算文本中句子成分的权重来生成摘要，可以大大节省通读全文以及归纳总结主要信息的时间，为读者提供方便。</p>
+</blockquote>
+<p>文本摘要方法能够对冗长文本进行简洁准确的总结，同时将重点放在传达有用信息的章节，而又不失去文章大意。</p>
+<p>文本自动摘要旨在将冗长文档变成缩写版本，若手动完成则可能非常麻烦且成本高昂。</p>
+<p>在生成需要的摘要文本之前，机器学习算法可被训练用以理解文档，识别传达重要事实和信息的章节。</p>
+<p>使用文本摘要机器学习算法生成一篇在线新闻文章的摘要。</p>
+<p><strong>文本自动摘要的必要性</strong></p>
+<p>随着目前数字空间中数据的爆炸式增长，而大多又是非结构化的文本数据，因而需要开发文本自动摘要工具，使人们可以轻易获知文本大意。当前，我们可以快速访问大量信息。但是，大多数信息冗长、无关紧要，还可能无法传达其本意。例如，如果你想从一篇在线新闻报道中搜寻一些特定信息，你也许要吃透报道内容，花费大量时间剔除无用信息，之后才能找到自己想要了解的信息。所以，使用能够提取有用信息并剔除无关紧要和无用数据的自动文本摘要生成器变得非常重要。文本摘要的实现可以增强文档的可读性，减少搜寻信息的时间，获得更多适用于特定领域的信息。</p>
+<p><strong>文本自动摘要的主要类型</strong></p>
+<p>从广义的角度看，自然语言处理（NLP）中有两种文本摘要生成方法：抽取式和抽象式。</p>
+<p><strong>抽取式摘要（extraction-based summarization）</strong></p>
+<p>在抽取式摘要中，抽取一段文本中表示重点内容的单词子集，并结合起来生成摘要。我们可以将抽取式摘要看作是一支荧光笔-从源文本中抽取主要信息。</p>
+<p>荧光笔 = 抽取式摘要</p>
+<p>在机器学习中，抽取式摘要通常需要衡量基本句子成分的权重，并根据权重结果生成摘要。</p>
+<p>不同类型的算法和方法均可用于衡量句子的权重，之后根据各成分之间的关联性和相似性进行排序-并进一步将这些成分连接起来以生成摘要。</p>
+<p>如下例所示：</p>
+<p><img src='images/001.gif' /></p>
+<p>抽取式摘要</p>
+<p>如上例所示，抽取式摘要由荧光笔标黄的单词组成，生成摘要的语法可能不准确。</p>
+<p><strong>抽象式摘要</strong></p>
+<p>在抽象式摘要中，高级深度学习方法（advanced deep learning technique）用于解释和缩写原始文档，就像人类所做的一样。将抽象式摘要想象成一支钢笔-它能生成或许不属于源文档的新句子。</p>
+<p>钢笔 = 抽象式摘要</p>
+<p>由于抽象式机器学习算法能够生成表示源文本中最重要信息的新短语和句子，所以这些抽象式算法有助于克服抽取式摘要中的语法不准确问题。</p>
+<p>如下例所示：</p>
+<p><img src='images/ml-_21Oct23182317850238_21Oct23182327010192_1.jpeg' /></p>
+<p>抽象式摘要。</p>
+<p>尽管抽象式文本摘要的表现更好，但开发相关算法需要复杂的深度学习技巧和语言模型。</p>
+<p>为了获得合理产出，抽象式摘要方法必须能够解决诸多自然语言处理问题，如自然语言生成、语义表征和推理排序（inference permutation）。</p>
+<p>同样地，抽取式文本摘要方法依然大受欢迎。在本文中，我们将重点介绍抽象式文本摘要方法。</p>
+<p><strong>如何执行文本摘要</strong></p>
+<p>我们使用以下一段话展示如何执行文本摘要抽取：</p>
+<p>我们依照以下步骤对这段话作总结，同时尽可能保留原意。</p>
+<p><strong>第一步：</strong> <strong>将这段话转换成句子</strong></p>
+<p>首先，我们将这段话分割成相应的句子。转换成句子的最佳方法是在句点（period）出现时提取一个句子。</p>
+<p><strong>第二步：</strong> <strong>文本处理</strong></p>
+<p>接下来，我们在文本处理中移除停止词（那些没有实际意义的常见词，如「and」和「the」）、数字、标点符号以及句子中的其他特殊字符。</p>
+<p>句子成分的过滤有助于移除冗余和不重要的信息，这些信息对文本意图的表达或许没有任何价值。</p>
+<p>以下是文本处理结果：</p>
+<p><strong>第三步：</strong> <strong>分词</strong></p>
+<p>切分各个句子，列出句子中的所有单词。</p>
+<p>以下是单词列表：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;peter&#39;</span><span class="p">,</span><span class="s1">&#39;elizabeth&#39;</span><span class="p">,</span><span class="s1">&#39;took&#39;</span><span class="p">,</span><span class="s1">&#39;taxi&#39;</span><span class="p">,</span><span class="s1">&#39;attend&#39;</span><span class="p">,</span><span class="s1">&#39;night&#39;</span><span class="p">,</span><span class="s1">&#39;party&#39;</span><span class="p">,</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="s1">&#39;party&#39;</span><span class="p">,</span><span class="s1">&#39;elizabeth&#39;</span><span class="p">,</span><span class="s1">&#39;collapse&#39;</span><span class="p">,</span><span class="s1">&#39;rush&#39;</span><span class="p">,</span><span class="s1">&#39;hospital&#39;</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">,</span><span class="s1">&#39;brain&#39;</span><span class="p">,</span> <span class="s1">&#39;injury&#39;</span><span class="p">,</span> <span class="s1">&#39;doctor&#39;</span><span class="p">,</span><span class="s1">&#39;told&#39;</span><span class="p">,</span><span class="s1">&#39;peter&#39;</span><span class="p">,</span><span class="s1">&#39;stay&#39;</span><span class="p">,</span><span class="s1">&#39;besides&#39;</span><span class="p">,</span><span class="s1">&#39;get&#39;</span><span class="p">,</span><span class="s1">&#39;well&#39;</span><span class="p">,</span><span class="s1">&#39;peter&#39;</span><span class="p">,</span> <span class="s1">&#39;stayed&#39;</span><span class="p">,</span><span class="s1">&#39;hospital&#39;</span><span class="p">,</span><span class="s1">&#39;days&#39;</span><span class="p">,</span><span class="s1">&#39;without&#39;</span><span class="p">,</span><span class="s1">&#39;leaving&#39;</span><span class="p">]</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><strong>第四步：评估单词的加权出现频率（occurrence frequency）</strong></p>
+<p>紧接着，我们计算所有单词的加权出现频率。为此，我们用每个单词的出现频率除以这段话中出现最多次的单词的频率，在这段话中出现最多的是 Peter，总共出现了三次。</p>
+<p>下表给出了每个单词的加权出现频率。</p>
+<p><img src='images/ml-_21Oct23182317850238_21Oct23182328160685_1.png' /></p>
+<p><strong>第五步：用相应的加权频率替代原句中的各个单词，然后计算总和。</strong></p>
+<p>我们在文本处理步骤中已经移除了停止词和特殊字符等无关紧要的单词，因而它们的加权频率为零，也就没有必要在计算时加上。</p>
+<p><img src='images/ml-_21Oct23182317850238_21Oct23182330106258_1.png' /></p>
+<p>根据所有单词的加权频率总和，我们可以推导出：第一个句子在整段话中的权重最大。所以，第一个句子能够对这段话的意思作出最具代表性的总结。</p>
+<p>此外，如果第一个句子与第三个句子（该句的权重在整段话中排第二）相结合，则可以作出更好的总结。</p>
+<p>以上例子只是基本说明了如何在机器学习中执行抽取式文本摘要。现在，我们看看如何在创建实际摘要生成器中运用上述概念。</p>
+<p><strong>维基百科文章的文本摘要</strong></p>
+<p>让我们动手创建一个可以简化冗长 web 文章中信息的文本摘要生成器。为简单起见，除了 Python 的 NLTK toolkit，我们不使用任何其他机器学习库（machine learning library）。</p>
+<p>以下是摘要生成器的代码 blueprint：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Creating a dictionary for the word frequency table</span>
+<span class="n">frequency_table</span> <span class="o">=</span> <span class="n">_create_dictionary_table</span><span class="p">(</span><span class="n">article</span><span class="p">)</span>
+
+<span class="c1"># Tokenizing the sentences</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">article</span><span class="p">)</span>
+
+<span class="c1"># Algorithm for scoring a sentence by its words</span>
+<span class="n">sentence_scores</span> <span class="o">=</span> <span class="n">_calculate_sentence_scores</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">frequency_table</span><span class="p">)</span>
+
+<span class="c1"># Getting the threshold</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">_calculate_average_score</span><span class="p">(</span><span class="n">sentence_scores</span><span class="p">)</span>
+
+<span class="c1"># Producing the summary</span>
+<span class="n">article_summary</span> <span class="o">=</span> <span class="n">_get_article_summary</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">sentence_scores</span><span class="p">,</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">threshold</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">article_summary</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>依照下列步骤使用 Python 语言创建一个简单的文本摘要生成器。</p>
+<p><strong>第一步：准备数据</strong></p>
+<p>在这个例子中，我们想总结一下这篇 Wikipedia 文章的信息，这篇文章只是对 20 世纪发生的主要事件进行概述。</p>
+<p>为了获取这篇文章的文本，我们将使用 Beautiful Soup 库。</p>
+<p>以下是抓取文章内容的代码：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">bs4</span> <span class="k">as</span> <span class="nn">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>  
+
+<span class="c1"># Fetching the content from the URL</span>
+<span class="n">fetched_data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/20th_century&#39;</span><span class="p">)</span>
+
+<span class="n">article_read</span> <span class="o">=</span> <span class="n">fetched_data</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Parsing the URL content and storing in a variable</span>
+<span class="n">article_parsed</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">article_read</span><span class="p">,</span><span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+<span class="c1"># Returning &lt;p&gt; tags</span>
+<span class="n">paragraphs</span> <span class="o">=</span> <span class="n">article_parsed</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+
+<span class="n">article_content</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="c1"># Looping through the paragraphs and adding them to the variable</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">:</span>  
+    <span class="n">article_content</span> <span class="o">+=</span> <span class="n">p</span><span class="o">.</span><span class="n">text</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>在以上代码中，我们首先导入抓取网页数据所必需的库。BeautifulSoup 库用于解析网页内容，而 urllib library 用于连接网页和检索 HTML。</p>
+<p>BeautifulSoup 将输入文本转化为 Unicode 字符，将输出文本转化为 UTF-8 字符，省去了从 web 上抓取文本时处理不同字符集编码的麻烦。</p>
+<p>我们使用 urllib.request 程序中的 urlopen 函数打开网页。之后，使用 read 函数读取所抓取的数据对象。为了解析数据，我们调用 BeautifulSoup 对象，并向它传递两个参数，即 article_read 和 html.parser。</p>
+<p>find_all 函数用于传回 HTML 中出现的所有&lt;p>元素。此外，.text 使我们只能选择&lt;p>元素中的文本。</p>
+<p><strong>第二步：处理数据</strong></p>
+<p>为尽可能确保废弃的文本数据无噪声，我们将执行一些基本的文本清理（text cleaning）。为协助完成这一处理过程，我们将从 NLTK 库中导入一个停止词列表。</p>
+<p>我们还将引入 PorterStemmer，这是一种将单词还原成词根形式的算法。例如，单词 cleaning、cleaned 和 cleaner 都可以还原成词根 clean。</p>
+<p>此外，我们还将创建一个包含文本中每一单词出现频率的字典表。我们将依次读取文本及相应单词，以消除所有停止词。</p>
+<p>之后，我们将检查单词是否出现在 frequency_table 中。如果一个单词之前就在字典中，则其值更新 1。否则，如果一个单词首次被识别到，则其值设置为 1。</p>
+<p>例如，频率表应如下所示：</p>
+<p><img src='images/ml-_21Oct23182317850238_21Oct23182331231661_1.png' /></p>
+<p>代码如下：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+    <span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
+    <span class="k">def</span> <span class="nf">_create_dictionary_table</span><span class="p">(</span><span class="n">text_string</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+
+        <span class="c1"># Removing stop words</span>
+        <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">))</span>
+
+        <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text_string</span><span class="p">)</span>
+
+        <span class="c1"># Reducing words to their root form</span>
+        <span class="n">stem</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+
+        <span class="c1"># Creating dictionary for the word frequency table</span>
+        <span class="n">frequency_table</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">wd</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="n">wd</span> <span class="o">=</span> <span class="n">stem</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">wd</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">wd</span> <span class="ow">in</span> <span class="n">frequency_table</span><span class="p">:</span>
+                <span class="n">frequency_table</span><span class="p">[</span><span class="n">wd</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">frequency_table</span><span class="p">[</span><span class="n">wd</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">frequency_table</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><strong>第三步：将文章分割成句子</strong></p>
+<p>为了将 article_content 分割成一个句子集，我们将使用 NLTK 库中的内置方法。
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">sent_tokenize</span>
+
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">article</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><strong>第四步：确定句子的加权频率</strong></p>
+<p>为了评估文本中每个句子的分数，我们将分析每个单词的出现频率。在这种情况下，我们将根据句子中的单词对该句进行评分，也就是加上句子中每个重要单词的出现频率。</p>
+<p>请看以下代码：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">_calculate_sentence_scores</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">frequency_table</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>   
+
+        <span class="c1"># Algorithm for scoring a sentence by its words</span>
+        <span class="n">sentence_weight</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+            <span class="n">sentence_wordcount</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)))</span>
+            <span class="n">sentence_wordcount_without_stop_words</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">word_weight</span> <span class="ow">in</span> <span class="n">frequency_table</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">word_weight</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                    <span class="n">sentence_wordcount_without_stop_words</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]</span> <span class="ow">in</span> <span class="n">sentence_weight</span><span class="p">:</span>
+                        <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">frequency_table</span><span class="p">[</span><span class="n">word_weight</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]]</span> <span class="o">=</span> <span class="n">frequency_table</span><span class="p">[</span><span class="n">word_weight</span><span class="p">]</span>
+
+            <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]]</span> <span class="o">=</span> <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]</span> <span class="o">/</span> <span class="n">sentence_wordcount_without_stop_words</span>
+
+        <span class="k">return</span> <span class="n">sentence_weight</span>
+</code></pre></div>
+</td></tr></table></p>
+<p>重要的是，为了避免长句的分数必然高于短句，我们用每个句子的分数除以该句中的单词数。</p>
+<p>另外，为了优化字典内存，我们任意添加 sentence[:7]，这指的是每个句子的前七个字符。但在较长的文档中，你很可能遇到具有相同首个 n_chars 的句子，这时最好使用哈希函数（hash function）或 index 函数（index function）来处理此类极端情况（edge-cases），避免冲突。</p>
+<p><strong>第五步：计算句子阈值</strong></p>
+<p>为了进一步调整适合摘要的句子类型，我们将创建句子的平均分。借助于这个阈值，我们可以避免选择分数低于平均分的句子。</p>
+<p>代码如下：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">_calculate_average_score</span><span class="p">(</span><span class="n">sentence_weight</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+        <span class="c1"># Calculating the average score for the sentences</span>
+        <span class="n">sum_values</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">sentence_weight</span><span class="p">:</span>
+            <span class="n">sum_values</span> <span class="o">+=</span> <span class="n">sentence_weight</span><span class="p">[</span><span class="n">entry</span><span class="p">]</span>
+
+        <span class="c1"># Getting sentence average value from source text</span>
+        <span class="n">average_score</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_values</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence_weight</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">average_score</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><strong>第六步：生成摘要</strong></p>
+<p>最后，我们拥有了所有必需的参数，因而现在可以生成文章摘要了。</p>
+<p>代码如下：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">_get_article_summary</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">sentence_weight</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+        <span class="n">sentence_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">article_summary</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]</span> <span class="ow">in</span> <span class="n">sentence_weight</span> <span class="ow">and</span> <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]]</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">threshold</span><span class="p">):</span>
+                <span class="n">article_summary</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">sentence</span>
+                <span class="n">sentence_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">article_summary</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><strong>总结</strong></p>
+<p>下图展示了创建文本摘要算法的工作流程。</p>
+<p><img src='images/ml-_21Oct23182317850238_21Oct23182332972723_1.png' /></p>
+<p>以下是机器学习中简单抽取式文本摘要生成器的完整代码：
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="c1">#importing libraries</span>
+    <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+    <span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
+    <span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">sent_tokenize</span>
+    <span class="kn">import</span> <span class="nn">bs4</span> <span class="k">as</span> <span class="nn">BeautifulSoup</span>
+    <span class="kn">import</span> <span class="nn">urllib.request</span>  
+
+    <span class="c1">#fetching the content from the URL</span>
+    <span class="n">fetched_data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/20th_century&#39;</span><span class="p">)</span>
+
+    <span class="n">article_read</span> <span class="o">=</span> <span class="n">fetched_data</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="c1">#parsing the URL content and storing in a variable</span>
+    <span class="n">article_parsed</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">article_read</span><span class="p">,</span><span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+    <span class="c1">#returning &lt;p&gt; tags</span>
+    <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">article_parsed</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+
+    <span class="n">article_content</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="c1">#looping through the paragraphs and adding them to the variable</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">:</span>  
+        <span class="n">article_content</span> <span class="o">+=</span> <span class="n">p</span><span class="o">.</span><span class="n">text</span>
+
+
+    <span class="k">def</span> <span class="nf">_create_dictionary_table</span><span class="p">(</span><span class="n">text_string</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+
+        <span class="c1">#removing stop words</span>
+        <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">))</span>
+
+        <span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text_string</span><span class="p">)</span>
+
+        <span class="c1">#reducing words to their root form</span>
+        <span class="n">stem</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+
+        <span class="c1">#creating dictionary for the word frequency table</span>
+        <span class="n">frequency_table</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">wd</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="n">wd</span> <span class="o">=</span> <span class="n">stem</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">wd</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">wd</span> <span class="ow">in</span> <span class="n">frequency_table</span><span class="p">:</span>
+                <span class="n">frequency_table</span><span class="p">[</span><span class="n">wd</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">frequency_table</span><span class="p">[</span><span class="n">wd</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">frequency_table</span>
+
+
+    <span class="k">def</span> <span class="nf">_calculate_sentence_scores</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">frequency_table</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>   
+
+        <span class="c1">#algorithm for scoring a sentence by its words</span>
+        <span class="n">sentence_weight</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+            <span class="n">sentence_wordcount</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)))</span>
+            <span class="n">sentence_wordcount_without_stop_words</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">word_weight</span> <span class="ow">in</span> <span class="n">frequency_table</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">word_weight</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                    <span class="n">sentence_wordcount_without_stop_words</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]</span> <span class="ow">in</span> <span class="n">sentence_weight</span><span class="p">:</span>
+                        <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">frequency_table</span><span class="p">[</span><span class="n">word_weight</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]]</span> <span class="o">=</span> <span class="n">frequency_table</span><span class="p">[</span><span class="n">word_weight</span><span class="p">]</span>
+
+            <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]]</span> <span class="o">=</span> <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]]</span> <span class="o">/</span> <span class="n">sentence_wordcount_without_stop_words</span>
+
+
+
+        <span class="k">return</span> <span class="n">sentence_weight</span>
+
+    <span class="k">def</span> <span class="nf">_calculate_average_score</span><span class="p">(</span><span class="n">sentence_weight</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+        <span class="c1">#calculating the average score for the sentences</span>
+        <span class="n">sum_values</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">sentence_weight</span><span class="p">:</span>
+            <span class="n">sum_values</span> <span class="o">+=</span> <span class="n">sentence_weight</span><span class="p">[</span><span class="n">entry</span><span class="p">]</span>
+
+        <span class="c1">#getting sentence average value from source text</span>
+        <span class="n">average_score</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_values</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence_weight</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">average_score</span>
+
+    <span class="k">def</span> <span class="nf">_get_article_summary</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">sentence_weight</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+        <span class="n">sentence_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">article_summary</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]</span> <span class="ow">in</span> <span class="n">sentence_weight</span> <span class="ow">and</span> <span class="n">sentence_weight</span><span class="p">[</span><span class="n">sentence</span><span class="p">[:</span><span class="mi">7</span><span class="p">]]</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">threshold</span><span class="p">):</span>
+                <span class="n">article_summary</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">sentence</span>
+                <span class="n">sentence_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">article_summary</span>
+
+    <span class="k">def</span> <span class="nf">_run_article_summary</span><span class="p">(</span><span class="n">article</span><span class="p">):</span>
+
+        <span class="c1">#creating a dictionary for the word frequency table</span>
+        <span class="n">frequency_table</span> <span class="o">=</span> <span class="n">_create_dictionary_table</span><span class="p">(</span><span class="n">article</span><span class="p">)</span>
+
+        <span class="c1">#tokenizing the sentences</span>
+        <span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">article</span><span class="p">)</span>
+
+        <span class="c1">#algorithm for scoring a sentence by its words</span>
+        <span class="n">sentence_scores</span> <span class="o">=</span> <span class="n">_calculate_sentence_scores</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">frequency_table</span><span class="p">)</span>
+
+        <span class="c1">#getting the threshold</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="n">_calculate_average_score</span><span class="p">(</span><span class="n">sentence_scores</span><span class="p">)</span>
+
+        <span class="c1">#producing the summary</span>
+        <span class="n">article_summary</span> <span class="o">=</span> <span class="n">_get_article_summary</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">sentence_scores</span><span class="p">,</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">threshold</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">article_summary</span>
+
+    <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">summary_results</span> <span class="o">=</span> <span class="n">_run_article_summary</span><span class="p">(</span><span class="n">article_content</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">summary_results</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><a href="https://floydhub.com/run?template=https://github.com/Alfrick/textsummarizationcode.git">在 FloydHub Notebook 上运行代码</a></p>
+<p>在这个例子中，我们所采用的阈值是平均分的 1.5 倍。这个超参数值 <a href="https://blog.floydhub.com/guide-to-hyperparameters-search-for-deep-learning-models/">hyperparameter</a>在几次试验后为我们生成了良好的结果。当然，你可以根据自身的偏好对数值进行微调，并改进摘要生成效果。</p>
+<p>下图是 Wikipedia 文章的生成摘要。</p>
+<p><img src='images/ml-_21Oct23182317850238_21Oct23182335473614_1.png' /></p>
+<p>使用文本摘要算法生成的 Wikipedia 文章摘要。</p>
+<p>如你所见，运行代码可以对冗长的 Wikipedia 文章进行总结，并简要概述 20 世纪发生的主要事件。</p>
+<p>尽管如此，我们还可以改进摘要生成器，使之更好地生成长篇幅文本的简洁、精确摘要。</p>
+<p><strong>更多内容</strong></p>
+<p>当然，本文只是简要介绍了机器学习中使用文本摘要算法所能实现的功能。</p>
+<p>若想了解更多有关该主题，特别是抽象式文本摘要的知识，下面一些有用的资源可以为你提供帮助：</p>
+<p>有没有可能将两种方法（抽象式和抽取式文本自动摘要）相结合？这是指针生成网络<a href="https://arxiv.org/pdf/1704.04368.pdf">pointer generator network</a>的主要原理，该网络通过结合抽取（指向）和抽象（生成）取得了最佳效果。</p>
+<p><img src='images/002.gif' /></p>
+<p>图源："Taming Recurrent Neural Networks for Better Summarization"</p>
+<p>《WikiHow: A Large Scale Text Summarization Dataset》一文提出了一个新的大规模文本自动摘要数据集 WikiHow，该数据集包含提取自 WikiHow 在线知识库的 230000 多篇文章。目前可用的大多数数据集的规模不足以训练序列到序列模型，它们也许只能提供有限的摘要，并且更适合执行抽取式摘要。但是，WikiHow 数据集规模大，质量高，能够在抽象式文本摘要中获得最优结果。</p>
+<p>《Pretraining-Based Natural Language Generation for Text Summarization》一文提出了一个基于序列到序列范式的独特二阶段模型。该模型同时在编码器和解码器侧利用 <a href="https://blog.floydhub.com/ten-trends-in-deep-learning-nlp/">BERT</a>，并在学习过程中注重强化目标。当该模型在一些基准数据集上进行评估时，结果显示，该方法在文本自动摘要中表现更好，尤其相较于其他传统系统而言。</p>
+<p>Any text/graphics/videos and other articles on this website that indicate "Source: xxx" are reprinted on this website for the purpose of transmitting more information, which does not mean that we agree with their views or confirm the authenticity of their content. If you are involved in the content of the work, copyright and other issues, please contact this website, we will delete the content in the first time! <br />
+Author:   Alfrick Opidi  <br />
+Source: <a href="https://blog.floydhub.com/gentle-introduction-to-text-summarization-in-machine-learning/">https://blog.floydhub.com/gentle-introduction-to-text-summarization-in-machine-learning/</a></p>
+                
+                  
+                
+              
+              
+  <!-- Add custom comment system integration here -->
+  
+  
+  
+  
+    <h3 id="__comments">评论</h3>
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MTg1MC8yODMzMQ==">
+      <script type="text/javascript">
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+
+          if (typeof LivereTower === 'function') { return; }
+
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+      </script>
+    </div>
+  <!-- City版安装代码已完成 -->
+  
+
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../csdn-blog-_nlp-summary_miner_zhu-summary_21Oct23175443667734/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                NLP之文章摘要
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../text-task-summarize-incomplete-auto-summ_21Oct24165632331849/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                文本自动摘要任务的“不完全”心得总结
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "toc.integrate"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d892486b.min.js"></script>
+      
+        <script src="../../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
