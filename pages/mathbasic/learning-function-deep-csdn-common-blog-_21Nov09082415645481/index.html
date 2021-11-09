@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#深度学习最常用的10个激活函数" class="md-skip">
+        <a href="#收集16个激活函数" class="md-skip">
           跳转至
         </a>
       
@@ -1582,7 +1582,7 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        深度学习最常用的10个激活函数
+        收集16个激活函数
       </a>
       
     </li>
@@ -2487,7 +2487,7 @@
               
                 
                 
-                <h1 id="深度学习最常用的10个激活函数">深度学习最常用的10个激活函数<a class="headerlink" href="#深度学习最常用的10个激活函数" title="Permanent link">&para;</a></h1>
+                <h1 id="收集16个激活函数">收集16个激活函数<a class="headerlink" href="#收集16个激活函数" title="Permanent link">&para;</a></h1>
 <p>今天早上在reddit上刷到一张非常形象mó xìng的图，</p>
 <p><img src='images/learning-function-deep-csdn-common-blog-_21Nov09082416087758_1.png' /></p>
 <p>那就让我们来整理一下深度学习中离不开的激活函数！  </p>
@@ -2674,8 +2674,7 @@
 <p><img src='images/learning-function-deep-csdn-common-blog-_21Nov09082422936581_1.png' /></p>
 <p>因此，由两个 Maxout 节点组成的 Maxout 层可以很好地近似任何连续函数。</p>
 <p><img src='images/learning-function-deep-csdn-common-blog-_21Nov09082423208524_1.png' /></p>
-<p><strong>10. Softplus<br />
-</strong></p>
+<p><strong>10. Softplus</strong></p>
 <p><img src='images/learning-function-deep-csdn-common-blog-_21Nov09082423581862_1.png' /></p>
 <p>Softplus 函数：f（x）= ln（1 + exp x）</p>
 <p>Softplus 的导数为</p>
@@ -2683,9 +2682,41 @@
 <p>= 1/ (1 +exp(−x ))</p>
 <p>，也称为 logistic / sigmoid 函数。</p>
 <p>Softplus 函数类似于 ReLU 函数，但是相对较平滑，像 ReLU 一样是单侧抑制。它的接受范围很广：(0, + inf)。</p>
+<p><strong>11. ReLU6</strong></p>
+<p>输出限制在深度学习中是一种比较常见的手段，ReLU6限制ReLU的的输出不超过6，其计算方式如下： <br />
+<img src='images/ReLU6_01.png' /></p>
+<p>对应的图示如下： <br />
+<img src='images/ReLU6_02.jpeg' /></p>
+<p><strong>12. RReLU</strong></p>
+<p>依旧是ReLU家族中的一员，其计算方式如下： <br />
+<img src='images/RReLU_01.jpeg' /></p>
+<p>其中alpha是在均匀分布下的采样，可以设定均匀分布的上下界，具体可以参考论文<strong>Xu B, Wang N, Chen T, et al. Empirical evaluation of rectified activations in convolutional network[J]. arXiv preprint arXiv:1505.00853, 2015</strong>，其图示如下： <br />
+<img src='images/RReLU_02.jpeg' /></p>
+<p><strong>13. SELU</strong></p>
+<p>SELU和ELU的形式比较类似，但是多出一个scale，具体可见论文<strong>Klambauer G, Unterthiner T, Mayr A, et al. Self-normalizing neural networks[C]//Advances in neural information processing systems. 2017: 971-980</strong>： <br />
+<img src='images/SELU_01.png' /></p>
+<p>按照<a href="https://pytorch.org/docs/stable/nn.html">pytorch doc</a>中关于scale和alpha的选择： <br />
+<img src='images/SELU_02.png' /></p>
+<p>得到的图示如下： <br />
+<img src='images/SELU_03.jpeg' /></p>
+<p><strong>14. CELU</strong></p>
+<p>与上述的SELU类似，CELU同样采用负数区间为指数计算，整数区间为线性计算，具体见论文<strong>Barron J T. Continuously differentiable exponential linear units[J]. arXiv preprint arXiv:1704.07483, 2017</strong>： <br />
+<img src='images/CELU_01.png' /></p>
+<p>其图示如下： <br />
+<img src='images/CELU_02.jpeg' /></p>
+<p><strong>15. LogSigmoid</strong></p>
+<p>LogSigmoid对Sigmoid进行了对数计算如下： <br />
+<img src='images/LogSigmod_01.png' /></p>
+<p>对应的图示如下： <br />
+<img src='images/LogSigmod_02.jpeg' /></p>
+<p><strong>16. Tanhshrink</strong></p>
+<p>上述的Tanh表述双曲正切计算，Tanhshrink直接采用输入减去双曲正切值： <br />
+<img src='images/Tanhshrink_01.png' /></p>
+<p>其图示如下： <br />
+<img src='images/Tanhshrink_02.jpeg' /></p>
 <p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
-作者:  Sukanya Bag, zenRRan <br />
-来源： <a href="https://blog.csdn.net/qq_27590277/article/details/114559115">https://blog.csdn.net/qq_27590277/article/details/114559115</a></p>
+作者:  Sukanya Bag, zenRRan, 机器学习入坑者 <br />
+来源： <a href="https://blog.csdn.net/qq_27590277/article/details/114559115">https://blog.csdn.net/qq_27590277/article/details/114559115</a> , <a href="https://zhuanlan.zhihu.com/p/99401264">https://zhuanlan.zhihu.com/p/99401264</a></p>
                 
                   
                 
